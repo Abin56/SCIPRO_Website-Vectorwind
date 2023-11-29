@@ -38,7 +38,6 @@ dependencies:
   google_sign_in: ^6.1.6
   get: ^4.6.6
   uuid: ^4.2.1
-  get: ^4.6.6
   fluttertoast: ^8.2.4
   sidebar_drawer:
   syncfusion_flutter_datagrid:

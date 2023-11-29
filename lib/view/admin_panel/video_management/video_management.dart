@@ -51,7 +51,7 @@ class VideoManagementSection extends StatelessWidget {
 
       GestureDetector(
         onTap: () {
-          createvedioRecordedCourses(context);
+          createvideoRecordedCourses(context);
         },
         child: const Padding(
           padding: EdgeInsets.only(
@@ -139,4 +139,3 @@ class VideoManagementSection extends StatelessWidget {
     );
   }
 }
-     
