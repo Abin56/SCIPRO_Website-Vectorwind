@@ -62,7 +62,7 @@ class VideoManagementSection extends StatelessWidget {
           ),
         ),
       ), //////////////////////////////////////////////////////////////////Create Vedio Recorded Courses
-         //////////////////////////////////
+      //////////////////////////////////
       SizedBox(
           height: 35,
           width: 250,
