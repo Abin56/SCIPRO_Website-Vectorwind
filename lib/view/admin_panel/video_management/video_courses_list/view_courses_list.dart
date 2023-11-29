@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scipro_website/view/admin_panel/video_management/video_courses_list/view_courses/view_courses_grid.dart';
+import 'package:scipro_website/view/admin_panel/video_management/video_courses_list/table_grids/view_courses_grid.dart';
 import 'package:scipro_website/view/widgets/responsive/responsive.dart';
 
 class RecordedCourses extends StatelessWidget {
@@ -13,7 +13,7 @@ class RecordedCourses extends StatelessWidget {
       children: [
         ResponsiveWebSite.isMobile(context)
             ? Container(
-              color: Colors.amber,
+              color: Colors.white,
                 width: 400,
                 height: 800,
                 child: const SingleChildScrollView(
