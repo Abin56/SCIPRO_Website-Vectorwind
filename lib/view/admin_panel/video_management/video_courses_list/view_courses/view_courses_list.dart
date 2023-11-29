@@ -12,14 +12,15 @@ class RecordedCourses extends StatelessWidget {
     return Column(
       children: [
         ResponsiveWebSite.isMobile(context)
-            ? const SizedBox(
+            ? Container(
+              color: Colors.amber,
                 width: 400,
-                height: 500,
-                child: SingleChildScrollView(
+                height: 800,
+                child: const SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: SizedBox(
-                      width: 400,
-                      child: SingleChildScrollView(child: ViewCoursesList())),
+                      width: 600,
+                      child: ViewCoursesList()),
                 ),
               )
             : const SingleChildScrollView(

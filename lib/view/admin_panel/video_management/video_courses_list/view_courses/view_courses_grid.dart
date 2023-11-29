@@ -76,6 +76,11 @@ class ViewCoursesListState extends State<ViewCoursesList> {
       Course(context, 03, 'Social Science', 7, 15),
       Course(context, 04, 'Maths', 8, 15),
       Course(context, 05, 'English', 3, 1),
+       Course(context, 01, 'Science', 9, 2),
+      Course(context, 02, 'GK', 3, 30),
+      Course(context, 03, 'Social Science', 7, 15),
+      Course(context, 04, 'Maths', 8, 15),
+      Course(context, 05, 'English', 3, 1),
     ];
   }
 }
@@ -148,6 +153,7 @@ class GridCourseColumnContainerWidget extends StatelessWidget {
         alignment: Alignment.center,
         child: Text(
           text,
+          style: const TextStyle(fontSize: 12,fontWeight: FontWeight.bold),
           //overflow: TextOverflow.ellipsis,
         ));
   }
