@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scipro_website/view/admin_panel/drawer_logo.dart';
+import 'package:scipro_website/view/admin_panel/subscrib_std_mngt/Subscribed_std/subscribed_student.dart';
 import 'package:scipro_website/view/admin_panel/video_management/video_management.dart';
 import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
@@ -45,11 +46,8 @@ class _AdminPanelPageState extends State<AdminPanelPage> {
 
 List<Widget> pages = [
   const VideoManagementSection(),
-  Container(
-    child: const Center(
-      child: Text("data"),
-    ),
-  ),
+   const SubscribedStd(),
+
    Container(
     child: const Center(
       child: Text("data"),
