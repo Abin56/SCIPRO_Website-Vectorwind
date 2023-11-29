@@ -20,7 +20,7 @@ createvideoCategory(BuildContext context)async{
                         Form(
                           key: formKey,
                           child: TextFormFiledContainerWidget(
-                            hintText: 'Enter Category',
+                            hintText: 'Enter Category Name',
                             title: 'Category Name',
                             width: 300,
                             validator: checkFieldEmpty,
