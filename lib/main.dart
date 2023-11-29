@@ -3,8 +3,7 @@ import 'dart:html' as html;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:scipro_website/firebase_options.dart';
-
-import 'view/admin_panel/video_management/video_management.dart';
+import 'package:scipro_website/view/admin_panel/admin_panel.dart';
 
 Future<void> main() async {
   html.document.title = 'SCI PRO';
@@ -22,9 +21,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home:  Scaffold(
-      body: CreateRecordedCourses(),
-    ),
+      debugShowCheckedModeBanner: false,
+      home: AdminPanelPage(),
     );
   }
 }
