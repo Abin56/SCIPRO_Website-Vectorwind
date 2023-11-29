@@ -52,7 +52,33 @@ List<Widget> pages = [
     child: const Center(
       child: Text("data"),
     ),
-  )
+  ),
+   Container(
+    child: const Center(
+      child: Text("data"),
+    ),
+  ),
+  Container(
+    child: const Center(
+      child: Text("data"),
+    ),
+  ),
+   Container(
+    child: const Center(
+      child: Text("data"),
+    ),
+  ),
+  Container(
+    child: const Center(
+      child: Text("data"),
+    ),
+  ),
+   Container(
+    child: const Center(
+      child: Text("data"),
+    ),
+  ),
+
 ];
 
 class SideBarMenuItemsWidget extends StatelessWidget {
