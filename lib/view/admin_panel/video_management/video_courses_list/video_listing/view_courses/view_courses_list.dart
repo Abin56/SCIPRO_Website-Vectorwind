@@ -1,6 +1,5 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
-import 'package:scipro_website/view/admin_panel/video_management/video_courses_list/video_listing/video_section/video_grid.dart';
 import 'package:scipro_website/view/admin_panel/video_management/video_courses_list/video_listing/view_courses/view_courses_grid.dart';
 import 'package:scipro_website/view/widgets/responsive/responsive.dart';
 
@@ -12,6 +11,7 @@ class VideoListingContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: avoid_unnecessary_containers
     return Container(
       child:
      Column(
