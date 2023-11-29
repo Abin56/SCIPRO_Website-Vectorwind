@@ -10,20 +10,20 @@ List<Widget> recCousesWidget = [
   Padding(
     padding: const EdgeInsets.only(top: 10, left: 10),
     child: TextFormFiledContainerWidget(
-      hintText: "Create Course",
-      title: "Create Couse",
+      hintText: "Course Name",
+      title: "Couse Name" ,
       width: 200,
       validator: checkFieldEmpty,
     ),
-  ), ////////////////////1
+  ), /////////////////////////////////////////////////////////////////0
   Padding(
     padding: const EdgeInsets.only(top: 10, left: 10),
     child: TextFormFiledContainerWidget(
-        hintText: "Facultie",
-        title: "Facultie",
+        hintText: "Facultie Name",
+        title: "Facultie Name",
         width: 200,
         validator: checkFieldEmpty),
-  ), /////////////////2
+  ), /////////////////////////////////////////////////////////////////////1
   Padding(
     padding: const EdgeInsets.only(top: 10, left: 10),
     child: TextFormFiledContainerWidget(
@@ -31,15 +31,15 @@ List<Widget> recCousesWidget = [
         title: "Course Fee",
         width: 200,
         validator: checkFieldEmpty),
-  ), ////////////3
+  ), ///////////////////////////////////////////////////////////////////////2
   Padding(
     padding: const EdgeInsets.only(top: 10, left: 10),
     child: TextFormFiledContainerWidget(
-        hintText: "Duration",
+        hintText: "Enter in Days(Eg:30,40,etc.....)",
         title: "Duration",
         width: 200,
         validator: checkFieldEmpty),
-  ), //////////////4
+  ), ////////////////////////////////////////////////////////////////////3
   Padding(
     padding: const EdgeInsets.only(top: 10, left: 10),
     child: TextFormFiledContainerWidget(
@@ -47,23 +47,8 @@ List<Widget> recCousesWidget = [
         title: "Course ID",
         width: 200,
         validator: checkFieldEmpty),
-  ), /////////////5
-  Padding(
-    padding: const EdgeInsets.only(top: 10, left: 10),
-    child: TextFormFiledContainerWidget(
-        hintText: "Posted Date",
-        title: "Posted Date",
-        width: 200,
-        validator: checkFieldEmpty),
-  ), /////////////////////6
-  Padding(
-    padding: const EdgeInsets.only(top: 10, left: 10),
-    child: TextFormFiledContainerWidget(
-        hintText: "Posted Time",
-        title: "Posted Time",
-        width: 200,
-        validator: checkFieldEmpty),
-  ), /////////////7
+  ), /////////////////////////////////////////////////////////////////////////4
+   
   Padding(
     padding: const EdgeInsets.only(
       top: 10,
@@ -83,6 +68,7 @@ List<Widget> recCousesWidget = [
               width: 200,
               child: Center(
                 child: DropdownSearch(
+                  validator: checkFieldEmpty,
                   autoValidateMode: AutovalidateMode.always,
                   // onChanged: (value) {
                   //   selectstate = value ?? '';
@@ -91,12 +77,12 @@ List<Widget> recCousesWidget = [
                   dropdownDecoratorProps: DropDownDecoratorProps(
                       baseStyle: GoogleFonts.poppins(
                           fontSize: 13, color: Colors.black.withOpacity(0.7))),
-                  selectedItem: 'Category',
+                  selectedItem: 'Select Category',
                   //items: listofState,
                 ),
               )),
         ),
       ],
     ),
-  ), /////////8
+  ), ////////////////////////////////////////////////////////////DropDown/////////////5
 ];

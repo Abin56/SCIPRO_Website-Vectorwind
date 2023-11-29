@@ -20,8 +20,8 @@ createvideoCategory(BuildContext context)async{
                         Form(
                           key: formKey,
                           child: TextFormFiledContainerWidget(
-                            hintText: 'Create Category',
-                            title: 'Create Category',
+                            hintText: 'Enter Category',
+                            title: 'Category Name',
                             width: 300,
                             validator: checkFieldEmpty,
                           ),
@@ -58,8 +58,7 @@ return customShowDilogBox(
                             recCousesWidget[3],
                             recCousesWidget[4],
                             recCousesWidget[5],
-                            recCousesWidget[6],
-                            recCousesWidget[7],
+                           
                           ]),
                         ),
                       )
@@ -67,7 +66,7 @@ return customShowDilogBox(
                         children: [
                           Expanded(
                             child: SizedBox(
-                              height: 300,
+                              height: 200,
                               child: Form(
                                 key: formKey,
                                 child: Column(children: [
@@ -95,17 +94,17 @@ return customShowDilogBox(
                                       ],
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 10),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        recCousesWidget[6],
-                                        recCousesWidget[7]
-                                      ],
-                                    ),
-                                  ),
+                                  // Padding(
+                                  //   padding: const EdgeInsets.only(top: 10),
+                                  //   child: Row(
+                                  //     mainAxisAlignment:
+                                  //         MainAxisAlignment.start,
+                                  //     children: [
+                                  //       recCousesWidget[6],
+                                  //       recCousesWidget[7]
+                                  //     ],
+                                  //   ),
+                                  // ),
                                 ]),
                               ),
                             ),
