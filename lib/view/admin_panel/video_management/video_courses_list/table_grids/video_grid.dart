@@ -25,11 +25,9 @@ class VideoListingGridState extends State<VideoListingGrid> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Center(child: Text('Video')),
-      ),
-      body: SfDataGrid(
+    return 
+    
+      SfDataGrid(
         gridLinesVisibility: GridLinesVisibility.both,
               headerGridLinesVisibility: GridLinesVisibility.both,
         source: videoDataSource,
@@ -60,7 +58,7 @@ class VideoListingGridState extends State<VideoListingGrid> {
           //hhhh(context);
           }
         }),
-      ),
+      
     );
   }
 

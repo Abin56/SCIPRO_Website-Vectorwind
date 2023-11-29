@@ -36,6 +36,7 @@ dependencies:
   firebase_core: ^2.23.0
   google_fonts: ^6.1.0
   google_sign_in: ^6.1.6
+  get: ^4.6.6
   uuid: ^4.2.1
   fluttertoast: ^8.2.4
   sidebar_drawer:

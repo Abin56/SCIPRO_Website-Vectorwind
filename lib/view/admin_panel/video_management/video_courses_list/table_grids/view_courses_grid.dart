@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scipro_website/view/admin_panel/video_management/video_courses_list/show_videoList/showvideos_listing.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class ViewCoursesList extends StatefulWidget {
@@ -25,47 +26,49 @@ class ViewCoursesListState extends State<ViewCoursesList> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: SfDataGrid(
-        controller: gridController,
-        gridLinesVisibility: GridLinesVisibility.both,
-        headerGridLinesVisibility: GridLinesVisibility.both,
-        source: courseDataSource,
-        columns: <GridColumn>[
-          GridColumn(
-            width: 100,
-            columnName: 'no',
-            label: const GridCourseColumnContainerWidget(
-              text: "NO.",
-            ),
+    return SfDataGrid(
+      controller: gridController,
+      gridLinesVisibility: GridLinesVisibility.both,
+      headerGridLinesVisibility: GridLinesVisibility.both,
+      source: courseDataSource,
+      columns: <GridColumn>[
+        GridColumn(
+          width: 100,
+          columnName: 'no',
+          label: const GridCourseColumnContainerWidget(
+            text: "NO.",
           ),
-          GridColumn(
-              columnName: 'coursename',
-              label: const GridCourseColumnContainerWidget(
-                text: "COURSE NAME",
-              )),
-          GridColumn(
-              columnName: 'noofvideos',
-              label: const GridCourseColumnContainerWidget(
-                text: 'NO. OF VIDEOS',
-              )),
-          GridColumn(
-              columnName: 'date',
-              label: const GridCourseColumnContainerWidget(
-                text: 'DATE',
-              )),
-        ],
-        columnWidthMode: ColumnWidthMode.fill,
-        allowSorting: true,
-        onCellTap: ((details) {
-          if (details.rowColumnIndex.rowIndex != 0) {
-            // int selectedRowIndex = details.rowColumnIndex.rowIndex - 1;
-            // var row = courseDataSource.effectiveRows.elementAt(selectedRowIndex);
-            // hhhh(context);
-          
-          }
-        }),
-      ),
+        ),
+        GridColumn(
+            columnName: 'coursename',
+            label: const GridCourseColumnContainerWidget(
+              text: "COURSE NAME",
+            )),
+        GridColumn(
+            columnName: 'noofvideos',
+            label: const GridCourseColumnContainerWidget(
+              text: 'NO. OF VIDEOS',
+            )),
+        GridColumn(
+            columnName: 'date',
+            label: const GridCourseColumnContainerWidget(
+              text: 'DATE',
+            )),
+      ],
+      columnWidthMode: ColumnWidthMode.fill,
+      allowSorting: true,
+      onCellTap: ((details) {
+      showBottomSheet(
+              constraints: const BoxConstraints(maxWidth: double.infinity),
+              context: context,
+              builder: (BuildContext context) {
+                return Container(
+                  // height: 800,
+                  color: Colors.white,
+                  child: const VideoListingContainer(),
+                );
+              });
+      }),
     );
   }
 
@@ -76,7 +79,7 @@ class ViewCoursesListState extends State<ViewCoursesList> {
       Course(context, 03, 'Social Science', 7, 15),
       Course(context, 04, 'Maths', 8, 15),
       Course(context, 05, 'English', 3, 1),
-       Course(context, 01, 'Science', 9, 2),
+      Course(context, 01, 'Science', 9, 2),
       Course(context, 02, 'GK', 3, 30),
       Course(context, 03, 'Social Science', 7, 15),
       Course(context, 04, 'Maths', 8, 15),
@@ -153,7 +156,7 @@ class GridCourseColumnContainerWidget extends StatelessWidget {
         alignment: Alignment.center,
         child: Text(
           text,
-          style: const TextStyle(fontSize: 12,fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
           //overflow: TextOverflow.ellipsis,
         ));
   }

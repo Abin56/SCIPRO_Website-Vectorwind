@@ -2,7 +2,7 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:scipro_website/view/admin_panel/video_management/functions/create_category.dart';
-import 'package:scipro_website/view/admin_panel/video_management/video_courses_list/view_courses/view_courses_list.dart';
+import 'package:scipro_website/view/admin_panel/video_management/video_courses_list/view_courses_list.dart';
 
 import '../../fonts/google_poppins.dart';
 import '../../widgets/button container widget/button_container_widget.dart';
@@ -139,3 +139,4 @@ class VideoManagementSection extends StatelessWidget {
     );
   }
 }
+     
