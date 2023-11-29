@@ -2,14 +2,17 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:scipro_website/view/admin_panel/video_management/functions/create_category.dart';
+import 'package:scipro_website/view/admin_panel/video_management/video_courses_list/view_courses/view_courses_list.dart';
 
 import '../../fonts/google_poppins.dart';
 import '../../widgets/button container widget/button_container_widget.dart';
 import '../../widgets/responsive/responsive.dart';
 
 // ignore: must_be_immutable
-class CreateRecordedCourses extends StatelessWidget {
-  const CreateRecordedCourses({super.key, });
+class VideoManagementSection extends StatelessWidget {
+  const VideoManagementSection({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +37,7 @@ class CreateRecordedCourses extends StatelessWidget {
                 onTap: () {
                   createvideoCategory(context);
                 },
-                child: ButtonContainerWidget(
+                child: const ButtonContainerWidget(
                   text: 'Category',
                 ),
               ),
@@ -48,12 +51,10 @@ class CreateRecordedCourses extends StatelessWidget {
 
       GestureDetector(
         onTap: () {
-          
-          
           createvedioRecordedCourses(context);
         },
-        child: Padding(
-          padding: const EdgeInsets.only(
+        child: const Padding(
+          padding: EdgeInsets.only(
             top: 10,
           ),
           child: ButtonContainerWidget(
@@ -78,10 +79,8 @@ class CreateRecordedCourses extends StatelessWidget {
               selectedItem: 'All States',
               // items: listofState,
             ),
-          )), //////////////////////////////////////////////////////////////////////3 DropDown 
+          )), //////////////////////////////////////////////////////////////////////3 DropDown
 ////////////
-
-
     ];
     return Container(
       child: ResponsiveWebSite.isMobile(context)
@@ -94,7 +93,7 @@ class CreateRecordedCourses extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     topVedioManagementBar[0],
-                    topVedioManagementBar[1]
+                    topVedioManagementBar[1],
                   ],
                 ),
               ),
@@ -106,7 +105,8 @@ class CreateRecordedCourses extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [topVedioManagementBar[2]],
                 ),
-              )
+              ),
+              const RecordedCourses()
             ])
           : Column(children: [
               Container(
@@ -127,10 +127,9 @@ class CreateRecordedCourses extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [topVedioManagementBar[2]],
                 ),
-              )
+              ),
+              const RecordedCourses()
             ]),
     );
   }
 }
-
-
