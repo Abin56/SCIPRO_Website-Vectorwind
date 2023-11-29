@@ -6,9 +6,9 @@ import '../../fonts/google_poppins.dart';
 
 
 class ButtonContainerWidget extends StatelessWidget {
-  String text;
+final  String text;
   
-  ButtonContainerWidget({super.key, required this.text});
+ const ButtonContainerWidget({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {

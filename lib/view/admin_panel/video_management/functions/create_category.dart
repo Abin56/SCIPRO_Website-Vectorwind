@@ -5,7 +5,6 @@ import 'package:scipro_website/view/widgets/textform%20feild%20Widget/textformfe
 
 import '../../../widgets/responsive/responsive.dart';
 import '../create_rec_courses_list/create_rec_courses_list.dart';
-import '../video_management.dart';
 
 createvideoCategory(BuildContext context)async{
   

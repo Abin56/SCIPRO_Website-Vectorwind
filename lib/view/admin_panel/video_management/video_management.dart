@@ -9,7 +9,7 @@ import '../../widgets/responsive/responsive.dart';
 
 // ignore: must_be_immutable
 class CreateRecordedCourses extends StatelessWidget {
-  const CreateRecordedCourses({super.key, Key});
+  const CreateRecordedCourses({super.key, });
 
   @override
   Widget build(BuildContext context) {
