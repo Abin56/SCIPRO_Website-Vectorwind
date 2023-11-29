@@ -106,7 +106,10 @@ class VideoManagementSection extends StatelessWidget {
                   children: [topVedioManagementBar[2]],
                 ),
               ),
-              const RecordedCourses()
+              const Padding(
+                padding: EdgeInsets.only(top: 20),
+                child: RecordedCourses(),
+              )
             ])
           : Column(children: [
               Container(
