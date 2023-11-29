@@ -45,37 +45,39 @@ class _AdminPanelPageState extends State<AdminPanelPage> {
 
 List<Widget> pages = [
   const VideoManagementSection(),
-  Container(
-    child: const Center(
-      child: Text("data"),
-    ),
-  ),
-   Container(
-    child: const Center(
-      child: Text("data"),
-    ),
-  ),
-  Container(
-    child: const Center(
-      child: Text("data"),
-    ),
-  ),
-   Container(
-    child: const Center(
-      child: Text("data"),
-    ),
-  ),
-  Container(
-    child: const Center(
-      child: Text("data"),
-    ),
-  ),
-   Container(
-    child: const Center(
-      child: Text("data"),
-    ),
-  ),
 
+  ///.............. Recorded c Managementm
+
+  Container(
+    child: const Center(
+      child: Text("data"),
+    ),
+  ),
+  Container(
+    child: const Center(
+      child: Text("data"),
+    ),
+  ),
+  Container(
+    child: const Center(
+      child: Text("data"),
+    ),
+  ),
+  Container(
+    child: const Center(
+      child: Text("data"),
+    ),
+  ),
+  Container(
+    child: const Center(
+      child: Text("data"),
+    ),
+  ),
+  Container(
+    child: const Center(
+      child: Text("data"),
+    ),
+  ),
 ];
 
 class SideBarMenuItemsWidget extends StatelessWidget {
