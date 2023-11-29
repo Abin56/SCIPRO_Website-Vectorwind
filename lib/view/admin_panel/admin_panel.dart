@@ -106,6 +106,7 @@ class SideBarMenuItemsWidget extends StatelessWidget {
 
 List<String> sideMenu = [
   'Recorded C Management',
+  'Subscribed Students',
   'Study Materials',
   'Get Invoice',
   'Set User Access',
@@ -114,6 +115,7 @@ List<String> sideMenu = [
 ];
 List<IconData> sideMenuICons = [
   Icons.switch_video_outlined,
+  Icons.volunteer_activism,
   Icons.picture_as_pdf,
   Icons.receipt,
   Icons.key,
