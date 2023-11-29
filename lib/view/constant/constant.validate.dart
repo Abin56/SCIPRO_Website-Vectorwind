@@ -1,19 +1,27 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-
-const sw50 = SizedBox(width: 50,);
-const sw10 = SizedBox(width: 10,);
-const sw20 = SizedBox(width: 20,);
-const sh50 = SizedBox(height: 50,);
-const sh10 = SizedBox(height: 10,);
-const sh20 = SizedBox(height: 20,);
-const sh30 = SizedBox(height: 30,);
-
-
-
-
-
+const sw50 = SizedBox(
+  width: 50,
+);
+const sw10 = SizedBox(
+  width: 10,
+);
+const sw20 = SizedBox(
+  width: 20,
+);
+const sh50 = SizedBox(
+  height: 50,
+);
+const sh10 = SizedBox(
+  height: 10,
+);
+const sh20 = SizedBox(
+  height: 20,
+);
+const sh30 = SizedBox(
+  height: 30,
+);
 
 const String netWorkImagePathPerson =
     "https://www.seekpng.com/png/full/202-2024994_profile-icon-profile-logo-no-background.png";
@@ -38,8 +46,6 @@ String? checkFieldEmpty(String? fieldContent) {
   }
   return null;
 }
-
-
 
 String? checkFieldEmailIsValid(String? fieldContent) {
   if (fieldContent == null) {
@@ -109,8 +115,10 @@ String? checkFieldDateIsValid(String? fieldContent) {
   return 'Date is not valid (dd-mm-yyyy)';
 }
 
+final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-// class TeacherLoginIDSaver {
+
+// class  {
 //   static String id = '';
 // }
 // class UserEmailandPasswordSaver{
