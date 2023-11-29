@@ -10,7 +10,7 @@ class ViewCoursesList extends StatefulWidget {
 }
 
 class ViewCoursesListState extends State<ViewCoursesList> {
-  
+  final DataGridController gridController = DataGridController();
   List<Course> courses = <Course>[];
   late CourseDataSource courseDataSource;
 
@@ -25,32 +25,35 @@ class ViewCoursesListState extends State<ViewCoursesList> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Center(child: const Text('Course')),
-      ),
-      body: SfDataGrid(
+    return Expanded(
+      child: SfDataGrid(
+        controller: gridController,
         gridLinesVisibility: GridLinesVisibility.both,
-              headerGridLinesVisibility: GridLinesVisibility.both,
+        headerGridLinesVisibility: GridLinesVisibility.both,
         source: courseDataSource,
         columns: <GridColumn>[
           GridColumn(
-              width: 100,
-              columnName: 'no',
-              label: const GridCourseColumnContainerWidget(text: "NO.",),
-                  ),
+            width: 100,
+            columnName: 'no',
+            label: const GridCourseColumnContainerWidget(
+              text: "NO.",
+            ),
+          ),
           GridColumn(
               columnName: 'coursename',
-              label: const GridCourseColumnContainerWidget(text: "COURSE NAME",)
-                  ),
+              label: const GridCourseColumnContainerWidget(
+                text: "COURSE NAME",
+              )),
           GridColumn(
               columnName: 'noofvideos',
-              label: const GridCourseColumnContainerWidget(text: 'NO. OF VIDEOS',)
-                  ),
+              label: const GridCourseColumnContainerWidget(
+                text: 'NO. OF VIDEOS',
+              )),
           GridColumn(
               columnName: 'date',
-              label: const GridCourseColumnContainerWidget(text: 'DATE',)
-                  ),
+              label: const GridCourseColumnContainerWidget(
+                text: 'DATE',
+              )),
         ],
         columnWidthMode: ColumnWidthMode.fill,
         allowSorting: true,
@@ -58,10 +61,10 @@ class ViewCoursesListState extends State<ViewCoursesList> {
           if (details.rowColumnIndex.rowIndex != 0) {
             // int selectedRowIndex = details.rowColumnIndex.rowIndex - 1;
             // var row = courseDataSource.effectiveRows.elementAt(selectedRowIndex);
-         // hhhh(context);
+            // hhhh(context);
+          
           }
-        }
-        ),
+        }),
       ),
     );
   }
@@ -143,7 +146,7 @@ class GridCourseColumnContainerWidget extends StatelessWidget {
         color: Colors.blue[100],
         padding: const EdgeInsets.all(16.0),
         alignment: Alignment.center,
-        child:  Text(
+        child: Text(
           text,
           //overflow: TextOverflow.ellipsis,
         ));
