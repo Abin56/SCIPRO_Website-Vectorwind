@@ -12,7 +12,7 @@ import '../../../widgets/responsive/responsive.dart';
 import '../create_rec_courses_list/create_rec_courses_list.dart';
 
 createvideoCategory(BuildContext context) async {
-  Get.lazyPut(() => CategoryController());
+  
   TextEditingController textController = TextEditingController();
 
   return customShowDilogBox(
@@ -50,8 +50,7 @@ createvideoCategory(BuildContext context) async {
 }
 
 createvedioRecordedCourses(BuildContext context) async {
-  Get.lazyPut(() => CategoryController());
-  Get.lazyPut(() => RecordedCourseController());
+ 
   return customShowDilogBox(
       context: context,
       title: 'Create Recorded Courses',

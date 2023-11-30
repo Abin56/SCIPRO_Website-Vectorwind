@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:scipro_website/controller/video_management/recorded_course_controller.dart';
+import 'package:scipro_website/view/widgets/circularProgressIncdicator/ciruclar_progress_indicator.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
+
+import '../../../../../data/video_management/recorded_course_data.dart';
 
 class ViewCoursesList extends StatefulWidget {
   /// Creates the home page.
@@ -11,100 +16,76 @@ class ViewCoursesList extends StatefulWidget {
 
 class ViewCoursesListState extends State<ViewCoursesList> {
   final DataGridController gridController = DataGridController();
-  List<Course> courses = <Course>[];
   late CourseDataSource courseDataSource;
 
   @override
-  void initState() {
-    courses = getCourseData(context);
-
-    super.initState();
-
-    courseDataSource = CourseDataSource(courseData: courses);
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: SfDataGrid(
-        controller: gridController,
-        gridLinesVisibility: GridLinesVisibility.both,
-        headerGridLinesVisibility: GridLinesVisibility.both,
-        source: courseDataSource,
-        columns: <GridColumn>[
-          GridColumn(
-            width: 100,
-            columnName: 'no',
-            label: const GridCourseColumnContainerWidget(
-              text: "NO.",
-            ),
-          ),
-          GridColumn(
-              columnName: 'coursename',
-              label: const GridCourseColumnContainerWidget(
-                text: "COURSE NAME",
-              )),
-          GridColumn(
-              columnName: 'noofvideos',
-              label: const GridCourseColumnContainerWidget(
-                text: 'NO. OF VIDEOS',
-              )),
-          GridColumn(
-              columnName: 'date',
-              label: const GridCourseColumnContainerWidget(
-                text: 'DATE',
-              )),
-        ],
-        columnWidthMode: ColumnWidthMode.fill,
-        allowSorting: true,
-        onCellTap: ((details) {
-          if (details.rowColumnIndex.rowIndex != 0) {
-            // int selectedRowIndex = details.rowColumnIndex.rowIndex - 1;
-            // var row = courseDataSource.effectiveRows.elementAt(selectedRowIndex);
-            // hhhh(context);
-          
-          }
-        }),
-      ),
-    );
+    return Obx(() {
+      courseDataSource = CourseDataSource(
+          courseData: Get.find<RecordedCourseController>().allCourses);
+      return Get.find<RecordedCourseController>().isLoading.value
+          ? circularProgressIndicator
+          : Expanded(
+              child: SfDataGrid(
+                controller: gridController,
+                gridLinesVisibility: GridLinesVisibility.both,
+                headerGridLinesVisibility: GridLinesVisibility.both,
+                source: courseDataSource,
+                columns: <GridColumn>[
+                  GridColumn(
+                    width: 100,
+                    columnName: 'no',
+                    label: const GridCourseColumnContainerWidget(
+                      text: "NO.",
+                    ),
+                  ),
+                  GridColumn(
+                      columnName: 'coursename',
+                      label: const GridCourseColumnContainerWidget(
+                        text: "COURSE NAME",
+                      )),
+                  GridColumn(
+                      columnName: 'noofvideos',
+                      label: const GridCourseColumnContainerWidget(
+                        text: 'NO. OF VIDEOS',
+                      )),
+                  GridColumn(
+                      columnName: 'date',
+                      label: const GridCourseColumnContainerWidget(
+                        text: 'DATE',
+                      )),
+                ],
+                columnWidthMode: ColumnWidthMode.fill,
+                allowSorting: true,
+                onCellTap: ((details) {
+                  if (details.rowColumnIndex.rowIndex != 0) {
+                    // int selectedRowIndex = details.rowColumnIndex.rowIndex - 1;
+                    // var row = courseDataSource.effectiveRows.elementAt(selectedRowIndex);
+                    // hhhh(context);
+                  }
+                }),
+              ),
+            );
+    });
   }
-
-  List<Course> getCourseData(BuildContext context) {
-    return [
-      Course(context, 01, 'Science', 9, 2),
-      Course(context, 02, 'GK', 3, 30),
-      Course(context, 03, 'Social Science', 7, 15),
-      Course(context, 04, 'Maths', 8, 15),
-      Course(context, 05, 'English', 3, 1),
-    ];
-  }
-}
-
-class Course {
-  Course(this.context, this.no, this.coursename, this.noofvideos, this.date);
-
-  final int no;
-
-  BuildContext context;
-  final String coursename;
-  final int noofvideos;
-
-  final int date;
 }
 
 class CourseDataSource extends DataGridSource {
   int rowIndex = 0;
 
-  CourseDataSource({required List<Course> courseData}) {
+  CourseDataSource({required List<RecordedCoursesData> courseData}) {
     _courseData = courseData
         .map<DataGridRow>((e) => DataGridRow(cells: [
-              DataGridCell<int>(columnName: 'no', value: e.no),
+              DataGridCell<int>(columnName: 'no', value: courseData.length),
               DataGridCell<String>(
                 columnName: 'coursename',
-                value: e.coursename,
+                value: e.courseName,
               ),
-              DataGridCell<int>(columnName: 'noofvideos', value: e.noofvideos),
-              DataGridCell<int>(columnName: 'date', value: e.date),
+              DataGridCell<int>(
+                  columnName: 'noofvideos', value: e.videos.length),
+              DataGridCell<int>(
+                  columnName: 'date',
+                  value: int.tryParse(e.postedDate.toString())),
             ]))
         .toList();
   }

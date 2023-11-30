@@ -6,6 +6,7 @@ import '../../data/video_management/category_data.dart';
 
 class CategoryController extends GetxController {
   final CategoryRepository repository = CategoryRepository();
+
   final Uuid uid = const Uuid();
   RxBool isLoading = RxBool(false);
 

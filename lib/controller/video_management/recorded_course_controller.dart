@@ -19,6 +19,7 @@ class RecordedCourseController extends GetxController {
       CategoryData(categoryName: 'Category Name', id: '');
   final Uuid uid = const Uuid();
   RxBool isLoading = RxBool(false);
+  List<RecordedCoursesData> allCourses = [];
 
   void changeIsLoading(bool value) {
     isLoading.value = value;
@@ -26,7 +27,7 @@ class RecordedCourseController extends GetxController {
 
   Future<void> createCategory() async {
     changeIsLoading(true);
-    RecordedCourses recordedCourses = RecordedCourses(
+    RecordedCoursesData recordedCourses = RecordedCoursesData(
       id: uid.v1(),
       courseName: courseNameController.text,
       facultie: facultieController.text,
@@ -41,6 +42,12 @@ class RecordedCourseController extends GetxController {
     );
     await repository.createCourse(courses: recordedCourses);
     clearAllfields();
+    changeIsLoading(false);
+  }
+
+  Future<void> fetchRecordedCourse(String categoryId) async {
+    changeIsLoading(true);
+    allCourses = await repository.fetchRecordedCourses(categoryId);
     changeIsLoading(false);
   }
 

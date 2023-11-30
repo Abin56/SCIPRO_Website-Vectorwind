@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-class RecordedCourses {
+class RecordedCoursesData {
   String id;
   String courseName;
   String facultie;
@@ -15,7 +15,7 @@ class RecordedCourses {
   num postedTime;
   List<String> videos;
   List<String> subscribedStudents;
-  RecordedCourses({
+  RecordedCoursesData({
     required this.id,
     required this.courseName,
     required this.facultie,
@@ -29,7 +29,7 @@ class RecordedCourses {
     required this.subscribedStudents,
   });
 
-  RecordedCourses copyWith({
+  RecordedCoursesData copyWith({
     String? id,
     String? courseName,
     String? facultie,
@@ -42,7 +42,7 @@ class RecordedCourses {
     List<String>? videos,
     List<String>? subscribedStudents,
   }) {
-    return RecordedCourses(
+    return RecordedCoursesData(
       id: id ?? this.id,
       courseName: courseName ?? this.courseName,
       facultie: facultie ?? this.facultie,
@@ -73,8 +73,8 @@ class RecordedCourses {
     };
   }
 
-  factory RecordedCourses.fromMap(Map<String, dynamic> map) {
-    return RecordedCourses(
+  factory RecordedCoursesData.fromMap(Map<String, dynamic> map) {
+    return RecordedCoursesData(
         id: map['id'] as String,
         courseName: map['courseName'] as String,
         facultie: map['facultie'] as String,
@@ -84,24 +84,24 @@ class RecordedCourses {
         duration: map['duration'] as num,
         postedDate: map['postedDate'] as int,
         postedTime: map['postedTime'] as int,
-        videos: List<String>.from((map['videos'] as List<String>)),
+        videos: List<String>.from((map['videos'] as List<dynamic>)),
         subscribedStudents: List<String>.from(
-          (map['subscribedStudents'] as List<String>),
+          (map['subscribedStudents'] as List<dynamic>),
         ));
   }
 
   String toJson() => json.encode(toMap());
 
-  factory RecordedCourses.fromJson(String source) =>
-      RecordedCourses.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory RecordedCoursesData.fromJson(String source) =>
+      RecordedCoursesData.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'RecordedCourses(id: $id, courseName: $courseName, facultie: $facultie, courseId: $courseId, categoryId: $categoryId, courseFee: $courseFee, duration: $duration, postedDate: $postedDate, postedTime: $postedTime, videos: $videos, subscribedStudents: $subscribedStudents)';
+    return 'RecordedCoursesData(id: $id, courseName: $courseName, facultie: $facultie, courseId: $courseId, categoryId: $categoryId, courseFee: $courseFee, duration: $duration, postedDate: $postedDate, postedTime: $postedTime, videos: $videos, subscribedStudents: $subscribedStudents)';
   }
 
   @override
-  bool operator ==(covariant RecordedCourses other) {
+  bool operator ==(covariant RecordedCoursesData other) {
     if (identical(this, other)) return true;
 
     return other.id == id &&
