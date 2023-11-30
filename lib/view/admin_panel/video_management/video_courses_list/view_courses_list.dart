@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scipro_website/view/admin_panel/video_management/video_courses_list/view_courses/view_courses_grid.dart';
+import 'package:scipro_website/view/admin_panel/video_management/video_courses_list/table_grids/view_courses_grid.dart';
 import 'package:scipro_website/view/widgets/responsive/responsive.dart';
 
 class RecordedCourses extends StatelessWidget {
@@ -12,14 +12,15 @@ class RecordedCourses extends StatelessWidget {
     return Column(
       children: [
         ResponsiveWebSite.isMobile(context)
-            ? const SizedBox(
+            ? Container(
+              color: Colors.white,
                 width: 400,
-                height: 500,
-                child: SingleChildScrollView(
+                height: 800,
+                child: const SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: SizedBox(
-                      width: 400,
-                      child: SingleChildScrollView(child: ViewCoursesList())),
+                      width: 600,
+                      child: ViewCoursesList()),
                 ),
               )
             : const SingleChildScrollView(
