@@ -1,7 +1,10 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:scipro_website/data/video_management/category_data.dart';
 
+import '../../../../controller/video_management/video_management_controller.dart';
 import '../../../constant/constant.validate.dart';
 import '../../../fonts/google_poppins.dart';
 import '../../../widgets/textform feild Widget/textformfeildWidget.dart';
@@ -82,8 +85,12 @@ List<Widget> recCousesWidget = [
               height: 35,
               width: 200,
               child: Center(
-                child: DropdownSearch(
+                child: DropdownSearch<CategoryData>(
+                  asyncItems: (String value) =>
+                      Get.find<VideoMangementController>().fetchAllCategory(),
                   autoValidateMode: AutovalidateMode.always,
+                  itemAsString: (CategoryData data) => data.categoryName,
+
                   // onChanged: (value) {
                   //   selectstate = value ?? '';
                   //   log("$selectstate-------");
@@ -91,7 +98,7 @@ List<Widget> recCousesWidget = [
                   dropdownDecoratorProps: DropDownDecoratorProps(
                       baseStyle: GoogleFonts.poppins(
                           fontSize: 13, color: Colors.black.withOpacity(0.7))),
-                  selectedItem: 'Category',
+                  //selectedItem: 'Category',
                   //items: listofState,
                 ),
               )),
