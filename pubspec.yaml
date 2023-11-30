@@ -39,6 +39,7 @@ dependencies:
   get: ^4.6.6
   google_fonts: ^6.1.0
   google_sign_in: ^6.1.6
+  intl: ^0.18.1
   sidebar_drawer: null
   syncfusion_flutter_datagrid: null
   uuid: ^4.2.1

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:scipro_website/data/video_management/category_data.dart';
 
+import '../../../../controller/video_management/recorded_course_controller.dart';
 import '../../../../controller/video_management/video_management_controller.dart';
 import '../../../constant/constant.validate.dart';
 import '../../../fonts/google_poppins.dart';
@@ -17,55 +18,68 @@ List<Widget> recCousesWidget = [
       title: "Create Couse",
       width: 200,
       validator: checkFieldEmpty,
+      controller: Get.find<RecordedCourseController>().courseNameController,
     ),
   ), ////////////////////1
   Padding(
     padding: const EdgeInsets.only(top: 10, left: 10),
     child: TextFormFiledContainerWidget(
-        hintText: "Facultie",
-        title: "Facultie",
-        width: 200,
-        validator: checkFieldEmpty),
+      hintText: "Facultie",
+      title: "Facultie",
+      width: 200,
+      validator: checkFieldEmpty,
+      controller: Get.find<RecordedCourseController>().facultieController,
+    ),
   ), /////////////////2
   Padding(
     padding: const EdgeInsets.only(top: 10, left: 10),
     child: TextFormFiledContainerWidget(
-        hintText: "Course Fee",
-        title: "Course Fee",
-        width: 200,
-        validator: checkFieldEmpty),
+      hintText: "Course Fee",
+      title: "Course Fee",
+      width: 200,
+      validator: checkFieldEmpty,
+      controller: Get.find<RecordedCourseController>().coursFeeController,
+    ),
   ), ////////////3
   Padding(
     padding: const EdgeInsets.only(top: 10, left: 10),
     child: TextFormFiledContainerWidget(
-        hintText: "Duration",
-        title: "Duration",
-        width: 200,
-        validator: checkFieldEmpty),
+      hintText: "Duration",
+      title: "Duration",
+      width: 200,
+      validator: checkFieldEmpty,
+      controller: Get.find<RecordedCourseController>().durationController,
+    ),
   ), //////////////4
   Padding(
     padding: const EdgeInsets.only(top: 10, left: 10),
     child: TextFormFiledContainerWidget(
-        hintText: "Course ID",
-        title: "Course ID",
-        width: 200,
-        validator: checkFieldEmpty),
+      hintText: "Course ID",
+      title: "Course ID",
+      width: 200,
+      validator: checkFieldEmpty,
+      controller: Get.find<RecordedCourseController>().courseIdController,
+    ),
   ), /////////////5
   Padding(
     padding: const EdgeInsets.only(top: 10, left: 10),
     child: TextFormFiledContainerWidget(
-        hintText: "Posted Date",
-        title: "Posted Date",
-        width: 200,
-        validator: checkFieldEmpty),
+      hintText: "Posted Date",
+      title: "Posted Date",
+      width: 200,
+      validator: checkFieldEmpty,
+      controller: Get.find<RecordedCourseController>().postedDateController,
+    ),
   ), /////////////////////6
   Padding(
     padding: const EdgeInsets.only(top: 10, left: 10),
     child: TextFormFiledContainerWidget(
-        hintText: "Posted Time",
-        title: "Posted Time",
-        width: 200,
-        validator: checkFieldEmpty),
+      hintText: "Posted Time",
+      title: "Posted Time",
+      width: 200,
+      validator: checkFieldEmpty,
+      controller: Get.find<RecordedCourseController>().postedTimeController,
+    ),
   ), /////////////7
   Padding(
     padding: const EdgeInsets.only(
@@ -87,18 +101,21 @@ List<Widget> recCousesWidget = [
               child: Center(
                 child: DropdownSearch<CategoryData>(
                   asyncItems: (String value) =>
-                      Get.find<VideoMangementController>().fetchAllCategory(),
+                      Get.find<CategoryController>().fetchAllCategory(),
                   autoValidateMode: AutovalidateMode.always,
                   itemAsString: (CategoryData data) => data.categoryName,
 
-                  // onChanged: (value) {
-                  //   selectstate = value ?? '';
-                  //   log("$selectstate-------");
-                  // },
+                  onChanged: (value) {
+                    if (value != null) {
+                      Get.find<RecordedCourseController>().selectedCategory =
+                          value;
+                    }
+                  },
                   dropdownDecoratorProps: DropDownDecoratorProps(
                       baseStyle: GoogleFonts.poppins(
                           fontSize: 13, color: Colors.black.withOpacity(0.7))),
-                  //selectedItem: 'Category',
+                  selectedItem:
+                      Get.find<RecordedCourseController>().selectedCategory,
                   //items: listofState,
                 ),
               )),

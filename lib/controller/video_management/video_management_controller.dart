@@ -4,7 +4,7 @@ import 'package:uuid/uuid.dart';
 
 import '../../data/video_management/category_data.dart';
 
-class VideoMangementController extends GetxController {
+class CategoryController extends GetxController {
   final CategoryRepository repository = CategoryRepository();
   final Uuid uid = const Uuid();
   RxBool isLoading = RxBool(false);
