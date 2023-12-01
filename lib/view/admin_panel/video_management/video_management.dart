@@ -5,12 +5,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:scipro_website/controller/video_management/video_management_controller.dart';
 import 'package:scipro_website/data/video_management/category_data.dart';
 import 'package:scipro_website/view/admin_panel/video_management/functions/create_category.dart';
+import 'package:scipro_website/view/admin_panel/video_management/video_courses_list/view_courses_list.dart';
 
 import '../../../controller/video_management/recorded_course_controller.dart';
 import '../../fonts/google_poppins.dart';
 import '../../widgets/button container widget/button_container_widget.dart';
 import '../../widgets/responsive/responsive.dart';
-import 'video_courses_list/view_courses_list.dart';
 
 // ignore: must_be_immutable
 class VideoManagementSection extends StatelessWidget {
