@@ -62,127 +62,99 @@ totalCategoryList(BuildContext context) {
 }
 
 ontaponCategoryList(BuildContext context) {
-  TextEditingController videoNameController = TextEditingController();
+  TextEditingController categoryNameController = TextEditingController();
+  TextEditingController positionController = TextEditingController();
+  List<Widget> listofWidget = [
+    TextFormFiledContainerWidget(
+        controller: categoryNameController,
+        hintText: 'Enter Category Name',
+        title: 'Change Category Name',
+        width: 250),
+    Container(
+      height: 30,
+      width: 80,
+      decoration: const BoxDecoration(
+        color: themeColorBlue,
+      ),
+      child: Center(
+        child: GooglePoppinsWidgets(
+            text: 'UPDATE',
+            color: cWhite,
+            fontsize: 12,
+            fontWeight: FontWeight.bold),
+      ),
+    ),
+    TextFormFiledContainerWidget(
+        controller: positionController,
+        hintText: 'Enter Position eg 1,2...',
+        title: 'Change Position',
+        width: 250),
+    Padding(
+      padding: const EdgeInsets.only(left: 0, top: 05),
+      child: Container(
+        height: 30,
+        width: 80,
+        decoration: const BoxDecoration(
+          color: themeColorBlue,
+        ),
+        child: Center(
+          child: GooglePoppinsWidgets(
+              text: 'UPDATE',
+              color: cWhite,
+              fontsize: 12,
+              fontWeight: FontWeight.bold),
+        ),
+      ),
+    ),
+  ];
   return customShowDilogBox(
       context: context,
       title: "Edit Category",
       children: [
         SizedBox(
-          height: 400,
-          width: 400,
+          height: ResponsiveWebSite.isDesktop(context) ? 200 : 300,
+          width: ResponsiveWebSite.isDesktop(context) ? 400 : 200,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            
             children: [
-              ResponsiveWebSite.isMobile(context)?Column(children: [
-                 TextFormFiledContainerWidget(
-                     controller: videoNameController,
-                     hintText: 'Enter Category Name',
-                     title: 'Change Category Name',
-                     width: 250),
-                 Padding(
-                   padding: const EdgeInsets.only(left: 10, top: 20),
-                   child: Container(
-                     height: 30,
-                     width: 80,
-                     decoration: const BoxDecoration(
-                       color: themeColorBlue,
-                     ),
-                     child: Center(
-                       child: GooglePoppinsWidgets(
-                           text: 'UPDATE',
-                           color: cWhite,
-                           fontsize: 12,
-                           fontWeight: FontWeight.bold),
-                     ),
-                   ),
-                 ),
-                 Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: Column(
-                  children: [
-                    TextFormFiledContainerWidget(
-                        controller: videoNameController,
-                        hintText: 'Enter Position eg 1,2...',
-                        title: 'Change Position',
-                        width: 250),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10, top: 20),
-                      child: Container(
-                        height: 30,
-                        width: 80,
-                        decoration: const BoxDecoration(
-                          color: themeColorBlue,
+              ResponsiveWebSite.isMobile(context)
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        listofWidget[0],
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: listofWidget[1],
                         ),
-                        child: Center(
-                          child: GooglePoppinsWidgets(
-                              text: 'UPDATE',
-                              color: cWhite,
-                              fontsize: 12,
-                              fontWeight: FontWeight.bold),
+                        listofWidget[2],
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: listofWidget[3],
                         ),
-                      ),
+                      ],
+                    )
+                  : Column(
+                      children: [
+                        Row(
+                          children: [
+                            listofWidget[0],
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10, top: 20),
+                              child: listofWidget[1],
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            listofWidget[2],
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10, top: 20),
+                              child: listofWidget[3],
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-                 
-              ],):
-            Row(
-                children: [
-                  TextFormFiledContainerWidget(
-                      controller: videoNameController,
-                      hintText: 'Enter Category Name',
-                      title: 'Change Category Name',
-                      width: 250),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10, top: 20),
-                    child: Container(
-                      height: 30,
-                      width: 80,
-                      decoration: const BoxDecoration(
-                        color: themeColorBlue,
-                      ),
-                      child: Center(
-                        child: GooglePoppinsWidgets(
-                            text: 'UPDATE',
-                            color: cWhite,
-                            fontsize: 12,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: Row(
-                  children: [
-                    TextFormFiledContainerWidget(
-                        controller: videoNameController,
-                        hintText: 'Enter Position eg 1,2...',
-                        title: 'Change Position',
-                        width: 250),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10, top: 20),
-                      child: Container(
-                        height: 30,
-                        width: 80,
-                        decoration: const BoxDecoration(
-                          color: themeColorBlue,
-                        ),
-                        child: Center(
-                          child: GooglePoppinsWidgets(
-                              text: 'UPDATE',
-                              color: cWhite,
-                              fontsize: 12,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
               GestureDetector(
                 onTap: () {
                   customShowDilogBox(

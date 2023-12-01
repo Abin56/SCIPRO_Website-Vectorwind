@@ -23,50 +23,48 @@ class VideoManagementSection extends StatelessWidget {
       ////
       Padding(
         padding: const EdgeInsets.only(top: 40),
-        child: Row(
+        child: Column(
           children: [
-            Column(
-              children: [
-                GooglePoppinsWidgets(
-                  text: 'VIDEO MANAGEMENT',
-                  fontsize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: 10,
-                  ),
-                  child: GestureDetector(
-                    onTap: () {
-                      createvideoCategory(context);
-                    },
-                    child: const ButtonContainerWidget(
-                      text: 'Create Category',
-                    ),
-                  ),
-                ),
-              ],
+            GooglePoppinsWidgets(
+              text: 'VIDEO MANAGEMENT',
+              fontsize: 16,
+              fontWeight: FontWeight.bold,
             ),
-
-            /////////////////////////...................Create Video Category
-
             Padding(
-              padding: const EdgeInsets.only(left: 12, bottom: 12),
+              padding: const EdgeInsets.only(
+                top: 10,
+              ),
               child: GestureDetector(
                 onTap: () {
-                  settingsDialogBox(context);
+                  createvideoCategory(context);
                 },
-                child: const Padding(
-                  padding: EdgeInsets.only(
-                    top: 10,
-                  ),
-                  child: ButtonContainerWidget(
-                    text: 'Settings',
-                  ),
+                child: const ButtonContainerWidget(
+                  text: 'Create Category',
                 ),
               ),
-            ), /////////////////////////////....................video settings
+            ),
           ],
+        ),
+      ),
+
+      Padding(
+        padding: EdgeInsets.only(
+          left: ResponsiveWebSite.isMobile(context) ? 0 : 20,
+          bottom: ResponsiveWebSite.isMobile(context) ? 12 : 0,
+          top: ResponsiveWebSite.isMobile(context) ? 0 : 36,
+        ),
+        child: GestureDetector(
+          onTap: () {
+            settingsDialogBox(context);
+          },
+          child: const Padding(
+            padding: EdgeInsets.only(
+              top: 10,
+            ),
+            child: ButtonContainerWidget(
+              text: 'Settings',
+            ),
+          ),
         ),
       ),
 
@@ -107,7 +105,7 @@ class VideoManagementSection extends StatelessWidget {
       child: ResponsiveWebSite.isMobile(context)
           ? Column(children: [
               Container(
-                height: 150,
+                height: 160,
                 width: double.infinity,
                 color: const Color.fromARGB(255, 247, 238, 243),
                 child: Column(
@@ -134,11 +132,11 @@ class VideoManagementSection extends StatelessWidget {
             ])
           : Column(children: [
               Container(
-                height: 140,
+                height: 130,
                 width: double.infinity,
                 color: const Color.fromARGB(255, 247, 238, 243),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     topVedioManagementBar[0],
                     topVedioManagementBar[1],

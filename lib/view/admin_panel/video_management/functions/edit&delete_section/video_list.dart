@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
 import 'package:scipro_website/view/widgets/custom_showDilog/custom_showdilog.dart';
+import 'package:scipro_website/view/widgets/responsive/responsive.dart';
 import 'package:scipro_website/view/widgets/textform%20feild%20Widget/textformfeildWidget.dart';
 
 totalVideoList(BuildContext context) {
@@ -38,7 +39,7 @@ totalVideoList(BuildContext context) {
                           const Padding(
                             padding: EdgeInsets.only(left: 20),
                             child: Text(
-                              "Video Name",
+                              "Categoey Name",
                               style: TextStyle(
                                   color: cWhite,
                                   fontWeight: FontWeight.bold,
@@ -62,71 +63,98 @@ totalVideoList(BuildContext context) {
 
 ontaponVideoList(BuildContext context) {
   TextEditingController videoNameController = TextEditingController();
+  TextEditingController positionController = TextEditingController();
+  List<Widget> listofWidget = [
+    TextFormFiledContainerWidget(
+        controller: videoNameController,
+        hintText: 'Enter Video Name',
+        title: 'Change Video Name',
+        width: 250),
+    Container(
+      height: 30,
+      width: 80,
+      decoration: const BoxDecoration(
+        color: themeColorBlue,
+      ),
+      child: Center(
+        child: GooglePoppinsWidgets(
+            text: 'UPDATE',
+            color: cWhite,
+            fontsize: 12,
+            fontWeight: FontWeight.bold),
+      ),
+    ),
+    TextFormFiledContainerWidget(
+        controller: positionController,
+        hintText: 'Enter Position eg 1,2...',
+        title: 'Change Position',
+        width: 250),
+    Padding(
+      padding: const EdgeInsets.only(left: 0, top: 05),
+      child: Container(
+        height: 30,
+        width: 80,
+        decoration: const BoxDecoration(
+          color: themeColorBlue,
+        ),
+        child: Center(
+          child: GooglePoppinsWidgets(
+              text: 'UPDATE',
+              color: cWhite,
+              fontsize: 12,
+              fontWeight: FontWeight.bold),
+        ),
+      ),
+    ),
+  ];
   return customShowDilogBox(
       context: context,
       title: "Edit Video",
       children: [
         SizedBox(
-          height: 200,
-          width: 400,
+          height: ResponsiveWebSite.isDesktop(context) ? 200 : 300,
+          width: ResponsiveWebSite.isDesktop(context) ? 400 : 200,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  // TextFormFiledContainerWidget(
-                  //     controller: videoNameController,
-                  //     hintText: 'Enter Video Name',
-                  //     title: 'Change Video Name',
-                  //     width: 250),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10, top: 20),
-                    child: Container(
-                      height: 30,
-                      width: 80,
-                      decoration: const BoxDecoration(
-                        color: themeColorBlue,
-                      ),
-                      child: Center(
-                        child: GooglePoppinsWidgets(
-                            text: 'UPDATE',
-                            color: cWhite,
-                            fontsize: 12,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: Row(
-                  children: [
-                    TextFormFiledContainerWidget(
-                        controller: videoNameController,
-                        hintText: 'Enter Position eg 1,2...',
-                        title: 'Change Position',
-                        width: 250),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10, top: 20),
-                      child: Container(
-                        height: 30,
-                        width: 80,
-                        decoration: const BoxDecoration(
-                          color: themeColorBlue,
+              ResponsiveWebSite.isMobile(context)
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        listofWidget[0],
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: listofWidget[1],
                         ),
-                        child: Center(
-                          child: GooglePoppinsWidgets(
-                              text: 'UPDATE',
-                              color: cWhite,
-                              fontsize: 12,
-                              fontWeight: FontWeight.bold),
+                        listofWidget[2],
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: listofWidget[3],
                         ),
-                      ),
+                      ],
+                    )
+                  : Column(
+                      children: [
+                        Row(
+                          children: [
+                            listofWidget[0],
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10, top: 20),
+                              child: listofWidget[1],
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            listofWidget[2],
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10, top: 20),
+                              child: listofWidget[3],
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
               GestureDetector(
                 onTap: () {
                   customShowDilogBox(
