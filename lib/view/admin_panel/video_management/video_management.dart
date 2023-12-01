@@ -22,7 +22,7 @@ class VideoManagementSection extends StatelessWidget {
       //////
       ////
       Padding(
-        padding: const EdgeInsets.only(top: 40),
+        padding:  EdgeInsets.only(top:ResponsiveWebSite.isMobile(context)?5: 40),
         child: Column(
           children: [
             GooglePoppinsWidgets(
@@ -72,11 +72,11 @@ class VideoManagementSection extends StatelessWidget {
         onTap: () {
           createvideoRecordedCourses(context);
         },
-        child: const Padding(
+        child:  Padding(
           padding: EdgeInsets.only(
-            top: 10,
+            top:ResponsiveWebSite.isMobile(context)?0 : 10,
           ),
-          child: ButtonContainerWidget(
+          child: const ButtonContainerWidget(
             text: 'Create Recorded Courses',
           ),
         ),
@@ -99,7 +99,7 @@ class VideoManagementSection extends StatelessWidget {
               // items: listofState,
             ),
           )), //////////////////////////////////////////////////////////////////////3 DropDown Selected Category
-////////////
+    ////////////
     ];
     return Container(
       child: ResponsiveWebSite.isMobile(context)
@@ -110,9 +110,11 @@ class VideoManagementSection extends StatelessWidget {
                 color: const Color.fromARGB(255, 247, 238, 243),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     topVedioManagementBar[0],
                     topVedioManagementBar[1],
+                    topVedioManagementBar[2],
                   ],
                 ),
               ),
@@ -122,7 +124,8 @@ class VideoManagementSection extends StatelessWidget {
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [topVedioManagementBar[2]],
+                  children: [
+                   topVedioManagementBar[3],],
                 ),
               ),
               const Padding(
@@ -140,6 +143,11 @@ class VideoManagementSection extends StatelessWidget {
                   children: [
                     topVedioManagementBar[0],
                     topVedioManagementBar[1],
+                    Padding(
+                      padding: const EdgeInsets.only(top: 37,left: 15),
+                      child: topVedioManagementBar[2],
+                    ),
+                     
                   ],
                 ),
               ),
@@ -147,7 +155,12 @@ class VideoManagementSection extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 10, right: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: [topVedioManagementBar[2]],
+                  children: [
+                    
+                     topVedioManagementBar[3],
+                    
+                  ],
+                  
                 ),
               ),
               const Padding(

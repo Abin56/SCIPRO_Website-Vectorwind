@@ -12,6 +12,7 @@ class CoupenShowingPage extends StatelessWidget {
           height: 200,
           width: 300,
          decoration: BoxDecoration(
+          
                   gradient: const LinearGradient(
                       begin: Alignment.centerLeft,
                       colors: [
