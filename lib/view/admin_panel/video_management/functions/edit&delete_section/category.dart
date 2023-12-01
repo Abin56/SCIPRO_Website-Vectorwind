@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
 import 'package:scipro_website/view/widgets/custom_showDilog/custom_showdilog.dart';
+import 'package:scipro_website/view/widgets/responsive/responsive.dart';
 import 'package:scipro_website/view/widgets/textform%20feild%20Widget/textformfeildWidget.dart';
 
 totalCategoryList(BuildContext context) {
@@ -67,12 +68,67 @@ ontaponCategoryList(BuildContext context) {
       title: "Edit Category",
       children: [
         SizedBox(
-          height: 200,
+          height: 400,
           width: 400,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            
             children: [
-              Row(
+              ResponsiveWebSite.isMobile(context)?Column(children: [
+                 TextFormFiledContainerWidget(
+                     controller: videoNameController,
+                     hintText: 'Enter Category Name',
+                     title: 'Change Category Name',
+                     width: 250),
+                 Padding(
+                   padding: const EdgeInsets.only(left: 10, top: 20),
+                   child: Container(
+                     height: 30,
+                     width: 80,
+                     decoration: const BoxDecoration(
+                       color: themeColorBlue,
+                     ),
+                     child: Center(
+                       child: GooglePoppinsWidgets(
+                           text: 'UPDATE',
+                           color: cWhite,
+                           fontsize: 12,
+                           fontWeight: FontWeight.bold),
+                     ),
+                   ),
+                 ),
+                 Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: Column(
+                  children: [
+                    TextFormFiledContainerWidget(
+                        controller: videoNameController,
+                        hintText: 'Enter Position eg 1,2...',
+                        title: 'Change Position',
+                        width: 250),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, top: 20),
+                      child: Container(
+                        height: 30,
+                        width: 80,
+                        decoration: const BoxDecoration(
+                          color: themeColorBlue,
+                        ),
+                        child: Center(
+                          child: GooglePoppinsWidgets(
+                              text: 'UPDATE',
+                              color: cWhite,
+                              fontsize: 12,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+                 
+              ],):
+            Row(
                 children: [
                   TextFormFiledContainerWidget(
                       controller: videoNameController,

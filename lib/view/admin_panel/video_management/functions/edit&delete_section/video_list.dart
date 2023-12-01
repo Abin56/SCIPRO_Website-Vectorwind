@@ -74,11 +74,11 @@ ontaponVideoList(BuildContext context) {
             children: [
               Row(
                 children: [
-                  TextFormFiledContainerWidget(
-                      controller: videoNameController,
-                      hintText: 'Enter Video Name',
-                      title: 'Change Video Name',
-                      width: 250),
+                  // TextFormFiledContainerWidget(
+                  //     controller: videoNameController,
+                  //     hintText: 'Enter Video Name',
+                  //     title: 'Change Video Name',
+                  //     width: 250),
                   Padding(
                     padding: const EdgeInsets.only(left: 10, top: 20),
                     child: Container(
