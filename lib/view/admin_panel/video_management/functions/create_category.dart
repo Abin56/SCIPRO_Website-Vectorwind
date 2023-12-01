@@ -1,135 +1,278 @@
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:scipro_website/controller/video_management/video_management_controller.dart';
-import 'package:scipro_website/data/video_management/category_data.dart';
-import 'package:scipro_website/view/constant/const.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:scipro_website/view/constant/constant.validate.dart';
+import 'package:scipro_website/view/fonts/google_poppins.dart';
 import 'package:scipro_website/view/widgets/custom_showDilog/custom_showdilog.dart';
 import 'package:scipro_website/view/widgets/textform%20feild%20Widget/textformfeildWidget.dart';
 
-import '../../../../controller/video_management/recorded_course_controller.dart';
 import '../../../widgets/responsive/responsive.dart';
-import '../create_rec_courses_list/create_rec_courses_list.dart';
 
 createvideoCategory(BuildContext context) async {
-  
-  TextEditingController textController = TextEditingController();
+  TextEditingController categoryNameTextController = TextEditingController();
 
   return customShowDilogBox(
       context: context,
       title: 'Create Category',
       actiontext: 'Create',
-      actiononTapfuction: () async {
+      actiononTapfuction: () {
         final key = formKey;
-        if (key.currentState!.validate()) {
-          await Get.find<CategoryController>().createCategory(
-              categoryData: CategoryData(
-            categoryName: textController.text,
-            id: '',
-          ));
-          textController.clear();
-        }
+        if (key.currentState!.validate()) {}
       },
       children: [
-        Obx(() {
-          return Get.find<CategoryController>().isLoading.value
-              ? circularPIndicator
-              : Form(
-                  key: formKey,
-                  child: TextFormFiledContainerWidget(
-                    hintText: 'Create Category',
-                    title: 'Create Category',
-                    width: 300,
-                    validator: checkFieldEmpty,
-                    controller: textController,
-                  ),
-                );
-        })
+        Form(
+          key: formKey,
+          child: TextFormFiledContainerWidget(
+            controller: categoryNameTextController,
+            hintText: 'Enter Category Name',
+            title: 'Category Name',
+            width: 300,
+            validator: checkFieldEmpty,
+          ),
+        )
       ],
       doyouwantActionButton: true);
 }
 
-createvedioRecordedCourses(BuildContext context) async {
- 
+createvideoRecordedCourses(BuildContext context) async {
+  TextEditingController courseNameTextController = TextEditingController();
+  TextEditingController faculteNameTextController = TextEditingController();
+  TextEditingController courseFeeTextController = TextEditingController();
+  TextEditingController durationTextController = TextEditingController();
+
   return customShowDilogBox(
       context: context,
       title: 'Create Recorded Courses',
       actiontext: 'Create',
-      actiononTapfuction: () async {
+      actiononTapfuction: () {
         final key = formKey;
-        if (key.currentState!.validate()) {
-          await Get.find<RecordedCourseController>().createCategory();
-        }
+        if (key.currentState!.validate()) {}
       },
       children: [
-        Obx(
-          () => Get.find<RecordedCourseController>().isLoading.value
-              ? circularPIndicator
-              : ResponsiveWebSite.isMobile(context)
-                  ? SingleChildScrollView(
+        ResponsiveWebSite.isMobile(context)
+            ? SingleChildScrollView(
+                child: Form(
+                  key: formKey,
+                  child: Column(children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10, left: 10),
+                      child: TextFormFiledContainerWidget(
+                        controller: courseFeeTextController,
+                        hintText: "Course Name",
+                        title: "Couse Name",
+                        width: 200,
+                        validator: checkFieldEmpty,
+                      ),
+                    ), /////////////////////////////////////////////////////////////////0
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10, left: 10),
+                      child: TextFormFiledContainerWidget(
+                          controller: faculteNameTextController,
+                          hintText: "Facultie Name",
+                          title: "Facultie Name",
+                          width: 200,
+                          validator: checkFieldEmpty),
+                    ), /////////////////////////////////////////////////////////////////////1
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10, left: 10),
+                      child: TextFormFiledContainerWidget(
+                          controller: courseFeeTextController,
+                          hintText: "Course Fee",
+                          title: "Course Fee",
+                          width: 200,
+                          validator: checkFieldEmpty),
+                    ), ///////////////////////////////////////////////////////////////////////2
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10, left: 10),
+                      child: TextFormFiledContainerWidget(
+                          controller: durationTextController,
+                          hintText: "Enter in Days(Eg:30,40,etc.....)",
+                          title: "Duration",
+                          width: 200,
+                          validator: checkFieldEmpty),
+                    ), ////////////////////////////////////////////////////////////////////3
+                    /////////////////////////////////////////////////////////////////////////4
+
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 10,
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: GooglePoppinsWidgets(
+                                text: 'Category', fontsize: 12),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 7, left: 10),
+                            child: SizedBox(
+                                height: 35,
+                                width: 200,
+                                child: Center(
+                                  child: DropdownSearch(
+                                    validator: checkFieldEmpty,
+                                    autoValidateMode: AutovalidateMode.always,
+                                    // onChanged: (value) {
+                                    //   selectstate = value ?? '';
+                                    //   log("$selectstate-------");
+                                    // },
+                                    dropdownDecoratorProps:
+                                        DropDownDecoratorProps(
+                                            baseStyle: GoogleFonts.poppins(
+                                                fontSize: 13,
+                                                color: Colors.black
+                                                    .withOpacity(0.7))),
+                                    selectedItem: 'Select Category',
+                                    //items: listofState,
+                                  ),
+                                )),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ]),
+                ),
+              )
+            : Row(
+                children: [
+                  Expanded(
+                    child: SizedBox(
+                      height: 250,
                       child: Form(
                         key: formKey,
                         child: Column(children: [
-                          recCousesWidget[0],
-                          recCousesWidget[1],
-                          recCousesWidget[2],
-                          recCousesWidget[3],
-                          recCousesWidget[4],
-                          recCousesWidget[5],
-                          recCousesWidget[6],
-                          recCousesWidget[7],
-                        ]),
-                      ),
-                    )
-                  : Row(
-                      children: [
-                        Expanded(
-                          child: SizedBox(
-                            height: 300,
-                            child: Form(
-                              key: formKey,
-                              child: Column(children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Expanded(child: recCousesWidget[0]),
-                                      Expanded(child: recCousesWidget[1]),
-                                      Expanded(child: recCousesWidget[2]),
-                                    ],
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Expanded(
+                                    child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 10, left: 10),
+                                  child: TextFormFiledContainerWidget(
+                                    controller: courseNameTextController,
+                                    hintText: "Course Name",
+                                    title: "Couse Name",
+                                    width: 200,
+                                    validator: checkFieldEmpty,
+                                  ),
+                                )),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 10, left: 10),
+                                    child: TextFormFiledContainerWidget(
+                                        controller: faculteNameTextController,
+                                        hintText: "Facultie Name",
+                                        title: "Facultie Name",
+                                        width: 200,
+                                        validator: checkFieldEmpty),
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Expanded(child: recCousesWidget[3]),
-                                      Expanded(child: recCousesWidget[4]),
-                                      Expanded(child: recCousesWidget[5]),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      recCousesWidget[6],
-                                      recCousesWidget[7]
-                                    ],
-                                  ),
-                                ),
-                              ]),
+                              ],
                             ),
                           ),
-                        ),
-                      ],
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 10, left: 10),
+                                    child: TextFormFiledContainerWidget(
+                                        controller: durationTextController,
+                                        hintText:
+                                            "Enter in Days(Eg:30,40,etc.....)",
+                                        title: "Duration",
+                                        width: 200,
+                                        validator: checkFieldEmpty),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                      top: 10,
+                                    ),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 10),
+                                          child: GooglePoppinsWidgets(
+                                              text: 'Category', fontsize: 12),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 7, left: 10),
+                                          child: SizedBox(
+                                              height: 35,
+                                              width: 200,
+                                              child: Center(
+                                                child: DropdownSearch(
+                                                  validator: checkFieldEmpty,
+                                                  autoValidateMode:
+                                                      AutovalidateMode.always,
+                                                  // onChanged: (value) {
+                                                  //   selectstate = value ?? '';
+                                                  //   log("$selectstate-------");
+                                                  // },
+                                                  dropdownDecoratorProps:
+                                                      DropDownDecoratorProps(
+                                                          baseStyle: GoogleFonts
+                                                              .poppins(
+                                                                  fontSize: 13,
+                                                                  color: Colors
+                                                                      .black
+                                                                      .withOpacity(
+                                                                          0.7))),
+                                                  selectedItem:
+                                                      'Select Category',
+                                                ),
+                                              )),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 10, left: 10),
+                                    child: TextFormFiledContainerWidget(
+                                        controller: courseFeeTextController,
+                                        hintText: "Course Fee",
+                                        title: "Course Fee",
+                                        width: 200,
+                                        validator: checkFieldEmpty),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ]),
+                      ),
                     ),
-        )
+                  ),
+                ],
+              ),
       ],
       doyouwantActionButton: true);
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:scipro_website/view/colors/colors.dart';
+import 'package:scipro_website/view/widgets/responsive/responsive.dart';
 
 import '../../fonts/google_poppins.dart';
 
@@ -17,7 +18,7 @@ final  String text;
         color:themeColorBlue,
         borderRadius: BorderRadius.horizontal(),
       ),
-      width: 200,
+      width: ResponsiveWebSite.isMobile(context)?150: 200,
       height: 30,
       child: Center(
         child: GooglePoppinsWidgets(

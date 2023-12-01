@@ -45,7 +45,7 @@ class VideoListingGridState extends State<VideoListingGrid> {
       ],
       columnWidthMode: ColumnWidthMode.fill,
       allowSorting: true,
-      onCellTap: ((details) {
+      onCellDoubleTap: ((details) {
         if (details.rowColumnIndex.rowIndex != 0) {
           uploadVideoShowDilogue(context);
         }
@@ -55,6 +55,31 @@ class VideoListingGridState extends State<VideoListingGrid> {
 
   List<Video> getVideoData(BuildContext context) {
     return [
+      Video(
+        context,
+        01,
+        'Science',
+      ),
+      Video(
+        context,
+        02,
+        'GK',
+      ),
+      Video(
+        context,
+        03,
+        'Social Science',
+      ),
+      Video(
+        context,
+        04,
+        'Maths',
+      ),
+      Video(
+        context,
+        05,
+        'English',
+      ),
       Video(
         context,
         01,
