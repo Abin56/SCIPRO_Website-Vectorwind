@@ -80,6 +80,31 @@ class VideoListingGridState extends State<VideoListingGrid> {
         05,
         'English',
       ),
+      Video(
+        context,
+        01,
+        'Science',
+      ),
+      Video(
+        context,
+        02,
+        'GK',
+      ),
+      Video(
+        context,
+        03,
+        'Social Science',
+      ),
+      Video(
+        context,
+        04,
+        'Maths',
+      ),
+      Video(
+        context,
+        05,
+        'English',
+      ),
     ];
   }
 }

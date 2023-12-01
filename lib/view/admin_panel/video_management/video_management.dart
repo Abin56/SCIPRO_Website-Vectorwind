@@ -51,7 +51,7 @@ class VideoManagementSection extends StatelessWidget {
             /////////////////////////...................Create Video Category
 
             Padding(
-              padding: const EdgeInsets.only(left: 12, bottom: 12),
+              padding:EdgeInsets.only(left:  12, bottom: ResponsiveWebSite.isMobile(context)?0:12,top: ResponsiveWebSite.isMobile(context)?22:0),
               child: GestureDetector(
                 onTap: () {
                   settingsDialogBox(context);
