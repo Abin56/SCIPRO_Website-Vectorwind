@@ -14,6 +14,8 @@ createvideoCategory(BuildContext context)async{
                       actiontext: 'Create',
                        actiononTapfuction: () {
                 final key = formKey;
+
+                
                 if (key.currentState!.validate()) {}
               },
                       children: [
@@ -94,17 +96,7 @@ return customShowDilogBox(
                                       ],
                                     ),
                                   ),
-                                  // Padding(
-                                  //   padding: const EdgeInsets.only(top: 10),
-                                  //   child: Row(
-                                  //     mainAxisAlignment:
-                                  //         MainAxisAlignment.start,
-                                  //     children: [
-                                  //       recCousesWidget[6],
-                                  //       recCousesWidget[7]
-                                  //     ],
-                                  //   ),
-                                  // ),
+                                 
                                 ]),
                               ),
                             ),
