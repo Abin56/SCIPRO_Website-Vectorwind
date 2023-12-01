@@ -45,7 +45,7 @@ class VideoListingGridState extends State<VideoListingGrid> {
       ],
       columnWidthMode: ColumnWidthMode.fill,
       allowSorting: true,
-      onCellTap: ((details) {
+      onCellDoubleTap: ((details) {
         if (details.rowColumnIndex.rowIndex != 0) {
           uploadVideoShowDilogue(context);
         }

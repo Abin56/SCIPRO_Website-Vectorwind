@@ -57,7 +57,7 @@ class ViewCoursesListState extends State<ViewCoursesList> {
       ],
       columnWidthMode: ColumnWidthMode.fill,
       allowSorting: true,
-      onCellTap: ((details) {
+      onCellDoubleTap: ((details) {
         showBottomSheet(
             constraints: const BoxConstraints(maxWidth: double.infinity),
             context: context,
