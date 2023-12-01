@@ -57,17 +57,17 @@ class ViewCoursesListState extends State<ViewCoursesList> {
       ],
       columnWidthMode: ColumnWidthMode.fill,
       allowSorting: true,
-      onCellTap: ((details) {
-      showBottomSheet(
-              constraints: const BoxConstraints(maxWidth: double.infinity),
-              context: context,
-              builder: (BuildContext context) {
-                return Container(
-                  // height: 800,
-                  color: Colors.white,
-                  child: const VideoListingContainer(),
-                );
-              });
+      onCellDoubleTap: ((details) {
+        showBottomSheet(
+            constraints: const BoxConstraints(maxWidth: double.infinity),
+            context: context,
+            builder: (BuildContext context) {
+              return Container(
+                // height: 800,
+                color: Colors.white,
+                child: const VideoListingContainer(),
+              );
+            });
       }),
     );
   }

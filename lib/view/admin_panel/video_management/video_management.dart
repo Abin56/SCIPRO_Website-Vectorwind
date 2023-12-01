@@ -26,8 +26,8 @@ class VideoManagementSection extends StatelessWidget {
           children: [
             GooglePoppinsWidgets(
               text: 'VIDEO MANAGEMENT',
-              fontsize: 14,
-              fontWeight: FontWeight.w500,
+              fontsize: 16,
+              fontWeight: FontWeight.bold,
             ),
             Padding(
               padding: const EdgeInsets.only(
@@ -38,7 +38,7 @@ class VideoManagementSection extends StatelessWidget {
                   createvideoCategory(context);
                 },
                 child: const ButtonContainerWidget(
-                  text: 'Category',
+                  text: 'Create Category',
                 ),
               ),
             ),
@@ -51,7 +51,7 @@ class VideoManagementSection extends StatelessWidget {
 
       GestureDetector(
         onTap: () {
-          createvedioRecordedCourses(context);
+          createvideoRecordedCourses(context);
         },
         child: const Padding(
           padding: EdgeInsets.only(
@@ -62,10 +62,10 @@ class VideoManagementSection extends StatelessWidget {
           ),
         ),
       ), //////////////////////////////////////////////////////////////////Create Vedio Recorded Courses
-
+      //////////////////////////////////
       SizedBox(
           height: 35,
-          width: 200,
+          width: 250,
           child: Center(
             child: DropdownSearch(
               autoValidateMode: AutovalidateMode.always,
@@ -76,10 +76,10 @@ class VideoManagementSection extends StatelessWidget {
               dropdownDecoratorProps: DropDownDecoratorProps(
                   baseStyle: GoogleFonts.poppins(
                       fontSize: 13, color: Colors.black.withOpacity(0.7))),
-              selectedItem: 'All States',
+              selectedItem: 'Select Category',
               // items: listofState,
             ),
-          )), //////////////////////////////////////////////////////////////////////3 DropDown
+          )), //////////////////////////////////////////////////////////////////////3 DropDown Selected Category
 ////////////
     ];
     return Container(
@@ -139,4 +139,3 @@ class VideoManagementSection extends StatelessWidget {
     );
   }
 }
-     

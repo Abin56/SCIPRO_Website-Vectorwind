@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scipro_website/view/admin_panel/video_management/upload_video/uploadvideo.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class VideoListingGrid extends StatefulWidget {
@@ -25,56 +26,66 @@ class VideoListingGridState extends State<VideoListingGrid> {
 
   @override
   Widget build(BuildContext context) {
-    return 
-    
-      SfDataGrid(
-        gridLinesVisibility: GridLinesVisibility.both,
-              headerGridLinesVisibility: GridLinesVisibility.both,
-        source: videoDataSource,
-        columns: <GridColumn>[
-          GridColumn(
-              width: 100,
-              columnName: 'no',
-              label: const GridVideoColumnContainerWidget(text: "NO.",)),
-          GridColumn(
-              columnName: 'videoname',
-              label: const GridVideoColumnContainerWidget(text: "VIDEO NAME",)
-                  ),
-          // GridColumn(
-          //     columnName: 'noofcourse',
-          //     label: const GridVideoColumnContainerWidget(text: "NO. OF COURSES",)
-          //         ),
-          // GridColumn(
-          //     columnName: 'date',
-          //     label: const GridVideoColumnContainerWidget(text: "DATE",)
-          //         ),
-        ],
-        columnWidthMode: ColumnWidthMode.fill,
-        allowSorting: true,
-        onCellTap: ((details) {
-          if (details.rowColumnIndex.rowIndex != 0) {
-            // int selectedRowIndex = details.rowColumnIndex.rowIndex - 1;
-            // var row = videoDataSource.effectiveRows.elementAt(selectedRowIndex);
-          //hhhh(context);
-          }
-        }),
-      
+    return SfDataGrid(
+      gridLinesVisibility: GridLinesVisibility.both,
+      headerGridLinesVisibility: GridLinesVisibility.both,
+      source: videoDataSource,
+      columns: <GridColumn>[
+        GridColumn(
+            width: 100,
+            columnName: 'no',
+            label: const GridVideoColumnContainerWidget(
+              text: "NO.",
+            )),
+        GridColumn(
+            columnName: 'videoname',
+            label: const GridVideoColumnContainerWidget(
+              text: "VIDEO NAME",
+            )),
+      ],
+      columnWidthMode: ColumnWidthMode.fill,
+      allowSorting: true,
+      onCellDoubleTap: ((details) {
+        if (details.rowColumnIndex.rowIndex != 0) {
+          uploadVideoShowDilogue(context);
+        }
+      }),
     );
   }
 
   List<Video> getVideoData(BuildContext context) {
     return [
-      Video(context, 01, 'Science', ),
-      Video(context, 02, 'GK', ),
-      Video(context, 03, 'Social Science', ),
-      Video(context, 04, 'Maths', ),
-      Video(context, 05, 'English',),
+      Video(
+        context,
+        01,
+        'Science',
+      ),
+      Video(
+        context,
+        02,
+        'GK',
+      ),
+      Video(
+        context,
+        03,
+        'Social Science',
+      ),
+      Video(
+        context,
+        04,
+        'Maths',
+      ),
+      Video(
+        context,
+        05,
+        'English',
+      ),
     ];
   }
 }
 
 class GridVideoColumnContainerWidget extends StatelessWidget {
-final String text;
+  final String text;
   const GridVideoColumnContainerWidget({
     required this.text,
     super.key,
@@ -86,7 +97,7 @@ final String text;
         color: Colors.blue[100],
         padding: const EdgeInsets.all(16.0),
         alignment: Alignment.center,
-        child:  Text(
+        child: Text(
           text,
           overflow: TextOverflow.ellipsis,
         ));
@@ -94,7 +105,11 @@ final String text;
 }
 
 class Video {
-  Video(this.context, this.no, this.videoname, );
+  Video(
+    this.context,
+    this.no,
+    this.videoname,
+  );
 
   final int no;
 

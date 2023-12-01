@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scipro_website/view/admin_panel/all_users_mngt/all_users/all_users_list.dart';
 import 'package:scipro_website/view/admin_panel/drawer_logo.dart';
-import 'package:scipro_website/view/admin_panel/subscrib_std_mngt/Subscribed_std/subscribed_student.dart';
 import 'package:scipro_website/view/admin_panel/video_management/video_management.dart';
 import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
@@ -47,9 +45,10 @@ class _AdminPanelPageState extends State<AdminPanelPage> {
 
 List<Widget> pages = [
   const VideoManagementSection(),
-   const SubscribedStd(),
 
-   Container(
+  ///.............. Recorded c Managementm
+
+  Container(
     child: const Center(
       child: Text("data"),
     ),
@@ -59,18 +58,26 @@ List<Widget> pages = [
       child: Text("data"),
     ),
   ),
-   Container(
+  Container(
     child: const Center(
       child: Text("data"),
     ),
   ),
- const AllUsersList(),
-   Container(
+  Container(
     child: const Center(
       child: Text("data"),
     ),
   ),
-
+  Container(
+    child: const Center(
+      child: Text("data"),
+    ),
+  ),
+  Container(
+    child: const Center(
+      child: Text("data"),
+    ),
+  ),
 ];
 
 class SideBarMenuItemsWidget extends StatelessWidget {
