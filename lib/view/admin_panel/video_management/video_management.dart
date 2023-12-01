@@ -2,6 +2,7 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:scipro_website/view/admin_panel/video_management/functions/create_category.dart';
+import 'package:scipro_website/view/admin_panel/video_management/setting_dialogbox.dart';
 import 'package:scipro_website/view/admin_panel/video_management/video_courses_list/view_courses_list.dart';
 
 import '../../fonts/google_poppins.dart';
@@ -22,32 +23,52 @@ class VideoManagementSection extends StatelessWidget {
       ////
       Padding(
         padding: const EdgeInsets.only(top: 40),
-        child: Column(
+        child: Row(
           children: [
-            GooglePoppinsWidgets(
-              text: 'VIDEO MANAGEMENT',
-              fontsize: 16,
-              fontWeight: FontWeight.bold,
+            Column(
+              children: [
+                GooglePoppinsWidgets(
+                  text: 'VIDEO MANAGEMENT',
+                  fontsize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 10,
+                  ),
+                  child: GestureDetector(
+                    onTap: () {
+                      createvideoCategory(context);
+                    },
+                    child: const ButtonContainerWidget(
+                      text: 'Create Category',
+                    ),
+                  ),
+                ),
+              ],
             ),
+
+            /////////////////////////...................Create Video Category
+
             Padding(
-              padding: const EdgeInsets.only(
-                top: 10,
-              ),
+              padding: const EdgeInsets.only(left: 12, bottom: 12),
               child: GestureDetector(
                 onTap: () {
-                  createvideoCategory(context);
+                  settingsDialogBox(context);
                 },
-                child: const ButtonContainerWidget(
-                  text: 'Create Category',
+                child: const Padding(
+                  padding: EdgeInsets.only(
+                    top: 10,
+                  ),
+                  child: ButtonContainerWidget(
+                    text: 'Settings',
+                  ),
                 ),
               ),
-            ),
+            ), /////////////////////////////....................video settings
           ],
         ),
       ),
-      //
-      //
-      /////////////////////    ...................Create Video Category
 
       GestureDetector(
         onTap: () {

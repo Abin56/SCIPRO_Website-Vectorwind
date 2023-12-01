@@ -10,7 +10,7 @@ totalVideoList(BuildContext context) {
       children: [
         SizedBox(
           height: 400,
-          width: double.infinity,
+              width: 500,
           child: ListView.separated(
               itemBuilder: (context, index) {
                 return GestureDetector(

@@ -10,7 +10,7 @@ totalCategoryList(BuildContext context) {
       children: [
         SizedBox(
           height: 400,
-          width: double.infinity,
+          width: 600,
           child: ListView.separated(
               itemBuilder: (context, index) {
                 return GestureDetector(
