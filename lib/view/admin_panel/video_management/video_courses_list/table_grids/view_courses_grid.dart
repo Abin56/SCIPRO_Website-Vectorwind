@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scipro_website/view/admin_panel/video_management/video_courses_list/show_videoList/showvideos_listing.dart';
+import 'package:scipro_website/view/admin_panel/video_management/functions/video_folder/create_videoFolder.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class ViewCoursesList extends StatefulWidget {
@@ -58,16 +58,7 @@ class ViewCoursesListState extends State<ViewCoursesList> {
       columnWidthMode: ColumnWidthMode.fill,
       allowSorting: true,
       onCellDoubleTap: ((details) {
-        showBottomSheet(
-            constraints: const BoxConstraints(maxWidth: double.infinity),
-            context: context,
-            builder: (BuildContext context) {
-              return Container(
-                // height: 800,
-                color: Colors.white,
-                child: const VideoListingContainer(),
-              );
-            });
+        viewVideoFolder(context);
       }),
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scipro_website/view/admin_panel/video_management/functions/edit&delete_section/category.dart';
 import 'package:scipro_website/view/admin_panel/video_management/functions/edit&delete_section/course_list.dart';
-import 'package:scipro_website/view/admin_panel/video_management/functions/edit&delete_section/video_list.dart';
+import 'package:scipro_website/view/admin_panel/video_management/functions/edit&delete_section/videoFolder_list.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
 import 'package:scipro_website/view/widgets/custom_showDilog/custom_showdilog.dart';
 
@@ -13,9 +13,9 @@ settingsDialogBox(BuildContext context) {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: GestureDetector(
-                      onTap: (){
-            totalCategoryList(context);
-          },
+            onTap: () {
+              totalCategoryList(context);
+            },
             child: Container(
               height: 30,
               color: const Color.fromARGB(255, 91, 166, 228),
@@ -31,9 +31,9 @@ settingsDialogBox(BuildContext context) {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: GestureDetector(
-                      onTap: (){
-            totalCourseList(context);
-          },
+            onTap: () {
+              totalCourseList(context);
+            },
             child: Container(
               height: 30,
               color: const Color.fromARGB(255, 91, 166, 228),
@@ -49,15 +49,15 @@ settingsDialogBox(BuildContext context) {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: GestureDetector(
-                      onTap: (){
-            totalVideoList(context);
-          },
+            onTap: () {
+              totalVideoFolderList(context);
+            },
             child: Container(
               height: 30,
               color: const Color.fromARGB(255, 91, 166, 228),
               child: Center(
                   child: GooglePoppinsWidgets(
-                text: 'VIDEO LIST',
+                text: 'VIDEO FOLDER LIST',
                 fontsize: 14,
                 fontWeight: FontWeight.w500,
               )),
