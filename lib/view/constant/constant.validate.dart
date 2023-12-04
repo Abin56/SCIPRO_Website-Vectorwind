@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 const sw50 = SizedBox(
   width: 50,
@@ -22,6 +25,21 @@ const sh20 = SizedBox(
 const sh30 = SizedBox(
   height: 30,
 );
+void copyToClipboard(String text, BuildContext context) {
+  Clipboard.setData(ClipboardData(text: text));
+  // Optionally, you can provide feedback to the user, like a toast or a snackbar.
+  ScaffoldMessenger.of(context).showSnackBar(
+    const SnackBar(
+      content: Text('Text copied to clipboard'),
+    ),
+  );
+}
+
+const _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+Random _rnd = Random();
+
+String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
+    length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
 
 const String netWorkImagePathPerson =
     "https://www.seekpng.com/png/full/202-2024994_profile-icon-profile-logo-no-background.png";
