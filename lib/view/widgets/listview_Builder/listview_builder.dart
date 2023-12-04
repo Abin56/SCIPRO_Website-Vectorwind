@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ListviewBuilderWidget extends StatelessWidget {
+  int cindex = 0;
   final double height;
   final double width;
   final int itemCount;
@@ -9,7 +10,7 @@ class ListviewBuilderWidget extends StatelessWidget {
   final Color? containerColor;
   final Decoration? decoration;
 
-  const ListviewBuilderWidget({
+  ListviewBuilderWidget({
     required this.height,
     required this.width,
     required this.itemCount,
@@ -29,6 +30,7 @@ class ListviewBuilderWidget extends StatelessWidget {
       decoration: decoration,
       child: ListView.separated(
           itemBuilder: (context, index) {
+            cindex = index;
             return returnWidget;
           },
           separatorBuilder: (context, index) {

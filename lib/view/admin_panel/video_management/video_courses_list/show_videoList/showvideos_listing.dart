@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scipro_website/view/admin_panel/video_management/upload_video/uploadvideo.dart';
+import 'package:scipro_website/view/admin_panel/video_management/functions/uploadvideo.dart';
 import 'package:scipro_website/view/admin_panel/video_management/video_courses_list/table_grids/view_video_grid.dart';
 import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
