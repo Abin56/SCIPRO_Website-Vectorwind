@@ -44,7 +44,7 @@ customShowDilogBox(
                       ),
                       child: Center(
                         child: GooglePoppinsWidgets(
-                            text: actiontext ?? 'ok',
+                            text: actiontext ?? 'Ok',
                             color: cWhite,
                             fontsize: 12,
                             fontWeight: FontWeight.w500),
