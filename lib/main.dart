@@ -4,7 +4,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scipro_website/firebase_options.dart';
-import 'package:scipro_website/view/admin_panel/admin_panel.dart';
+import 'package:scipro_website/view/admin_panel/get%20invoice/get_invoice.dart';
+
 
 Future<void> main() async {
   html.document.title = 'SCI PRO';
@@ -21,9 +22,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const GetMaterialApp(
+    return  const GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AdminPanelPage(),
+   //  home: AdminPanelPage(),
+   home: CreatePdfWidget(),
     );
   }
 }
