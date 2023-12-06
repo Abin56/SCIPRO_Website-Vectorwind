@@ -1,6 +1,7 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:scipro_website/view/admin_panel/studyMaterials_management/create_folder.dart';
 import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/widgets/button%20container%20widget/button_container_widget.dart';
 
@@ -26,7 +27,7 @@ class StudyMaterialsManagementSection extends StatelessWidget {
           fontsize: 17,
           fontWeight: FontWeight.bold,
         ),
-      ),
+      ),///////////////////////////////////////////////0
 
       SizedBox(
           height: 35,
@@ -39,7 +40,7 @@ class StudyMaterialsManagementSection extends StatelessWidget {
                       fontSize: 13, color: Colors.black.withOpacity(0.7))),
               selectedItem: 'Select Category',
             ),
-          )),
+          )),//////////////////////////////////1
 
       SizedBox(
           height: 35,
@@ -52,15 +53,20 @@ class StudyMaterialsManagementSection extends StatelessWidget {
                       fontSize: 13, color: Colors.black.withOpacity(0.7))),
               selectedItem: 'Select Course',
             ),
-          )),
+          )),//////////////////////////////////////////2
       SizedBox(
         height: 550,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: ButtonContainerWidget(text: 'Create Folder'),
+            GestureDetector(
+              onTap: ()async{
+               await   createFolderForStdMaterials(context);
+             },
+              child: const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: ButtonContainerWidget(text: 'Create Folder'),
+              ),
             ),
             Expanded(
               child: Padding(
@@ -110,7 +116,7 @@ class StudyMaterialsManagementSection extends StatelessWidget {
                       itemCount: 30),
                 ),
               ),
-            ),
+            ),/////////////////////////////////////////////////3
           ],
         ),
       ),

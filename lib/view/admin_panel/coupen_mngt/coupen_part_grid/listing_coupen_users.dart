@@ -24,7 +24,7 @@ class AllUsersForCoupenList extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 25, left: 15),
                 child: GooglePoppinsWidgets(
-                  text: "COUPEN MANAGEMENT",
+                  text: "COUPON MANAGEMENT",
                   fontsize: 14,
                   fontWeight: FontWeight.bold,
                 ),
@@ -42,7 +42,7 @@ class AllUsersForCoupenList extends StatelessWidget {
                       onTap: () {
                         enterDetailsForCoupen(context);
                       },
-                      child: const ButtonContainerWidget(text: 'Create Coupen'))
+                      child: const ButtonContainerWidget(text: 'Create Coupon'))
                 ],
               )
             ],

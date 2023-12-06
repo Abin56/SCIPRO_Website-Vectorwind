@@ -20,8 +20,8 @@ enterDetailsForCoupen(BuildContext context) {
           padding: const EdgeInsets.all(8.0),
           child: TextFormFiledContainerWidget(
             controller: courseNameTextController,
-            hintText: "Coupen Name",
-            title: "Coupen Name",
+            hintText: "Coupon Name",
+            title: "Coupon Name",
             width: 200,
             validator: checkFieldEmpty,
           ),
@@ -96,7 +96,7 @@ enterDetailsForCoupen(BuildContext context) {
         final String coupenCode = getRandomString(20);
         customShowDilogBox(
             context: context,
-            title: 'Coupen Code',
+            title: 'Coupon Code',
             children: [
               SizedBox(
                 height: 200,
@@ -117,7 +117,7 @@ enterDetailsForCoupen(BuildContext context) {
                           height: 10,
                         ),
                         const Text(
-                            'When use this coupencode add SCIPRO (eg SCIPROaJI34HNdet)',
+                            'When use this couponcode add SCIPRO (eg SCIPROaJI34HNdet)',
                             style: TextStyle(
                                 color: cBlack,
                                 fontSize: 11,
@@ -157,6 +157,6 @@ enterDetailsForCoupen(BuildContext context) {
             ],
             doyouwantActionButton: false);
       },
-      actiontext: 'Create Coupen',
+      actiontext: 'Create Coupon',
       doyouwantActionButton: true);
 }

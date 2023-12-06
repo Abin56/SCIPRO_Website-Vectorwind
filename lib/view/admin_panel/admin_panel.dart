@@ -124,7 +124,7 @@ List<String> sideMenu = [
   'Get Invoice',
   'Set User Access',
   'All Users',
-  'Coupen Management',
+  'Coupon Management',
 ];
 List<IconData> sideMenuICons = [
   Icons.switch_video_outlined,
