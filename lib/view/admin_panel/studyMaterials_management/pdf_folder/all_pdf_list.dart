@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:scipro_website/view/admin_panel/video_management/functions/uploadvideo.dart';
-import 'package:scipro_website/view/admin_panel/video_management/functions/video_folder/editanddelte_videos.dart';
-import 'package:scipro_website/view/admin_panel/video_management/video_courses_list/table_grids/view_video_grid.dart';
+import 'package:scipro_website/view/admin_panel/studyMaterials_management/crud_function_pdf/pdf_editdelete.dart';
+import 'package:scipro_website/view/admin_panel/studyMaterials_management/crud_function_pdf/update_pdf.dart';
+import 'package:scipro_website/view/admin_panel/studyMaterials_management/grid/grid_pdf.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
 import 'package:scipro_website/view/widgets/back_container/back_container.dart';
 import 'package:scipro_website/view/widgets/button_container_widget/button_container_widget.dart';
 import 'package:scipro_website/view/widgets/responsive/responsive.dart';
 
-showVideoList(BuildContext context) {
-  List<Widget> showvideosWidgets = [
+showStudyMaterialsList(BuildContext context) {
+  List<Widget> showpdfsWidgets = [
     GestureDetector(
-        onTap: () => editdeletVideoList(context),
+        onTap: () => editdeletPdfList(context),
         child: const ButtonContainerWidget(text: "Settings")),
     GestureDetector(
-        onTap: () => uploadVideoShowDilogue(context),
-        child: const ButtonContainerWidget(text: "Upload Video"))
+        onTap: () => uploadPdfShowDilogue(context),
+        child: const ButtonContainerWidget(text: "Upload PDF"))
   ];
   return showDialog(
     context: context,
@@ -26,7 +26,7 @@ showVideoList(BuildContext context) {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             GooglePoppinsWidgets(
-                text: "All Videos", fontsize: 13, fontWeight: FontWeight.w600),
+                text: "All PDF", fontsize: 13, fontWeight: FontWeight.w600),
             Padding(
               padding: const EdgeInsets.only(top: 10),
               child: ResponsiveWebSite.isMobile(context)
@@ -37,26 +37,26 @@ showVideoList(BuildContext context) {
                         const SizedBox(
                           height: 20,
                         ),
-                        showvideosWidgets[0],
+                        showpdfsWidgets[0],
 
                         ///  Setting
                         const SizedBox(
                           height: 10,
                         ),
-                        showvideosWidgets[1], // Video Upload
+                        showpdfsWidgets[1], // pdf Upload
                       ],
                     )
                   : Row(
                       children: [
                         const BackButtonContainerWidget(),
                         const Spacer(),
-                        showvideosWidgets[0],
+                        showpdfsWidgets[0],
 
                         ///  Setting
                         const SizedBox(
                           width: 10,
                         ),
-                        showvideosWidgets[1], // Video Upload
+                        showpdfsWidgets[1], // pdf Upload
                       ],
                     ),
             )
@@ -69,7 +69,7 @@ showVideoList(BuildContext context) {
                 height: 500,
                 width: 600,
                 color: Colors.white,
-                child: const VideoListingGrid(),
+                child: const PdfListingGrid(),
               )
             ],
           ),

@@ -3,7 +3,7 @@ import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
 import 'package:scipro_website/view/widgets/custom_showDilog/custom_showdilog.dart';
 import 'package:scipro_website/view/widgets/responsive/responsive.dart';
-import 'package:scipro_website/view/widgets/textform%20feild%20Widget/textformfeildWidget.dart';
+import 'package:scipro_website/view/widgets/textform_field_Widget/textformfieldWidget.dart';
 
 totalCourseList(BuildContext context) {
   return customShowDilogBox(
@@ -39,7 +39,7 @@ totalCourseList(BuildContext context) {
                           const Padding(
                             padding: EdgeInsets.only(left: 20),
                             child: Text(
-                              "Categoey Name",
+                              "Category Name",
                               style: TextStyle(
                                   color: cWhite,
                                   fontWeight: FontWeight.bold,

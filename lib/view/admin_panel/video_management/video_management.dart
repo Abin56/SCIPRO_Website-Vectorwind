@@ -6,7 +6,7 @@ import 'package:scipro_website/view/admin_panel/video_management/setting_dialogb
 import 'package:scipro_website/view/admin_panel/video_management/video_courses_list/view_courses_list.dart';
 
 import '../../fonts/google_poppins.dart';
-import '../../widgets/button container widget/button_container_widget.dart';
+import '../../widgets/button_container_widget/button_container_widget.dart';
 import '../../widgets/responsive/responsive.dart';
 
 // ignore: must_be_immutable
@@ -17,7 +17,7 @@ class VideoManagementSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> topVedioManagementBar = [
+    List<Widget> topVideoManagementBar = [
       ///////////////////
       //////
       ////
@@ -81,7 +81,7 @@ class VideoManagementSection extends StatelessWidget {
             text: 'Create Recorded Courses',
           ),
         ),
-      ), //////////////////////////////////////////////////////////////////Create Vedio Recorded Courses
+      ), //////////////////////////////////////////////////////////////////Create Video Recorded Courses
       //////////////////////////////////
       SizedBox(
           height: 35,
@@ -113,9 +113,9 @@ class VideoManagementSection extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    topVedioManagementBar[0],
-                    topVedioManagementBar[1],
-                    topVedioManagementBar[2],
+                    topVideoManagementBar[0],
+                    topVideoManagementBar[1],
+                    topVideoManagementBar[2],
                   ],
                 ),
               ),
@@ -126,7 +126,7 @@ class VideoManagementSection extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    topVedioManagementBar[3],
+                    topVideoManagementBar[3],
                   ],
                 ),
               ),
@@ -143,10 +143,10 @@ class VideoManagementSection extends StatelessWidget {
                 child: Row(
                   // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    topVedioManagementBar[0],
-                    topVedioManagementBar[1],
+                    topVideoManagementBar[0],
+                    topVideoManagementBar[1],
                     const Spacer(),
-                    topVedioManagementBar[2],
+                    topVideoManagementBar[2],
                   ],
                 ),
               ),
@@ -155,7 +155,7 @@ class VideoManagementSection extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    topVedioManagementBar[3],
+                    topVideoManagementBar[3],
                   ],
                 ),
               ),

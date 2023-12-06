@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:scipro_website/controller/coupen_management_controller/coupen_m.dart';
 import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/constant/constant.validate.dart';
-import 'package:scipro_website/view/widgets/button%20container%20widget/button_container_widget.dart';
+import 'package:scipro_website/view/widgets/button_container_widget/button_container_widget.dart';
 import 'package:scipro_website/view/widgets/custom_showDilog/custom_showdilog.dart';
-import 'package:scipro_website/view/widgets/textform%20feild%20Widget/textformfeildWidget.dart';
+import 'package:scipro_website/view/widgets/textform_field_Widget/textformfieldWidget.dart';
 
 enterDetailsForCoupen(BuildContext context) {
   CoupenManagementController coupenManagementController =

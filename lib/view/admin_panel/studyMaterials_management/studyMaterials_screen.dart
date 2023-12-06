@@ -1,9 +1,10 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:scipro_website/view/admin_panel/studyMaterials_management/create_folder.dart';
+import 'package:scipro_website/view/admin_panel/studyMaterials_management/pdf_folder/all_pdf_list.dart';
+import 'package:scipro_website/view/admin_panel/studyMaterials_management/pdf_folder/create_folder_pdf.dart';
 import 'package:scipro_website/view/colors/colors.dart';
-import 'package:scipro_website/view/widgets/button%20container%20widget/button_container_widget.dart';
+import 'package:scipro_website/view/widgets/button_container_widget/button_container_widget.dart';
 
 import '../../fonts/google_poppins.dart';
 import '../../widgets/responsive/responsive.dart';
@@ -75,7 +76,9 @@ class StudyMaterialsManagementSection extends StatelessWidget {
                   child: ListView.separated(
                       itemBuilder: (context, index) {
                         return GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            showStudyMaterialsList(context);
+                          },
                           child: Container(
                             height: 40,
                             width: 100,

@@ -7,13 +7,13 @@ import 'package:scipro_website/view/widgets/responsive/responsive.dart';
 
 import '../../../widgets/textform_field_Widget/textformfieldWidget.dart';
 
-uploadVideoShowDilogue(BuildContext context) {
-  TextEditingController videonNamecontroller = TextEditingController();
-  TextEditingController videoPositioncontroller = TextEditingController();
+uploadPdfShowDilogue(BuildContext context) {
+  TextEditingController pdfNamecontroller = TextEditingController();
+  TextEditingController pdfPositioncontroller = TextEditingController();
 /////////////////////
 ////////
-  ///video Upload Widget List
-  List<Widget> uploadVideoWidgets = [
+  ///pdf Upload Widget List
+  List<Widget> uploadPdfWidgets = [
     const CircleAvatar(
       radius: 60,
     ), /////////////////////////////////1/////////Circle Avathar
@@ -35,19 +35,19 @@ uploadVideoShowDilogue(BuildContext context) {
       ),
     ), ////////////////////////////////////2//////////thumbnail
     TextFormFiledContainerWidget(
-      hintText: 'Enter Video Name',
-      title: " Video Name",
+      hintText: 'Enter Pdf Name',
+      title: " PDF Name",
       width: 250,
       validator: checkFieldEmpty,
-      controller: videonNamecontroller,
-    ), /////////////////////////////////////////3//// 'Video Name Textform feild
+      controller: pdfNamecontroller,
+    ), /////////////////////////////////////////3//// 'pdf Name Textform feild
     TextFormFiledContainerWidget(
-      hintText: 'Enter Video Position. eg(1,2,3...)',
-      title: "Video Position",
+      hintText: 'Enter PDF Position. eg(1,2,3...)',
+      title: "PDF Position",
       width: 250,
       validator: checkFieldEmpty,
-      controller: videoPositioncontroller,
-    ), ////////////////////////////////////////////4//////////Videoposition Text formfeild
+      controller: pdfPositioncontroller,
+    ), ////////////////////////////////////////////4//////////pdfposition Text formfeild
     Padding(
       padding: const EdgeInsets.only(top: 20),
       child: Container(
@@ -58,7 +58,7 @@ uploadVideoShowDilogue(BuildContext context) {
         ),
         child: Center(
           child: GooglePoppinsWidgets(
-              text: 'Pick Videos',
+              text: 'Pick PDF',
               color: cWhite,
               fontsize: 12,
               fontWeight: FontWeight.bold),
@@ -67,20 +67,20 @@ uploadVideoShowDilogue(BuildContext context) {
     ), ///////////////////////////////////////////////////////pickvideo
     Center(
         child: GooglePoppinsWidgets(
-      text: "Enter Video Name :",
+      text: "Enter PDF Name :",
       fontsize: 15,
-    )), /////////////6///////enter video name Text
+    )), /////////////6///////enter pdf name Text
     Center(
         child: GooglePoppinsWidgets(
-      text: "Enter Video Position :",
+      text: "EnterPDF Position :",
       fontsize: 15,
-    )), //////////////////////7//////enter video position Text/////////
+    )), //////////////////////7//////enter pdf position Text/////////
     //////////////////////////
   ];
   return customShowDilogBox(
       context: context,
-      title: "Upload Video",
-      actiontext: "Upload video",
+      title: "Upload PDF",
+      actiontext: "Upload PDF",
       actiononTapfuction: () {
         final key = formKey;
         if (key.currentState!.validate()) {}
@@ -96,19 +96,19 @@ uploadVideoShowDilogue(BuildContext context) {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      uploadVideoWidgets[0],
-                      uploadVideoWidgets[1],
+                      uploadPdfWidgets[0],
+                      uploadPdfWidgets[1],
                       Padding(
                         padding: const EdgeInsets.only(top: 20),
-                        child: uploadVideoWidgets[2],
+                        child: uploadPdfWidgets[2],
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 20),
-                        child: uploadVideoWidgets[3],
+                        child: uploadPdfWidgets[3],
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 20),
-                        child: uploadVideoWidgets[4],
+                        child: uploadPdfWidgets[4],
                       ),
                     ],
                   ),
@@ -121,8 +121,8 @@ uploadVideoShowDilogue(BuildContext context) {
                   key: formKey,
                   child: Column(
                     children: [
-                      uploadVideoWidgets[0],
-                      uploadVideoWidgets[1],
+                      uploadPdfWidgets[0],
+                      uploadPdfWidgets[1],
                       Padding(
                         padding: const EdgeInsets.only(top: 20, right: 80),
                         child: Row(
@@ -130,9 +130,9 @@ uploadVideoShowDilogue(BuildContext context) {
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(top: 30),
-                              child: uploadVideoWidgets[5],
+                              child: uploadPdfWidgets[5],
                             ),
-                            uploadVideoWidgets[2]
+                            uploadPdfWidgets[2]
                           ],
                         ),
                       ),
@@ -143,13 +143,13 @@ uploadVideoShowDilogue(BuildContext context) {
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(top: 30),
-                              child: uploadVideoWidgets[6],
+                              child: uploadPdfWidgets[6],
                             ),
-                            uploadVideoWidgets[3],
+                            uploadPdfWidgets[3],
                           ],
                         ),
                       ),
-                      uploadVideoWidgets[4],
+                      uploadPdfWidgets[4],
                     ],
                   ),
                 ),
