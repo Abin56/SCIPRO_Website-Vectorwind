@@ -5,7 +5,7 @@ import 'package:scipro_website/view/widgets/custom_showDilog/custom_showdilog.da
 import 'package:scipro_website/view/widgets/responsive/responsive.dart';
 import 'package:scipro_website/view/widgets/textform%20feild%20Widget/textformfeildWidget.dart';
 
-totalVideoList(BuildContext context) {
+editdeletVideoList(BuildContext context) {
   return customShowDilogBox(
       context: context,
       title: 'All Video List',
@@ -39,7 +39,7 @@ totalVideoList(BuildContext context) {
                           const Padding(
                             padding: EdgeInsets.only(left: 20),
                             child: Text(
-                              "Categoey Name",
+                              "Video Name",
                               style: TextStyle(
                                   color: cWhite,
                                   fontWeight: FontWeight.bold,
