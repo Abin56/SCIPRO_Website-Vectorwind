@@ -69,7 +69,8 @@ ontapPDFList(BuildContext context) {
         controller: pdfNameController,
         hintText: 'Enter PDF Name',
         title: 'Change PDF Name',
-        width: 250),/////////////////////////////
+        width: 250
+        ),/////////////////////////////////////0
     Container(
       height: 30,
       width: 80,
@@ -88,7 +89,8 @@ ontapPDFList(BuildContext context) {
         controller: positionController,
         hintText: 'Enter Position eg 1,2...',
         title: 'Change Position',
-        width: 250),////////////////////////////2
+        width: 250
+        ),///////////////////////////////////////2
     Padding(
       padding: const EdgeInsets.only(left: 0, top: 05),
       child: Container(

@@ -64,17 +64,17 @@ uploadPdfShowDilogue(BuildContext context) {
               fontWeight: FontWeight.bold),
         ),
       ),
-    ), ///////////////////////////////////////////////////////pickvideo
+    ), ////////////////////////////////////5///////////////////pickpfd
     Center(
         child: GooglePoppinsWidgets(
       text: "Enter PDF Name :",
       fontsize: 15,
-    )), /////////////6///////enter pdf name Text
+    )), ////////////////////////////////6///////enter pdf name Text
     Center(
         child: GooglePoppinsWidgets(
-      text: "EnterPDF Position :",
+      text: "Enter PDF Position :",
       fontsize: 15,
-    )), //////////////////////7//////enter pdf position Text/////////
+    )), ////////////////////////////////7//////enter pdf position Text/////////
     //////////////////////////
   ];
   return customShowDilogBox(
