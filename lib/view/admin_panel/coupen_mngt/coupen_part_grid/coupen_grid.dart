@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:scipro_website/view/admin_panel/coupen_mngt/coupen_part_grid/enter_details.dart';
 import 'package:scipro_website/view/widgets/responsive/responsive.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
@@ -21,43 +20,53 @@ class AllUsersForCoupenShowingState extends State<AllUsersForCoupenShowing> {
   void initState() {
     super.initState();
     allusersforcoupen = getAllusersForCoupenData();
-    allusersforcoupenDataSource = AllusersForCoupenDataSource(allusersData: allusersforcoupen);
+    allusersforcoupenDataSource =
+        AllusersForCoupenDataSource(allusersData: allusersforcoupen);
   }
 
   @override
   Widget build(BuildContext context) {
-    return    SfDataGrid(
-              controller: _gridController,
-              defaultColumnWidth: ResponsiveWebSite.isDesktop(context)? 227: 150,
-              gridLinesVisibility: GridLinesVisibility.both,
-              headerGridLinesVisibility: GridLinesVisibility.both,
-              source: allusersforcoupenDataSource,
-              columns: <GridColumn>[
-                GridColumn(
-                  width: 100,
-                    columnName: 'no',
-                    label: const AllUsersForCoupenGridColumnWidget(text: "NO.",)),
-                GridColumn(
-                    columnName: 'name',
-                    label:const AllUsersForCoupenGridColumnWidget(text: "NAME",)),
-                GridColumn(
-                    columnName: 'course',
-                    label: const AllUsersForCoupenGridColumnWidget(text: "COURSES",)),
-                GridColumn(
-                    columnName: 'phonenumber',
-                    label: const AllUsersForCoupenGridColumnWidget(text: "PHONE NUMBER",)),
-                GridColumn(
-                    columnName: 'email',
-                    label: const AllUsersForCoupenGridColumnWidget(text: "EMAIL",)),
-                GridColumn(
-                    columnName: 'date',
-                    label: const AllUsersForCoupenGridColumnWidget(text: "DATE",)),
-              ],
-                allowSorting: true,
-                onCellDoubleTap: ((details) {
-                  enterDetailsForCoupen(context);
-                }),
-            
+    return SfDataGrid(
+      controller: _gridController,
+      defaultColumnWidth: ResponsiveWebSite.isDesktop(context) ? 227 : 150,
+      gridLinesVisibility: GridLinesVisibility.both,
+      headerGridLinesVisibility: GridLinesVisibility.both,
+      source: allusersforcoupenDataSource,
+      columns: <GridColumn>[
+        GridColumn(
+            width: 100,
+            columnName: 'no',
+            label: const AllUsersForCoupenGridColumnWidget(
+              text: "NO.",
+            )),
+        GridColumn(
+            columnName: 'name',
+            label: const AllUsersForCoupenGridColumnWidget(
+              text: "NAME",
+            )),
+        GridColumn(
+            columnName: 'course',
+            label: const AllUsersForCoupenGridColumnWidget(
+              text: "COURSES",
+            )),
+        GridColumn(
+            columnName: 'phonenumber',
+            label: const AllUsersForCoupenGridColumnWidget(
+              text: "PHONE NUMBER",
+            )),
+        GridColumn(
+            columnName: 'email',
+            label: const AllUsersForCoupenGridColumnWidget(
+              text: "EMAIL",
+            )),
+        GridColumn(
+            columnName: 'date',
+            label: const AllUsersForCoupenGridColumnWidget(
+              text: "DATE",
+            )),
+      ],
+      allowSorting: true,
+      onCellDoubleTap: ((details) {}),
     );
   }
 
@@ -88,7 +97,9 @@ class AllUsersForCoupenGridColumnWidget extends StatelessWidget {
         color: Colors.blue[100],
         padding: const EdgeInsets.all(16.0),
         alignment: Alignment.center,
-        child:  Text(text, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+        child: Text(
+          text,
+          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
           overflow: TextOverflow.ellipsis,
         ));
   }
@@ -98,7 +109,6 @@ class AllUsersForCoupen {
   AllUsersForCoupen(
       this.no, this.name, this.course, this.phonenumber, this.email, this.date);
 
-  
   final int no;
   final String name;
   final String course;
@@ -110,7 +120,6 @@ class AllUsersForCoupen {
 class AllusersForCoupenDataSource extends DataGridSource {
   int rowIndex = 0;
 
- 
   AllusersForCoupenDataSource({required List<AllUsersForCoupen> allusersData}) {
     _studentData = allusersData
         .map<DataGridRow>((e) => DataGridRow(cells: [
@@ -119,9 +128,9 @@ class AllusersForCoupenDataSource extends DataGridSource {
                 columnName: 'name',
                 value: e.name,
               ),
-              DataGridCell<String>(
-                  columnName: 'course', value: e.course),
-              DataGridCell<int>( columnName: 'phonenumber', value: e.phonenumber),
+              DataGridCell<String>(columnName: 'course', value: e.course),
+              DataGridCell<int>(
+                  columnName: 'phonenumber', value: e.phonenumber),
               DataGridCell<String>(columnName: 'email', value: e.email),
               DataGridCell<int>(columnName: 'date', value: e.date),
             ]))
@@ -148,6 +157,3 @@ class AllusersForCoupenDataSource extends DataGridSource {
         }).toList());
   }
 }
-
-
-            

@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 const sw50 = SizedBox(
   width: 50,
@@ -22,6 +25,21 @@ const sh20 = SizedBox(
 const sh30 = SizedBox(
   height: 30,
 );
+void copyToClipboard(String text, BuildContext context) {
+  Clipboard.setData(ClipboardData(text: text));
+  // Optionally, you can provide feedback to the user, like a toast or a snackbar.
+  ScaffoldMessenger.of(context).showSnackBar(
+    const SnackBar(
+      content: Text('Text copied to clipboard'),
+    ),
+  );
+}
+
+const _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+Random _rnd = Random();
+
+String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
+    length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
 
 const String netWorkImagePathPerson =
     "https://www.seekpng.com/png/full/202-2024994_profile-icon-profile-logo-no-background.png";
@@ -43,6 +61,18 @@ String? checkFieldEmpty(String? fieldContent) {
   //<-- add String? as a return type
   if (fieldContent == null || fieldContent.isEmpty) {
     return "Field is mandatory";
+  }
+  return null;
+}
+
+String? numFieldIsValid(String? value) {
+  if (value != null) {
+    final data = num.tryParse(value) ?? 0;
+    if (data == 0) {
+      return 'Invalid Value';
+    } else {
+      return null;
+    }
   }
   return null;
 }
@@ -117,7 +147,6 @@ String? checkFieldDateIsValid(String? fieldContent) {
 
 final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-
 // class  {
 //   static String id = '';
 // }
@@ -126,3 +155,15 @@ final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 //   static String userPassword='';
 // }
 // const uuid = Uuid();
+
+String timestampToDate(int timestamp) {
+  var date = DateTime.fromMillisecondsSinceEpoch(timestamp);
+  var formattedDate =
+      "${_twoDigits(date.day)}-${_twoDigits(date.month)}-${date.year}";
+  return formattedDate;
+}
+
+String _twoDigits(int n) {
+  if (n >= 10) return "$n";
+  return "0$n";
+}

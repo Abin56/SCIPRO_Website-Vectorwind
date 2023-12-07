@@ -43,6 +43,8 @@ dependencies:
   sidebar_drawer: null
   syncfusion_flutter_datagrid: null
   uuid: ^4.2.1
+  reward_popup:
+ 
 
 dev_dependencies:
   flutter_lints: ^2.0.0

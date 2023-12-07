@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:scipro_website/view/admin_panel/video_management/upload_video/uploadvideo.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class VideoListingGrid extends StatefulWidget {
@@ -45,11 +44,9 @@ class VideoListingGridState extends State<VideoListingGrid> {
       ],
       columnWidthMode: ColumnWidthMode.fill,
       allowSorting: true,
-      onCellDoubleTap: ((details) {
-        if (details.rowColumnIndex.rowIndex != 0) {
-          uploadVideoShowDilogue(context);
-        }
-      }),
+      // onCellDoubleTap: ((details) {
+      //   if (details.rowColumnIndex.rowIndex != 0) {}
+      // }),
     );
   }
 
