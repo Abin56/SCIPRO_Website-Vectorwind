@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:scipro_website/controller/video_management/video_management_controller.dart';
 import 'package:scipro_website/view/admin_panel/video_management/functions/video_folder/show_videoList.dart';
 import 'package:scipro_website/view/colors/colors.dart';
+import 'package:scipro_website/view/constant/const.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
 import 'package:scipro_website/view/widgets/back_container/back_container.dart';
 import 'package:scipro_website/view/widgets/button%20container%20widget/button_container_widget.dart';
@@ -110,38 +113,48 @@ viewVideoFolder(BuildContext context) {
 }
 
 createVideoFolder(BuildContext context) {
-  TextEditingController categoryNameController = TextEditingController();
+  TextEditingController folderNameController = TextEditingController();
   TextEditingController positionController = TextEditingController();
-  return customShowDilogBox(
-      context: context,
-      title: 'Create Video Folder',
-      children: [
-        SizedBox(
-          height: ResponsiveWebSite.isDesktop(context) ? 200 : 300,
-          width: ResponsiveWebSite.isDesktop(context) ? 400 : 200,
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Column(
-              children: [
-                TextFormFiledContainerWidget(
-                    controller: categoryNameController,
-                    hintText: 'Enter Folder Name',
-                    title: 'Folder Name',
-                    width: 250),
-                const SizedBox(
-                  height: 20,
-                ),
-                TextFormFiledContainerWidget(
-                    controller: positionController,
-                    hintText: 'Enter Position eg 1,2...',
-                    title: 'Enter Position',
-                    width: 250),
-              ],
-            )
-          ]),
-        ),
-      ],
-      actiononTapfuction: () {},
-      actiontext: 'Create Folder',
-      doyouwantActionButton: true);
+  return Obx(() => Get.find<VideoMangementController>().isLoadingFolder.value
+      ? circularPIndicator
+      : customShowDilogBox(
+          context: context,
+          title: 'Create Video Folder',
+          children: [
+            SizedBox(
+              height: ResponsiveWebSite.isDesktop(context) ? 200 : 300,
+              width: ResponsiveWebSite.isDesktop(context) ? 400 : 200,
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Column(
+                      children: [
+                        TextFormFiledContainerWidget(
+                            controller: folderNameController,
+                            hintText: 'Enter Folder Name',
+                            title: 'Folder Name',
+                            width: 250),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        TextFormFiledContainerWidget(
+                            controller: positionController,
+                            hintText: 'Enter Position eg 1,2...',
+                            title: 'Enter Position',
+                            width: 250),
+                      ],
+                    )
+                  ]),
+            ),
+          ],
+          actiononTapfuction: () async {
+            await Get.find<VideoMangementController>().createFolder(
+                folderName: folderNameController.text,
+                position: positionController.text);
+
+            folderNameController.clear();
+            positionController.clear();
+          },
+          actiontext: 'Create Folder',
+          doyouwantActionButton: true));
 }

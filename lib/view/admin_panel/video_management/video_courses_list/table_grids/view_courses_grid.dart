@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:scipro_website/controller/video_management/video_management_controller.dart';
+import 'package:scipro_website/data/video_management/course_model.dart';
 import 'package:scipro_website/view/admin_panel/video_management/functions/video_folder/create_videoFolder.dart';
+import 'package:scipro_website/view/constant/constant.validate.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class ViewCoursesList extends StatefulWidget {
@@ -12,98 +16,77 @@ class ViewCoursesList extends StatefulWidget {
 
 class ViewCoursesListState extends State<ViewCoursesList> {
   final DataGridController gridController = DataGridController();
-  List<Course> courses = <Course>[];
-  late CourseDataSource courseDataSource;
 
   @override
   void initState() {
-    courses = getCourseData(context);
-
     super.initState();
-
-    courseDataSource = CourseDataSource(courseData: courses);
   }
 
   @override
   Widget build(BuildContext context) {
-    return SfDataGrid(
-      controller: gridController,
-      gridLinesVisibility: GridLinesVisibility.both,
-      headerGridLinesVisibility: GridLinesVisibility.both,
-      source: courseDataSource,
-      columns: <GridColumn>[
-        GridColumn(
-          width: 100,
-          columnName: 'no',
-          label: const GridCourseColumnContainerWidget(
-            text: "NO.",
-          ),
-        ),
-        GridColumn(
-            columnName: 'coursename',
-            label: const GridCourseColumnContainerWidget(
-              text: "COURSE NAME",
-            )),
-        GridColumn(
-            columnName: 'noofvideos',
-            label: const GridCourseColumnContainerWidget(
-              text: 'NO. OF VIDEOS',
-            )),
-        GridColumn(
-            columnName: 'date',
-            label: const GridCourseColumnContainerWidget(
-              text: 'DATE',
-            )),
-      ],
-      columnWidthMode: ColumnWidthMode.fill,
-      allowSorting: true,
-      onCellDoubleTap: ((details) {
-        viewVideoFolder(context);
-      }),
+    return Obx(
+      () => Get.find<VideoMangementController>().courseDataSource.value == null
+          ? const SizedBox()
+          : SfDataGrid(
+              controller: gridController,
+              gridLinesVisibility: GridLinesVisibility.both,
+              headerGridLinesVisibility: GridLinesVisibility.both,
+              source:
+                  Get.find<VideoMangementController>().courseDataSource.value!,
+              columns: <GridColumn>[
+                GridColumn(
+                  width: 100,
+                  columnName: 'no',
+                  label: const GridCourseColumnContainerWidget(
+                    text: "NO.",
+                  ),
+                ),
+                GridColumn(
+                    columnName: 'coursename',
+                    label: const GridCourseColumnContainerWidget(
+                      text: "COURSE NAME",
+                    )),
+                GridColumn(
+                    columnName: 'noofvideos',
+                    label: const GridCourseColumnContainerWidget(
+                      text: 'NO. OF VIDEOS',
+                    )),
+                GridColumn(
+                    columnName: 'date',
+                    label: const GridCourseColumnContainerWidget(
+                      text: 'DATE',
+                    )),
+                GridColumn(
+                    columnName: 'date',
+                    label: const GridCourseColumnContainerWidget(
+                      text: 'DATE',
+                    )),
+              ],
+              columnWidthMode: ColumnWidthMode.fill,
+              allowSorting: true,
+              onCellDoubleTap: ((details) {
+                viewVideoFolder(context);
+              }),
+            ),
     );
   }
-
-  List<Course> getCourseData(BuildContext context) {
-    return [
-      Course(context, 01, 'Science', 9, 2),
-      Course(context, 02, 'GK', 3, 30),
-      Course(context, 03, 'Social Science', 7, 15),
-      Course(context, 04, 'Maths', 8, 15),
-      Course(context, 05, 'English', 3, 1),
-      Course(context, 01, 'Science', 9, 2),
-      Course(context, 02, 'GK', 3, 30),
-      Course(context, 03, 'Social Science', 7, 15),
-      Course(context, 04, 'Maths', 8, 15),
-      Course(context, 05, 'English', 3, 1),
-    ];
-  }
-}
-
-class Course {
-  Course(this.context, this.no, this.coursename, this.noofvideos, this.date);
-
-  final int no;
-
-  BuildContext context;
-  final String coursename;
-  final int noofvideos;
-
-  final int date;
 }
 
 class CourseDataSource extends DataGridSource {
   int rowIndex = 0;
 
-  CourseDataSource({required List<Course> courseData}) {
+  CourseDataSource({required List<CourseModel> courseData}) {
     _courseData = courseData
         .map<DataGridRow>((e) => DataGridRow(cells: [
-              DataGridCell<int>(columnName: 'no', value: e.no),
+              DataGridCell<int>(columnName: 'no', value: e.position),
               DataGridCell<String>(
                 columnName: 'coursename',
-                value: e.coursename,
+                value: e.courseName,
               ),
-              DataGridCell<int>(columnName: 'noofvideos', value: e.noofvideos),
-              DataGridCell<int>(columnName: 'date', value: e.date),
+              DataGridCell<int>(columnName: 'noofvideos', value: e.position),
+              DataGridCell<String>(
+                  columnName: 'date', value: timestampToDate(e.createdDate)),
+              DataGridCell<String>(columnName: 'courseId', value: e.id),
             ]))
         .toList();
   }

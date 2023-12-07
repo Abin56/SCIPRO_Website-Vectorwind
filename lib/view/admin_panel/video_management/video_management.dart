@@ -1,8 +1,12 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:scipro_website/controller/video_management/video_management_controller.dart';
+import 'package:scipro_website/data/video_management/category_model.dart';
 import 'package:scipro_website/view/admin_panel/video_management/functions/create_category.dart';
 import 'package:scipro_website/view/admin_panel/video_management/setting_dialogbox.dart';
+import 'package:scipro_website/view/admin_panel/video_management/video_courses_list/table_grids/view_courses_grid.dart';
 import 'package:scipro_website/view/admin_panel/video_management/video_courses_list/view_courses_list.dart';
 
 import '../../fonts/google_poppins.dart';
@@ -11,12 +15,15 @@ import '../../widgets/responsive/responsive.dart';
 
 // ignore: must_be_immutable
 class VideoManagementSection extends StatelessWidget {
-  const VideoManagementSection({
+  VideoManagementSection({
     super.key,
   });
+  final VideoMangementController videoMangementController =
+      Get.put(VideoMangementController());
 
   @override
   Widget build(BuildContext context) {
+    final videoController = Get.find<VideoMangementController>();
     List<Widget> topVedioManagementBar = [
       ///////////////////
       //////
@@ -69,34 +76,46 @@ class VideoManagementSection extends StatelessWidget {
         ),
       ),
 
-      GestureDetector(
-        onTap: () {
-          createvideoRecordedCourses(context);
-        },
-        child: Padding(
-          padding: EdgeInsets.only(
-            top: ResponsiveWebSite.isMobile(context) ? 0 : 10,
-          ),
-          child: const ButtonContainerWidget(
-            text: 'Create Recorded Courses',
-          ),
-        ),
+      Obx(
+        () => videoController.selectedCategory.value.id.isEmpty
+            ? const SizedBox()
+            : GestureDetector(
+                onTap: () {
+                  createvideoRecordedCourses(context);
+                },
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    top: ResponsiveWebSite.isMobile(context) ? 0 : 10,
+                  ),
+                  child: const ButtonContainerWidget(
+                    text: 'Create Recorded Courses',
+                  ),
+                ),
+              ),
       ), //////////////////////////////////////////////////////////////////Create Vedio Recorded Courses
       //////////////////////////////////
       SizedBox(
           height: 35,
           width: 250,
           child: Center(
-            child: DropdownSearch(
+            child: DropdownSearch<CategoryModel>(
               autoValidateMode: AutovalidateMode.always,
-              // onChanged: (value) {
-              //   selectstate = value ?? '';
-              //   log("$selectstate-------");
-              // },
+              asyncItems: (value) => videoController.fetchAllCategory(),
+              itemAsString: (value) => value.name,
+
+              onChanged: (value) async {
+                if (value != null) {
+                  videoController.selectedCategory.value = value;
+
+                  final data = await videoController.fetchAllCourse();
+                  videoMangementController.courseDataSource.value =
+                      CourseDataSource(courseData: data);
+                }
+              },
               dropdownDecoratorProps: DropDownDecoratorProps(
                   baseStyle: GoogleFonts.poppins(
                       fontSize: 13, color: Colors.black.withOpacity(0.7))),
-              selectedItem: 'Select Category',
+              selectedItem: videoController.selectedCategory.value,
               // items: listofState,
             ),
           )), //////////////////////////////////////////////////////////////////////3 DropDown Selected Category

@@ -65,6 +65,18 @@ String? checkFieldEmpty(String? fieldContent) {
   return null;
 }
 
+String? numFieldIsValid(String? value) {
+  if (value != null) {
+    final data = num.tryParse(value) ?? 0;
+    if (data == 0) {
+      return 'Invalid Value';
+    } else {
+      return null;
+    }
+  }
+  return null;
+}
+
 String? checkFieldEmailIsValid(String? fieldContent) {
   if (fieldContent == null) {
     return 'null';
@@ -135,7 +147,6 @@ String? checkFieldDateIsValid(String? fieldContent) {
 
 final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-
 // class  {
 //   static String id = '';
 // }
@@ -144,3 +155,15 @@ final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 //   static String userPassword='';
 // }
 // const uuid = Uuid();
+
+String timestampToDate(int timestamp) {
+  var date = DateTime.fromMillisecondsSinceEpoch(timestamp);
+  var formattedDate =
+      "${_twoDigits(date.day)}-${_twoDigits(date.month)}-${date.year}";
+  return formattedDate;
+}
+
+String _twoDigits(int n) {
+  if (n >= 10) return "$n";
+  return "0$n";
+}
