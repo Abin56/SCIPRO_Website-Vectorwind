@@ -110,6 +110,8 @@ uploadVideoShowDilogue(BuildContext context) {
             videoName: videonNamecontroller.text,
             position: videoPositioncontroller.text,
           );
+          videonNamecontroller.clear();
+          videoPositioncontroller.clear();
         }
       },
       children: [

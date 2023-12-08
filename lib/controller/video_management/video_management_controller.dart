@@ -11,6 +11,7 @@ import 'package:uuid/uuid.dart';
 
 import '../../data/video_management/video_model.dart';
 import '../../utils/utils.dart';
+import '../../view/admin_panel/video_management/video_courses_list/table_grids/view_video_grid.dart';
 
 class VideoMangementController {
   final VideoManagementRepository _repository = VideoManagementRepository();
@@ -21,7 +22,8 @@ class VideoMangementController {
   TextEditingController courseFeeTextController = TextEditingController();
   TextEditingController durationTextController = TextEditingController();
 
-  Rxn<CategoryModel> selectedCategory = Rxn<CategoryModel>();
+  Rx<CategoryModel> selectedCategory =
+      Rx(CategoryModel(id: '', name: 'SelectCategory', position: 0));
   CourseModel?
       selectedCourse; // double click then store that data to selected course
   FolderModel? selectedFolder;
@@ -31,10 +33,13 @@ class VideoMangementController {
   RxDouble progress = RxDouble(0.0);
   RxList<CourseModel> fetchedCourse = RxList();
   RxList<FolderModel> foldersList = RxList();
+  RxList<VideoModel> vidoesList = RxList();
 
   RxBool isLoading = RxBool(false);
   RxBool isLoadingFolder = RxBool(false);
   RxBool isVideoUploading = RxBool(false);
+
+  Rxn<VideoDataSource> videoDataSource = Rxn();
 
   void updateLoading({required value}) {
     isLoading.value = value;
@@ -59,13 +64,13 @@ class VideoMangementController {
   Future<void> createCourse() async {
     updateLoading(value: true);
 
-    if (selectedCategory.value != null) {
+    if (selectedCategory.value.id.isNotEmpty) {
       await _repository.createCourse(
         course: CourseModel(
             id: uuid.v1(),
             courseName: courseNameTextController.text,
             facultyName: faculteNameTextController.text,
-            categoryId: selectedCategory.value?.id ?? '',
+            categoryId: selectedCategory.value.id,
             courseFee: double.tryParse(courseFeeTextController.text) ?? 0,
             createdDate: Timestamp.now().millisecondsSinceEpoch,
             position: 0,
@@ -80,9 +85,12 @@ class VideoMangementController {
 
   Future<List<CourseModel>> fetchAllCourse() async {
     updateLoading(value: true);
-    if (selectedCategory.value != null) {
+    if (selectedCategory.value.id.isNotEmpty) {
       final data = await _repository.fetchAllCourses(
-          categoryId: selectedCategory.value?.id ?? '');
+          categoryId: selectedCategory.value.id);
+
+      fetchedCourse.value = data;
+      fetchedCourse.refresh();
       updateLoading(value: false);
       return data;
     }
@@ -94,11 +102,11 @@ class VideoMangementController {
   Future<void> createFolder(
       {required String folderName, required String position}) async {
     isLoadingFolder.value = true;
-    if (selectedCourse != null && selectedCategory.value != null) {
+    if (selectedCourse != null && selectedCategory.value.id.isNotEmpty) {
       final folderModel = FolderModel(
         id: uuid.v1(),
         folderName: folderName,
-        categoryId: selectedCategory.value?.id ?? '',
+        categoryId: selectedCategory.value.id,
         courseId: selectedCourse?.id ?? '',
         position: position,
       );
@@ -111,9 +119,9 @@ class VideoMangementController {
 
   Future<List<FolderModel>> fetchAllFolders() async {
     updateLoading(value: true);
-    if (selectedCategory.value != null && selectedCourse != null) {
+    if (selectedCategory.value.id.isNotEmpty && selectedCourse != null) {
       final data = await _repository.fetchAllFolders(
-        categoryId: selectedCategory.value?.id ?? '',
+        categoryId: selectedCategory.value.id,
         courseId: selectedCourse?.id ?? '',
       );
       updateLoading(value: false);
@@ -143,11 +151,13 @@ class VideoMangementController {
 
     if (selectedCourse != null &&
         selectedFolder != null &&
-        selectedCategory.value != null) {
+        selectedCategory.value.id.isNotEmpty &&
+        image.value != null &&
+        video.value != null) {
       final String thumbnailUrl = await uploadUint8ListToFirestore(
-          image.value!, 'thumbnail', uuid.v1()); //todo change null aware
-      final String videoUrl = await uploadUint8ListToFirestore(
-          video.value!, 'videos', videoName); //todo change null aware
+          image.value!, 'thumbnail', uuid.v1());
+      final String videoUrl =
+          await uploadUint8ListToFirestore(video.value!, 'videos', videoName);
 
       final videoModel = VideoModel(
         id: uuid.v1(),
@@ -162,8 +172,28 @@ class VideoMangementController {
       await _repository.uploadVideoToFirebase(
         videoModel: videoModel,
       );
+
+      image.value = null;
+      video.value = null;
     }
 
     isVideoUploading.value = false;
+  }
+
+  Future<List<VideoModel>> fetchVideos() async {
+    updateLoading(value: true);
+    if (selectedCategory.value.id.isNotEmpty && selectedCourse != null) {
+      final data = await _repository.fetchAllVideos(
+          categoryId: selectedCategory.value.id,
+          courseId: selectedCourse?.id ?? '',
+          folderId: selectedFolder?.id ?? '');
+      updateLoading(value: false);
+      vidoesList.value = data;
+      vidoesList.refresh();
+      return data;
+    }
+
+    updateLoading(value: false);
+    return [];
   }
 }

@@ -71,10 +71,14 @@ viewVideoFolder(BuildContext context, CourseModel courseModel) {
                             final data = Get.find<VideoMangementController>()
                                 .foldersList;
                             return GestureDetector(
-                              onTap: () {
+                              onTap: () async {
                                 Get.find<VideoMangementController>()
                                     .selectedFolder = data[index];
-                                showVideoList(context);
+                                await Get.find<VideoMangementController>()
+                                    .fetchVideos();
+                                if (context.mounted) {
+                                  showVideoList(context);
+                                }
                               },
                               child: Container(
                                 height: 40,

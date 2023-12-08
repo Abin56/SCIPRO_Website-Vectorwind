@@ -76,7 +76,7 @@ class VideoManagementSection extends StatelessWidget {
       ),
 
       Obx(
-        () => videoController.selectedCategory.value?.id.isEmpty ?? false
+        () => videoController.selectedCategory.value.id.isEmpty
             ? const SizedBox()
             : GestureDetector(
                 onTap: () {
@@ -106,9 +106,7 @@ class VideoManagementSection extends StatelessWidget {
                 if (value != null) {
                   videoController.selectedCategory.value = value;
 
-                  Get.find<VideoMangementController>().fetchedCourse.value =
-                      await videoController.fetchAllCourse();
-                  Get.find<VideoMangementController>().fetchedCourse.refresh();
+                  await Get.find<VideoMangementController>().fetchAllCourse();
                 }
               },
               dropdownDecoratorProps: DropDownDecoratorProps(
