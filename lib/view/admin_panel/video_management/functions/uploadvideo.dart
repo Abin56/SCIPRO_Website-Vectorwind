@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:scipro_website/controller/video_management/video_management_controller.dart';
 import 'package:scipro_website/utils/utils.dart';
 import 'package:scipro_website/view/colors/colors.dart';
-import 'package:scipro_website/view/constant/const.dart';
 import 'package:scipro_website/view/constant/constant.validate.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
 import 'package:scipro_website/view/widgets/custom_showDilog/custom_showdilog.dart';
@@ -115,76 +114,101 @@ uploadVideoShowDilogue(BuildContext context) {
         }
       },
       children: [
-        Obx(() => Get.find<VideoMangementController>().isVideoUploading.value
-            ? circularPIndicator
-            : ResponsiveWebSite.isMobile(context)
-                ? SizedBox(
-                    height: 400,
-                    width: 600,
-                    child: Form(
-                      key: formKeyVideo,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          uploadVedioWidgets[0],
-                          uploadVedioWidgets[1],
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20),
-                            child: uploadVedioWidgets[2],
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20),
-                            child: uploadVedioWidgets[3],
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20),
-                            child: uploadVedioWidgets[4],
-                          ),
-                        ],
+        Obx(() {
+          final value = Get.find<VideoMangementController>().progress.value;
+          return Get.find<VideoMangementController>().isVideoUploading.value
+              ? Center(
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      CircularProgressIndicator(
+                        value: value / 100,
                       ),
-                    ),
-                  )
-                : SizedBox(
-                    height: 400,
-                    width: 600,
-                    child: Form(
-                      key: formKeyVideo,
-                      child: Column(
-                        children: [
-                          uploadVedioWidgets[0],
-                          uploadVedioWidgets[1],
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20, right: 80),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 30),
-                                  child: uploadVedioWidgets[5],
-                                ),
-                                uploadVedioWidgets[2]
-                              ],
-                            ),
+                      Center(
+                        child: Text(
+                          '${value.round().toString()}%',
+                          style: const TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20, right: 90),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 30),
-                                  child: uploadVedioWidgets[6],
-                                ),
-                                uploadVedioWidgets[3],
-                              ],
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              : ResponsiveWebSite.isMobile(context)
+                  ? SizedBox(
+                      height: 400,
+                      width: 600,
+                      child: Form(
+                        key: formKeyVideo,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            uploadVedioWidgets[0],
+                            uploadVedioWidgets[1],
+                            Padding(
+                              padding: const EdgeInsets.only(top: 20),
+                              child: uploadVedioWidgets[2],
                             ),
-                          ),
-                          uploadVedioWidgets[4],
-                        ],
+                            Padding(
+                              padding: const EdgeInsets.only(top: 20),
+                              child: uploadVedioWidgets[3],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 20),
+                              child: uploadVedioWidgets[4],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ))
+                    )
+                  : SizedBox(
+                      height: 400,
+                      width: 600,
+                      child: Form(
+                        key: formKeyVideo,
+                        child: Column(
+                          children: [
+                            uploadVedioWidgets[0],
+                            uploadVedioWidgets[1],
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 20, right: 80),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 30),
+                                    child: uploadVedioWidgets[5],
+                                  ),
+                                  uploadVedioWidgets[2]
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 20, right: 90),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 30),
+                                    child: uploadVedioWidgets[6],
+                                  ),
+                                  uploadVedioWidgets[3],
+                                ],
+                              ),
+                            ),
+                            uploadVedioWidgets[4],
+                          ],
+                        ),
+                      ),
+                    );
+        })
       ],
       doyouwantActionButton: true);
 }

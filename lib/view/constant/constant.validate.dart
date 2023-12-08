@@ -66,7 +66,8 @@ String? checkFieldEmpty(String? fieldContent) {
 }
 
 String? numFieldIsValid(String? value) {
-  if (value != null) {
+  final result = checkFieldEmpty(value);
+  if (value != null && result == null) {
     final data = num.tryParse(value) ?? 0;
     if (data == 0) {
       return 'Invalid Value';
@@ -144,8 +145,6 @@ String? checkFieldDateIsValid(String? fieldContent) {
 
   return 'Date is not valid (dd-mm-yyyy)';
 }
-
-
 
 // class  {
 //   static String id = '';

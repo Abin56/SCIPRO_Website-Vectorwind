@@ -5,6 +5,7 @@ import 'package:scipro_website/data/video_management/course_model.dart';
 import 'package:scipro_website/view/admin_panel/video_management/functions/video_folder/show_videoList.dart';
 import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/constant/const.dart';
+import 'package:scipro_website/view/constant/constant.validate.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
 import 'package:scipro_website/view/widgets/back_container/back_container.dart';
 import 'package:scipro_website/view/widgets/button%20container%20widget/button_container_widget.dart';
@@ -131,6 +132,8 @@ viewVideoFolder(BuildContext context, CourseModel courseModel) {
 createVideoFolder(BuildContext context) {
   TextEditingController folderNameController = TextEditingController();
   TextEditingController positionController = TextEditingController();
+
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   return customShowDilogBox(
       context: context,
       title: 'Create Video Folder',
@@ -144,34 +147,41 @@ createVideoFolder(BuildContext context) {
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Column(
-                          children: [
-                            TextFormFiledContainerWidget(
-                                controller: folderNameController,
-                                hintText: 'Enter Folder Name',
-                                title: 'Folder Name',
-                                width: 250),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            TextFormFiledContainerWidget(
-                                controller: positionController,
-                                hintText: 'Enter Position eg 1,2...',
-                                title: 'Enter Position',
-                                width: 250),
-                          ],
+                        Form(
+                          key: formKey,
+                          child: Column(
+                            children: [
+                              TextFormFiledContainerWidget(
+                                  controller: folderNameController,
+                                  hintText: 'Enter Folder Name',
+                                  title: 'Folder Name',
+                                  validator: checkFieldEmpty,
+                                  width: 250),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              TextFormFiledContainerWidget(
+                                  controller: positionController,
+                                  hintText: 'Enter Position eg 1,2...',
+                                  title: 'Enter Position',
+                                  validator: numFieldIsValid,
+                                  width: 250),
+                            ],
+                          ),
                         )
                       ]),
                 ),
         ),
       ],
       actiononTapfuction: () async {
-        await Get.find<VideoMangementController>().createFolder(
-            folderName: folderNameController.text,
-            position: positionController.text);
+        if (formKey.currentState?.validate() ?? false) {
+          await Get.find<VideoMangementController>().createFolder(
+              folderName: folderNameController.text,
+              position: positionController.text);
 
-        folderNameController.clear();
-        positionController.clear();
+          folderNameController.clear();
+          positionController.clear();
+        }
       },
       actiontext: 'Create Folder',
       doyouwantActionButton: true);
