@@ -31,8 +31,10 @@ dependencies:
   cloud_firestore: ^4.13.2
   cupertino_icons: ^1.0.2
   dropdown_search: ^5.0.6
+  file_picker: ^6.1.1
   firebase_auth: ^4.14.1
   firebase_core: ^2.23.0
+  firebase_storage: ^11.5.3
   flutter:
     sdk: flutter
   fluttertoast: ^8.2.4
@@ -40,11 +42,10 @@ dependencies:
   google_fonts: ^6.1.0
   google_sign_in: ^6.1.6
   intl: ^0.18.1
+  reward_popup: null
   sidebar_drawer: null
   syncfusion_flutter_datagrid: null
   uuid: ^4.2.1
-  reward_popup:
- 
 
 dev_dependencies:
   flutter_lints: ^2.0.0

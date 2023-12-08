@@ -43,6 +43,7 @@ createvideoCategory(BuildContext context) async {
       doyouwantActionButton: true);
 }
 
+final GlobalKey<FormState> formKeyCategory = GlobalKey<FormState>();
 createvideoRecordedCourses(BuildContext context) async {
   final videoCont = Get.find<VideoMangementController>();
   return customShowDilogBox(
@@ -50,7 +51,7 @@ createvideoRecordedCourses(BuildContext context) async {
       title: 'Create Recorded Courses',
       actiontext: 'Create',
       actiononTapfuction: () async {
-        if (formKey.currentState!.validate()) {
+        if (formKeyCategory.currentState!.validate()) {
           await videoCont.createCourse();
           await videoCont.fetchAllCourse();
         }
@@ -62,7 +63,7 @@ createvideoRecordedCourses(BuildContext context) async {
               : ResponsiveWebSite.isMobile(context)
                   ? SingleChildScrollView(
                       child: Form(
-                        key: formKey,
+                        key: formKeyCategory,
                         child: Column(children: [
                           Padding(
                             padding: const EdgeInsets.only(top: 10, left: 10),
@@ -152,7 +153,7 @@ createvideoRecordedCourses(BuildContext context) async {
                           child: SizedBox(
                             height: 250,
                             child: Form(
-                              key: formKey,
+                              key: formKeyCategory,
                               child: Column(children: [
                                 Padding(
                                   padding: const EdgeInsets.only(top: 10),

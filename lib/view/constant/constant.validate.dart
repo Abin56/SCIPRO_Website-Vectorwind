@@ -145,7 +145,7 @@ String? checkFieldDateIsValid(String? fieldContent) {
   return 'Date is not valid (dd-mm-yyyy)';
 }
 
-final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
 
 // class  {
 //   static String id = '';

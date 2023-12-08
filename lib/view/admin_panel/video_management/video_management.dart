@@ -6,7 +6,6 @@ import 'package:scipro_website/controller/video_management/video_management_cont
 import 'package:scipro_website/data/video_management/category_model.dart';
 import 'package:scipro_website/view/admin_panel/video_management/functions/create_category.dart';
 import 'package:scipro_website/view/admin_panel/video_management/setting_dialogbox.dart';
-import 'package:scipro_website/view/admin_panel/video_management/video_courses_list/table_grids/view_courses_grid.dart';
 import 'package:scipro_website/view/admin_panel/video_management/video_courses_list/view_courses_list.dart';
 
 import '../../fonts/google_poppins.dart';
@@ -77,7 +76,7 @@ class VideoManagementSection extends StatelessWidget {
       ),
 
       Obx(
-        () => videoController.selectedCategory.value.id.isEmpty
+        () => videoController.selectedCategory.value?.id.isEmpty ?? false
             ? const SizedBox()
             : GestureDetector(
                 onTap: () {
@@ -107,9 +106,9 @@ class VideoManagementSection extends StatelessWidget {
                 if (value != null) {
                   videoController.selectedCategory.value = value;
 
-                  final data = await videoController.fetchAllCourse();
-                  videoMangementController.courseDataSource.value =
-                      CourseDataSource(courseData: data);
+                  Get.find<VideoMangementController>().fetchedCourse.value =
+                      await videoController.fetchAllCourse();
+                  Get.find<VideoMangementController>().fetchedCourse.refresh();
                 }
               },
               dropdownDecoratorProps: DropDownDecoratorProps(
