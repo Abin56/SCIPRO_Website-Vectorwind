@@ -44,6 +44,7 @@ dependencies:
   syncfusion_flutter_datagrid: null
   uuid: ^4.2.1
   reward_popup:
+  syncfusion_flutter_charts:
  
 
 dev_dependencies:

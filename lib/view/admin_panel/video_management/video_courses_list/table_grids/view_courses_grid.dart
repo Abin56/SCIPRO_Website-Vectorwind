@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:scipro_website/view/admin_panel/video_management/functions/video_folder/create_videoFolder.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class ViewCoursesList extends StatefulWidget {
@@ -13,6 +12,7 @@ class ViewCoursesList extends StatefulWidget {
 class ViewCoursesListState extends State<ViewCoursesList> {
   final DataGridController gridController = DataGridController();
   List<Course> courses = <Course>[];
+
   late CourseDataSource courseDataSource;
 
   @override
@@ -57,9 +57,24 @@ class ViewCoursesListState extends State<ViewCoursesList> {
       ],
       columnWidthMode: ColumnWidthMode.fill,
       allowSorting: true,
-      onCellDoubleTap: ((details) {
-        viewVideoFolder(context);
-      }),
+      onCellTap: (DataGridCellTapDetails details) {
+        if (details.rowColumnIndex.rowIndex != 0) {
+          showDialog(
+              context: context,
+              builder: (BuildContext context) => AlertDialog(
+                  title: const Text('Tapped Content'),
+                  actions: <Widget>[
+                    TextButton(
+                        onPressed: () => Navigator.pop(context),
+                        child: const Text('OK'))
+                  ],
+                  content: Text(courseDataSource
+                      .effectiveRows[details.rowColumnIndex.rowIndex - 1]
+                      .getCells()[details.rowColumnIndex.columnIndex]
+                      .value
+                      .toString())));
+        }
+      },
     );
   }
 
