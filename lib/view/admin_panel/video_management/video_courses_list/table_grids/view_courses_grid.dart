@@ -1,169 +1,208 @@
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_datagrid/datagrid.dart';
+import 'package:get/get.dart';
+import 'package:scipro_website/controller/video_management/video_management_controller.dart';
+import 'package:scipro_website/data/video_management/course_model.dart';
+import 'package:scipro_website/view/colors/colors.dart';
 
-class ViewCoursesList extends StatefulWidget {
-  /// Creates the home page.
-  const ViewCoursesList({Key? key}) : super(key: key);
+import '../../../../constant/constant.validate.dart';
+import '../../functions/video_folder/create_videoFolder.dart';
 
-  @override
-  ViewCoursesListState createState() => ViewCoursesListState();
-}
-
-class ViewCoursesListState extends State<ViewCoursesList> {
-  final DataGridController gridController = DataGridController();
-  List<Course> courses = <Course>[];
-
-  late CourseDataSource courseDataSource;
-
-  @override
-  void initState() {
-    courses = getCourseData(context);
-
-    super.initState();
-
-    courseDataSource = CourseDataSource(courseData: courses);
-  }
+class SampleWidget extends StatelessWidget {
+  const SampleWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SfDataGrid(
-      controller: gridController,
-      gridLinesVisibility: GridLinesVisibility.both,
-      headerGridLinesVisibility: GridLinesVisibility.both,
-      source: courseDataSource,
-      columns: <GridColumn>[
-        GridColumn(
-          width: 100,
-          columnName: 'no',
-          label: const GridCourseColumnContainerWidget(
-            text: "NO.",
-          ),
-        ),
-        GridColumn(
-            columnName: 'coursename',
-            label: const GridCourseColumnContainerWidget(
-              text: "COURSE NAME",
-            )),
-        GridColumn(
-            columnName: 'noofvideos',
-            label: const GridCourseColumnContainerWidget(
-              text: 'NO. OF VIDEOS',
-            )),
-        GridColumn(
-            columnName: 'date',
-            label: const GridCourseColumnContainerWidget(
-              text: 'DATE',
-            )),
-      ],
-      columnWidthMode: ColumnWidthMode.fill,
-      allowSorting: true,
-      onCellTap: (DataGridCellTapDetails details) {
-        if (details.rowColumnIndex.rowIndex != 0) {
-          showDialog(
-              context: context,
-              builder: (BuildContext context) => AlertDialog(
-                  title: const Text('Tapped Content'),
-                  actions: <Widget>[
-                    TextButton(
-                        onPressed: () => Navigator.pop(context),
-                        child: const Text('OK'))
-                  ],
-                  content: Text(courseDataSource
-                      .effectiveRows[details.rowColumnIndex.rowIndex - 1]
-                      .getCells()[details.rowColumnIndex.columnIndex]
-                      .value
-                      .toString())));
-        }
-      },
-    );
-  }
-
-  List<Course> getCourseData(BuildContext context) {
-    return [
-      Course(context, 01, 'Science', 9, 2),
-      Course(context, 02, 'GK', 3, 30),
-      Course(context, 03, 'Social Science', 7, 15),
-      Course(context, 04, 'Maths', 8, 15),
-      Course(context, 05, 'English', 3, 1),
-      Course(context, 01, 'Science', 9, 2),
-      Course(context, 02, 'GK', 3, 30),
-      Course(context, 03, 'Social Science', 7, 15),
-      Course(context, 04, 'Maths', 8, 15),
-      Course(context, 05, 'English', 3, 1),
-    ];
-  }
-}
-
-class Course {
-  Course(this.context, this.no, this.coursename, this.noofvideos, this.date);
-
-  final int no;
-
-  BuildContext context;
-  final String coursename;
-  final int noofvideos;
-
-  final int date;
-}
-
-class CourseDataSource extends DataGridSource {
-  int rowIndex = 0;
-
-  CourseDataSource({required List<Course> courseData}) {
-    _courseData = courseData
-        .map<DataGridRow>((e) => DataGridRow(cells: [
-              DataGridCell<int>(columnName: 'no', value: e.no),
-              DataGridCell<String>(
-                columnName: 'coursename',
-                value: e.coursename,
+    return Obx(() => Get.find<VideoMangementController>().fetchedCourse.isEmpty
+        ? const SizedBox()
+        : Scaffold(
+            body: Center(
+              child: Container(
+                height: 500,
+                width: 1300,
+                decoration: BoxDecoration(
+                  color: cWhite,
+                  border: Border.all(
+                    color: cBlack.withOpacity(0.4),
+                  ),
+                ),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Column(
+                    children: [
+                      Expanded(
+                          child: SizedBox(
+                        width: 1298,
+                        child: Column(
+                          children: [
+                            const Padding(
+                              padding: EdgeInsets.only(left: 20, top: 10),
+                              child: Row(
+                                children: [
+                                  ListViewTableHeaderWidget(
+                                      width: 100, headerTitle: 'NO'),
+                                  ListViewTableHeaderWidget(
+                                      width: 700, headerTitle: 'COURSE NAME'),
+                                  ListViewTableHeaderWidget(
+                                      width: 150, headerTitle: 'NO OF VIDEOS'),
+                                  ListViewTableHeaderWidget(
+                                      width: 300, headerTitle: 'DATE'),
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 10, left: 20, right: 25, bottom: 10),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: cBlack.withOpacity(0.3))),
+                                  child: ListView.separated(
+                                      // scrollDirection: Axis.horizontal,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        List<CourseModel> data =
+                                            Get.find<VideoMangementController>()
+                                                .fetchedCourse;
+                                        return Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 0, left: 0),
+                                          child: GestureDetector(
+                                            onTap: () async {
+                                              Get.find<
+                                                      VideoMangementController>()
+                                                  .selectedCourse = data[index];
+                                              await Get.find<
+                                                      VideoMangementController>()
+                                                  .fetchAllFolders();
+                                              if (context.mounted) {
+                                                viewVideoFolder(
+                                                    context, data[index]);
+                                              }
+                                            },
+                                            child: SizedBox(
+                                              height: 48,
+                                              child: Row(
+                                                children: [
+                                                  DataContainerWidget(
+                                                    index: index,
+                                                    width: 100,
+                                                    headerTitle: data[index]
+                                                        .position
+                                                        .toString(),
+                                                  ),
+                                                  DataContainerWidget(
+                                                    index: index,
+                                                    width: 700,
+                                                    headerTitle:
+                                                        data[index].courseName,
+                                                  ),
+                                                  DataContainerWidget(
+                                                    index: index,
+                                                    width: 150,
+                                                    headerTitle: data[index]
+                                                        .courseFee
+                                                        .toString(),
+                                                  ),
+                                                  DataContainerWidget(
+                                                    index: index,
+                                                    width: 300,
+                                                    headerTitle:
+                                                        timestampToDate(
+                                                            data[index]
+                                                                .createdDate),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      separatorBuilder:
+                                          (BuildContext context, int index) {
+                                        return const SizedBox(
+                                          height: 10,
+                                        );
+                                      },
+                                      itemCount:
+                                          Get.find<VideoMangementController>()
+                                              .fetchedCourse
+                                              .length),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ))
+                    ],
+                  ),
+                ),
               ),
-              DataGridCell<int>(columnName: 'noofvideos', value: e.noofvideos),
-              DataGridCell<int>(columnName: 'date', value: e.date),
-            ]))
-        .toList();
-  }
-
-  List<DataGridRow> _courseData = [];
-
-  @override
-  List<DataGridRow> get rows => _courseData;
-
-  @override
-  DataGridRowAdapter buildRow(DataGridRow row) {
-    final isEvenRow = rowIndex.isEven;
-    rowIndex++;
-    return DataGridRowAdapter(
-        color: isEvenRow ? Colors.white : Colors.blue[50],
-        cells: row.getCells().map<Widget>((e) {
-          return GestureDetector(
-            onTap: () {},
-            child: Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.all(8.0),
-              child: Text(e.value.toString()),
             ),
-          );
-        }).toList());
+          ));
   }
 }
 
-class GridCourseColumnContainerWidget extends StatelessWidget {
-  final String text;
-  const GridCourseColumnContainerWidget({
+class ListViewTableHeaderWidget extends StatelessWidget {
+  final String headerTitle;
+  final double? width;
+
+  const ListViewTableHeaderWidget({
+    this.width,
+    required this.headerTitle,
     super.key,
-    required this.text,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: Colors.blue[100],
-        padding: const EdgeInsets.all(16.0),
-        alignment: Alignment.center,
+      height: 50,
+      width: width,
+      decoration: BoxDecoration(
+          color: Colors.blue[100],
+          border: Border.all(color: cBlack.withOpacity(0.5))),
+      child: Center(
         child: Text(
-          text,
-          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-          //overflow: TextOverflow.ellipsis,
-        ));
+          headerTitle,
+          style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
+        ),
+      ),
+    );
+  }
+}
+
+class DataContainerWidget extends StatelessWidget {
+  final int index;
+  final String headerTitle;
+  final double? width;
+  final Color? color;
+  final double? height;
+
+  const DataContainerWidget({
+    required this.index,
+    this.color,
+    this.width,
+    this.height,
+    required this.headerTitle,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: height,
+      width: width,
+      decoration: BoxDecoration(
+          color: index % 2 == 0
+              ? Colors.grey.withOpacity(0.3)
+              : Colors.blue.withOpacity(0.3),
+          border: Border.all(color: cGrey.withOpacity(0.2))),
+      child: Center(
+        child: Text(
+          headerTitle,
+          style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 12.5),
+        ),
+      ),
+    );
   }
 }
