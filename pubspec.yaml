@@ -47,6 +47,10 @@ dependencies:
   uuid: ^4.2.1
   reward_popup:
   syncfusion_flutter_charts:
+  syncfusion_flutter_pdf: ^23.2.6
+  path_provider: ^2.1.1
+  open_file: ^3.3.2
+  url_launcher: ^6.2.1
  
 
 dev_dependencies:
