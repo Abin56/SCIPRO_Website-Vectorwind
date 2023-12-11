@@ -1,11 +1,8 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:scipro_website/resources/assets_manager.dart';
 import 'package:scipro_website/resources/color_manager.dart';
+import 'package:scipro_website/view/home/footer/footer.dart';
 import 'package:scipro_website/view/widgets/common_button_widget.dart';
 import 'package:scipro_website/view/widgets/google_montserrat_widget.dart';
 import 'package:scipro_website/view/widgets/home_aboutus_widget.dart';
@@ -17,7 +14,11 @@ import 'package:scipro_website/view/widgets/responsive_widget.dart';
 import 'package:scipro_website/view/widgets/semi_circle_painter.dart';
 
 class Scipro extends StatelessWidget {
-  const Scipro({super.key});
+   const Scipro({super.key});
+
+ 
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -133,11 +134,11 @@ class Scipro extends StatelessWidget {
                               ),
                               Row(
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Icons.phone,
                                     color: Colors.white,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   GoogleMonstserratWidgets(
@@ -155,11 +156,11 @@ class Scipro extends StatelessWidget {
                               ),
                               Row(
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Icons.mail,
                                     color: Colors.white,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   GoogleMonstserratWidgets(
@@ -193,11 +194,11 @@ class Scipro extends StatelessWidget {
                               ),
                               Row(
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Icons.phone,
                                     color: Colors.white,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   GoogleMonstserratWidgets(
@@ -215,11 +216,11 @@ class Scipro extends StatelessWidget {
                               ),
                               Row(
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Icons.mail,
                                     color: Colors.white,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   GoogleMonstserratWidgets(
@@ -236,7 +237,7 @@ class Scipro extends StatelessWidget {
                         Container(
                           child: Row(
                             children: [
-                              Container(
+                              SizedBox(
                                 height: 40,
                                 width: 100,
                                 child: Padding(
@@ -278,11 +279,11 @@ class Scipro extends StatelessWidget {
                               ),
                               Row(
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Icons.phone,
                                     color: Colors.white,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   GoogleMonstserratWidgets(
@@ -300,11 +301,11 @@ class Scipro extends StatelessWidget {
                               ),
                               Row(
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Icons.mail,
                                     color: Colors.white,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   GoogleMonstserratWidgets(
@@ -321,7 +322,7 @@ class Scipro extends StatelessWidget {
                         Container(
                           child: Row(
                             children: [
-                              Container(
+                              SizedBox(
                                 height: 40,
                                 width: 100,
                                 child: Padding(
@@ -369,11 +370,11 @@ class Scipro extends StatelessWidget {
                               ),
                               Row(
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Icons.phone,
                                     color: Colors.white,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   GoogleMonstserratWidgets(
@@ -391,11 +392,11 @@ class Scipro extends StatelessWidget {
                               ),
                               Row(
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Icons.mail,
                                     color: Colors.white,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   GoogleMonstserratWidgets(
@@ -412,7 +413,7 @@ class Scipro extends StatelessWidget {
                         Container(
                           child: Row(
                             children: [
-                              Container(
+                              SizedBox(
                                 height: 40,
                                 width: 100,
                                 child: Padding(
@@ -461,11 +462,11 @@ class Scipro extends StatelessWidget {
                               ),
                               Row(
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Icons.phone,
                                     color: Colors.white,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   GoogleMonstserratWidgets(
@@ -483,11 +484,11 @@ class Scipro extends StatelessWidget {
                               ),
                               Row(
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Icons.mail,
                                     color: Colors.white,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   GoogleMonstserratWidgets(
@@ -504,7 +505,7 @@ class Scipro extends StatelessWidget {
                         Container(
                           child: Row(
                             children: [
-                              Container(
+                              SizedBox(
                                 height: 40,
                                 width: 100,
                                 child: Padding(
@@ -549,11 +550,11 @@ class Scipro extends StatelessWidget {
                                 ),
                                 Row(
                                   children: [
-                                    Icon(
+                                    const Icon(
                                       Icons.phone,
                                       color: Colors.white,
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
                                     GoogleMonstserratWidgets(
@@ -571,11 +572,11 @@ class Scipro extends StatelessWidget {
                                 ),
                                 Row(
                                   children: [
-                                    Icon(
+                                    const Icon(
                                       Icons.mail,
                                       color: Colors.white,
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
                                     GoogleMonstserratWidgets(
@@ -593,7 +594,7 @@ class Scipro extends StatelessWidget {
                         Container(
                           child: Row(
                             children: [
-                              Container(
+                              SizedBox(
                                 height: 40,
                                 width: 100,
                                 child: Padding(
@@ -638,11 +639,11 @@ class Scipro extends StatelessWidget {
                                 ),
                                 Row(
                                   children: [
-                                    Icon(
+                                    const Icon(
                                       Icons.phone,
                                       color: Colors.white,
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
                                     GoogleMonstserratWidgets(
@@ -660,11 +661,11 @@ class Scipro extends StatelessWidget {
                                 ),
                                 Row(
                                   children: [
-                                    Icon(
+                                    const Icon(
                                       Icons.mail,
                                       color: Colors.white,
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
                                     GoogleMonstserratWidgets(
@@ -682,7 +683,7 @@ class Scipro extends StatelessWidget {
                         Container(
                           child: Row(
                             children: [
-                              Container(
+                              SizedBox(
                                 height: 40,
                                 width: 100,
                                 child: Padding(
@@ -715,11 +716,11 @@ class Scipro extends StatelessWidget {
               ),
               Stack(
                 children: [
-                  HomeIntroContainer(),
+                  const HomeIntroContainer(),
                   Positioned(
                     bottom: -200,
                     right: -200,
-                    child: Container(
+                    child: SizedBox(
                       width: 200,
                       height: 100,
                       child: CustomPaint(
@@ -729,10 +730,11 @@ class Scipro extends StatelessWidget {
                   )
                 ],
               ),
-              WhatWeOfferWidget(),
-              HomeAboutUsWidget(),
-              HomeTopCoursesWidget(),
-              HomeIndustryOrientedCoursesWidget()
+              const WhatWeOfferWidget(),
+              const HomeAboutUsWidget(),
+              const HomeTopCoursesWidget(),
+              const HomeIndustryOrientedCoursesWidget(),
+              const SizedBox(height: 500,width: 700,child: FooterContainerWidget(),)
             ]));
   }
 }
