@@ -190,10 +190,45 @@ class VideoMangementController {
       updateLoading(value: false);
       vidoesList.value = data;
       vidoesList.refresh();
+      videoDataSource.refresh();
       return data;
     }
 
     updateLoading(value: false);
     return [];
+  }
+
+  Future<void> updateVideoFromFirebase({
+    required VideoModel videoModel,
+  }) async {
+    isVideoUploading.value = true;
+
+    if (selectedCourse != null &&
+        selectedFolder != null &&
+        selectedCategory.value.id.isNotEmpty) {
+      await _repository.updateVideo(
+        videoModel: videoModel,
+      );
+    }
+    await fetchVideos();
+
+    isVideoUploading.value = false;
+  }
+
+  Future<void> deleteVideoFromFirebase({
+    required VideoModel videoModel,
+  }) async {
+    isVideoUploading.value = true;
+
+    if (selectedCourse != null &&
+        selectedFolder != null &&
+        selectedCategory.value.id.isNotEmpty) {
+      await _repository.deleteVideo(
+        videoModel: videoModel,
+      );
+    }
+    await fetchVideos();
+
+    isVideoUploading.value = false;
   }
 }

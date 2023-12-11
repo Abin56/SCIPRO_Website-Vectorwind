@@ -121,6 +121,7 @@ uploadVideoShowDilogue(BuildContext context) {
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
+                      
                       CircularProgressIndicator(
                         value: value / 100,
                       ),

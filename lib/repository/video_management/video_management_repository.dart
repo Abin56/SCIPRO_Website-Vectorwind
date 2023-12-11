@@ -134,8 +134,6 @@ class VideoManagementRepository {
 
   Future<void> uploadVideoToFirebase({required VideoModel videoModel}) async {
     try {
-
-      
       await _firestore
           .collection('recorded_course')
           .doc(videoModel.categoryId)
@@ -147,6 +145,44 @@ class VideoManagementRepository {
           .doc(videoModel.id)
           .set(videoModel.toMap());
       showToast(msg: 'Successfully created');
+    } on FirebaseException catch (e) {
+      showToast(msg: 'Something went wrong');
+      log(e.toString());
+    }
+  }
+
+  Future<void> updateVideo({required VideoModel videoModel}) async {
+    try {
+      await _firestore
+          .collection('recorded_course')
+          .doc(videoModel.categoryId)
+          .collection('course')
+          .doc(videoModel.courseId)
+          .collection('folders')
+          .doc(videoModel.folderId)
+          .collection('videos')
+          .doc(videoModel.id)
+          .update(videoModel.toMap());
+      showToast(msg: 'Successfully Updated');
+    } on FirebaseException catch (e) {
+      showToast(msg: 'Something went wrong');
+      log(e.toString());
+    }
+  }
+
+  Future<void> deleteVideo({required VideoModel videoModel}) async {
+    try {
+      await _firestore
+          .collection('recorded_course')
+          .doc(videoModel.categoryId)
+          .collection('course')
+          .doc(videoModel.courseId)
+          .collection('folders')
+          .doc(videoModel.folderId)
+          .collection('videos')
+          .doc(videoModel.id)
+          .delete();
+      showToast(msg: 'Successfully Updated');
     } on FirebaseException catch (e) {
       showToast(msg: 'Something went wrong');
       log(e.toString());
