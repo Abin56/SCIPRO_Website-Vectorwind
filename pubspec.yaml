@@ -42,9 +42,8 @@ dependencies:
   google_fonts: ^6.1.0
   google_sign_in: ^6.1.6
   intl: ^0.18.1
-  reward_popup: null
-  sidebar_drawer: null
-  syncfusion_flutter_datagrid: null
+  sidebar_drawer:
+  syncfusion_flutter_datagrid:
   uuid: ^4.2.1
   reward_popup:
   syncfusion_flutter_charts:

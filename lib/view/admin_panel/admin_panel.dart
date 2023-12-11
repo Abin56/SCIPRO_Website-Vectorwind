@@ -48,7 +48,7 @@ class _AdminPanelPageState extends State<AdminPanelPage> {
 }
 
 List<Widget> pages = [
-  const VideoManagementSection(),
+  VideoManagementSection(),
   const SubscribedStd(),
 
   ///.............. Recorded c Managementm

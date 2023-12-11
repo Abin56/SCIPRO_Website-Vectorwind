@@ -4,7 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scipro_website/firebase_options.dart';
-import 'package:scipro_website/sample.dart';
+import 'package:scipro_website/view/admin_panel/admin_panel.dart';
 
 Future<void> main() async {
   html.document.title = 'SCI PRO';
