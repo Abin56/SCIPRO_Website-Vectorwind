@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:scipro_website/controller/video_management/video_management_controller.dart';
+import 'package:scipro_website/utils/utils.dart';
 import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/constant/constant.validate.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
@@ -14,23 +17,35 @@ uploadVideoShowDilogue(BuildContext context) {
 ////////
   ///video Upload Widget List
   List<Widget> uploadVedioWidgets = [
-    const CircleAvatar(
-      radius: 60,
-    ), /////////////////////////////////1/////////Circle Avathar
+    Obx(() => Get.find<VideoMangementController>().image.value == null
+        ? const CircleAvatar(
+            radius: 60,
+          )
+        : CircleAvatar(
+            radius: 60,
+            backgroundImage:
+                MemoryImage(Get.find<VideoMangementController>().image.value!),
+          )), /////////////////////////////////1/////////Circle Avathar
     Padding(
       padding: const EdgeInsets.only(top: 20),
-      child: Container(
-        height: 30,
-        width: 150,
-        decoration: const BoxDecoration(
-          color: themeColorBlue,
-        ),
-        child: Center(
-          child: GooglePoppinsWidgets(
-              text: 'Add Thumbnail',
-              color: cWhite,
-              fontsize: 12,
-              fontWeight: FontWeight.bold),
+      child: GestureDetector(
+        onTap: () async {
+          Get.find<VideoMangementController>().image.value =
+              await imagePicker();
+        },
+        child: Container(
+          height: 30,
+          width: 150,
+          decoration: const BoxDecoration(
+            color: themeColorBlue,
+          ),
+          child: Center(
+            child: GooglePoppinsWidgets(
+                text: 'Add Thumbnail',
+                color: cWhite,
+                fontsize: 12,
+                fontWeight: FontWeight.bold),
+          ),
         ),
       ),
     ), ////////////////////////////////////2//////////thumbnail
@@ -50,18 +65,24 @@ uploadVideoShowDilogue(BuildContext context) {
     ), ////////////////////////////////////////////4//////////Videoposition Text formfeild
     Padding(
       padding: const EdgeInsets.only(top: 20),
-      child: Container(
-        height: 30,
-        width: 150,
-        decoration: const BoxDecoration(
-          color: themeColorBlue,
-        ),
-        child: Center(
-          child: GooglePoppinsWidgets(
-              text: 'Pick Videos',
-              color: cWhite,
-              fontsize: 12,
-              fontWeight: FontWeight.bold),
+      child: GestureDetector(
+        onTap: () async {
+          Get.find<VideoMangementController>().video.value =
+              await videoPicker();
+        },
+        child: Container(
+          height: 30,
+          width: 150,
+          decoration: const BoxDecoration(
+            color: themeColorBlue,
+          ),
+          child: Center(
+            child: GooglePoppinsWidgets(
+                text: 'Pick Videos',
+                color: cWhite,
+                fontsize: 12,
+                fontWeight: FontWeight.bold),
+          ),
         ),
       ),
     ), ///////////////////////////////////////////////////////pickvedio
@@ -77,83 +98,118 @@ uploadVideoShowDilogue(BuildContext context) {
     )), //////////////////////7//////enter video position Text/////////
     //////////////////////////
   ];
-  return customShowDilogBox(
+  final GlobalKey<FormState> formKeyVideo = GlobalKey<FormState>();
+  customShowDilogBox(
       context: context,
       title: "Upload Video",
       actiontext: "Upload video",
-      actiononTapfuction: () {
-        final key = formKey;
-        if (key.currentState!.validate()) {}
+      actiononTapfuction: () async {
+        if (formKeyVideo.currentState!.validate()) {
+          await Get.find<VideoMangementController>().uploadVideoToFirebase(
+            videoName: videonNamecontroller.text,
+            position: videoPositioncontroller.text,
+          );
+          videonNamecontroller.clear();
+          videoPositioncontroller.clear();
+        }
       },
       children: [
-        ResponsiveWebSite.isMobile(context)
-            ? SizedBox(
-                height: 400,
-                width: 600,
-                child: Form(
-                  key: formKey,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+        Obx(() {
+          final value = Get.find<VideoMangementController>().progress.value;
+          return Get.find<VideoMangementController>().isVideoUploading.value
+              ? Center(
+                  child: Stack(
+                    alignment: Alignment.center,
                     children: [
-                      uploadVedioWidgets[0],
-                      uploadVedioWidgets[1],
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: uploadVedioWidgets[2],
+                      
+                      CircularProgressIndicator(
+                        value: value / 100,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: uploadVedioWidgets[3],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: uploadVedioWidgets[4],
-                      ),
+                      Center(
+                        child: Text(
+                          '${value.round().toString()}%',
+                          style: const TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      )
                     ],
                   ),
-                ),
-              )
-            : SizedBox(
-                height: 400,
-                width: 600,
-                child: Form(
-                  key: formKey,
-                  child: Column(
-                    children: [
-                      uploadVedioWidgets[0],
-                      uploadVedioWidgets[1],
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20, right: 80),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                )
+              : ResponsiveWebSite.isMobile(context)
+                  ? SizedBox(
+                      height: 400,
+                      width: 600,
+                      child: Form(
+                        key: formKeyVideo,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
+                            uploadVedioWidgets[0],
+                            uploadVedioWidgets[1],
                             Padding(
-                              padding: const EdgeInsets.only(top: 30),
-                              child: uploadVedioWidgets[5],
+                              padding: const EdgeInsets.only(top: 20),
+                              child: uploadVedioWidgets[2],
                             ),
-                            uploadVedioWidgets[2]
+                            Padding(
+                              padding: const EdgeInsets.only(top: 20),
+                              child: uploadVedioWidgets[3],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 20),
+                              child: uploadVedioWidgets[4],
+                            ),
                           ],
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20, right: 90),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    )
+                  : SizedBox(
+                      height: 400,
+                      width: 600,
+                      child: Form(
+                        key: formKeyVideo,
+                        child: Column(
                           children: [
+                            uploadVedioWidgets[0],
+                            uploadVedioWidgets[1],
                             Padding(
-                              padding: const EdgeInsets.only(top: 30),
-                              child: uploadVedioWidgets[6],
+                              padding:
+                                  const EdgeInsets.only(top: 20, right: 80),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 30),
+                                    child: uploadVedioWidgets[5],
+                                  ),
+                                  uploadVedioWidgets[2]
+                                ],
+                              ),
                             ),
-                            uploadVedioWidgets[3],
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 20, right: 90),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 30),
+                                    child: uploadVedioWidgets[6],
+                                  ),
+                                  uploadVedioWidgets[3],
+                                ],
+                              ),
+                            ),
+                            uploadVedioWidgets[4],
                           ],
                         ),
                       ),
-                      uploadVedioWidgets[4],
-                    ],
-                  ),
-                ),
-              )
+                    );
+        })
       ],
       doyouwantActionButton: true);
 }

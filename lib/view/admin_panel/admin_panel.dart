@@ -48,7 +48,7 @@ class _AdminPanelPageState extends State<AdminPanelPage> {
 }
 
 List<Widget> pages = [
-  const VideoManagementSection(),
+  VideoManagementSection(),
   const SubscribedStd(),
 
   ///.............. Recorded c Managementm
@@ -65,7 +65,7 @@ List<Widget> pages = [
     ),
   ),
   const AllUsersList(),
-  const AllUsersForCoupenList()
+  AllUsersForCoupenList()
 ];
 
 class SideBarMenuItemsWidget extends StatelessWidget {
