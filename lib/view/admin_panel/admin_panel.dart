@@ -65,7 +65,7 @@ List<Widget> pages = [
     ),
   ),
   const AllUsersList(),
-  const AllUsersForCoupenList()
+  AllUsersForCoupenList()
 ];
 
 class SideBarMenuItemsWidget extends StatelessWidget {
