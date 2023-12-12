@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:scipro_website/data/video_management/category_model.dart';
 import 'package:scipro_website/data/video_management/course_model.dart';
 import 'package:scipro_website/data/video_management/folder_model.dart';
@@ -9,6 +10,7 @@ import 'package:scipro_website/view/constant/const.dart';
 
 class VideoManagementRepository {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseStorage _storage = FirebaseStorage.instance;
   //create category
 
   Future<void> createCategory({required CategoryModel categoryModel}) async {
@@ -170,25 +172,6 @@ class VideoManagementRepository {
     }
   }
 
-  Future<void> deleteVideo({required VideoModel videoModel}) async {
-    try {
-      await _firestore
-          .collection('recorded_course')
-          .doc(videoModel.categoryId)
-          .collection('course')
-          .doc(videoModel.courseId)
-          .collection('folders')
-          .doc(videoModel.folderId)
-          .collection('videos')
-          .doc(videoModel.id)
-          .delete();
-      showToast(msg: 'Successfully Updated');
-    } on FirebaseException catch (e) {
-      showToast(msg: 'Something went wrong');
-      log(e.toString());
-    }
-  }
-
   Future<void> updateFolder({required FolderModel folderModel}) async {
     try {
       await _firestore
@@ -227,6 +210,28 @@ class VideoManagementRepository {
           .collection('recorded_course')
           .doc(categoryModel.id)
           .update(categoryModel.toMap());
+      showToast(msg: 'Successfully Updated');
+    } on FirebaseException catch (e) {
+      showToast(msg: 'Something went wrong');
+      log(e.toString());
+    }
+  }
+
+  Future<void> deleteVideo({required VideoModel videoModel}) async {
+    try {
+      await _firestore
+          .collection('recorded_course')
+          .doc(videoModel.categoryId)
+          .collection('course')
+          .doc(videoModel.courseId)
+          .collection('folders')
+          .doc(videoModel.folderId)
+          .collection('videos')
+          .doc(videoModel.id)
+          .delete();
+
+      await _storage.refFromURL(videoModel.thumbnailUrl).delete();
+      await _storage.refFromURL(videoModel.videoUrl).delete();
       showToast(msg: 'Successfully Updated');
     } on FirebaseException catch (e) {
       showToast(msg: 'Something went wrong');
