@@ -32,6 +32,7 @@ class VideoMangementController {
   Rxn<Uint8List> video = Rxn();
   RxDouble progress = RxDouble(0.0);
   RxList<CourseModel> fetchedCourse = RxList();
+  RxList<CategoryModel> fetchedCategory = RxList();
   RxList<FolderModel> foldersList = RxList();
   RxList<VideoModel> vidoesList = RxList();
 
@@ -58,6 +59,8 @@ class VideoMangementController {
 
   Future<List<CategoryModel>> fetchAllCategory() async {
     final data = await _repository.fetchAllCategory();
+    fetchedCategory.value = data;
+    fetchedCategory.refresh();
     return data;
   }
 
@@ -228,6 +231,31 @@ class VideoMangementController {
     await fetchAllFolders();
 
     isLoadingFolder.value = false;
+  }
+
+  Future<void> updateCourseFromFirebase({
+    required CourseModel courseModel,
+  }) async {
+    isLoading.value = true;
+
+    if (selectedCourse != null && selectedCategory.value.id.isNotEmpty) {
+      await _repository.updateCourse(courseModel: courseModel);
+    }
+    await fetchAllCourse();
+
+    isLoading.value = false;
+  }
+
+  Future<void> updateCategoryFromFirebase({
+    required CategoryModel categoryModel,
+  }) async {
+    isLoading.value = true;
+
+    await _repository.updateCategory(categoryModel: categoryModel);
+
+    await fetchAllCategory();
+
+    isLoading.value = false;
   }
 
   Future<void> deleteVideoFromFirebase({

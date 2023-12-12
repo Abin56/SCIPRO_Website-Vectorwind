@@ -205,4 +205,32 @@ class VideoManagementRepository {
       log(e.toString());
     }
   }
+
+  Future<void> updateCourse({required CourseModel courseModel}) async {
+    try {
+      await _firestore
+          .collection('recorded_course')
+          .doc(courseModel.categoryId)
+          .collection('course')
+          .doc(courseModel.id)
+          .update(courseModel.toMap());
+      showToast(msg: 'Successfully Updated');
+    } on FirebaseException catch (e) {
+      showToast(msg: 'Something went wrong');
+      log(e.toString());
+    }
+  }
+
+  Future<void> updateCategory({required CategoryModel categoryModel}) async {
+    try {
+      await _firestore
+          .collection('recorded_course')
+          .doc(categoryModel.id)
+          .update(categoryModel.toMap());
+      showToast(msg: 'Successfully Updated');
+    } on FirebaseException catch (e) {
+      showToast(msg: 'Something went wrong');
+      log(e.toString());
+    }
+  }
 }

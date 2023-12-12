@@ -122,10 +122,7 @@ class VideoManagementSection extends StatelessWidget {
               // items: listofState,
             ),
           )), //////////////////////////////////////////////////////////////////////3 DropDown Selected Category
-      ////////////
-      ///
-      ///
-      ///
+
       const ButtonContainerWidget(
           text:
               'Settings') ////////////////////////////////////////////////////4

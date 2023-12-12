@@ -15,5 +15,3 @@ void showToast({required String msg}) {
     fontSize: 16.0,
   );
 }
-
-
