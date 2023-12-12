@@ -12,7 +12,6 @@ import '../../fonts/google_poppins.dart';
 import '../../widgets/button container widget/button_container_widget.dart';
 import '../../widgets/responsive/responsive.dart';
 import 'video_courses_list/courses list settings/courses_list_settings.dart';
-import 'functions/edit&delete_section/course_list.dart';
 
 // ignore: must_be_immutable
 class VideoManagementSection extends StatelessWidget {
@@ -98,7 +97,7 @@ class VideoManagementSection extends StatelessWidget {
       ///
       ///
       ///
-      
+
       ///
       SizedBox(
           height: 35,
@@ -127,7 +126,9 @@ class VideoManagementSection extends StatelessWidget {
       ///
       ///
       ///
-      const ButtonContainerWidget(text: 'Settings')////////////////////////////////////////////////////4
+      const ButtonContainerWidget(
+          text:
+              'Settings') ////////////////////////////////////////////////////4
     ];
     return Container(
       child: ResponsiveWebSite.isMobile(context)
@@ -177,21 +178,23 @@ class VideoManagementSection extends StatelessWidget {
                   ],
                 ),
               ),
-
               Padding(
                 padding: const EdgeInsets.only(top: 10, right: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    GestureDetector(onTap: (){
-                      coursesListSettins(context);
-                    },
+                    GestureDetector(
+                      onTap: () {
+                        coursesListSettins(context);
+                      },
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 10,right: 20),
-                        child: topVedioManagementBar[4],////////////////////////////////////////////Settings
+                        padding: const EdgeInsets.only(left: 10, right: 20),
+                        child: topVedioManagementBar[
+                            4], ////////////////////////////////////////////Settings
                       ),
                     ),
-                    topVedioManagementBar[3],////////////////////////////////////////////////////DropDown
+                    topVedioManagementBar[
+                        3], ////////////////////////////////////////////////////DropDown
                   ],
                 ),
               ),

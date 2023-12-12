@@ -188,4 +188,21 @@ class VideoManagementRepository {
       log(e.toString());
     }
   }
+
+  Future<void> updateFolder({required FolderModel folderModel}) async {
+    try {
+      await _firestore
+          .collection('recorded_course')
+          .doc(folderModel.categoryId)
+          .collection('course')
+          .doc(folderModel.courseId)
+          .collection('folders')
+          .doc(folderModel.id)
+          .update(folderModel.toMap());
+      showToast(msg: 'Successfully Updated');
+    } on FirebaseException catch (e) {
+      showToast(msg: 'Something went wrong');
+      log(e.toString());
+    }
+  }
 }

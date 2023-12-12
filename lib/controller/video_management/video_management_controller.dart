@@ -215,6 +215,21 @@ class VideoMangementController {
     isVideoUploading.value = false;
   }
 
+  Future<void> updateFolderFromFirebase({
+    required FolderModel folderModel,
+  }) async {
+    isLoadingFolder.value = true;
+
+    if (selectedCourse != null &&
+        selectedFolder != null &&
+        selectedCategory.value.id.isNotEmpty) {
+      await _repository.updateFolder(folderModel: folderModel);
+    }
+    await fetchAllFolders();
+
+    isLoadingFolder.value = false;
+  }
+
   Future<void> deleteVideoFromFirebase({
     required VideoModel videoModel,
   }) async {

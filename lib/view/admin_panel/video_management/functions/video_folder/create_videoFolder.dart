@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scipro_website/controller/video_management/video_management_controller.dart';
 import 'package:scipro_website/data/video_management/course_model.dart';
-import 'package:scipro_website/view/admin_panel/video_management/functions/edit&delete_section/course_list.dart';
 import 'package:scipro_website/view/admin_panel/video_management/functions/video_folder/show_videoList.dart';
 import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/constant/const.dart';
@@ -30,7 +29,6 @@ viewVideoFolder(BuildContext context, CourseModel courseModel) {
                 text: "Video Folders",
                 fontsize: 13,
                 fontWeight: FontWeight.w600),
-                
             Padding(
               padding: const EdgeInsets.only(top: 10),
               child: ResponsiveWebSite.isMobile(context)
@@ -51,9 +49,13 @@ viewVideoFolder(BuildContext context, CourseModel courseModel) {
                   : Row(
                       children: [
                         const BackButtonContainerWidget(),
-
                         const Spacer(),
-                        GestureDetector(child: const ButtonContainerWidget(text: "Settings"),onTap: (){videoListSettings(context);},),
+                        GestureDetector(
+                          child: const ButtonContainerWidget(text: "Settings"),
+                          onTap: () {
+                            videoListSettings(context);
+                          },
+                        ),
                         const Spacer(),
                         GestureDetector(
                             onTap: () {
