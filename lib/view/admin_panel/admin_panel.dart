@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:scipro_website/view/admin_panel/all_users_mngt/all_users/all_users_list.dart';
+import 'package:scipro_website/view/admin_panel/coupen_mngt/coupen_part_grid/listing_coupen_users.dart';
 import 'package:scipro_website/view/admin_panel/drawer_logo.dart';
+import 'package:scipro_website/view/admin_panel/studyMaterials_management/studyMaterials_screen.dart';
 import 'package:scipro_website/view/admin_panel/subscrib_std_mngt/Subscribed_std/subscribed_student.dart';
 import 'package:scipro_website/view/admin_panel/video_management/video_management.dart';
 import 'package:scipro_website/view/colors/colors.dart';
@@ -46,17 +48,12 @@ class _AdminPanelPageState extends State<AdminPanelPage> {
 }
 
 List<Widget> pages = [
-  const VideoManagementSection(),
+  VideoManagementSection(),
   const SubscribedStd(),
 
   ///.............. Recorded c Managementm
 
- 
-  Container(
-    child: const Center(
-      child: Text("data"),
-    ),
-  ),
+  const StudyMaterialsManagementSection(),
   Container(
     child: const Center(
       child: Text("data"),
@@ -68,11 +65,7 @@ List<Widget> pages = [
     ),
   ),
   const AllUsersList(),
-  Container(
-    child: const Center(
-      child: Text("data"),
-    ),
-  ),
+  AllUsersForCoupenList()
 ];
 
 class SideBarMenuItemsWidget extends StatelessWidget {
@@ -131,7 +124,7 @@ List<String> sideMenu = [
   'Get Invoice',
   'Set User Access',
   'All Users',
-  'Coupen Management',
+  'Coupon Management',
 ];
 List<IconData> sideMenuICons = [
   Icons.switch_video_outlined,

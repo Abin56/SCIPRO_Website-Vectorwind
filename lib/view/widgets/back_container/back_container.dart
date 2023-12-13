@@ -50,13 +50,13 @@ warningShowDilogueBox(
         actions: <Widget>[
           TextButton(
             onPressed: onPressed,
-            child: const Text('ok'),
+            child: const Text('Ok'),
           ),
           TextButton(
             onPressed: () {
               Navigator.pop(context);
             },
-            child: const Text('cancel'),
+            child: const Text('Cancel'),
           ),
         ],
       );

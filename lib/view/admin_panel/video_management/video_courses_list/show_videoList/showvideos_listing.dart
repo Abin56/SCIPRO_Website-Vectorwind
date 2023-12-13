@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:scipro_website/view/admin_panel/video_management/functions/uploadvideo.dart';
 import 'package:scipro_website/view/admin_panel/video_management/video_courses_list/table_grids/view_video_grid.dart';
+import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
 import 'package:scipro_website/view/widgets/back_container/back_container.dart';
 import 'package:scipro_website/view/widgets/responsive/responsive.dart';
@@ -17,13 +19,41 @@ class VideoListingContainer extends StatelessWidget {
         const Padding(
           padding: EdgeInsets.all(8.0),
           child: BackButtonContainerWidget(),
-        ), 
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: GooglePoppinsWidgets(text: "Video Collection", fontsize: 16,fontWeight: FontWeight.w500,),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 30,left: 10,right: 10),
+          padding: const EdgeInsets.all(8.0),
+          child: GooglePoppinsWidgets(
+            text: "Video Collection",
+            fontsize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Row(
+          children: [
+            const Spacer(),
+            GestureDetector(
+              onTap: () {
+                uploadVideoShowDilogue(context);
+              },
+              child: Container(
+                height: 30,
+                width: 200,
+                decoration: const BoxDecoration(
+                  color: themeColorBlue,
+                ),
+                child: Center(
+                  child: GooglePoppinsWidgets(
+                      text: 'Upload Video',
+                      color: cWhite,
+                      fontsize: 12,
+                      fontWeight: FontWeight.w800),
+                ),
+              ),
+            ),
+          ],
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 30, left: 10, right: 10),
           child: Container(
             child: ResponsiveWebSite.isMobile(context)
                 ? const SizedBox(

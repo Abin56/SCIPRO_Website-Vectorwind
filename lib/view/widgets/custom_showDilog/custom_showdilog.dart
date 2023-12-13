@@ -8,6 +8,7 @@ customShowDilogBox(
     required String title,
     required List<Widget> children,
     String? actiontext,
+    Widget? headerchild,
     required bool doyouwantActionButton,
     void Function()? actiononTapfuction}) {
   return showDialog(
@@ -24,7 +25,7 @@ customShowDilogBox(
               const Padding(
                 padding: EdgeInsets.only(top: 10),
                 child: BackButtonContainerWidget(),
-              ),
+              )
             ],
           ),
           content: SingleChildScrollView(
@@ -44,7 +45,7 @@ customShowDilogBox(
                       ),
                       child: Center(
                         child: GooglePoppinsWidgets(
-                            text: actiontext ?? 'ok',
+                            text: actiontext ?? 'Ok',
                             color: cWhite,
                             fontsize: 12,
                             fontWeight: FontWeight.w500),
