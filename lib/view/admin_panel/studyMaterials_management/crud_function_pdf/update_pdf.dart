@@ -77,12 +77,13 @@ uploadPdfShowDilogue(BuildContext context) {
     )), ////////////////////////////////7//////enter pdf position Text/////////
     //////////////////////////
   ];
+   final GlobalKey<FormState> formKeyPdf = GlobalKey<FormState>();
   return customShowDilogBox(
       context: context,
       title: "Upload PDF",
       actiontext: "Upload PDF",
       actiononTapfuction: () {
-        final key = formKey;
+        final key = formKeyPdf;
         if (key.currentState!.validate()) {}
       },
       children: [
@@ -91,7 +92,7 @@ uploadPdfShowDilogue(BuildContext context) {
                 height: 400,
                 width: 600,
                 child: Form(
-                  key: formKey,
+                  key: formKeyPdf,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -118,7 +119,7 @@ uploadPdfShowDilogue(BuildContext context) {
                 height: 400,
                 width: 600,
                 child: Form(
-                  key: formKey,
+                  key: formKeyPdf,
                   child: Column(
                     children: [
                       uploadPdfWidgets[0],
