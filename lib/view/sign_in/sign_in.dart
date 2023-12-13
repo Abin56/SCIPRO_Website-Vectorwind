@@ -2,19 +2,17 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:scipro_website/controller/sign_in_controller/auth_controller.dart';
 import 'package:scipro_website/resources/assets_manager.dart';
 import 'package:scipro_website/resources/color_manager.dart';
 import 'package:scipro_website/view/admin_panel/admin_panel.dart';
 import 'package:scipro_website/view/fonts/google_monstre.dart';
-import 'package:scipro_website/view/sign_up/sign_up.dart';
-import 'package:scipro_website/view/welcome_admin_screen.dart';
 import 'package:scipro_website/view/widgets/bottom_container.dart';
 import 'package:scipro_website/view/widgets/common_button_widget.dart';
 import 'package:scipro_website/view/widgets/common_textfield.dart';
 import 'package:scipro_website/view/widgets/primary_font_widget.dart';
 
+// ignore: must_be_immutable
 class SignInPage extends StatelessWidget {
   SignInPage({super.key});
 
@@ -67,7 +65,7 @@ class SignInPage extends StatelessWidget {
                         authController.user.value != null
                             ? "Signed In: ${authController.user.value!.email}"
                             : "Not Signed In",
-                        style: TextStyle(fontSize: 18),
+                        style: const TextStyle(fontSize: 18),
                       ),
                     ),
                   ],
@@ -107,7 +105,7 @@ class SignInPage extends StatelessWidget {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color:
                           Colors.yellow, // Change the border color when focused
                     ),
@@ -128,13 +126,13 @@ class SignInPage extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                         color: Colors.red,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       )
                     ],
                   );
                 } else {
-                  return SizedBox();
+                  return const SizedBox();
                 }
               }),
             ],
@@ -182,11 +180,11 @@ class SignInPage extends StatelessWidget {
                           emailController.text, passwordController.text)
                       .then((value) {
                     if (value == 'success') {
-                      log('value: ' + value);
+                      log('value: $value');
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => AdminPanelPage()));
+                              builder: (context) => const AdminPanelPage()));
                     }
                   });
                 },
@@ -194,7 +192,7 @@ class SignInPage extends StatelessWidget {
                 text: 'Sign In',
                 textColor: Colors.black),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Row(
@@ -233,10 +231,10 @@ class SignInPage extends StatelessWidget {
           //     )
           //   ],
           // ),
-          SizedBox(
+          const SizedBox(
             height: 50,
           ),
-          BottomContainer()
+          const BottomContainer()
         ],
       ),
     );
