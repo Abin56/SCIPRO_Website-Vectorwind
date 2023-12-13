@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:scipro_website/controller/video_management/video_management_controller.dart';
+import 'package:scipro_website/data/video_management/video_model.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class VideoListingGrid extends StatefulWidget {
@@ -11,16 +14,14 @@ class VideoListingGrid extends StatefulWidget {
 
 class VideoListingGridState extends State<VideoListingGrid> {
   // final DataGridController _gridController = DataGridController();
-  List<Video> videos = <Video>[];
-  late VideoDataSource videoDataSource;
 
   @override
   void initState() {
-    videos = getVideoData(context);
-
     super.initState();
 
-    videoDataSource = VideoDataSource(videoData: videos);
+    // Get.find<VideoMangementController>().videoDataSource.value =
+    //     VideoDataSource(
+    //         videoData: Get.find<VideoMangementController>().vidoesList);
   }
 
   @override
@@ -28,7 +29,7 @@ class VideoListingGridState extends State<VideoListingGrid> {
     return SfDataGrid(
       gridLinesVisibility: GridLinesVisibility.both,
       headerGridLinesVisibility: GridLinesVisibility.both,
-      source: videoDataSource,
+      source: Get.find<VideoMangementController>().videoDataSource.value!,
       columns: <GridColumn>[
         GridColumn(
             width: 100,
@@ -48,61 +49,6 @@ class VideoListingGridState extends State<VideoListingGrid> {
       //   if (details.rowColumnIndex.rowIndex != 0) {}
       // }),
     );
-  }
-
-  List<Video> getVideoData(BuildContext context) {
-    return [
-      Video(
-        context,
-        01,
-        'Science',
-      ),
-      Video(
-        context,
-        02,
-        'GK',
-      ),
-      Video(
-        context,
-        03,
-        'Social Science',
-      ),
-      Video(
-        context,
-        04,
-        'Maths',
-      ),
-      Video(
-        context,
-        05,
-        'English',
-      ),
-      Video(
-        context,
-        01,
-        'Science',
-      ),
-      Video(
-        context,
-        02,
-        'GK',
-      ),
-      Video(
-        context,
-        03,
-        'Social Science',
-      ),
-      Video(
-        context,
-        04,
-        'Maths',
-      ),
-      Video(
-        context,
-        05,
-        'English',
-      ),
-    ];
   }
 }
 
@@ -145,13 +91,13 @@ class Video {
 class VideoDataSource extends DataGridSource {
   int rowIndex = 0;
 
-  VideoDataSource({required List<Video> videoData}) {
+  VideoDataSource({required List<VideoModel> videoData}) {
     _videoData = videoData
         .map<DataGridRow>((e) => DataGridRow(cells: [
-              DataGridCell<int>(columnName: 'no', value: e.no),
+              DataGridCell<String>(columnName: 'no', value: e.position),
               DataGridCell<String>(
                 columnName: 'videoname',
-                value: e.videoname,
+                value: e.videoName,
               ),
               // DataGridCell<int>(columnName: 'noofcourse', value: e.noofcourse),
               // DataGridCell<int>(columnName: 'date', value: e.date),
