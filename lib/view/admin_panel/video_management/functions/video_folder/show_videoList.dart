@@ -68,7 +68,6 @@ showVideoList(BuildContext context) {
             ],
           ),
           content: Obx(() {
-            print(Get.find<VideoMangementController>().vidoesList[0].videoName);
             Get.find<VideoMangementController>().videoDataSource.value =
                 VideoDataSource(
                     videoData: Get.find<VideoMangementController>().vidoesList);
