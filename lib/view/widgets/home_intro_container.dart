@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:scipro_website/resources/assets_manager.dart';
 import 'package:scipro_website/resources/color_manager.dart';
+import 'package:scipro_website/view/sign_in/sign_in.dart';
 import 'package:scipro_website/view/widgets/common_button_widget.dart';
 import 'package:scipro_website/view/widgets/primary_font_widget.dart';
 import 'package:scipro_website/view/widgets/responsive_widget.dart';
@@ -56,11 +57,11 @@ class HomeIntroContainer extends StatelessWidget {
                               padding: const EdgeInsets.only(right: 20.0),
                               child: CommonButtonWidget(
                                   onPressFunction: () {
-                                    // Navigator.push(
-                                    //     context,
-                                    //     MaterialPageRoute(
-                                    //         builder: (context) =>
-                                    //             SignInPage()));
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                SignInPage()));
                                   },
                                   color: Colors.green,
                                   text: 'Login',

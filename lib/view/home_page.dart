@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:scipro_website/resources/assets_manager.dart';
 import 'package:scipro_website/resources/color_manager.dart';
 import 'package:scipro_website/view/home/footer/footer.dart';
+import 'package:scipro_website/view/sign_in/sign_in.dart';
 import 'package:scipro_website/view/widgets/common_button_widget.dart';
 import 'package:scipro_website/view/widgets/google_montserrat_widget.dart';
 import 'package:scipro_website/view/widgets/home_aboutus_widget.dart';
@@ -16,7 +17,7 @@ import 'package:scipro_website/view/widgets/semi_circle_painter.dart';
 class Scipro extends StatelessWidget {
    const Scipro({super.key});
 
- 
+
 
 
 
@@ -156,7 +157,7 @@ class Scipro extends StatelessWidget {
                               ),
                               Row(
                                 children: [
-                                  const Icon(
+                                  Icon(
                                     Icons.mail,
                                     color: Colors.white,
                                   ),
@@ -243,7 +244,13 @@ class Scipro extends StatelessWidget {
                                 child: Padding(
                                   padding: const EdgeInsets.only(right: 20.0),
                                   child: CommonButtonWidget(
-                                      onPressFunction: () {},
+                                      onPressFunction: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    SignInPage()));
+                                      },
                                       color: Colors.green,
                                       text: 'Login',
                                       textColor: Colors.white),
@@ -329,11 +336,11 @@ class Scipro extends StatelessWidget {
                                   padding: const EdgeInsets.only(right: 20.0),
                                   child: CommonButtonWidget(
                                       onPressFunction: () {
-                                        // Navigator.push(
-                                        //     context,
-                                        //     MaterialPageRoute(
-                                        //         builder: (context) =>
-                                        //             SignInPage()));
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    SignInPage()));
                                       },
                                       color: Colors.green,
                                       text: 'Login',
@@ -392,11 +399,11 @@ class Scipro extends StatelessWidget {
                               ),
                               Row(
                                 children: [
-                                  const Icon(
+                                  Icon(
                                     Icons.mail,
                                     color: Colors.white,
                                   ),
-                                  const SizedBox(
+                                  SizedBox(
                                     width: 10,
                                   ),
                                   GoogleMonstserratWidgets(
@@ -413,18 +420,18 @@ class Scipro extends StatelessWidget {
                         Container(
                           child: Row(
                             children: [
-                              SizedBox(
+                              Container(
                                 height: 40,
                                 width: 100,
                                 child: Padding(
                                   padding: const EdgeInsets.only(right: 20.0),
                                   child: CommonButtonWidget(
                                       onPressFunction: () {
-                                        // Navigator.push(
-                                        //     context,
-                                        //     MaterialPageRoute(
-                                        //         builder: (context) =>
-                                        //             SignInPage()));
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    SignInPage()));
                                       },
                                       color: Colors.green,
                                       text: 'Login',
@@ -511,7 +518,13 @@ class Scipro extends StatelessWidget {
                                 child: Padding(
                                   padding: const EdgeInsets.only(right: 20.0),
                                   child: CommonButtonWidget(
-                                      onPressFunction: () {},
+                                      onPressFunction: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    SignInPage()));
+                                      },
                                       color: Colors.green,
                                       text: 'Login',
                                       textColor: Colors.white),
@@ -576,7 +589,7 @@ class Scipro extends StatelessWidget {
                                       Icons.mail,
                                       color: Colors.white,
                                     ),
-                                    const SizedBox(
+                                    SizedBox(
                                       width: 10,
                                     ),
                                     GoogleMonstserratWidgets(
@@ -600,7 +613,13 @@ class Scipro extends StatelessWidget {
                                 child: Padding(
                                   padding: const EdgeInsets.only(right: 20.0),
                                   child: CommonButtonWidget(
-                                      onPressFunction: () {},
+                                      onPressFunction: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    SignInPage()));
+                                      },
                                       color: Colors.green,
                                       text: 'Login',
                                       textColor: Colors.white),
@@ -690,11 +709,11 @@ class Scipro extends StatelessWidget {
                                   padding: const EdgeInsets.only(right: 20.0),
                                   child: CommonButtonWidget(
                                       onPressFunction: () {
-                                        // Navigator.push(
-                                        //     context,
-                                        //     MaterialPageRoute(
-                                        //         builder: (context) =>
-                                        //             SignInPage()));
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    SignInPage()));
                                       },
                                       color: Colors.green,
                                       text: 'Login',

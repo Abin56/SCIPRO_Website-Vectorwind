@@ -7,6 +7,8 @@ import 'package:scipro_website/view/admin_panel/subscrib_std_mngt/Subscribed_std
 import 'package:scipro_website/view/admin_panel/video_management/video_management.dart';
 import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
+import 'package:scipro_website/view/admin_panel/study_materials/studymaterials_page.dart';
+import 'package:scipro_website/view/welcome_admin_screen.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
 
 class AdminPanelPage extends StatefulWidget {
@@ -54,6 +56,7 @@ List<Widget> pages = [
   ///.............. Recorded c Managementm
 
   const StudyMaterialsManagementSection(),
+  StudyMaterialsPage(),
   Container(
     child: const Center(
       child: Text("data"),
@@ -66,6 +69,7 @@ List<Widget> pages = [
   ),
   const AllUsersList(),
   AllUsersForCoupenList()
+  const AllUsersForCoupenList(),
 ];
 
 class SideBarMenuItemsWidget extends StatelessWidget {
