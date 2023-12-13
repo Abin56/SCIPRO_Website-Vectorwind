@@ -5,8 +5,6 @@ import 'package:scipro_website/view/widgets/responsive/responsive.dart';
 
 import '../../../widgets/primary_font_widget.dart';
 
-
-
 class CompanyContainerWidget extends StatelessWidget {
   const CompanyContainerWidget({
     super.key,
@@ -14,61 +12,92 @@ class CompanyContainerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(mainAxisAlignment: MainAxisAlignment.start,
-    crossAxisAlignment: CrossAxisAlignment.center,
-    
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 20,left: 20),
-          child: SizedBox(width: 100,child: GooglePoppinsWidgets(text: 'Company', fontsize: 18,color: cred,fontWeight: FontWeight.bold,),),
+          padding: const EdgeInsets.only(top: 20, left: 20),
+          child: SizedBox(
+            width: 100,
+            child: GooglePoppinsWidgets(
+              text: 'Company',
+              fontsize: 18,
+              color: cred,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
-         Container(child: Padding(
-           padding: ResponsiveWebSite.isDesktop(context)? const EdgeInsets.only(left: 150,top: 10):const EdgeInsets.only(left: 40,top: 10),
-           child: Column(children: [
-           
-           
-                          Padding(
-                     padding: const EdgeInsets.only(top: 10),
-                           child: CompanyRowWidget(text: 'Upcoming Courses', onTapFunction: () {  },),
-                         ),
-                         Padding(
-                           padding: const EdgeInsets.only(top: 10),
-                           child: CompanyRowWidget(text: 'Recorded Courses', onTapFunction: () {  },),
-                         ),
-                         Padding(
-                           padding: const EdgeInsets.only(top: 10),
-                           child: CompanyRowWidget(text: 'Privacy and Policy', onTapFunction: () { Navigator.pushNamed(
-                                                  context, '/terms_condition'); },),
-                         ),
-                         Padding(
-                           padding: const EdgeInsets.only(top: 10),
-                           child: CompanyRowWidget(text: 'Terms and Conditions', onTapFunction: () { Navigator.pushNamed(
-                                                  context, '/terms_condition'); },),
-                         ),
-                         Padding(
-                           padding: const EdgeInsets.only(top: 10),
-                           child: CompanyRowWidget(text: 'Cancellation policy', onTapFunction: () { Navigator.pushNamed(
-                                                  context, '/terms_condition'); },),
-                         ),
-                         Padding(
-                           padding: const EdgeInsets.only(top: 10),
-                           child: CompanyRowWidget(text: 'White Board', onTapFunction: () { Navigator.pushNamed(
-                                                  context, '/terms_condition'); },),
-                         ),
-           ],),
-         ),)
-
-        
-        
+        Container(
+          child: Padding(
+            padding: ResponsiveWebSite.isDesktop(context)
+                ? const EdgeInsets.only(left: 150, top: 10)
+                : const EdgeInsets.only(left: 40, top: 10),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: CompanyRowWidget(
+                    text: 'Upcoming Courses',
+                    onTapFunction: () {},
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: CompanyRowWidget(
+                    text: 'Recorded Courses',
+                    onTapFunction: () {},
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: CompanyRowWidget(
+                    text: 'Privacy and Policy',
+                    onTapFunction: () {
+                      Navigator.pushNamed(context, '/terms_condition');
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: CompanyRowWidget(
+                    text: 'Terms and Conditions',
+                    onTapFunction: () {
+                      Navigator.pushNamed(context, '/terms_condition');
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: CompanyRowWidget(
+                    text: 'Cancellation policy',
+                    onTapFunction: () {
+                      Navigator.pushNamed(context, '/terms_condition');
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: CompanyRowWidget(
+                    text: 'White Board',
+                    onTapFunction: () {
+                      Navigator.pushNamed(context, '/terms_condition');
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        )
       ],
     );
   }
 }
 
 class CompanyRowWidget extends StatelessWidget {
-  String text;
-  Function() onTapFunction;
-   CompanyRowWidget({
+  final String text;
+  final Function() onTapFunction;
+  const CompanyRowWidget({
     required this.text,
     required this.onTapFunction,
     super.key,
@@ -78,12 +107,15 @@ class CompanyRowWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-         const Icon(Icons.arrow_forward_ios,color: cGrey,),
+        const Icon(
+          Icons.arrow_forward_ios,
+          color: cGrey,
+        ),
         TextButton(
             onPressed: onTapFunction,
-            child:  PrimaryFontWidget(
+            child: PrimaryFontWidget(
                 text: text,
-                fontSize: ResponsiveWebSite.isTablet(context)?12:14,
+                fontSize: ResponsiveWebSite.isTablet(context) ? 12 : 14,
                 fontweight: FontWeight.w500,
                 color: cBlack)),
       ],

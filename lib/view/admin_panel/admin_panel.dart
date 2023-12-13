@@ -3,12 +3,11 @@ import 'package:scipro_website/view/admin_panel/all_users_mngt/all_users/all_use
 import 'package:scipro_website/view/admin_panel/coupen_mngt/coupen_part_grid/listing_coupen_users.dart';
 import 'package:scipro_website/view/admin_panel/drawer_logo.dart';
 import 'package:scipro_website/view/admin_panel/studyMaterials_management/studyMaterials_screen.dart';
+import 'package:scipro_website/view/admin_panel/study_materials/studymaterials_page.dart';
 import 'package:scipro_website/view/admin_panel/subscrib_std_mngt/Subscribed_std/subscribed_student.dart';
 import 'package:scipro_website/view/admin_panel/video_management/video_management.dart';
 import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
-import 'package:scipro_website/view/admin_panel/study_materials/studymaterials_page.dart';
-import 'package:scipro_website/view/welcome_admin_screen.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
 
 class AdminPanelPage extends StatefulWidget {
@@ -34,7 +33,7 @@ class _AdminPanelPageState extends State<AdminPanelPage> {
           ],
         ),
         drawer: ListView(children: [
-          const WebApplicationLogoContainer(),
+          WebApplicationLogoContainer(),
           SideBarMenuItemsWidget(
             selectedIndex: selectedIndex,
             onTap: (index) {
@@ -56,7 +55,7 @@ List<Widget> pages = [
   ///.............. Recorded c Managementm
 
   const StudyMaterialsManagementSection(),
-  StudyMaterialsPage(),
+  const StudyMaterialsPage(),
   Container(
     child: const Center(
       child: Text("data"),
@@ -69,7 +68,6 @@ List<Widget> pages = [
   ),
   const AllUsersList(),
   AllUsersForCoupenList()
-  const AllUsersForCoupenList(),
 ];
 
 class SideBarMenuItemsWidget extends StatelessWidget {

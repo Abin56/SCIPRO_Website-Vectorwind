@@ -1,7 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:scipro_website/controller/sign_in_controller/auth_controller.dart';
 import 'package:scipro_website/view/fonts/google_monstre.dart';
@@ -12,8 +9,8 @@ class WelcomeAdminScreen extends StatelessWidget {
   WelcomeAdminScreen({super.key});
 
   final AuthController authController = Get.put(AuthController());
-  TextEditingController changeEmailController = TextEditingController();
-  TextEditingController changePasswordController = TextEditingController();
+ final TextEditingController changeEmailController = TextEditingController();
+final  TextEditingController changePasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +18,7 @@ class WelcomeAdminScreen extends StatelessWidget {
         appBar: AppBar(
           title: Obx(
             () => GoogleMonstserratWidgets(
-              text: 'Welcome back, ' +
-                  authController.user.value!.email.toString(),
+              text: 'Welcome back, ${authController.user.value!.email}',
               fontsize: 15,
               fontWeight: FontWeight.w500,
             ),
@@ -36,7 +32,7 @@ class WelcomeAdminScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Padding(
@@ -48,7 +44,7 @@ class WelcomeAdminScreen extends StatelessWidget {
                       borderRadius: 10,
                       textController: changeEmailController),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextButton(

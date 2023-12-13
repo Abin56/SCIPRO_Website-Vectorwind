@@ -6,9 +6,9 @@ class ViewUploadedStudyMaterials extends StatelessWidget {
   ViewUploadedStudyMaterials(
       {super.key, required this.courseDoc1, required this.courseDoc2});
 
-  String courseDoc1;
-  String courseDoc2;
-  TextEditingController editConrtoller = TextEditingController();
+  final String courseDoc1;
+  final String courseDoc2;
+  final TextEditingController editConrtoller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +40,8 @@ class ViewUploadedStudyMaterials extends StatelessWidget {
                                     editConrtoller.text =
                                         snap.data!.docs[index]['fileName'];
                                     return AlertDialog(
-                                      title: Text('Edit'),
-                                      content: Container(
+                                      title: const Text('Edit'),
+                                      content: SizedBox(
                                         height: 200,
                                         width: 300,
                                         child: Column(
@@ -55,7 +55,7 @@ class ViewUploadedStudyMaterials extends StatelessWidget {
                                                   textController:
                                                       editConrtoller),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 10,
                                             ),
                                             Row(
@@ -80,15 +80,16 @@ class ViewUploadedStudyMaterials extends StatelessWidget {
                                                               Navigator.pop(
                                                                   context));
                                                     },
-                                                    child: Text('Update')),
-                                                SizedBox(
+                                                    child:
+                                                        const Text('Update')),
+                                                const SizedBox(
                                                   width: 10,
                                                 ),
                                                 ElevatedButton(
                                                     onPressed: () {
                                                       Navigator.pop(context);
                                                     },
-                                                    child: Text('Close'))
+                                                    child: const Text('Close'))
                                               ],
                                             )
                                           ],
@@ -97,9 +98,9 @@ class ViewUploadedStudyMaterials extends StatelessWidget {
                                     );
                                   });
                             },
-                            child: Text('Edit'),
+                            child: const Text('Edit'),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           ElevatedButton(
@@ -113,7 +114,7 @@ class ViewUploadedStudyMaterials extends StatelessWidget {
                                   .doc(snap.data!.docs[index]['id'])
                                   .delete();
                             },
-                            child: Text('Delete'),
+                            child: const Text('Delete'),
                           ),
                         ],
                       ),

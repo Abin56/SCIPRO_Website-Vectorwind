@@ -4,8 +4,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scipro_website/firebase_options.dart';
+import 'package:scipro_website/view/home/sciprohomepage.dart';
 
-import 'view/admin_panel/admin_panel.dart';
 import 'view/home/footer/terms and conditions/termsandconditions.dart';
 
 Future<void> main() async {
@@ -23,15 +23,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  GetMaterialApp(
+    return GetMaterialApp(
         debugShowCheckedModeBanner: false,
-          routes: {
-         
+        routes: {
           '/terms_condition': (context) => const TermsCondition(),
-         
         },
-         home: const AdminPanelPage()
-    // home: const Scipro(),
+        home: const SciproHomePage()
+        // home: const Scipro(),
         );
   }
 }

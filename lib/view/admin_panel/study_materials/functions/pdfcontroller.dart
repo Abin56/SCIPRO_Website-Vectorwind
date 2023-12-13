@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
@@ -66,7 +65,6 @@ class PdfUploadController extends GetxController {
         Uint8List fileBytes = result.files.first.bytes!;
         selectedPdf.value = result.files.first.bytes!;
 
-        var filee = fileBytes;
         selectedPdf.value = fileBytes;
         fileName.value = result.files.first.name;
         log(fileName.value);

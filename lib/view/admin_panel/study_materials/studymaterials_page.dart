@@ -1,15 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:scipro_website/resources/assets_manager.dart';
-import 'package:scipro_website/view/admin_panel/admin_panel.dart';
-import 'package:scipro_website/view/admin_panel/study_materials/functions/course_selection/course_selection.dart';
 import 'package:scipro_website/view/admin_panel/study_materials/subject_page.dart';
 import 'package:scipro_website/view/fonts/google_monstre.dart';
-import 'package:scipro_website/view/sign_in/sign_in.dart';
 import 'package:scipro_website/view/widgets/common_button_widget.dart';
-import 'package:scipro_website/view/widgets/custom_showDilog/custom_showdilog.dart';
-import 'package:scipro_website/view/widgets/home_top_courses_widget.dart';
 
 class StudyMaterialsPage extends StatelessWidget {
   const StudyMaterialsPage({super.key});
