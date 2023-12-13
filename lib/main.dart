@@ -4,8 +4,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scipro_website/firebase_options.dart';
+import 'package:scipro_website/view/admin_panel/admin_panel.dart';
 import 'package:scipro_website/view/home/footer/company/privacy%20policy/privacy_policy.dart';
-import 'package:scipro_website/view/home/sciprohomepage.dart';
 
 import 'view/home/footer/company/terms and conditions/termsandconditions.dart';
 
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         '/terms_condition': (context) => const TermsCondition(),
         '/privacy_policy': (context) => const PrivacyPolicy(),
       },
-      home: SciproHomePage(),
+      home: const AdminPanelPage(),
     );
   }
 }

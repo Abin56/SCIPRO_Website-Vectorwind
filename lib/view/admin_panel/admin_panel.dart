@@ -66,8 +66,9 @@ List<Widget> pages = [
       child: Text("data"),
     ),
   ),
+
+  AllUsersForCoupenList(),
   const AllUsersList(),
-  AllUsersForCoupenList()
 ];
 
 class SideBarMenuItemsWidget extends StatelessWidget {
