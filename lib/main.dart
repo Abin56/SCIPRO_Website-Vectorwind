@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
           '/terms_condition': (context) => const TermsCondition(),
            '/privacy_policy': (context) => const PrivacyPolicy(),
         },
-         home:  SciproHomePage(),
+        //  home:  SciproHomePage(),
     
         );
   }
