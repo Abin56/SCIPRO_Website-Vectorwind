@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/terms_condition': (context) => const TermsCondition(),
         },
-        home: const SciproHomePage()
+        home:  SciproHomePage()
         // home: const Scipro(),
         );
   }

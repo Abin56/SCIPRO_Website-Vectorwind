@@ -1,255 +1,139 @@
 import 'package:flutter/material.dart';
+import 'package:scipro_website/view/widgets/responsive/responsive.dart';
 
-import '../../../resources/assets_manager.dart';
 import '../../colors/colors.dart';
 import '../../fonts/google_poppins.dart';
-import '../../widgets/responsive/responsive.dart';
 
-class homeScreenPictureWidget extends StatelessWidget {
-  const homeScreenPictureWidget({
-    super.key,
-  });
+class IntroHome extends StatelessWidget {
+  const IntroHome({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        ResponsiveWebSite.isMobile(context)
-            ? Column(
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Padding(
-                          padding: const EdgeInsets.only(right: 10),
-                          child: GooglePoppinsWidgets(
-    text: 'Your Dream Job is\ncloser than you Think',
-    fontsize: 25,
-     color:themeColorBlue,
-    fontWeight: FontWeight.bold,
-  )),
-                      ResponsiveWebSite.isMobile(context)
-                          ? Center(
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 20),
-                              child:  GooglePoppinsWidgets(
-                                text:
-                                    "The Industry Oriented Concept Being Unique, Focuses Onprofile Mapping, Skill Gap Analysis, Industry Analysis and Training the Students",
-                                fontsize: 16,
-                                 color:cGrey,
-                                fontWeight: FontWeight.w600,textAlign: TextAlign.center,
-                              ),
-                            ),
-                          )
-                          : Padding(
-                              padding: const EdgeInsets.only(top: 20, left: 20),
-                              child:  GooglePoppinsWidgets(
-    text:
-        "The Industry Oriented Concept Being Unique, Focuses Onprofile Mapping, Skill Gap Analysis, Industry Analysis and Training the Students",
-    fontsize: 16,
-     color:cGrey,
-    fontWeight: FontWeight.w600,
-  ),
-                            ),
-                      ResponsiveWebSite.isMobile(context)
-                          ? Image.asset(
-    ImageAssets.homePageModel,
-    height: 300,
-    width: 300,
-  )
-                          : Image.asset(
-    ImageAssets.homePageModel,
-    height: 300,
-    width: 300,
-  ),
-                    ],
-                  ),
-                ],
-              )
-           
-            : Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      ResponsiveWebSite.isMobile(context)?
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10),
-                        child:  GooglePoppinsWidgets(
-    text: 'Your Dream Job is\ncloser than you Think',
-    fontsize: 30,
-     color:themeColorBlue,
-    fontWeight: FontWeight.bold,
-  )
-                      )
-                    :ResponsiveWebSite.isTablet(context)? 
-                      GooglePoppinsWidgets(
-    text: 'Your Dream Job is\ncloser than you Think',
-    fontsize: 30,
-     color:themeColorBlue,
-    fontWeight: FontWeight.bold,
-  ):
-                     Padding(
-                        padding: const EdgeInsets.only(right: 10),
-                        child: homePageIntroContent[0]
-                      ),
-                      ResponsiveWebSite.isMobile(context)
-                          ? homePageIntroContent[1]
-
-                          :ResponsiveWebSite.isTablet(context)?Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 20,),
-                              child: GooglePoppinsWidgets(
-                                text:
-                                    "The Industry Oriented Concept Being Unique,\nFocuses Onprofile Mapping, Skill Gap Analysis,\nIndustry Analysis and Training the Students",
-                                fontsize: 14,
-                                color: cGrey,
-                              // color: themeColorBlue,
-                               
-                              ),
-                            ):
-                          Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 20, left: 90),
-                              child: GooglePoppinsWidgets(
-                                text:
-                                    "The Industry Oriented Concept Being Unique,\nFocuses Onprofile Mapping, Skill Gap Analysis,\nIndustry Analysis and Training the Students",
-                                fontsize: 16,
-                                color: cGrey,
-          // color:themeColorBlue
-
-                               
-                              ),
-                            )
-                    ],
-                  ),
-                  ResponsiveWebSite.isMobile(context)
-                      ? Container(
-                          
-                          child: Image.asset(
-                            ImageAssets.homePageModel,
-                            height: 300,
-                            width: 300,
-                          ),
-                        )
-                      :ResponsiveWebSite.isTablet(context)?
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 150),
-                          child: SizedBox(height: 700,width: 700,
-                            child: Image.asset(
-                              ImageAssets.homePageModel,
-                              height: 700,
-                              width: 700,
-                            ),
-                          ),
-                        ),
-                      ):
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(left:150,top: 150),
-                          child: SizedBox(
-                            height: 700,width: 700,
-                            child: Image.asset(
-                              ImageAssets.homePageModel,
-                              height: 700,
-                              width: 700,
-                            ),
-                          ),
-                        ),
-                      ),
+    return Container(
+        child:ResponsiveWebSite.isMobile(context)?Column(
+          children: [
+            Container(
+              height: 450,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        fit: BoxFit.fitHeight,
                         
-                ],
-              ),
-          //  ResponsiveWebSite.isMobile(context)?   Positioned(
-                              
-          //        bottom: -200,
-          //        right: -200,
-          //              child: SizedBox(
-          //                width: 130,
-          //                height: 100,
-          //                child: CustomPaint(
-          //                  painter: SemiCirclePainter(),
-          //                )),
-          //            ):ResponsiveWebSite.isTablet(context)?Positioned(
-                                   
-          //             bottom: -200,
-          //             right: -200,
-          //                   child: SizedBox(
-          //                     width: 170,
-          //                     height: 100,
-          //                     child: CustomPaint(
-          //                       painter: SemiCirclePainter(),
-          //                     )),
-          //                 ):
-          //            Expanded(
-          //       child: Positioned(
-                                   
-          //             bottom: -200,
-          //             right: -200,
-          //                   child: SizedBox(
-          //                     width: 200,
-          //                     height: 100,
-          //                     child: CustomPaint(
-          //                       painter: SemiCirclePainter(),
-          //                     )),
-          //                 ),
-          //     )
+                        image: AssetImage(
+                          'assets/images/main1gopikafinal.jpg',
+                        ))),
+              child:  Column(children: [
+            //  const AppBarWidget(),
+               Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 20,right: 20),
+                    child: Container(
+                       alignment: Alignment.topRight,
+                      child: GooglePoppinsWidgets(
+                        text: 'Your Dream Job is\ncloser than you Think',
+                        fontsize: 20,
+                        color: cWhite,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+                 Row(mainAxisAlignment: MainAxisAlignment.end,
+                   children: [
+                     Expanded(
+                       child: Padding(
+                        padding: const EdgeInsets.only(bottom: 80),
+                        child: Container(
+                           alignment: Alignment.topRight,
+                          child: GooglePoppinsWidgets(
+                            text:
+                                'The Industry Oriented Concept Being Unique,\nFocuses Onprofile Mapping, Skill Gap Analysis,\nIndustry Analysis and Training the Students',
+                            fontsize: 12,
+                            color: cWhite,
+                          ),
+                        ),
+                                       ),
+                     ),
+                   ],
+                 ),
+                Row(mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Container(
+                        height:ResponsiveWebSite.isMobile(context)?30: 50,width:ResponsiveWebSite.isMobile(context)?80: 110,
+                                       decoration: const BoxDecoration(
+                                         image: DecorationImage(fit: BoxFit.contain,
+                        image: AssetImage('assets/images/google-play-logo.jpg',))),
+                                         alignment: Alignment.bottomRight,
+                                         
+                                         ),
+                  ],
+                ),
+            ],),),
+           
+          ],
+        ): Row(
+      children: [
+        Expanded(
+          child: Container(
+            height: 750,
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                    fit: BoxFit.fitHeight,
+                    
+                    image: AssetImage(
+                      'assets/images/main1gopikafinal.jpg',
+                    ))),
+           child: 
+            Column(
+              
+              children: [
+                //  Expanded(child: Container(alignment: Alignment.topLeft,
+                //   child: const AppBarWidget(),
+                //   )),
+                  
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 20,right: 40),
+                    child: Container(
+                       alignment: Alignment.topRight,
+                      child: GooglePoppinsWidgets(
+                        text: 'Your Dream Job is\ncloser than you Think',
+                        fontsize: 30,
+                        color: cWhite,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ), 
+
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 320),
+                  child: Container(
+                     alignment: Alignment.topRight,
+                    child: GooglePoppinsWidgets(
+                      text:
+                          'The Industry Oriented Concept Being Unique,\nFocuses Onprofile Mapping, Skill Gap Analysis,\nIndustry Analysis and Training the Students',
+                      fontsize: 16,
+                      color: cWhite,
+                    ),
+                  ),
+                ), Row(mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Container(
+                        height: 50,width: 110,
+                                       decoration: const BoxDecoration(
+                                         image: DecorationImage(fit: BoxFit.contain,
+                        image: AssetImage('assets/images/google-play-logo.jpg',))),
+                                         alignment: Alignment.bottomRight,
+                                         //child: Image.asset('assets/images/google-play-logo.jpg',)
+                                         ),
+                  ],
+                ),
+               
+              ],
+            ),
+          ),
+        )
       ],
-    );
-  }
+));
 }
-
-List<Widget> homePageIntroContent = [
-  GooglePoppinsWidgets(
-    text: 'Your Dream Job is\ncloser than you Think',
-    fontsize: 30,
-     color:themeColorBlue,
-    fontWeight: FontWeight.bold,
-  ), //////////////////////////////////////////////0
-
-  GooglePoppinsWidgets(
-    text:
-        "The Industry Oriented Concept Being Unique, Focuses Onprofile Mapping, Skill Gap Analysis, Industry Analysis and Training the Students",
-    fontsize: 16,
-     color:cGrey,
-    fontWeight: FontWeight.w600,
-  ), ////////////////////////////////////////////////////1
-
-  Image.asset(
-    ImageAssets.homePageModel,
-    height: 650,
-    width: 650,
-  ), /////////////////////////////////////////////////////////////////////////2
-
-  Image.asset(
-    ImageAssets.homePageModel,
-    height: 300,
-    width: 300,
-  ),
-  GooglePoppinsWidgets(
-    text: 'Your Dream Job is\ncloser than you Think',
-    fontsize: 25,
-     color:themeColorBlue,
-    fontWeight: FontWeight.bold,
-  ), ///////////////////////////////////////////////////////////////////////////////4
-
-   GooglePoppinsWidgets(
-    text: 'Your Dream Job is\ncloser than you Think',
-    fontsize: 28,
-    // color: cWhite,
-     color:themeColorBlue,
-    fontWeight: FontWeight.bold,//////////////////////////////////////////////////////////////5
-  ),
-    GooglePoppinsWidgets(
-    text:
-        "The Industry Oriented Concept Being\nUnique, Focuses Onprofile Mapping, Skill\nGap Analysis, Industry Analysis and\nTraining the Students",
-    fontsize: 15,
-     color:themeColorBlue,
-     //color: cWhite,
-    fontWeight: FontWeight.w600,
-  ), ////////////////////////////////////////////////////1
-];
+}
