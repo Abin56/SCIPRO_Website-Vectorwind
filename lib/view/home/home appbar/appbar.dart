@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:scipro_website/view/colors/colors.dart';
+import 'package:scipro_website/view/sign_in/sign_in.dart';
 
 import '../../../resources/assets_manager.dart';
 import '../../fonts/google_poppins.dart';
@@ -20,7 +21,8 @@ class AppBarWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 40, left: 10,top: 20),
+                      padding:
+                          const EdgeInsets.only(bottom: 40, left: 10, top: 20),
                       child: SizedBox(
                         child: Image.asset(
                           'assets/images/scipro.png',
@@ -29,13 +31,15 @@ class AppBarWidget extends StatelessWidget {
                         ),
                       ),
                     ),
-                 
                   ],
                 ),
-                Row(children: [   Padding(
-                      padding: const EdgeInsets.only( right: 10),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10),
                       child: Column(
-                        children: [SizedBox(
+                        children: [
+                          SizedBox(
                               height: 30,
                               child: TextButton(
                                 onPressed: () {},
@@ -86,10 +90,11 @@ class AppBarWidget extends StatelessWidget {
                               ),
                             ],
                           ),
-                          
                         ],
                       ),
-                    ),],)
+                    ),
+                  ],
+                )
               ],
             )
           : Row(
@@ -138,7 +143,12 @@ class AppBarWidget extends StatelessWidget {
                       SizedBox(
                           height: 50,
                           child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(context, MaterialPageRoute(
+                                  builder: (BuildContext context) {
+                                return SignInPage();
+                              }));
+                            },
                             child: Row(
                               children: [
                                 const Icon(

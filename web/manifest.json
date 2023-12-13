@@ -1,11 +1,11 @@
 {
-    "name": "scipro_website",
-    "short_name": "scipro_website",
+    "name": "SciPRO",
+    "short_name": "SciPRO",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Scipro is an online learning platform for competitive exams in India. Scipro focuses on various competitive examinations especially for scientific positions in central and state govt. Scipro has a pannel of experienced and highly qualified tutors in various science and technical subjects.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
