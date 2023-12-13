@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:scipro_website/firebase_options.dart';
 import 'package:scipro_website/view/admin_panel/admin_panel.dart';
 import 'package:scipro_website/view/home_page.dart';
+import 'package:scipro_website/view/sign_in/sign_in.dart';
+import 'package:scipro_website/view/welcome_admin_screen.dart';
 import 'package:scipro_website/view/widgets/vh.dart';
 
 Future<void> main() async {
@@ -23,9 +25,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const GetMaterialApp(
-        debugShowCheckedModeBanner: false, home: Scipro()
-        // home: AdminPanelPage(),
-        );
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      // home:
+      // WelcomeAdminScreen(),
+      home: SignInPage(),
+      //home: Scipro(),
+      //home: AdminPanelPage(),
+    );
   }
 }

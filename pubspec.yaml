@@ -44,6 +44,9 @@ dependencies:
   syncfusion_flutter_datagrid: null
   uuid: ^4.2.1
   reward_popup:
+  firebase_storage: ^11.5.5
+  file_picker: ^6.1.1
+  shared_preferences: ^2.2.2
  
 
 dev_dependencies:
