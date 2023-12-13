@@ -1,9 +1,10 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:scipro_website/view/admin_panel/studyMaterials_management/create_folder.dart';
+import 'package:scipro_website/view/admin_panel/studyMaterials_management/pdf_folder/all_pdf_list.dart';
+import 'package:scipro_website/view/admin_panel/studyMaterials_management/pdf_folder/create_folder_pdf.dart';
 import 'package:scipro_website/view/colors/colors.dart';
-import 'package:scipro_website/view/widgets/button%20container%20widget/button_container_widget.dart';
+import 'package:scipro_website/view/widgets/button_container_widget/button_container_widget.dart';
 
 import '../../fonts/google_poppins.dart';
 import '../../widgets/responsive/responsive.dart';
@@ -16,7 +17,7 @@ class StudyMaterialsManagementSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> studymaterilsWidgets = [
+    List<Widget> studymaterialsWidgets = [
       ///////////////////
 
       Padding(
@@ -75,7 +76,9 @@ class StudyMaterialsManagementSection extends StatelessWidget {
                   child: ListView.separated(
                       itemBuilder: (context, index) {
                         return GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            showStudyMaterialsList(context);
+                          },
                           child: Container(
                             height: 40,
                             width: 100,
@@ -132,15 +135,15 @@ class StudyMaterialsManagementSection extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    studymaterilsWidgets[0],
+                    studymaterialsWidgets[0],
                     const SizedBox(
                       height: 20,
                     ),
-                    studymaterilsWidgets[1],
+                    studymaterialsWidgets[1],
                     const SizedBox(
                       height: 10,
                     ),
-                    studymaterilsWidgets[2],
+                    studymaterialsWidgets[2],
                     const SizedBox(
                       height: 10,
                     ),
@@ -151,7 +154,7 @@ class StudyMaterialsManagementSection extends StatelessWidget {
                 padding: const EdgeInsets.only(
                   top: 10,
                 ),
-                child: studymaterilsWidgets[3],
+                child: studymaterialsWidgets[3],
               ),
             ])
           : Column(children: [
@@ -164,15 +167,15 @@ class StudyMaterialsManagementSection extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
-                      child: studymaterilsWidgets[0],
+                      child: studymaterialsWidgets[0],
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: Row(
                         children: [
-                          studymaterilsWidgets[1],
+                          studymaterialsWidgets[1],
                           const Spacer(),
-                          studymaterilsWidgets[2],
+                          studymaterialsWidgets[2],
                         ],
                       ),
                     ),
@@ -181,7 +184,7 @@ class StudyMaterialsManagementSection extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10, right: 10),
-                child: studymaterilsWidgets[3],
+                child: studymaterialsWidgets[3],
               ),
             ]),
     );

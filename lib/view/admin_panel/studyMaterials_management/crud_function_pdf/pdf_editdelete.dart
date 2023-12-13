@@ -5,10 +5,10 @@ import 'package:scipro_website/view/widgets/custom_showDilog/custom_showdilog.da
 import 'package:scipro_website/view/widgets/responsive/responsive.dart';
 import 'package:scipro_website/view/widgets/textform_field_Widget/textformfieldWidget.dart';
 
-totalCategoryList(BuildContext context) {
+editdeletPdfList(BuildContext context) {
   return customShowDilogBox(
       context: context,
-      title: 'All Category List',
+      title: 'All PDF List',
       children: [
         SizedBox(
           height: 300,
@@ -18,7 +18,7 @@ totalCategoryList(BuildContext context) {
             child: ListView.separated(
                 itemBuilder: (context, index) {
                   return GestureDetector(
-                    onTap: () => ontaponCategoryList(context),
+                    onTap: () => ontapPDFList(context),
                     child: Container(
                       height: 40,
                       width: 100,
@@ -39,7 +39,7 @@ totalCategoryList(BuildContext context) {
                           const Padding(
                             padding: EdgeInsets.only(left: 20),
                             child: Text(
-                              "Category Name",
+                              "PDF Name",
                               style: TextStyle(
                                   color: cWhite,
                                   fontWeight: FontWeight.bold,
@@ -61,15 +61,16 @@ totalCategoryList(BuildContext context) {
       doyouwantActionButton: false);
 }
 
-ontaponCategoryList(BuildContext context) {
-  TextEditingController categoryNameController = TextEditingController();
+ontapPDFList(BuildContext context) {
+  TextEditingController pdfNameController = TextEditingController();
   TextEditingController positionController = TextEditingController();
   List<Widget> listofWidget = [
     TextFormFiledContainerWidget(
-        controller: categoryNameController,
-        hintText: 'Enter Category Name',
-        title: 'Change Category Name',
-        width: 250),
+        controller: pdfNameController,
+        hintText: 'Enter PDF Name',
+        title: 'Change PDF Name',
+        width: 250
+        ),/////////////////////////////////////0
     Container(
       height: 30,
       width: 80,
@@ -83,12 +84,13 @@ ontaponCategoryList(BuildContext context) {
             fontsize: 12,
             fontWeight: FontWeight.bold),
       ),
-    ),
+    ),/////////////////////////////////////////1
     TextFormFiledContainerWidget(
         controller: positionController,
         hintText: 'Enter Position eg 1,2...',
         title: 'Change Position',
-        width: 250),
+        width: 250
+        ),///////////////////////////////////////2
     Padding(
       padding: const EdgeInsets.only(left: 0, top: 05),
       child: Container(
@@ -105,11 +107,11 @@ ontaponCategoryList(BuildContext context) {
               fontWeight: FontWeight.bold),
         ),
       ),
-    ),
+    ),/////////////////////////////////////////////////3
   ];
   return customShowDilogBox(
       context: context,
-      title: "Edit Category",
+      title: "Edit PDF",
       children: [
         SizedBox(
           height: ResponsiveWebSite.isDesktop(context) ? 200 : 300,
@@ -117,23 +119,8 @@ ontaponCategoryList(BuildContext context) {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ResponsiveWebSite.isMobile(context)
+              ResponsiveWebSite.isDesktop(context)
                   ? Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        listofWidget[0],
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: listofWidget[1],
-                        ),
-                        listofWidget[2],
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: listofWidget[3],
-                        ),
-                      ],
-                    )
-                  : Column(
                       children: [
                         Row(
                           children: [
@@ -154,13 +141,54 @@ ontaponCategoryList(BuildContext context) {
                           ],
                         ),
                       ],
+                    ):
+                   Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        listofWidget[0],
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: listofWidget[1],
+                        ),
+                        listofWidget[2],
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: listofWidget[3],
+                        ),
+                      ],
                     ),
+                  
+                  
+                  // Column(
+                  //     children: [
+                  //       Row(
+                  //         children: [
+                  //           listofWidget[0],
+                  //           Padding(
+                  //             padding: const EdgeInsets.only(left: 10, top: 20),
+                  //             child: listofWidget[1],
+                  //           ),
+                  //         ],
+                  //       ),
+                  //       Row(
+                  //         children: [
+                  //           listofWidget[2],
+                  //           Padding(
+                  //             padding: const EdgeInsets.only(left: 10, top: 20),
+                  //             child: listofWidget[3],
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     ],
+                  //   ),
+
+
               GestureDetector(
                 onTap: () {
                   customShowDilogBox(
                       context: context,
                       title: "Alert",
-                      children: [const Text('Do you want this Category ?')],
+                      children: [const Text('Do you want this PDF ?')],
                       doyouwantActionButton: true,
                       actiononTapfuction: () {});
                 },
@@ -172,7 +200,7 @@ ontaponCategoryList(BuildContext context) {
                     color: themeColorBlue,
                     child: const Center(
                       child: Text(
-                        "Delete Category",
+                        "Delete PDF",
                         style: TextStyle(
                             color: cWhite,
                             fontWeight: FontWeight.bold,

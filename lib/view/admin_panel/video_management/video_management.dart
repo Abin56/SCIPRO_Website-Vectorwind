@@ -7,9 +7,9 @@ import 'package:scipro_website/data/video_management/category_model.dart';
 import 'package:scipro_website/view/admin_panel/video_management/functions/create_category.dart';
 import 'package:scipro_website/view/admin_panel/video_management/setting_dialogbox.dart';
 import 'package:scipro_website/view/admin_panel/video_management/video_courses_list/view_courses_list.dart';
+import 'package:scipro_website/view/widgets/button_container_widget/button_container_widget.dart';
 
 import '../../fonts/google_poppins.dart';
-import '../../widgets/button container widget/button_container_widget.dart';
 import '../../widgets/responsive/responsive.dart';
 import 'video_courses_list/courses list settings/courses_list_settings.dart';
 

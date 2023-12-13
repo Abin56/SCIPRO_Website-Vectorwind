@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scipro_website/view/admin_panel/all_users_mngt/all_users/grid_allusers.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
-import 'package:scipro_website/view/widgets/button%20container%20widget/button_container_widget.dart';
+import 'package:scipro_website/view/widgets/button_container_widget/button_container_widget.dart';
 import 'package:scipro_website/view/widgets/responsive/responsive.dart';
 
 class AllUsersList extends StatelessWidget {
