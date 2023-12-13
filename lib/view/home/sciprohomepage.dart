@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:scipro_website/view/fonts/google_poppins.dart';
 import 'package:scipro_website/view/home/home%20appbar/appbar.dart';
-import 'package:scipro_website/view/home/home%20intro%20content/home_intro_content.dart';
 import 'package:scipro_website/view/widgets/responsive/responsive.dart';
 
 import '../../resources/assets_manager.dart';
 import '../colors/colors.dart';
+import '../fonts/google_poppins.dart';
 import 'footer/footer.dart';
 import 'home about us/about_us.dart';
+import 'home new intro/new_intro.dart';
 import 'industry oriented courses/industry_oriented_courses.dart';
 import 'scipro offers/scipro_offers.dart';
 import 'scipro top courses/top_courses.dart';
@@ -23,12 +23,12 @@ class SciproHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          backgroundColor: cBlack,
-          title: const Padding(
-            padding: EdgeInsets.all(15),
-            child: AppBarWidget(),
-          )),
+      appBar: AppBar(backgroundColor: cBlack,
+        title:const Padding(
+          padding: EdgeInsets.all(15),
+          child: AppBarWidget(),
+        )
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -114,3 +114,4 @@ List<Widget> AppBarList = [
     fontWeight: FontWeight.bold,
   ),
 ];
+

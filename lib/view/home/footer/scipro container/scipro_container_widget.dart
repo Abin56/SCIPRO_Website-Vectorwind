@@ -19,7 +19,13 @@ class SciproContainerWidget extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 20,top: 20),
-            child: PrimaryFontWidget(
+            child:ResponsiveWebSite.isTablet(context)? Container(alignment: Alignment.topLeft,
+              child: PrimaryFontWidget(
+                  text: "SCIPRO",
+                  fontSize: 18,
+                  fontweight: FontWeight.bold,
+                  color: Colors.red),
+            ):PrimaryFontWidget(
                 text: "SCIPRO",
                 fontSize: 18,
                 fontweight: FontWeight.bold,
@@ -54,7 +60,8 @@ class SciproContainerWidget extends StatelessWidget {
             padding: const EdgeInsets.only(top: 20,left: 20),
             child: Row(
              children: [
-               Expanded(child: SocialMediaContact()),
+             ResponsiveWebSite.isTablet(context)? Container(alignment: Alignment.center,
+              child: SocialMediaContact(),) :Expanded(child: SocialMediaContact()),
              ],
                      ),
           )

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/home/footer/company/companycontainerWidget.dart';
 import 'package:scipro_website/view/home/footer/contact%20us/contactus.dart';
-import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/widgets/responsive/responsive.dart';
 
 import 'copyright/copyrightwidget.dart';
@@ -14,61 +14,75 @@ class FooterContainerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        
-        child:  ResponsiveWebSite.isMobile(context)?   const SingleChildScrollView(
-          child: Column(children: [
-           SizedBox(width: double.infinity,
-             child: SciproContainerWidget()),
-             SizedBox(width: double.infinity,
-              child: CompanyContainerWidget()),
-          Padding(
-            padding: EdgeInsets.only(right: 20),
-            child: SizedBox(width: double.infinity,
-              child: ContactUsContainerWidget()),
-          ),
-            CopyRightContainerWidget()
-            
-           
-          ],),
-        ):
-           SingleChildScrollView(
-             child: Column(
-               children: [
-                 Container(color: cWhite,
-                   child:   Row(
+    return Container(
+      child: ResponsiveWebSite.isMobile(context)
+          ? SingleChildScrollView(
+              child: Column(
+                children: [
+                  Container(
+                    child: const Column(
+                      children: [
+                        SciproContainerWidget(),
+                        CompanyContainerWidget(),
+                        Padding(
+                          padding: EdgeInsets.only(right: 20),
+                          child: SizedBox(
+                              width: double.infinity,
+                              child: ContactUsContainerWidget()),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 20),
+                          child: CopyRightContainerWidget(),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            )
+          : ResponsiveWebSite.isTablet(context)
+              ? Column(children: [
+                  Expanded(
+                      child: Container(
+                          child: const Column(
                     children: [
-                       Expanded(
-                          child: SizedBox(
-                        height:ResponsiveWebSite.isTablet(context)? 750:500,
-                        child: const SciproContainerWidget(),
-                      )),
-                      Expanded(
-                          child: SizedBox(
-                        height: ResponsiveWebSite.isTablet(context)? 750:500,
-                       
-                         
-                          child: const CompanyContainerWidget(),
-                        
-                        
-                      )),
-                       Expanded(
-                          child:
-                              SizedBox(
-                                height:ResponsiveWebSite.isTablet(context)? 750:500,
-                                 child: const ContactUsContainerWidget()))
+                      SciproContainerWidget(),
+                      CompanyContainerWidget(),
+                      ContactUsContainerWidget()
                     ],
-                             ),
-                 ),
-                           const CopyRightContainerWidget()
-               ],
-             ),
-           ),
-          
-          
-        
-      ),
+                  ))),
+                  //
+                  //
+                  const CopyRightContainerWidget()
+                ])
+              : Column(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        color: cWhite,
+                        child: const Row(
+                          children: [
+                            Expanded(
+                                child: SizedBox(
+                              height: 600,
+                              child: SciproContainerWidget(),
+                            )),
+                            Expanded(
+                                child: SizedBox(
+                              height: 600,
+                              child: CompanyContainerWidget(),
+                            )),
+                            Expanded(
+                                child: SizedBox(
+                                    height: 600,
+                                    child: ContactUsContainerWidget()))
+                          ],
+                        ),
+                      ),
+                    ),
+                    const CopyRightContainerWidget()
+                  ],
+                ),
     );
   }
 }

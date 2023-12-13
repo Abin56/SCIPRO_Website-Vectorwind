@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
+import 'package:scipro_website/view/widgets/responsive/responsive.dart';
+// ignore: unused_import
 
 class TopCourses extends StatelessWidget {
   const TopCourses({super.key});
@@ -9,41 +11,40 @@ class TopCourses extends StatelessWidget {
   Widget build(BuildContext context) {
     // ignore: avoid_unnecessary_containers
     return Container(
-      height: 500,
+      height:ResponsiveWebSite.isMobile(context)?500:ResponsiveWebSite.isTablet(context)?500: 700,
       color: cWhite,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          GooglePoppinsWidgets(text: 'Our Top Courses', fontsize: 18),
-          GooglePoppinsWidgets(text: 'Learn Best Things', fontsize: 25),
+          GooglePoppinsWidgets(text: 'Our Top Course', fontsize: 18,fontWeight: FontWeight.bold,color: themeColorBlue,),
+          GooglePoppinsWidgets(text: 'Learn Best Things', fontsize: 25,fontWeight: FontWeight.bold,),
           Expanded(
-            child: SizedBox(
-              child: GridView.count(
-              crossAxisCount: 3,
-              children: List.generate(9, (index) {
-                return Container(height: 400,width: 400,
-                  
-                  decoration: BoxDecoration(borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(10),
-                                        topRight:
-                                            Radius.circular(10)),
-                    image: DecorationImage(fit: BoxFit.cover,image: AssetImage(topCourses[index],),
-                  ),),
-                 
-                  margin: const EdgeInsets.all(10),
-                  child: GooglePoppinsWidgets(
-                                      text: topCoursesText[index],
-                                      fontsize: 13,
-                                      color: cWhite,
-                                      textAlign: TextAlign.right,
-                                      fontWeight: FontWeight.w500,
-                                      
-                                    ),
-                );
-              },
-            ))
-            ),
+            child: GridView.count(
+              shrinkWrap: false,
+            crossAxisCount: 3,
+            children: List.generate(9, (index) {
+              return Container(width: 300,
+                
+                decoration: BoxDecoration(borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(10),
+                                      topRight:
+                                          Radius.circular(10)),
+                  image: DecorationImage(fit: BoxFit.cover,image: AssetImage(topCourses[index],),
+                ),),
+               
+                margin: const EdgeInsets.all(10),
+                child: GooglePoppinsWidgets(
+                                    text: topCoursesText[index],
+                                    fontsize: 13,
+                                    color: cWhite,
+                                    textAlign: TextAlign.right,
+                                    fontWeight: FontWeight.w500,
+                                    
+                                  ),
+              );
+            },
+                      )),
           )
         ],
       ),
@@ -54,7 +55,7 @@ class TopCourses extends StatelessWidget {
 List<String> topCourses = [
   'images/main2ancy.jpg',
   'images/main6akhilmon.jpg',
-  'images/main6akhilmon.jpg',
+  'images/main6gopika.jpg',
   'images/mainexam1.jpg',
   'images/main8sara.jpg',
   'images/mainembeded1.jpg',
@@ -74,54 +75,3 @@ List<String> topCoursesText = [
   'KPSC EXAMS',
   'UPSC EXAMS',
 ];
-// //  Column(
-// //                     children: [
-// //                       Container(
-// //                             decoration: BoxDecoration(
-// //                               color: cWhite,
-// //                               borderRadius: BorderRadius.circular(20),
-// //                             ),
-// //                             child: Column(
-// //                               children: [
-// //                                 SizedBox(
-// //                                   width: 250,
-// //                                   height: 250,
-// //                                   child: ClipRRect(
-// //                                     borderRadius: const BorderRadius.only(
-// //                                         topLeft: Radius.circular(10),
-// //                                         topRight:
-// //                                             Radius.circular(10)), // Image border
-// //                                     child: Column(
-// //                                       children: [
-// //                                         SizedBox.fromSize(
-// //                                           size:
-// //                                               const Size.fromRadius(48), // Image radius
-// //                                           child: Image.asset(topCourses[index],
-// //                                               fit: BoxFit.cover),
-// //                                         ),
-
-// //                                       ],
-// //                                     ),
-// //                                   ),
-// //                                 ),
-// //                                 // Padding(
-// //                                 //   padding: const EdgeInsets.only(top: 6),
-// //                                 //   child: Row(
-// //                                 //     mainAxisAlignment: MainAxisAlignment.start,
-// //                                 //     children: [
-// //                                 //       Expanded(
-// //                                 //           child: GooglePoppinsWidgets(
-// //                                 //         text: topCoursesText[index],
-// //                                 //         fontsize: 13,
-// //                                 //         color: cBlack,
-// //                                 //         textAlign: TextAlign.center,
-// //                                 //         fontWeight: FontWeight.w500,
-// //                                 //       ))
-// //                                 //     ],
-// //                                 //   ),
-// //                                 // )
-// //                               ],
-// //                             ),
-// //                           ),
-// //                     ],
-// //                    )

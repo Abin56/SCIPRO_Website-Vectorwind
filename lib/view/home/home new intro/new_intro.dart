@@ -134,6 +134,6 @@ class IntroHome extends StatelessWidget {
           ),
         )
       ],
-));
-}
+    ));
+  }
 }

@@ -19,18 +19,40 @@ class CopyRightContainerWidget extends StatelessWidget {
                 Expanded(flex: 2,
                   child: SizedBox(height: 50,child: Row(children: [
                 Expanded(
-                  child: copyrightContents[0]
+                  child: PrimaryFontWidget(
+                    text: "Copyright",
+                    fontSize: 9,
+                    fontweight: FontWeight.bold,
+                    color: cWhite,
+                    
+                  )
                 ),
                 Expanded(
-                  child:copyrightContents[1]
+              child:     Image.asset(
+                    "assets/images/cpright1.png",
+                    height: 25,
+                    width: 25,
+                  )
                 ),
                 
                    Expanded(
-                     child: copyrightContents[2]
+                     child:  PrimaryFontWidget(
+                      text:
+                          "All Rights Reserved | by Vectorwind-Tech Systems Pvt.Ltd ",
+                      fontSize: 8,
+                      fontweight: FontWeight.bold,
+                      color: cWhite,
+                                       ),
                    ),],),)),
                 Expanded(flex: 1,child: SizedBox(height: 50,child:Row(mainAxisAlignment: MainAxisAlignment.end,
                   children: [  Expanded(
-                    child: copyrightContents[3]
+                    child:  PrimaryFontWidget(
+                      text:
+                          "Developed by",
+                      fontSize: 9,
+                      fontweight: FontWeight.bold,
+                      color: cWhite,
+                    )
                   ),
                 ResponsiveWebSite.isMobile(context)?  Expanded
                 (
