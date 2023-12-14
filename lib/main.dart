@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
         '/privacy_policy': (context) => const PrivacyPolicy(),
       },
       home: const AdminPanelPage(),
+      // home: SciproHomePage(),
     );
   }
 }

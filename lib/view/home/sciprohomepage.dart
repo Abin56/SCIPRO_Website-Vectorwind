@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scipro_website/view/home/footer/copyright/copyrightwidget.dart';
 import 'package:scipro_website/view/home/home%20appbar/appbar.dart';
 import 'package:scipro_website/view/widgets/responsive/responsive.dart';
 
@@ -23,12 +24,13 @@ class SciproHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: cBlack,
-        title:const Padding(
-          padding: EdgeInsets.all(15),
-          child: AppBarWidget(),
-        )
-      ),
+      appBar: AppBar(
+          //toolbarHeight: 80,
+          backgroundColor: cBlack,
+          title: const Padding(
+            padding: EdgeInsets.all(15),
+            child: AppBarWidget(),
+          )),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -48,10 +50,14 @@ class SciproHomePage extends StatelessWidget {
                         child: IndustryOrientedCourses(),
                       ),
                       SizedBox(
-                        height: 900,
+                        height: 1500,
                         width: 700,
                         child: FooterContainerWidget(),
                       ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 0),
+                        child: CopyRightContainerWidget(),
+                      )
                     ],
                   )
                 : Column(
@@ -114,4 +120,3 @@ List<Widget> AppBarList = [
     fontWeight: FontWeight.bold,
   ),
 ];
-

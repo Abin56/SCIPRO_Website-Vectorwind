@@ -15,87 +15,105 @@ class AppBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: ResponsiveWebSite.isMobile(context)
-          ? Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(bottom: 40, left: 10, top: 20),
-                      child: SizedBox(
-                        child: Image.asset(
-                          'assets/images/scipro.png',
-                          height: 80,
-                          width: 80,
+          ? Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10, top: 10),
+                        child: SizedBox(
+                          child: Image.asset(
+                            'assets/images/scipro.png',
+                            height: 80,
+                            width: 80,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 10),
-                      child: Column(
-                        children: [
-                          SizedBox(
-                              height: 30,
-                              child: TextButton(
-                                onPressed: () {},
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    const Icon(Icons.login,
-                                        color: cWhite, size: 12.0),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 5),
-                                      child: GooglePoppinsWidgets(
-                                        text: 'LOGIN',
-                                        fontsize: 9,
-                                        color: cWhite,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              )),
-                          Row(
-                            children: [
-                              const Icon(
-                                Icons.phone, size: 10.0,
-                                //  color: Color.fromRGBO(255, 255, 255, 1),
-                                color: cWhite,
-                              ),
-                              GooglePoppinsWidgets(
-                                text: '+919048900024',
-                                fontsize: 8,
-                                // color: cWhite,
-                                color: cWhite,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              const Icon(Icons.mail,
-                                  // color: Color.fromRGBO(255, 255, 255, 1),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                const Icon(
+                                  Icons.phone, size: 12.0,
+                                  //  color: Color.fromRGBO(255, 255, 255, 1),
                                   color: cWhite,
-                                  size: 10.0),
-                              GooglePoppinsWidgets(
-                                text: 'info@scipro.in',
-                                fontsize: 8,
-                                color: cWhite,
-                                fontWeight: FontWeight.bold,
-                              ),
+                                ),
+                                GooglePoppinsWidgets(
+                                  text: '+919048900024',
+                                  fontsize: 12,
+                                  // color: cWhite,
+                                  color: cWhite,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                const Icon(Icons.mail,
+                                    // color: Color.fromRGBO(255, 255, 255, 1),
+                                    color: cWhite,
+                                    size: 12.0),
+                                GooglePoppinsWidgets(
+                                  text: 'info@scipro.in',
+                                  fontsize: 12,
+                                  color: cWhite,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    //color: Colors.amber,
+                  
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Padding(
+                          padding:
+                              const EdgeInsets.only(right: 10, ),
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                  height: 10,
+                                  child: TextButton(
+                                    onPressed: () {},
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        const Icon(Icons.login,
+                                            color: cWhite, size: 15.0),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 5),
+                                          child: GooglePoppinsWidgets(
+                                            text: 'LOGIN',
+                                            fontsize: 12,
+                                            color: cWhite,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )),
                             ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ],
-                )
-              ],
+                  )
+                ],
+              ),
             )
           : Row(
               //mainAxisAlignment: MainAxisAlignment.spaceAround,

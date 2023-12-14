@@ -16,44 +16,33 @@ class FooterContainerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: ResponsiveWebSite.isMobile(context)
-          ? SingleChildScrollView(
-              child: Column(
-                children: [
-                  Container(
-                    child: const Column(
-                      children: [
-                        SciproContainerWidget(),
-                        CompanyContainerWidget(),
-                        Padding(
-                          padding: EdgeInsets.only(right: 20),
-                          child: SizedBox(
-                              width: double.infinity,
-                              child: ContactUsContainerWidget()),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 20),
-                          child: CopyRightContainerWidget(),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            )
+          ? Expanded(
+            child: Column(
+              children: [
+                SciproContainerWidget(),
+                CompanyContainerWidget(),
+                Padding(
+                  padding: EdgeInsets.only(right: 20),
+                  child: SizedBox(
+                      width: double.infinity,
+                      child: ContactUsContainerWidget()),
+                ),
+              ],
+            ),
+          )
           : ResponsiveWebSite.isTablet(context)
-              ? Column(children: [
+              ? const Column(children: [
                   Expanded(
-                      child: Container(
-                          child: const Column(
+                      child: Column(
                     children: [
                       SciproContainerWidget(),
                       CompanyContainerWidget(),
                       ContactUsContainerWidget()
                     ],
-                  ))),
+                  )),
                   //
                   //
-                  const CopyRightContainerWidget()
+                  CopyRightContainerWidget()
                 ])
               : Column(
                   children: [
@@ -86,5 +75,3 @@ class FooterContainerWidget extends StatelessWidget {
     );
   }
 }
-
-

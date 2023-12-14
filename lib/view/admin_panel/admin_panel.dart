@@ -54,7 +54,7 @@ List<Widget> pages = [
 
   ///.............. Recorded c Managementm
 
-  const StudyMaterialsManagementSection(),
+   StudyMaterialsManagementSection(),
   const StudyMaterialsPage(),
   Container(
     child: const Center(
@@ -62,8 +62,11 @@ List<Widget> pages = [
     ),
   ),
   Container(
-    child: const Center(
-      child: Text("data"),
+    child: GestureDetector(
+      onTap: () async {},
+      child: const Center(
+        child: Text("Notification"),
+      ),
     ),
   ),
 
