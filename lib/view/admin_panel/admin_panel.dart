@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:scipro_website/view/admin_panel/all_users_mngt/all_users/all_users_list.dart';
 import 'package:scipro_website/view/admin_panel/coupen_mngt/coupen_part_grid/listing_coupen_users.dart';
 import 'package:scipro_website/view/admin_panel/drawer_logo.dart';
 import 'package:scipro_website/view/admin_panel/studyMaterials_management/studyMaterials_screen.dart';
@@ -9,6 +8,8 @@ import 'package:scipro_website/view/admin_panel/video_management/video_managemen
 import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
+
+import '../notification/notification.dart';
 
 class AdminPanelPage extends StatefulWidget {
   const AdminPanelPage({super.key});
@@ -71,7 +72,8 @@ List<Widget> pages = [
   ),
 
   AllUsersForCoupenList(),
-  const AllUsersList(),
+  // const AllUsersList(),
+  NotificationManagement()
 ];
 
 class SideBarMenuItemsWidget extends StatelessWidget {
@@ -131,6 +133,7 @@ List<String> sideMenu = [
   'Set User Access',
   'All Users',
   'Coupon Management',
+  'Notification Management',
 ];
 List<IconData> sideMenuICons = [
   Icons.switch_video_outlined,
@@ -140,6 +143,7 @@ List<IconData> sideMenuICons = [
   Icons.key,
   Icons.group,
   Icons.confirmation_num,
+  Icons.notification_add,
   // Icons.confirmation_number_outlined,
   // Icons.people,
   // Icons.attach_money_outlined,
