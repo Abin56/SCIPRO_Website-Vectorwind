@@ -69,7 +69,19 @@ class AppBarWidget extends StatelessWidget {
                             ),
                           ],
                         ),
-                      )
+
+                      ),
+                      Row(mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          const Icon(Icons.login,color: cWhite,size: 15,),
+                          GooglePoppinsWidgets(
+                            text: 'Login',
+                            fontsize: 12,
+                            color: cWhite,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                   SizedBox(

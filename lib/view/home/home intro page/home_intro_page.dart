@@ -23,6 +23,7 @@ class IntroHome extends StatelessWidget {
                         ))),
               child:  Column(children: [
             //  const AppBarWidget(),
+           
                Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 20,right: 20),

@@ -10,6 +10,7 @@ import 'package:scipro_website/view/fonts/google_poppins.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
 
 import '../notification_management/notification.dart';
+import 'all_users_mngt/all_users/all_users_list.dart';
 
 class AdminPanelPage extends StatefulWidget {
   const AdminPanelPage({super.key});
@@ -62,17 +63,10 @@ List<Widget> pages = [
       child: Text("data"),
     ),
   ),
-  Container(
-    child: GestureDetector(
-      onTap: () async {},
-      child: const Center(
-        child: Text("Notification"),
-      ),
-    ),
-  ),
+   AllUsersList(),
 
   AllUsersForCoupenList(),
-  // const AllUsersList(),
+   
   NotificationManagement()
 ];
 
