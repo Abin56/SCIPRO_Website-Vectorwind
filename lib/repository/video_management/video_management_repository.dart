@@ -29,7 +29,7 @@ class VideoManagementRepository {
 
   //fetch all category
 
-  Future<List<CategoryModel>> fetchAllCategory() async {
+     fetchAllCategory() async {
     try {
       final QuerySnapshot<Map<String, dynamic>> data =
           await _firestore.collection('recorded_course').get();

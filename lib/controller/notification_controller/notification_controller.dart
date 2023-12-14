@@ -1,13 +1,29 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:scipro_website/data/video_management/category_model.dart';
 import 'package:scipro_website/view/core/core.dart';
 
 class NotificationManagementController extends GetxController {
   List<String> allUserDeviceToken = [];
+  RxString selectedCat = ''.obs;
+  List<CategoryModel> categoryModel = [];
+
+  Future<List<CategoryModel>> fetchRecCategory() async {
+    final firebase =
+        await FirebaseFirestore.instance.collection('recorded_course').get();
+
+    for (var i = 0; i < firebase.docs.length; i++) {
+      final list =
+          firebase.docs.map((e) => CategoryModel.fromMap(e.data())).toList();
+      categoryModel.add(list[i]);
+    }
+    return categoryModel;
+  }
 
   Future sendNotificationAllStudents(String body, String title) async {
     fetchAllUsersDeviceToken().then((value) async {

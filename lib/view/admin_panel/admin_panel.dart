@@ -9,7 +9,7 @@ import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
 
-import '../notification/notification.dart';
+import '../notification_management/notification.dart';
 
 class AdminPanelPage extends StatefulWidget {
   const AdminPanelPage({super.key});

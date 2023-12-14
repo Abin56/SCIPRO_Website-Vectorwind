@@ -1,23 +1,24 @@
+import 'dart:developer';
+
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:scipro_website/controller/video_management/video_management_controller.dart';
+import 'package:scipro_website/controller/notification_controller/notification_controller.dart';
 import 'package:scipro_website/data/video_management/category_model.dart';
-import 'package:scipro_website/view/admin_panel/video_management/functions/create_category.dart';
-import 'package:scipro_website/view/admin_panel/video_management/video_courses_list/view_courses_list.dart';
+import 'package:scipro_website/view/notification_management/list_of_rec_courses.dart';
 import 'package:scipro_website/view/widgets/button_container_widget/button_container_widget.dart';
 
 import '../fonts/google_poppins.dart';
 import '../widgets/responsive/responsive.dart';
 
-
 // ignore: must_be_immutable
 class NotificationManagement extends StatelessWidget {
-  const NotificationManagement({
+  NotificationManagementController notificationManagementController =
+      Get.put(NotificationManagementController());
+  NotificationManagement({
     super.key,
   });
-  
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +41,9 @@ class NotificationManagement extends StatelessWidget {
                 top: 10,
               ),
               child: GestureDetector(
-                onTap: () {
-                  createvideoCategory(context);
+                onTap: () async {
+                  notificationManagementController.sendNotificationAllStudents(
+                      "body", '');
                 },
                 child: const ButtonContainerWidget(
                   text: 'Sent All Students',
@@ -65,21 +67,21 @@ class NotificationManagement extends StatelessWidget {
           child: Center(
             child: DropdownSearch<CategoryModel>(
               autoValidateMode: AutovalidateMode.always,
-              // asyncItems: (value) => videoController.fetchAllCategory(),
-              itemAsString: (value) => value.name,
+              asyncItems: (value) {
+                notificationManagementController.categoryModel.clear();
 
+                return notificationManagementController.fetchRecCategory();
+              },
+              itemAsString: (value) => value.name,
               onChanged: (value) async {
                 if (value != null) {
-                  // videoController.selectedCategory.value = value;
-
-                  await Get.find<VideoMangementController>().fetchAllCourse();
+                  notificationManagementController.selectedCat.value = value.id;
+                  log("message${value.id}");
                 }
               },
               dropdownDecoratorProps: DropDownDecoratorProps(
                   baseStyle: GoogleFonts.poppins(
                       fontSize: 13, color: Colors.black.withOpacity(0.7))),
-              // selectedItem: videoController.selectedCategory.value,
-              // items: listofState,
             ),
           )), //////////////////////////////////////////////////////////////////////3 DropDown Selected Category
 
@@ -98,7 +100,6 @@ class NotificationManagement extends StatelessWidget {
                   children: [
                     topVedioManagementBar[0],
                     topVedioManagementBar[1],
-                  
                   ],
                 ),
               ),
@@ -108,15 +109,19 @@ class NotificationManagement extends StatelessWidget {
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    
-                  ],
+                  children: [],
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 20),
-                child: RecordedCourses(),
-              )
+              Obx(() {
+                if (notificationManagementController.selectedCat.value == '') {
+                  return const SizedBox();
+                } else {
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: ListofRecCourses(),
+                  );
+                }
+              })
             ])
           : Column(children: [
               Container(
@@ -124,28 +129,30 @@ class NotificationManagement extends StatelessWidget {
                 width: double.infinity,
                 color: const Color.fromARGB(255, 247, 238, 243),
                 child: Row(
-                 
                   children: [
                     topVedioManagementBar[0],
-                   
-                   
                   ],
                 ),
               ),
-               Padding(
+              Padding(
                 padding: const EdgeInsets.only(top: 10, right: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                     topVedioManagementBar[1],
-                    
+                    topVedioManagementBar[1],
                   ],
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 10),
-                child: RecordedCourses(),
-              )
+              Obx(() {
+                if (notificationManagementController.selectedCat.value == '') {
+                  return const SizedBox();
+                } else {
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: ListofRecCourses(),
+                  );
+                }
+              })
             ]),
     );
   }
