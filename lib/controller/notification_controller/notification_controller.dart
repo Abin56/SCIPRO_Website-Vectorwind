@@ -18,7 +18,14 @@ import '../../view/widgets/back_container/back_container.dart';
 import '../../view/widgets/textform_field_Widget/textformfieldWidget.dart';
 
 class NotificationManagementController extends GetxController {
+  RxBool fecthingisLoading = false.obs;
+  RxBool sendingSubNotisLoading = false.obs;
   RxBool allStudentMessageisLoading = false.obs;
+  List<String> substudentsUIDList = [];
+  List<String> subActiveStudentList = [];
+  List<String> allUsersID = [];
+  List<String> resultUId = [];
+  List<String> sendActiveDeviceTokenID = [];
 
   List<String> allUserDeviceToken = [];
   RxString selectedCat = ''.obs;
@@ -35,10 +42,7 @@ class NotificationManagementController extends GetxController {
     }
     return categoryModel;
   }
-  Future sendMessageForSubStudents()async{
 
-  }
-  
   Future sendNotificationAllStudents(String body, String title) async {
     fetchAllUsersDeviceToken().then((value) async {
       await sendPushMessage(body, title);
@@ -94,7 +98,9 @@ class NotificationManagementController extends GetxController {
         }
       }
     }
-    showToast(msg: 'Message sent successfully' );
+    allUserDeviceToken.clear();
+
+    showToast(msg: 'Message sent successfully');
     allStudentMessageisLoading.value = false;
   }
 
@@ -152,17 +158,16 @@ class NotificationManagementController extends GetxController {
             ),
             actions: <Widget>[
               Obx(() {
-                if (allStudentMessageisLoading.value==true) {
+                if (allStudentMessageisLoading.value == true) {
                   return const LoadingLottieWidget(height: 50, width: 200);
-                  
-                }else{
-                  return
-                  GestureDetector(
+                } else {
+                  return GestureDetector(
                     onTap: () async {
                       if (formKey.currentState!.validate()) {
                         allStudentMessageisLoading.value = true;
                         await sendNotificationAllStudents(
-                            messagecontroller.text, titlecontroller.text).then((value) => showToast);
+                                messagecontroller.text, titlecontroller.text)
+                            .then((value) => showToast);
                       }
                       // await sendNotificationAllStudents(controller.text,"SCI PRO");
 
@@ -191,8 +196,7 @@ class NotificationManagementController extends GetxController {
     );
   }
 
- 
-  courseWiseSentingMessageAllstudents(BuildContext context) {
+  courseWiseSentingMessageAllstudents(BuildContext context, String courseID) {
     final formKey = GlobalKey<FormState>();
     final TextEditingController messagecontroller = TextEditingController();
     final TextEditingController titlecontroller = TextEditingController();
@@ -208,9 +212,32 @@ class NotificationManagementController extends GetxController {
               children: [
                 GooglePoppinsWidgets(
                     text: 'Message', fontsize: 13, fontWeight: FontWeight.w600),
-                const Padding(
-                  padding: EdgeInsets.only(top: 10),
-                  child: BackButtonContainerWidget(),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: GestureDetector(
+                      onTap: () {
+                        allUsersID.clear();
+                        substudentsUIDList.clear();
+                        subActiveStudentList.clear();
+                        resultUId.clear();
+                        allUserDeviceToken.clear();
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        height: 30,
+                        width: 80,
+                        decoration: const BoxDecoration(
+                          color: themeColorBlue,
+                        ),
+                        child: Center(
+                          child: GooglePoppinsWidgets(
+                              text: 'BACK',
+                              color: cWhite,
+                              fontsize: 12,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      )),
                 )
               ],
             ),
@@ -246,18 +273,17 @@ class NotificationManagementController extends GetxController {
             ),
             actions: <Widget>[
               Obx(() {
-                if (allStudentMessageisLoading.value==true) {
+                if (sendingSubNotisLoading.value == true) {
                   return const LoadingLottieWidget(height: 50, width: 200);
-                  
-                }else{
-                  return
-                  GestureDetector(
+                } else {
+                  return GestureDetector(
                     onTap: () async {
                       if (formKey.currentState!.validate()) {
-                        allStudentMessageisLoading.value = true;
-                        await sendNotificationAllStudents(
-                            messagecontroller.text, titlecontroller.text).then((value) => showToast);
+                        sendingSubNotisLoading.value = true;
+                        await sendingForSubStudents(
+                            titlecontroller.text, messagecontroller.text);
                       }
+
                       // await sendNotificationAllStudents(controller.text,"SCI PRO");
 
                       messagecontroller.clear();
@@ -283,5 +309,108 @@ class NotificationManagementController extends GetxController {
             ]);
       },
     );
+  }
+
+  Future<List<String>> fetchingSubStudents() async {
+    final data = await dataserver.collection('SubscribedStudents').get();
+    if (data.docs.isNotEmpty) {
+      for (var i = 0; i < data.docs.length; i++) {
+        substudentsUIDList.add(data.docs[i].data()['uid']);
+      }
+    } else {
+      showToast(msg: "Error");
+    }
+    log("List$substudentsUIDList");
+    return substudentsUIDList;
+  }
+
+  Future<List<String>> checkingUserPurchasesStudents(String courseid) async {
+    for (var i = 0; i < substudentsUIDList.length; i++) {
+      final data = await dataserver
+          .collection('SubscribedStudents')
+          .doc(substudentsUIDList[i])
+          .collection('PurchasedCourses')
+          .get();
+      for (var j = 0; j < data.docs.length; j++) {
+        if (courseid == data.docs[j].data()['courseid']) {
+          if (data.docs[j].data()['deactive'] == false) {
+            subActiveStudentList.add(data.docs[j]['uid']);
+          }
+        }
+      }
+    }
+    log("Ative $subActiveStudentList");
+    return subActiveStudentList;
+  }
+
+  Future<void> getAllUsersID() async {
+    final data = await dataserver.collection('UserDeviceToken').get();
+    for (var i = 0; i < data.docs.length; i++) {
+      allUsersID.add(data.docs[i].data()['uid']);
+    }
+    print("AllUsersID$allUsersID");
+  }
+
+  Future<void> attachingUID() async {
+    final result =
+        allUsersID.where((element) => subActiveStudentList.contains(element));
+
+    resultUId.addAll(result);
+    print(resultUId);
+  }
+
+  Future<void> getUserDeviceId() async {
+    for (var i = 0; i < resultUId.length; i++) {
+      final data = await dataserver
+          .collection('UserDeviceToken')
+          .doc(resultUId[i])
+          .get();
+
+      allUserDeviceToken.add(data.data()!['deviceToken']);
+    }
+    print(allUserDeviceToken);
+  }
+
+  Future<void> sendingForSubStudents(String title, String message) async {
+    for (var i = 0; i < allUserDeviceToken.length; i++) {
+      try {
+        final reponse = await http.post(
+          Uri.parse('https://fcm.googleapis.com/fcm/send'),
+          headers: <String, String>{
+            'Content-Type': 'application/json',
+            'Authorization':
+                'key=AAAArVH5gWk:APA91bGhwnnUDTQJpGd2G5saUhzKwvIG_lpottSeVS_EMwE_UY2RX79jrtYBILeUl2V_URZUUTGSrPStS4cku6iJ1drG85XeZ0b8mMbaqEGudkEnEhtcLowiF5nDT85-_czIRYYIMJW9'
+          },
+          body: jsonEncode(
+            <String, dynamic>{
+              'priority': 'high',
+              'data': <String, dynamic>{
+                'click_action': 'FLUTTER_NOTIFICATION_CLICK',
+                'status': 'done',
+                'body': message,
+                'title': title,
+              },
+              "notification": <String, dynamic>{
+                'title': title,
+                'body': message,
+                'android_channel_id': 'high_importance_channel'
+              },
+              'to': allUserDeviceToken[i],
+            },
+          ),
+        );
+        log("response --L>>  ${reponse.body}");
+      } catch (e) {
+        if (kDebugMode) {
+          log("error push Notification");
+        }
+      }
+    }
+    sendingSubNotisLoading.value = false;
+    allUsersID.clear();
+    substudentsUIDList.clear();
+    subActiveStudentList.clear();
+    resultUId.clear();
+    allUserDeviceToken.clear();
   }
 }

@@ -23,6 +23,7 @@ class NotificationManagement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     List<Widget> topVedioManagementBar = [
       ///////////////////
       //////
@@ -38,16 +39,12 @@ class NotificationManagement extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
             Padding(
-              padding: const EdgeInsets.only(
-                top: 10,right: 50
-              ),
+              padding: const EdgeInsets.only(top: 10, right: 50),
               child: GestureDetector(
                 onTap: () async {
-                     await notificationManagementController
-                        .sendMessageForAllStudents(context);
-
-                  // notificationManagementController.sendNotificationAllStudents(
-                  //     "body", '');
+                  notificationManagementController.allUserDeviceToken.clear();
+                  await notificationManagementController
+                      .sendMessageForAllStudents(context);
                 },
                 child: const ButtonContainerWidget(
                   text: 'Sent All Students',
@@ -58,13 +55,6 @@ class NotificationManagement extends StatelessWidget {
         ),
       ),
 
-//////////////////////////////////////////////////////////////////Create Vedio Recorded Courses
-      //////////////////////////////////
-      ///
-      ///
-      ///
-
-      ///
       SizedBox(
           height: 35,
           width: 250,
