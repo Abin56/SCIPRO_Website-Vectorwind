@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
@@ -15,15 +17,16 @@ class CompanyContainerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(mainAxisAlignment: MainAxisAlignment.start,
-    crossAxisAlignment: CrossAxisAlignment.center,
+   // crossAxisAlignment: CrossAxisAlignment.center,
     
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 20,left: 20),
-          child: SizedBox(width: 100,child: GooglePoppinsWidgets(text: 'Company', fontsize: 18,color: cred,fontWeight: FontWeight.bold,),),
+          child: ResponsiveWebSite.isTablet(context)?Container(alignment: Alignment.topLeft,child: GooglePoppinsWidgets(text: 'Company', fontsize: 18,color: cred,fontWeight: FontWeight.bold,),):
+          Container(alignment: Alignment.center,child: GooglePoppinsWidgets(text: 'Company', fontsize: 18,color: cred,fontWeight: FontWeight.bold,),)
         ),
          Container(child: Padding(
-           padding: ResponsiveWebSite.isDesktop(context)? const EdgeInsets.only(left: 150,top: 10):const EdgeInsets.only(left: 40,top: 10),
+           padding: ResponsiveWebSite.isDesktop(context)? const EdgeInsets.only(left: 150,top: 10):const EdgeInsets.only(left: 20,top: 10),
            child: Column(children: [
            
            
@@ -37,8 +40,8 @@ class CompanyContainerWidget extends StatelessWidget {
                          ),
                          Padding(
                            padding: const EdgeInsets.only(top: 10),
-                           child: CompanyRowWidget(text: 'Privacy and Policy', onTapFunction: () { Navigator.pushNamed(
-                                                  context, '/terms_condition'); },),
+                           child: CompanyRowWidget(text: 'Privacy Policy', onTapFunction: () { Navigator.pushNamed(
+                                                  context, '/privacy_policy'); },),
                          ),
                          Padding(
                            padding: const EdgeInsets.only(top: 10),

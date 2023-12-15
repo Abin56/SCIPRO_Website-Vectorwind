@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:scipro_website/view/admin_panel/all_users_mngt/all_users/all_users_list.dart';
 import 'package:scipro_website/view/admin_panel/coupen_mngt/coupen_part_grid/listing_coupen_users.dart';
 import 'package:scipro_website/view/admin_panel/drawer_logo.dart';
 import 'package:scipro_website/view/admin_panel/studyMaterials_management/studyMaterials_screen.dart';
+import 'package:scipro_website/view/admin_panel/study_materials/studymaterials_page.dart';
 import 'package:scipro_website/view/admin_panel/subscrib_std_mngt/Subscribed_std/subscribed_student.dart';
 import 'package:scipro_website/view/admin_panel/video_management/video_management.dart';
 import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
+
+import '../notification_management/notification.dart';
 
 class AdminPanelPage extends StatefulWidget {
   const AdminPanelPage({super.key});
@@ -32,7 +34,7 @@ class _AdminPanelPageState extends State<AdminPanelPage> {
           ],
         ),
         drawer: ListView(children: [
-          const WebApplicationLogoContainer(),
+          WebApplicationLogoContainer(),
           SideBarMenuItemsWidget(
             selectedIndex: selectedIndex,
             onTap: (index) {
@@ -53,19 +55,25 @@ List<Widget> pages = [
 
   ///.............. Recorded c Managementm
 
-  const StudyMaterialsManagementSection(),
+   StudyMaterialsManagementSection(),
+  const StudyMaterialsPage(),
   Container(
     child: const Center(
       child: Text("data"),
     ),
   ),
   Container(
-    child: const Center(
-      child: Text("data"),
+    child: GestureDetector(
+      onTap: () async {},
+      child: const Center(
+        child: Text("Notification"),
+      ),
     ),
   ),
-  const AllUsersList(),
-  AllUsersForCoupenList()
+
+  AllUsersForCoupenList(),
+  // const AllUsersList(),
+  NotificationManagement()
 ];
 
 class SideBarMenuItemsWidget extends StatelessWidget {
@@ -125,6 +133,7 @@ List<String> sideMenu = [
   'Set User Access',
   'All Users',
   'Coupon Management',
+  'Notification Management',
 ];
 List<IconData> sideMenuICons = [
   Icons.switch_video_outlined,
@@ -134,6 +143,7 @@ List<IconData> sideMenuICons = [
   Icons.key,
   Icons.group,
   Icons.confirmation_num,
+  Icons.notification_add,
   // Icons.confirmation_number_outlined,
   // Icons.people,
   // Icons.attach_money_outlined,

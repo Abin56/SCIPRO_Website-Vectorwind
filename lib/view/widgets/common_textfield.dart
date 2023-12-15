@@ -4,14 +4,19 @@ import 'package:flutter/material.dart';
 
 class CommonTextField extends StatelessWidget {
   CommonTextField(
-      {super.key, required this.hintText, required this.borderRadius});
+      {super.key,
+      required this.hintText,
+      required this.borderRadius,
+      required this.textController});
 
   String hintText;
   double borderRadius;
+  TextEditingController textController;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: textController,
       //focusNode: _focusNode,
       decoration: InputDecoration(
         labelText: hintText,

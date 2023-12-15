@@ -16,7 +16,17 @@ class ContactUsContainerWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       //crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-         Padding(
+        ResponsiveWebSite.isTablet(context)?Container(alignment: Alignment.topLeft,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20,top: 15),
+            child: PrimaryFontWidget(
+                   text: "Contact Us",
+                   fontSize: 18,
+                   fontweight: FontWeight.bold,
+                   color: cred),
+          ),
+        ):
+        Padding(
            padding: const EdgeInsets.only(left: 20,top: 15),
            child: PrimaryFontWidget(
                text: "Contact Us",
@@ -24,6 +34,7 @@ class ContactUsContainerWidget extends StatelessWidget {
                fontweight: FontWeight.bold,
                color: cred),
          ),
+        
         Padding(
           padding: const EdgeInsets.only(right: 20.0, left: 20,top: 20, ),
           child: Padding(
@@ -99,7 +110,7 @@ class ContactUsContainerWidget extends StatelessWidget {
                Padding(
                  padding: const EdgeInsets.only(left: 10),
                  child: PrimaryFontWidget(
-                     text: '+91 1234567890',
+                     text: '+91 9048900024',
                      fontSize: ResponsiveWebSite.isTablet(context)?12:14,
                      fontweight: FontWeight.w500,
                      color: cBlack),
@@ -125,7 +136,7 @@ class ContactUsContainerWidget extends StatelessWidget {
               Expanded(
                 child: PrimaryFontWidget(
                     text:
-                        'info@leptoncommunications.com,\nleptoncommunications@gmail.com',
+                        'info@scipro.in',
                     fontSize: ResponsiveWebSite.isTablet(context)?12:14,
                     fontweight: FontWeight.w500,
                     color: cBlack),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scipro_website/view/admin_panel/subscrib_std_mngt/Subscribed_std/sub_std_grid.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
-import 'package:scipro_website/view/widgets/button%20container%20widget/button_container_widget.dart';
+import 'package:scipro_website/view/widgets/button_container_widget/button_container_widget.dart';
 import 'package:scipro_website/view/widgets/responsive/responsive.dart';
 
 class SubscribedStd extends StatelessWidget {

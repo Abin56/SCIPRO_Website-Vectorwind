@@ -8,10 +8,10 @@ import 'package:scipro_website/view/constant/const.dart';
 import 'package:scipro_website/view/constant/constant.validate.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
 import 'package:scipro_website/view/widgets/back_container/back_container.dart';
-import 'package:scipro_website/view/widgets/button%20container%20widget/button_container_widget.dart';
+import 'package:scipro_website/view/widgets/button_container_widget/button_container_widget.dart';
 import 'package:scipro_website/view/widgets/custom_showDilog/custom_showdilog.dart';
 import 'package:scipro_website/view/widgets/responsive/responsive.dart';
-import 'package:scipro_website/view/widgets/textform%20feild%20Widget/textformfeildWidget.dart';
+import 'package:scipro_website/view/widgets/textform_field_Widget/textformfieldWidget.dart';
 
 import 'video list settings/video_list_settings.dart';
 

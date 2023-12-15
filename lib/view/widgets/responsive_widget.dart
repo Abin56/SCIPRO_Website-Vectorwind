@@ -38,17 +38,17 @@ class ResponsiveWidget extends StatelessWidget {
       if (constraints.maxWidth > 1335) {
         return largeScreen;
       } else if (constraints.maxWidth < 1335 && constraints.maxWidth >= 1220) {
-        return mediumScreen ?? largeScreen;
+        return mediumScreen;
       } else if (constraints.maxWidth < 1220 && constraints.maxWidth >= 1080) {
-        return smallScreen ?? largeScreen;
+        return smallScreen;
       } else if (constraints.maxWidth <= 1080 && constraints.maxWidth >= 935) {
-        return verySmallScreen ?? largeScreen;
+        return verySmallScreen;
       } else if (constraints.maxWidth < 935 && constraints.maxWidth >= 744) {
-        return tabScreen ?? largeScreen;
+        return tabScreen;
       } else if (constraints.maxWidth < 744 && constraints.maxWidth > 682) {
-        return mobileScreen ?? largeScreen;
+        return mobileScreen;
       } else {
-        return mScreen ?? largeScreen;
+        return mScreen;
       }
     });
   }

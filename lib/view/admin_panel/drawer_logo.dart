@@ -5,7 +5,7 @@ import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
 
 class WebApplicationLogoContainer extends StatelessWidget {
-  const WebApplicationLogoContainer({
+  WebApplicationLogoContainer({
     super.key,
   });
 
