@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 
 const sw50 = SizedBox(
   width: 50,
@@ -165,4 +166,9 @@ String timestampToDate(int timestamp) {
 String _twoDigits(int n) {
   if (n >= 10) return "$n";
   return "0$n";
+}
+
+dateConveter(DateTime date) {
+  String formattedDate = DateFormat('dd-MM-yyyy').format(date);
+  return formattedDate;
 }

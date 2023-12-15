@@ -14,6 +14,7 @@ import '../widgets/responsive/responsive.dart';
 
 // ignore: must_be_immutable
 class NotificationManagement extends StatelessWidget {
+  final formKey = GlobalKey<FormState>();
   NotificationManagementController notificationManagementController =
       Get.put(NotificationManagementController());
   NotificationManagement({
@@ -38,12 +39,15 @@ class NotificationManagement extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(
-                top: 10,
+                top: 10,right: 50
               ),
               child: GestureDetector(
                 onTap: () async {
-                  notificationManagementController.sendNotificationAllStudents(
-                      "body", '');
+                     await notificationManagementController
+                        .sendMessageForAllStudents(context);
+
+                  // notificationManagementController.sendNotificationAllStudents(
+                  //     "body", '');
                 },
                 child: const ButtonContainerWidget(
                   text: 'Sent All Students',

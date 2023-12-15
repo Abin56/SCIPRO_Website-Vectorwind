@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:scipro_website/controller/notification_controller/notification_controller.dart';
 import 'package:scipro_website/data/video_management/course_model.dart';
+import 'package:scipro_website/view/constant/constant.validate.dart';
 
 import '../widgets/grid_table_container/grid_table_container.dart';
 
@@ -32,27 +33,36 @@ class ListofRecCourses extends StatelessWidget {
                     itemBuilder: (BuildContext context, int index) {
                       final data =
                           CourseModel.fromMap(snap.data!.docs[index].data());
-                      return SizedBox(
-                          height: 80,
-                          child: Row(
-                            children: [
-                              DataContainerWidget(
-                                index: index,
-                                width: 100,
-                                headerTitle: '${index + 1}',
-                              ),
-                              DataContainerWidget(
-                                index: index,
-                                width: 500,
-                                headerTitle: data.courseName,
-                              ),
-                              DataContainerWidget(
-                                index: index,
-                                width: 150,
-                                headerTitle: data.createdDate.toString(),
-                              ),
-                            ],
-                          ));
+                      return GestureDetector(
+                        onTap: ()async {
+                   await ncontroller
+                        .courseWiseSentingMessageAllstudents(context);
+
+                  
+                        },
+                        child: SizedBox(
+                            height: 80,
+                            child: Row(
+                              children: [
+                                DataContainerWidget(
+                                  index: index,
+                                  width: 100,
+                                  headerTitle: '${index + 1}',
+                                ),
+                                DataContainerWidget(
+                                  index: index,
+                                  width: 500,
+                                  headerTitle: data.courseName,
+                                ),
+                                DataContainerWidget(
+                                  index: index,
+                                  width: 300,
+                                  headerTitle:
+                                      timestampToDate(data.createdDate),
+                                ),
+                              ],
+                            )),
+                      );
                     },
                     separatorBuilder: (BuildContext context, int index) {
                       return const SizedBox();
@@ -66,3 +76,6 @@ class ListofRecCourses extends StatelessWidget {
             }));
   }
 }
+
+
+

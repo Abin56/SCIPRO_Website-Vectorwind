@@ -65,6 +65,7 @@ class TextFormFiledContainerWidget extends StatelessWidget {
                   ),
                 ),
                 contentPadding: const EdgeInsets.all(8.0),
+                hintMaxLines: 10,
                 enabledBorder: const OutlineInputBorder(
                     borderSide: BorderSide(width: 0.4)),
                 hintStyle: const TextStyle(fontSize: 13),
