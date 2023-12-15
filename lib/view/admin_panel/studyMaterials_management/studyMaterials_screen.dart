@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:scipro_website/controller/notification_controller/notification_controller.dart';
+import 'package:scipro_website/controller/study_material_controller.dart/study_material_controller.dart';
+import 'package:scipro_website/data/video_management/category_model.dart';
 import 'package:scipro_website/view/admin_panel/studyMaterials_management/pdf_folder/all_pdf_list.dart';
-import 'package:scipro_website/view/admin_panel/studyMaterials_management/pdf_folder/create_folder_pdf.dart';
 import 'package:scipro_website/view/colors/colors.dart';
-import 'package:scipro_website/view/widgets/button_container_widget/button_container_widget.dart';
+import 'package:scipro_website/view/constant/const.dart';
 
 import '../../fonts/google_poppins.dart';
 import '../../widgets/responsive/responsive.dart';
@@ -15,6 +16,8 @@ import '../../widgets/responsive/responsive.dart';
 class StudyMaterialsManagementSection extends StatelessWidget {
   NotificationManagementController notificationManagementController =
       Get.put(NotificationManagementController());
+  StudyMaterialController studyMaterialController =
+      Get.put(StudyMaterialController());
   StudyMaterialsManagementSection({
     super.key,
   });
@@ -51,12 +54,20 @@ class StudyMaterialsManagementSection extends StatelessWidget {
           height: 35,
           width: 250,
           child: Center(
-            child: DropdownSearch(
+            child: DropdownSearch<CategoryModel>(
               autoValidateMode: AutovalidateMode.always,
+              asyncItems: (text) => studyMaterialController.fetchAllCategory(),
+              itemAsString: (item) => item.name,
+              selectedItem: studyMaterialController.selectedCategory.value,
+              onChanged: (value) async {
+                if (value != null) {
+                  studyMaterialController.selectedCategory.value = value;
+                  await studyMaterialController.fetchAllCourse();
+                }
+              },
               dropdownDecoratorProps: DropDownDecoratorProps(
                   baseStyle: GoogleFonts.poppins(
                       fontSize: 13, color: Colors.black.withOpacity(0.7))),
-              selectedItem: 'Select Course',
             ),
           )), //////////////////////////////////////////2
       SizedBox(
@@ -64,63 +75,77 @@ class StudyMaterialsManagementSection extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            GestureDetector(
-              onTap: () async {
-                await createFolderForStdMaterials(context);
-              },
-              child: const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: ButtonContainerWidget(text: 'Create Folder'),
-              ),
-            ),
+            // GestureDetector(
+            //   onTap: () async {
+            //     await createFolderForStdMaterials(context);
+            //   },
+            //   child: const Padding(
+            //     padding: EdgeInsets.all(8.0),
+            //     child: ButtonContainerWidget(text: 'Create Folder'),
+            //   ),
+            // ),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: SizedBox(
-                  child: ListView.separated(
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () {
-                            showStudyMaterialsList(context);
-                          },
-                          child: Container(
-                            height: 40,
-                            width: 100,
-                            color: index % 2 == 0
-                                ? Colors.white
-                                : const Color.fromARGB(255, 219, 235, 247),
-                            child: Row(
-                              children: [
-                                Container(
-                                  height: double.infinity,
-                                  color: cWhite,
-                                  width: 60,
-                                  child: Center(
-                                      child: Text(
-                                    '${index + 1}',
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 14),
-                                  )),
-                                ),
-                                const Padding(
-                                  padding: EdgeInsets.only(left: 20),
-                                  child: Text(
-                                    "Category Folders",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 15),
+                  child: Obx(
+                    () => studyMaterialController.isLoading.value
+                        ? circularPIndicator
+                        : ListView.separated(
+                            itemBuilder: (context, index) {
+                              return GestureDetector(
+                                onTap: () async {
+                                  studyMaterialController.selectedCourse =
+                                      studyMaterialController
+                                          .fetchedCourse[index];
+                                  await studyMaterialController
+                                      .fetchAllFolders()
+                                      .then((_) =>
+                                          showStudyMaterialsList(context));
+                                },
+                                child: Container(
+                                  height: 40,
+                                  width: 100,
+                                  color: index % 2 == 0
+                                      ? Colors.white
+                                      : const Color.fromARGB(
+                                          255, 219, 235, 247),
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        height: double.infinity,
+                                        color: cWhite,
+                                        width: 60,
+                                        child: Center(
+                                            child: Text(
+                                          '${studyMaterialController.fetchedCourse[index].position}',
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 14),
+                                        )),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 20),
+                                        child: Text(
+                                          studyMaterialController
+                                              .fetchedCourse[index].courseName,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 15),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                      separatorBuilder: (context, index) {
-                        return const Divider();
-                      },
-                      itemCount: 30),
+                              );
+                            },
+                            separatorBuilder: (context, index) {
+                              return const Divider();
+                            },
+                            itemCount:
+                                studyMaterialController.fetchedCourse.length),
+                  ),
                 ),
               ),
             ), /////////////////////////////////////////////////3
@@ -143,10 +168,10 @@ class StudyMaterialsManagementSection extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    studymaterialsWidgets[1],
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    // studymaterialsWidgets[1],
+                    // const SizedBox(
+                    //   height: 10,
+                    // ),
                     studymaterialsWidgets[2],
                     const SizedBox(
                       height: 10,
@@ -169,26 +194,27 @@ class StudyMaterialsManagementSection extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    IconButton(
-                        onPressed: () async {
-                          await notificationManagementController
-                              .sendNotificationAllStudents("body", "title");
-                        },
-                        icon: const Icon(Icons.ac_unit_sharp)),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(left: 10),
-                    //   child: studymaterialsWidgets[0],
-                    // ),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(top: 10),
-                    //   child: Row(
-                    //     children: [
-                    //       studymaterialsWidgets[1],
-                    //       const Spacer(),
-                    //       studymaterialsWidgets[2],
-                    //     ],
-                    //   ),
-                    // ),
+                    // IconButton(
+                    //     onPressed: () async {
+                    //       await notificationManagementController
+                    //           .sendNotificationAllStudents("body", "title");
+                    //     },
+                    //     icon: const Icon(Icons.ac_unit_sharp)),/////////////
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: studymaterialsWidgets[0],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          // studymaterialsWidgets[1],
+                          // const Spacer(),
+                          studymaterialsWidgets[2],
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),

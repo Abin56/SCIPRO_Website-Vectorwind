@@ -5,6 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:scipro_website/data/video_management/category_model.dart';
 import 'package:scipro_website/data/video_management/course_model.dart';
 import 'package:scipro_website/data/video_management/folder_model.dart';
+import 'package:scipro_website/data/video_management/study_material_model.dart';
 import 'package:scipro_website/data/video_management/video_model.dart';
 import 'package:scipro_website/view/constant/const.dart';
 
@@ -29,7 +30,7 @@ class VideoManagementRepository {
 
   //fetch all category
 
-     fetchAllCategory() async {
+  fetchAllCategory() async {
     try {
       final QuerySnapshot<Map<String, dynamic>> data =
           await _firestore.collection('recorded_course').get();
@@ -134,6 +135,30 @@ class VideoManagementRepository {
     }
   }
 
+  Future<List<StudyMaterial>> fetchAllStudyMaterials(
+      {required String categoryId,
+      required String courseId,
+      required String folderId}) async {
+    try {
+      final data = await _firestore
+          .collection('recorded_course')
+          .doc(categoryId)
+          .collection('course')
+          .doc(courseId)
+          .collection('folders')
+          .doc(folderId)
+          .collection('studyMaterial')
+          .get();
+
+      final mappedData =
+          data.docs.map((e) => StudyMaterial.fromMap(e.data())).toList();
+      return mappedData;
+    } on FirebaseException catch (e) {
+      log(e.toString());
+      return [];
+    }
+  }
+
   Future<void> uploadVideoToFirebase({required VideoModel videoModel}) async {
     try {
       await _firestore
@@ -153,6 +178,26 @@ class VideoManagementRepository {
     }
   }
 
+  Future<void> uploadStudyMaterialToFirebase(
+      {required StudyMaterial studyMaterial}) async {
+    try {
+      await _firestore
+          .collection('recorded_course')
+          .doc(studyMaterial.categoryId)
+          .collection('course')
+          .doc(studyMaterial.courseId)
+          .collection('folders')
+          .doc(studyMaterial.folderId)
+          .collection('studyMaterial')
+          .doc(studyMaterial.id)
+          .set(studyMaterial.toMap());
+      showToast(msg: 'Successfully created');
+    } on FirebaseException catch (e) {
+      showToast(msg: 'Something went wrong');
+      log(e.toString());
+    }
+  }
+
   Future<void> updateVideo({required VideoModel videoModel}) async {
     try {
       await _firestore
@@ -165,6 +210,26 @@ class VideoManagementRepository {
           .collection('videos')
           .doc(videoModel.id)
           .update(videoModel.toMap());
+      showToast(msg: 'Successfully Updated');
+    } on FirebaseException catch (e) {
+      showToast(msg: 'Something went wrong');
+      log(e.toString());
+    }
+  }
+
+  Future<void> updateStudyMaterial(
+      {required StudyMaterial studyMaterial}) async {
+    try {
+      await _firestore
+          .collection('recorded_course')
+          .doc(studyMaterial.categoryId)
+          .collection('course')
+          .doc(studyMaterial.courseId)
+          .collection('folders')
+          .doc(studyMaterial.folderId)
+          .collection('studyMaterial')
+          .doc(studyMaterial.id)
+          .update(studyMaterial.toMap());
       showToast(msg: 'Successfully Updated');
     } on FirebaseException catch (e) {
       showToast(msg: 'Something went wrong');
@@ -232,7 +297,29 @@ class VideoManagementRepository {
 
       await _storage.refFromURL(videoModel.thumbnailUrl).delete();
       await _storage.refFromURL(videoModel.videoUrl).delete();
-      showToast(msg: 'Successfully Updated');
+      showToast(msg: 'Successfully Deleted');
+    } on FirebaseException catch (e) {
+      showToast(msg: 'Something went wrong');
+      log(e.toString());
+    }
+  }
+
+  Future<void> deleteStudyMaterial(
+      {required StudyMaterial studyMaterial}) async {
+    try {
+      await _firestore
+          .collection('recorded_course')
+          .doc(studyMaterial.categoryId)
+          .collection('course')
+          .doc(studyMaterial.courseId)
+          .collection('folders')
+          .doc(studyMaterial.folderId)
+          .collection('studyMaterial')
+          .doc(studyMaterial.id)
+          .delete();
+
+      await _storage.refFromURL(studyMaterial.pdfUrl).delete();
+      showToast(msg: 'Successfully Deleted');
     } on FirebaseException catch (e) {
       showToast(msg: 'Something went wrong');
       log(e.toString());

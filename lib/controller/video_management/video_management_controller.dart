@@ -57,11 +57,30 @@ class VideoMangementController {
     updateLoading(value: false);
   }
 
+  Future<void> createFolder(
+      {required String folderName, required String position}) async {
+    isLoadingFolder.value = true;
+    if (selectedCourse != null && selectedCategory.value.id.isNotEmpty) {
+      final folderModel = FolderModel(
+        id: uuid.v1(),
+        folderName: folderName,
+        categoryId: selectedCategory.value.id,
+        courseId: selectedCourse?.id ?? '',
+        position: position,
+      );
+      await _repository.createFolder(folderModel: folderModel);
+      await fetchAllFolders();
+    }
+
+    isLoadingFolder.value = false;
+  }
+
   Future<List<CategoryModel>> fetchAllCategory() async {
     final data = await _repository.fetchAllCategory();
     fetchedCategory.value = data;
+    fetchedCategory.sort((a, b) => a.position.compareTo(b.position));
     fetchedCategory.refresh();
-    return data;
+    return fetchedCategory;
   }
 
   Future<void> createCourse() async {
@@ -93,31 +112,14 @@ class VideoMangementController {
           categoryId: selectedCategory.value.id);
 
       fetchedCourse.value = data;
+      fetchedCourse.sort((a, b) => a.position.compareTo(b.position));
       fetchedCourse.refresh();
       updateLoading(value: false);
-      return data;
+      return fetchedCourse;
     }
 
     updateLoading(value: false);
     return [];
-  }
-
-  Future<void> createFolder(
-      {required String folderName, required String position}) async {
-    isLoadingFolder.value = true;
-    if (selectedCourse != null && selectedCategory.value.id.isNotEmpty) {
-      final folderModel = FolderModel(
-        id: uuid.v1(),
-        folderName: folderName,
-        categoryId: selectedCategory.value.id,
-        courseId: selectedCourse?.id ?? '',
-        position: position,
-      );
-      await _repository.createFolder(folderModel: folderModel);
-      await fetchAllFolders();
-    }
-
-    isLoadingFolder.value = false;
   }
 
   Future<List<FolderModel>> fetchAllFolders() async {
@@ -129,21 +131,32 @@ class VideoMangementController {
       );
       updateLoading(value: false);
       foldersList.value = data;
+      foldersList.sort((a, b) => a.position.compareTo(b.position));
       foldersList.refresh();
-      return data;
+      return foldersList;
     }
 
     updateLoading(value: false);
     return [];
   }
 
-  void clearControllers() {
-    courseNameTextController.clear();
-    faculteNameTextController.clear();
-    courseFeeTextController.clear();
-    durationTextController.clear();
-    selectedCategory.value =
-        CategoryModel(id: '', name: 'Select Category', position: 0);
+  Future<List<VideoModel>> fetchVideos() async {
+    updateLoading(value: true);
+    if (selectedCategory.value.id.isNotEmpty && selectedCourse != null) {
+      final data = await _repository.fetchAllVideos(
+          categoryId: selectedCategory.value.id,
+          courseId: selectedCourse?.id ?? '',
+          folderId: selectedFolder?.id ?? '');
+      updateLoading(value: false);
+      vidoesList.value = data;
+      vidoesList.sort((a, b) => a.position.compareTo(b.position));
+      vidoesList.refresh();
+      videoDataSource.refresh();
+      return vidoesList;
+    }
+
+    updateLoading(value: false);
+    return [];
   }
 
   Future<void> uploadVideoToFirebase({
@@ -183,24 +196,6 @@ class VideoMangementController {
     isVideoUploading.value = false;
   }
 
-  Future<List<VideoModel>> fetchVideos() async {
-    updateLoading(value: true);
-    if (selectedCategory.value.id.isNotEmpty && selectedCourse != null) {
-      final data = await _repository.fetchAllVideos(
-          categoryId: selectedCategory.value.id,
-          courseId: selectedCourse?.id ?? '',
-          folderId: selectedFolder?.id ?? '');
-      updateLoading(value: false);
-      vidoesList.value = data;
-      vidoesList.refresh();
-      videoDataSource.refresh();
-      return data;
-    }
-
-    updateLoading(value: false);
-    return [];
-  }
-
   Future<void> updateVideoFromFirebase({
     required VideoModel videoModel,
   }) async {
@@ -238,7 +233,7 @@ class VideoMangementController {
   }) async {
     isLoading.value = true;
 
-    if (selectedCourse != null && selectedCategory.value.id.isNotEmpty) {
+    if (selectedCategory.value.id.isNotEmpty) {
       await _repository.updateCourse(courseModel: courseModel);
     }
     await fetchAllCourse();
@@ -273,5 +268,14 @@ class VideoMangementController {
     await fetchVideos();
 
     isVideoUploading.value = false;
+  }
+
+  void clearControllers() {
+    courseNameTextController.clear();
+    faculteNameTextController.clear();
+    courseFeeTextController.clear();
+    durationTextController.clear();
+    selectedCategory.value =
+        CategoryModel(id: '', name: 'Select Category', position: 0);
   }
 }

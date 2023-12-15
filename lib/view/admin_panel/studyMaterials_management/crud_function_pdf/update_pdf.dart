@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:scipro_website/controller/study_material_controller.dart/study_material_controller.dart';
 import 'package:scipro_website/view/colors/colors.dart';
+import 'package:scipro_website/view/constant/const.dart';
 import 'package:scipro_website/view/constant/constant.validate.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
 import 'package:scipro_website/view/widgets/custom_showDilog/custom_showdilog.dart';
 import 'package:scipro_website/view/widgets/responsive/responsive.dart';
 
+import '../../../../utils/utils.dart';
 import '../../../widgets/textform_field_Widget/textformfieldWidget.dart';
 
 uploadPdfShowDilogue(BuildContext context) {
   TextEditingController pdfNamecontroller = TextEditingController();
   TextEditingController pdfPositioncontroller = TextEditingController();
+
 /////////////////////
 ////////
   ///pdf Upload Widget List
@@ -57,11 +62,17 @@ uploadPdfShowDilogue(BuildContext context) {
           color: themeColorBlue,
         ),
         child: Center(
-          child: GooglePoppinsWidgets(
-              text: 'Pick PDF',
-              color: cWhite,
-              fontsize: 12,
-              fontWeight: FontWeight.bold),
+          child: GestureDetector(
+            onTap: () async {
+              Get.find<StudyMaterialController>().studyMaterial.value =
+                  await pdfPicker();
+            },
+            child: GooglePoppinsWidgets(
+                text: 'Pick PDF',
+                color: cWhite,
+                fontsize: 12,
+                fontWeight: FontWeight.bold),
+          ),
         ),
       ),
     ), ////////////////////////////////////5///////////////////pickpfd
@@ -77,84 +88,89 @@ uploadPdfShowDilogue(BuildContext context) {
     )), ////////////////////////////////7//////enter pdf position Text/////////
     //////////////////////////
   ];
-   final GlobalKey<FormState> formKeyPdf = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKeyPdf = GlobalKey<FormState>();
   return customShowDilogBox(
       context: context,
       title: "Upload PDF",
       actiontext: "Upload PDF",
-      actiononTapfuction: () {
+      actiononTapfuction: () async {
         final key = formKeyPdf;
-        if (key.currentState!.validate()) {}
+        if (key.currentState!.validate()) {
+          await Get.find<StudyMaterialController>()
+              .uploadStudyMaterialToFirebase(
+                  name: pdfNamecontroller.text,
+                  position: pdfPositioncontroller.text);
+          pdfPositioncontroller.clear();
+          pdfNamecontroller.clear();
+        }
       },
       children: [
-        ResponsiveWebSite.isMobile(context)
-            ? SizedBox(
-                height: 400,
-                width: 600,
-                child: Form(
-                  key: formKeyPdf,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      uploadPdfWidgets[0],
-                      uploadPdfWidgets[1],
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: uploadPdfWidgets[2],
+        Obx(() => Get.find<StudyMaterialController>().isPdfUploading.value
+            ? circularPIndicator
+            : ResponsiveWebSite.isMobile(context)
+                ? SizedBox(
+                    height: 400,
+                    width: 600,
+                    child: Form(
+                      key: formKeyPdf,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 20),
+                            child: uploadPdfWidgets[2],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 20),
+                            child: uploadPdfWidgets[3],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 20),
+                            child: uploadPdfWidgets[4],
+                          ),
+                        ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: uploadPdfWidgets[3],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: uploadPdfWidgets[4],
-                      ),
-                    ],
-                  ),
-                ),
-              )
-            : SizedBox(
-                height: 400,
-                width: 600,
-                child: Form(
-                  key: formKeyPdf,
-                  child: Column(
-                    children: [
-                      uploadPdfWidgets[0],
-                      uploadPdfWidgets[1],
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20, right: 80),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 30),
-                              child: uploadPdfWidgets[5],
+                    ),
+                  )
+                : SizedBox(
+                    height: 400,
+                    width: 600,
+                    child: Form(
+                      key: formKeyPdf,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 20, right: 80),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 30),
+                                  child: uploadPdfWidgets[5],
+                                ),
+                                uploadPdfWidgets[2]
+                              ],
                             ),
-                            uploadPdfWidgets[2]
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20, right: 90),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 30),
-                              child: uploadPdfWidgets[6],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 20, right: 90),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 30),
+                                  child: uploadPdfWidgets[6],
+                                ),
+                                uploadPdfWidgets[3],
+                              ],
                             ),
-                            uploadPdfWidgets[3],
-                          ],
-                        ),
+                          ),
+                          uploadPdfWidgets[4],
+                        ],
                       ),
-                      uploadPdfWidgets[4],
-                    ],
-                  ),
-                ),
-              )
+                    ),
+                  ))
       ],
       doyouwantActionButton: true);
 }

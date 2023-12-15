@@ -38,6 +38,22 @@ Future<Uint8List?> videoPicker() async {
   return null;
 }
 
+Future<Uint8List?> pdfPicker() async {
+  FilePickerResult? result = await FilePicker.platform.pickFiles(
+    type: FileType.custom,
+    allowedExtensions: ['pdf'],
+  );
+
+  if (result != null) {
+    Uint8List? fileBytes = result.files.first.bytes;
+    return fileBytes;
+
+    // Upload file
+  }
+
+  return null;
+}
+
 Future<String> uploadUint8ListToFirestore(
   Uint8List data,
   String documentPath,
