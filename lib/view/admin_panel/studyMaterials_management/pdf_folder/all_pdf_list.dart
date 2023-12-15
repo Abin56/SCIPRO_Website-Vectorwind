@@ -30,10 +30,10 @@ showStudyMaterialsList(BuildContext context) {
             Padding(
               padding: const EdgeInsets.only(top: 10),
               child: ResponsiveWebSite.isMobile(context)
-                  ? Column(
+                  ? const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const BackButtonContainerWidget(),
+                        BackButtonContainerWidget(),
                         // const SizedBox(
                         //   height: 20,
                         // ),
@@ -46,9 +46,9 @@ showStudyMaterialsList(BuildContext context) {
                         // showpdfsWidgets[1], // pdf Upload
                       ],
                     )
-                  : Row(
+                  : const Row(
                       children: [
-                        const BackButtonContainerWidget(),
+                        BackButtonContainerWidget(),
                         // const Spacer(),
                         // showpdfsWidgets[0],
 
@@ -62,7 +62,7 @@ showStudyMaterialsList(BuildContext context) {
             )
           ],
         ),
-        content: SingleChildScrollView(
+        content: const SingleChildScrollView(
           child: ListBody(
             children: [
               ListOfPdfFirstDialogBox()
