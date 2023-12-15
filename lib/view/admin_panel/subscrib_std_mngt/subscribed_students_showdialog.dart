@@ -2,6 +2,10 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:scipro_website/controller/get_invoice_controller/get_invoice_controller.dart';
+import 'package:scipro_website/view/admin_panel/get%20invoice/get_invoice.dart';
+import 'package:scipro_website/view/widgets/button_container_widget/button_container_widget.dart';
 
 import '../../../controller/subscribed_students_controller/model/user_after_subscription_model.dart';
 import '../../colors/colors.dart';
@@ -11,6 +15,7 @@ import '../../widgets/custom_showDilog/custom_showdilog.dart';
 import '../../widgets/responsive/responsive.dart';
 
 subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
+  final GetInvoiceController getinvoicecontroller=Get.put(GetInvoiceController());
   return customShowDilogBox(
       context: context,
       title: 'Subscribed Students',
@@ -40,13 +45,17 @@ subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
                             ResponsiveWebSite.isMobile(context)
                                 ? Padding(
                                     padding: const EdgeInsets.only(
-                                        top: 10, ),
+                                      top: 10,
+                                    ),
                                     child: Column(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.only(left: 10),
+                                          padding:
+                                              const EdgeInsets.only(left: 10),
                                           child: Container(
                                             height: 30,
                                             width: 100,
@@ -54,7 +63,11 @@ subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
                                             child: Center(
                                                 child: GooglePoppinsWidgets(
                                               text: data.coursename,
-                                              fontsize:ResponsiveWebSite.isMobile(context)?12: 15,
+                                              fontsize:
+                                                  ResponsiveWebSite.isMobile(
+                                                          context)
+                                                      ? 12
+                                                      : 15,
                                               color: cWhite,
                                               textAlign: TextAlign.center,
                                               fontWeight: FontWeight.bold,
@@ -71,13 +84,27 @@ subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
                                               Expanded(
                                                   child: GooglePoppinsWidgets(
                                                 text: 'Expired Date:',
-                                                fontsize:   ResponsiveWebSite.isMobile(context)?12:14,
-                                                fontWeight:ResponsiveWebSite.isMobile(context)? FontWeight.normal:FontWeight.w600,
+                                                fontsize:
+                                                    ResponsiveWebSite.isMobile(
+                                                            context)
+                                                        ? 12
+                                                        : 14,
+                                                fontWeight:
+                                                    ResponsiveWebSite.isMobile(
+                                                            context)
+                                                        ? FontWeight.normal
+                                                        : FontWeight.w600,
                                               )),
                                               Expanded(
                                                   child: GooglePoppinsWidgets(
-                                                text: dateConveter(DateTime.parse(data.expirydate)),
-                                                fontsize: ResponsiveWebSite.isMobile(context)?12:14,
+                                                text: dateConveter(
+                                                    DateTime.parse(
+                                                        data.expirydate)),
+                                                fontsize:
+                                                    ResponsiveWebSite.isMobile(
+                                                            context)
+                                                        ? 12
+                                                        : 14,
                                               )),
                                             ],
                                           ),
@@ -99,12 +126,16 @@ subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
                                             color: themeColorBlue,
                                             child: Center(
                                                 child: GooglePoppinsWidgets(
-                                                                                        text: data.coursename,
-                                                                                        fontsize: ResponsiveWebSite.isMobile(context)?12:15,
-                                                                                        color: cWhite,
-                                                                                        textAlign: TextAlign.center,
-                                                                                        fontWeight: FontWeight.bold,
-                                                                                      )),
+                                              text: data.coursename,
+                                              fontsize:
+                                                  ResponsiveWebSite.isMobile(
+                                                          context)
+                                                      ? 12
+                                                      : 15,
+                                              color: cWhite,
+                                              textAlign: TextAlign.center,
+                                              fontWeight: FontWeight.bold,
+                                            )),
                                           ),
                                         ),
                                         const Spacer(),
@@ -112,8 +143,15 @@ subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
                                             child: GooglePoppinsWidgets(
                                           text:
                                               'Expired Date:${dateConveter(DateTime.parse(data.expirydate))}',
-                                          fontsize: ResponsiveWebSite.isMobile(context)?12:14,
-                                          fontWeight:ResponsiveWebSite.isMobile(context)?FontWeight.normal: FontWeight.w600,
+                                          fontsize: ResponsiveWebSite.isMobile(
+                                                  context)
+                                              ? 12
+                                              : 14,
+                                          fontWeight:
+                                              ResponsiveWebSite.isMobile(
+                                                      context)
+                                                  ? FontWeight.normal
+                                                  : FontWeight.w600,
                                         )),
                                       ],
                                     ),
@@ -121,41 +159,133 @@ subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
                             TextRowWidget(
                               data: data,
                               firstText: 'Join Date:',
-                              secondText: dateConveter(DateTime.parse(data.joindate)),
+                              secondText:
+                                  dateConveter(DateTime.parse(data.joindate)),
                             ),
                             TextRowWidget(
                               data: data,
                               firstText: 'Course Fee:',
                               secondText: data.coursefee.toString(),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(10),
-                              child: Row(
-                                children: [
-                                  GooglePoppinsWidgets(
-                                    text: 'Status',
-                                    fontsize: ResponsiveWebSite.isMobile(context)?12:14,
-                                    fontWeight:ResponsiveWebSite.isMobile(context)? FontWeight.normal:FontWeight.w600,
-                                  ),
-                                  const Spacer(),
-                                  Expanded(
-                                    child: Container(
-                                      height: 30,
-                                      width: 100,
-                                      color: data.deactive==false?cGreen:cred,
-                                      child: Center(
-                                          child: GooglePoppinsWidgets(
-                                        text: data.deactive==false?'Active':'Deactivated',
-                                        fontsize: ResponsiveWebSite.isMobile(context)?10:13,
-                                        color: cWhite,
-                                        textAlign: TextAlign.center,
-                                        fontWeight:ResponsiveWebSite.isMobile(context)?FontWeight.normal: FontWeight.bold,
-                                      )),
+                            ResponsiveWebSite.isMobile(context)
+                                ? Padding(
+                                    padding: const EdgeInsets.all(10),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            GooglePoppinsWidgets(
+                                              text: 'Status',
+                                              fontsize:
+                                                  ResponsiveWebSite.isMobile(
+                                                          context)
+                                                      ? 12
+                                                      : 14,
+                                              fontWeight:
+                                                  ResponsiveWebSite.isMobile(
+                                                          context)
+                                                      ? FontWeight.normal
+                                                      : FontWeight.w600,
+                                            ),
+                                            const Spacer(),
+                                            Expanded(
+                                              child: Padding(
+                                                  padding: const EdgeInsets.only(
+                                                left: 20),
+                                                child: Container(
+                                                  height: 30,
+                                                  width: 110,
+                                                  color: data.deactive == false
+                                                      ? cGreen
+                                                      : cred,
+                                                  child: Center(
+                                                      child:
+                                                          GooglePoppinsWidgets(
+                                                    text: data.deactive == false
+                                                        ? 'Active'
+                                                        : 'Deactivated',
+                                                    fontsize: ResponsiveWebSite
+                                                            .isMobile(context)
+                                                        ? 10
+                                                        : 12,
+                                                    color: cWhite,
+                                                    textAlign: TextAlign.center,
+                                                  )),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 10),
+                                          child: GestureDetector(
+                                              onTap: () {
+                                                generateInvoice();
+                                              },
+                                              child: const ButtonContainerWidget(
+                                                text: 'Get Invoice',
+                                              )),
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                : Padding(
+                                    padding: const EdgeInsets.all(10),
+                                    child: Row(
+                                      children: [
+                                        GooglePoppinsWidgets(
+                                          text: 'Status',
+                                          fontsize: ResponsiveWebSite.isMobile(
+                                                  context)
+                                              ? 12
+                                              : 14,
+                                          fontWeight:
+                                              ResponsiveWebSite.isMobile(
+                                                      context)
+                                                  ? FontWeight.normal
+                                                  : FontWeight.w600,
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                            const EdgeInsets.only(left: 20),
+                                            child: Container(
+                                              height: 30,
+                                              width: 110,
+                                              color: data.deactive == false
+                                                  ? cGreen
+                                                  : cred,
+                                              child: Center(
+                                                  child: GooglePoppinsWidgets(
+                                                text: data.deactive == false
+                                                    ? 'Active'
+                                                    : 'Deactivated',
+                                                fontsize:
+                                                    ResponsiveWebSite.isMobile(
+                                                            context)
+                                                        ? 10
+                                                        : 12,
+                                                color: cWhite,
+                                                textAlign: TextAlign.center,
+                                              )),
+                                            ),
+                                          ),
+                                        ),
+                                        const Spacer(),
+                                        GestureDetector(
+                                            onTap: () {
+                                              getinvoicecontroller.purchasedCourses.value=data.coursename;
+                                             getinvoicecontroller.amount.value= data.coursefee.toString();
+                                             getinvoicecontroller.date.value= data.joindate;
+
+                                              // generateInvoice();
+                                            },
+                                            child: const ButtonContainerWidget(
+                                                text: 'Get Invoice'))
+                                      ],
                                     ),
                                   ),
-                                ],
-                              ),
-                            ),
                           ],
                         ),
                       );
@@ -197,13 +327,15 @@ class TextRowWidget extends StatelessWidget {
           Expanded(
               child: GooglePoppinsWidgets(
             text: firstText,
-            fontsize: ResponsiveWebSite.isMobile(context)?12:14,
-            fontWeight: ResponsiveWebSite.isMobile(context)?FontWeight.normal:FontWeight.w600,
+            fontsize: ResponsiveWebSite.isMobile(context) ? 12 : 14,
+            fontWeight: ResponsiveWebSite.isMobile(context)
+                ? FontWeight.normal
+                : FontWeight.w600,
           )),
           Expanded(
               child: GooglePoppinsWidgets(
             text: secondText,
-            fontsize: ResponsiveWebSite.isMobile(context)?12:14,
+            fontsize: ResponsiveWebSite.isMobile(context) ? 12 : 14,
           )),
         ],
       ),

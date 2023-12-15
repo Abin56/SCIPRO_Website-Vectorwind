@@ -11,6 +11,7 @@ import 'package:sidebar_drawer/sidebar_drawer.dart';
 
 import '../notification_management/notification.dart';
 import 'all_users_mngt/all_users/all_users_list.dart';
+import 'set_user_acess/set_user_acess_list.dart';
 
 class AdminPanelPage extends StatefulWidget {
   const AdminPanelPage({super.key});
@@ -57,12 +58,8 @@ List<Widget> pages = [
   ///.............. Recorded c Managementm
 
    StudyMaterialsManagementSection(),
-  const StudyMaterialsPage(),
-  Container(
-    child: const Center(
-      child: Text("data"),
-    ),
-  ),
+ // const StudyMaterialsPage(),
+ SetUserAcess(),
    AllUsersList(),
 
   AllUsersForCoupenList(),
@@ -123,7 +120,7 @@ List<String> sideMenu = [
   'Recorded C Management',
   'Subscribed Students',
   'Study Materials',
-  'Get Invoice',
+  
   'Set User Access',
   'All Users',
   'Coupon Management',
@@ -134,7 +131,7 @@ List<IconData> sideMenuICons = [
   Icons.volunteer_activism,
   Icons.picture_as_pdf,
   Icons.receipt,
-  Icons.key,
+
   Icons.group,
   Icons.confirmation_num,
   Icons.notification_add,
