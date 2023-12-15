@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:scipro_website/view/admin_panel/studyMaterials_management/crud_function_pdf/pdf_editdelete.dart';
 import 'package:scipro_website/view/admin_panel/studyMaterials_management/crud_function_pdf/update_pdf.dart';
-import 'package:scipro_website/view/admin_panel/studyMaterials_management/pdf_folder/list_pdf.dart';
+import 'package:scipro_website/view/admin_panel/studyMaterials_management/pdf_folder/pdf_second_dialogbox/Grid_list_p.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
 import 'package:scipro_website/view/widgets/back_container/back_container.dart';
 import 'package:scipro_website/view/widgets/button_container_widget/button_container_widget.dart';
 import 'package:scipro_website/view/widgets/responsive/responsive.dart';
 
-showStudyMaterialsList(BuildContext context) {
-  List<Widget> showpdfsWidgets = [
+showingPdfList(BuildContext context) {
+  List<Widget> showWidgets = [
     GestureDetector(
         onTap: () => editdeletPdfList(context),
         child: const ButtonContainerWidget(text: "Settings")),
@@ -34,38 +34,41 @@ showStudyMaterialsList(BuildContext context) {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const BackButtonContainerWidget(),
-                        // const SizedBox(
-                        //   height: 20,
-                        // ),
-                        // showpdfsWidgets[0],
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        showWidgets[0],
 
-                        // ///  Setting
-                        // const SizedBox(
-                        //   height: 10,
-                        // ),
-                        // showpdfsWidgets[1], // pdf Upload
+                        ///  Setting
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        showWidgets[1], // pdf Upload
                       ],
                     )
                   : Row(
                       children: [
                         const BackButtonContainerWidget(),
-                        // const Spacer(),
-                        // showpdfsWidgets[0],
+                        const Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: showWidgets[0],
+                        ),
 
-                        // ///  Setting
-                        // const SizedBox(
-                        //   width: 10,
-                        // ),
-                        // showpdfsWidgets[1], // pdf Upload
+                        ///  Setting
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        showWidgets[1], // pdf Upload
                       ],
                     ),
             )
           ],
         ),
-        content: SingleChildScrollView(
+        content: const SingleChildScrollView(
           child: ListBody(
             children: [
-              ListOfPdfFirstDialogBox()
+              ListofPdfSecondDialogBox()
               // Container(
               //   height: 500,
               //   width: 600,

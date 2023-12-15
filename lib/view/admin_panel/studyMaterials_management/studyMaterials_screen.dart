@@ -64,15 +64,15 @@ class StudyMaterialsManagementSection extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            GestureDetector(
-              onTap: () async {
-                await createFolderForStdMaterials(context);
-              },
-              child: const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: ButtonContainerWidget(text: 'Create Folder'),
-              ),
-            ),
+            // GestureDetector(
+            //   onTap: () async {
+            //     await createFolderForStdMaterials(context);
+            //   },
+            //   child: const Padding(
+            //     padding: EdgeInsets.all(8.0),
+            //     child: ButtonContainerWidget(text: 'Create Folder'),
+            //   ),
+            // ),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(top: 20),
@@ -143,10 +143,10 @@ class StudyMaterialsManagementSection extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    studymaterialsWidgets[1],
-                    const SizedBox(
-                      height: 10,
-                    ),
+                   // studymaterialsWidgets[1],
+                    // const SizedBox(
+                    //   height: 10,
+                    // ),
                     studymaterialsWidgets[2],
                     const SizedBox(
                       height: 10,
@@ -169,26 +169,27 @@ class StudyMaterialsManagementSection extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    IconButton(
-                        onPressed: () async {
-                          await notificationManagementController
-                              .sendNotificationAllStudents("body", "title");
-                        },
-                        icon: const Icon(Icons.ac_unit_sharp)),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(left: 10),
-                    //   child: studymaterialsWidgets[0],
-                    // ),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(top: 10),
-                    //   child: Row(
-                    //     children: [
-                    //       studymaterialsWidgets[1],
-                    //       const Spacer(),
-                    //       studymaterialsWidgets[2],
-                    //     ],
-                    //   ),
-                    // ),
+                    // IconButton(
+                    //     onPressed: () async {
+                    //       await notificationManagementController
+                    //           .sendNotificationAllStudents("body", "title");
+                    //     },
+                    //     icon: const Icon(Icons.ac_unit_sharp)),/////////////
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: studymaterialsWidgets[0],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          // studymaterialsWidgets[1],
+                          // const Spacer(),
+                          studymaterialsWidgets[2],
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
