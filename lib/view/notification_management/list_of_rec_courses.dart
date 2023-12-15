@@ -18,7 +18,7 @@ class ListofRecCourses extends StatelessWidget {
         headerList: const [
           ListViewTableHeaderWidget(width: 100, headerTitle: 'NO'),
           ListViewTableHeaderWidget(
-              width: 500, headerTitle: 'COUPEN NAME NAME'),
+              width: 500, headerTitle: 'COURSES NAME'),
           ListViewTableHeaderWidget(width: 300, headerTitle: 'DATE'),
         ],
         listview: StreamBuilder(

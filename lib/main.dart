@@ -8,6 +8,7 @@ import 'package:scipro_website/view/home/footer/company/privacy%20policy/privacy
 
 import 'view/admin_panel/admin_panel.dart';
 import 'view/home/footer/company/terms and conditions/termsandconditions.dart';
+import 'view/home/sciprohomepage.dart';
 
 Future<void> main() async {
   html.document.title = 'SCI PRO';
@@ -31,8 +32,8 @@ class MyApp extends StatelessWidget {
         '/terms_condition': (context) => const TermsCondition(),
         '/privacy_policy': (context) => const PrivacyPolicy(),
       },
-     home: const AdminPanelPage(),
-      // home: SciproHomePage(),
+    // home: const AdminPanelPage(),
+       home: SciproHomePage(),
     );
   }
 }

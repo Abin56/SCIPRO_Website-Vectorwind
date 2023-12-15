@@ -98,7 +98,7 @@ class AppBarWidget extends StatelessWidget {
                               SizedBox(
                                   height: 10,
                                   child: TextButton(
-                                    onPressed: () {},
+                                    onPressed: () {loginshowDilogueBox(context);},
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
@@ -174,10 +174,7 @@ class AppBarWidget extends StatelessWidget {
                           height: 50,
                           child: TextButton(
                             onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(
-                                  builder: (BuildContext context) {
-                                return SignInPage();
-                              }));
+                            loginshowDilogueBox(context);
                             },
                             child: Row(
                               children: [

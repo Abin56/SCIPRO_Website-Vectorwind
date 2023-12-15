@@ -19,17 +19,14 @@ class FooterContainerWidget extends StatelessWidget {
           ? Column(
               children: [
                 Container(
-                  color: cGreen,
-                  height: 1000,
+                  
+                  height: 1500,
                   width: double.infinity,
                   child:  Column(
                     children: [
-                      Expanded(flex: 9,
-                        child: Container(color: cBlue,child: const SciproContainerWidget(),)),
-                      Expanded(flex: 1,
-                        child: Container(color: cGrey,)),
-                       Expanded(flex: 1,
-                        child: Container(color: cred,)),
+                      Container(child: const SciproContainerWidget(),),
+                      Container(),
+                       Container(),
                     ],
                   ),
                 )
