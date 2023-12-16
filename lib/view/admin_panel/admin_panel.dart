@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:scipro_website/view/admin_panel/coupen_mngt/coupen_part_grid/listing_coupen_users.dart';
 import 'package:scipro_website/view/admin_panel/drawer_logo.dart';
 import 'package:scipro_website/view/admin_panel/studyMaterials_management/studyMaterials_screen.dart';
-import 'package:scipro_website/view/admin_panel/study_materials/studymaterials_page.dart';
 import 'package:scipro_website/view/admin_panel/subscrib_std_mngt/Subscribed_std/subscribed_student.dart';
 import 'package:scipro_website/view/admin_panel/video_management/video_management.dart';
 import 'package:scipro_website/view/colors/colors.dart';

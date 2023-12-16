@@ -93,7 +93,7 @@ List<Widget> AppBarList = [
   SizedBox(
     height: 50,
     child: Image.asset(
-      images,
+      'images/scipro.png',
       height: 100,
       width: 100,
     ),
