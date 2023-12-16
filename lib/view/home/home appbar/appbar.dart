@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:scipro_website/view/colors/colors.dart';
-import 'package:scipro_website/view/sign_in/sign_in.dart';
 
 import '../../fonts/google_poppins.dart';
 import '../../widgets/responsive/responsive.dart';
