@@ -39,16 +39,16 @@ class AppBarWidget extends StatelessWidget {
                             Row(
                               children: [
                                 const Icon(
-                                  Icons.phone, size: 12.0,
+                                  Icons.phone, size: 10.0,
                                   //  color: Color.fromRGBO(255, 255, 255, 1),
                                   color: cWhite,
                                 ),
                                 GooglePoppinsWidgets(
                                   text: '+919048900024',
-                                  fontsize: 12,
+                                  fontsize: 10,
                                   // color: cWhite,
                                   color: cWhite,
-                                  fontWeight: FontWeight.bold,
+                                  // fontWeight: FontWeight.bold,
                                 ),
                               ],
                             ),
@@ -57,12 +57,12 @@ class AppBarWidget extends StatelessWidget {
                                 const Icon(Icons.mail,
                                     // color: Color.fromRGBO(255, 255, 255, 1),
                                     color: cWhite,
-                                    size: 12.0),
+                                    size: 10.0),
                                 GooglePoppinsWidgets(
                                   text: 'info@scipro.in',
-                                  fontsize: 12,
+                                  fontsize: 10,
                                   color: cWhite,
-                                  fontWeight: FontWeight.bold,
+                                  // fontWeight: FontWeight.bold,
                                 ),
                               ],
                             ),
@@ -72,12 +72,12 @@ class AppBarWidget extends StatelessWidget {
                       ),
                       Row(mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          const Icon(Icons.login,color: cWhite,size: 15,),
+                          const Icon(Icons.login,color: cWhite,size: 12,),
                           GooglePoppinsWidgets(
                             text: 'Login',
                             fontsize: 12,
                             color: cWhite,
-                            fontWeight: FontWeight.bold,
+                            // fontWeight: FontWeight.bold,
                           ),
                         ],
                       ),
