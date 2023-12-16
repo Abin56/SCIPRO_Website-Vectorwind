@@ -3,7 +3,6 @@ import 'package:scipro_website/view/home/footer/copyright/copyrightwidget.dart';
 import 'package:scipro_website/view/home/home%20appbar/appbar.dart';
 import 'package:scipro_website/view/widgets/responsive/responsive.dart';
 
-import '../../resources/assets_manager.dart';
 import '../colors/colors.dart';
 import '../fonts/google_poppins.dart';
 import 'footer/footer.dart';
@@ -94,7 +93,7 @@ List<Widget> AppBarList = [
   SizedBox(
     height: 50,
     child: Image.asset(
-      ImageAssets.scipro,
+      'images/scipro.png',
       height: 100,
       width: 100,
     ),
