@@ -37,76 +37,74 @@ class AllUsersList extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
             Obx(() {
-
               if (alluserController.excelisLoading.value == true) {
                 return const Center(
                   child: CircularProgressIndicator(),
                 );
               } else {
-                return
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        top: 10,
-                    
-                    
-                        
-                      ),
-                      child: GestureDetector(
-                        onTap: () async {
-                          alluserController.excelisLoading.value=true;
-                    
-                          exportDataToCSV().then((value) =>alluserController.excelisLoading.value=false);
-                        },
-                        child: const ButtonContainerWidget(
-                          text: ' Export To Excel',
-                        ),
-                      ),
-                    );
-                    
-                 
+                return Padding(
+                  padding: const EdgeInsets.only(
+                    top: 10,
+                  ),
+                  child: GestureDetector(
+                    onTap: () async {
+                      alluserController.excelisLoading.value = true;
+
+                      exportDataToCSV().then((value) =>
+                          alluserController.excelisLoading.value = false);
+                    },
+                    child: const ButtonContainerWidget(
+                      text: ' Export To Excel',
+                    ),
+                  ),
+                );
               }
             })
           ],
         ),
       ),
-      
-                                         Container(
-                                                decoration: BoxDecoration(border: Border.all(color: cGrey),borderRadius: BorderRadius.circular(2)),
-                          child:  Container(
-      decoration: const BoxDecoration(
-        color:themeColorBlue,
-        borderRadius: BorderRadius.horizontal() ,
-      ),
-      width: ResponsiveWebSite.isMobile(context)?150: 200,
-      height: 30,
-      child: GestureDetector(
-        onTap: ()async{
-        await  searchStudents(context);
-        },
-        child: Row(
-          children: [
-            const Padding(
-              padding: EdgeInsets.only(left: 10),
-              child: Icon(Icons.search,size: 14,color: cWhite,),
+
+      Container(
+        decoration: BoxDecoration(
+            border: Border.all(color: cGrey),
+            borderRadius: BorderRadius.circular(2)),
+        child: Container(
+            decoration: const BoxDecoration(
+              color: themeColorBlue,
+              borderRadius: BorderRadius.horizontal(),
             ),
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 8),
-                child: GooglePoppinsWidgets(
-                  textAlign: TextAlign.center,
-                  color: cWhite,
-                  fontWeight: FontWeight.w500,
-                  text: 'search',
-                  fontsize: 12,
-                
-                ),
+            width: ResponsiveWebSite.isMobile(context) ? 150 : 200,
+            height: 30,
+            child: GestureDetector(
+              onTap: () async {
+                await searchStudents(context);
+              },
+              child: Row(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(left: 10),
+                    child: Icon(
+                      Icons.search,
+                      size: 14,
+                      color: cWhite,
+                    ),
+                  ),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8),
+                      child: GooglePoppinsWidgets(
+                        textAlign: TextAlign.center,
+                        color: cWhite,
+                        fontWeight: FontWeight.w500,
+                        text: 'search',
+                        fontsize: 12,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
-        ),
-    )
-                                              ),
-                                            ),
+            )),
+      ),
     ];
     return Column(
       children: [
@@ -123,7 +121,9 @@ class AllUsersList extends StatelessWidget {
                       children: [
                         topVedioManagementBar[0],
                         Padding(
-                          padding: const EdgeInsets.only(top: 10,),
+                          padding: const EdgeInsets.only(
+                            top: 10,
+                          ),
                           child: topVedioManagementBar[1],
                         ),
                       ],
@@ -140,26 +140,24 @@ class AllUsersList extends StatelessWidget {
                   ),
                 ])
               : Column(children: [
-                Container(
+                  Container(
                     height: 130,
-                     
-                      color: const Color.fromARGB(255, 247, 238, 243),
-                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [  Container(
-                    
-                      child: Row(
-                        children: [
-                          topVedioManagementBar[0],
-                        ],
-                      ),
+                    color: const Color.fromARGB(255, 247, 238, 243),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            topVedioManagementBar[0],
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 40),
+                          child: topVedioManagementBar[1],
+                        ),
+                      ],
                     ),
-                     Padding(
-                       padding: const EdgeInsets.only(top: 40),
-                       child: topVedioManagementBar[1],
-                     ),
-                    ],),
-                )
-                
+                  )
                 ]),
         ),
         SingleChildScrollView(
@@ -176,6 +174,7 @@ class AllUsersList extends StatelessWidget {
             listview: StreamBuilder(
                 stream: FirebaseFirestore.instance
                     .collection('StudentProfileCollection')
+                    .orderBy('name', descending: false)
                     .snapshots(),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
@@ -207,7 +206,8 @@ class AllUsersList extends StatelessWidget {
                                   DataContainerWidget(
                                       index: index,
                                       width: 200,
-                                      headerTitle:dateConveter(DateTime.parse(data.joindate))),
+                                      headerTitle: dateConveter(
+                                          DateTime.parse(data.joindate))),
                                 ],
                               ));
                         },
@@ -227,7 +227,7 @@ class AllUsersList extends StatelessWidget {
     );
   }
 }
-Future<void>searchStudents(BuildContext context)async{
+
+Future<void> searchStudents(BuildContext context) async {
   await showSearch(context: context, delegate: AllUsersSearch());
-  
 }

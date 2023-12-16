@@ -50,10 +50,10 @@ class GetInvoiceController extends GetxController {
   Future<void> setInvoiceNumber() async {
     final data = dataserver.collection("Invoice_number").doc('number');
 
-    final update = data.update(
-        {'number': invoiceEnterController.text.trim()}).then((value) async {
+    await data
+        .update({"number": int.parse(invoiceEnterController.text.trim())}).then(
+            (value) async {
       showToast(msg: "InvoiceNumber Updated");
     });
-    return update;
   }
 }

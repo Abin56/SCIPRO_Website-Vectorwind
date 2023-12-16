@@ -223,7 +223,45 @@ subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
                                               const EdgeInsets.only(top: 10),
                                           child: GestureDetector(
                                               onTap: () {
-                                                generateInvoice();
+                                                getinvoicecontroller
+                                                    .calculateCgst(
+                                                        data.coursefee)
+                                                    .toString();
+                                                getinvoicecontroller
+                                                    .calculateGst(
+                                                        data.coursefee)
+                                                    .toString();
+                                                getinvoicecontroller
+                                                        .purchasedCourses
+                                                        .value =
+                                                    data.coursename; ////course name
+                                                getinvoicecontroller
+                                                        .studentName.value =
+                                                    data.studentname; //////student name
+
+                                                getinvoicecontroller
+                                                    .date.value = data.joindate;
+                                                getinvoicecontroller ///////join date
+                                                        .studentEmail
+                                                        .value =
+                                                    data.emailid; ////////email
+                                                getinvoicecontroller
+                                                        .invoiceNumber.value =
+                                                    data.invoicenumber
+                                                        .toString(); /////invoice num
+                                                getinvoicecontroller
+                                                        .totalPrice.value =
+                                                    data.coursefee
+                                                        .toString(); //////total price
+                                                getinvoicecontroller
+                                                        .totalPrice.value =
+                                                    data.coursefee
+                                                        .toString(); //////actual price
+                                                Future.delayed(const Duration(
+                                                        seconds: 2))
+                                                    .then((value) async {
+                                                  return generateInvoice();
+                                                });
                                               },
                                               child:
                                                   const ButtonContainerWidget(
@@ -299,7 +337,8 @@ subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
                                                   data.emailid; ////////email
                                               getinvoicecontroller
                                                       .invoiceNumber.value =
-                                                  '001'; /////invoice num
+                                                  data.invoicenumber
+                                                      .toString(); /////invoice num
                                               getinvoicecontroller
                                                       .totalPrice.value =
                                                   data.coursefee
@@ -310,7 +349,7 @@ subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
                                                       .toString(); //////actual price
 
                                               // getinvoicecontroller
-                                              //         .gstPrice.value 
+                                              //         .gstPrice.value
                                               //         =
                                               //     getinvoicecontroller
                                               //         .calculateGst(

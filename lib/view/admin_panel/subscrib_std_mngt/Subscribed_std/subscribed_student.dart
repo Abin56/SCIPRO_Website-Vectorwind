@@ -38,7 +38,8 @@ class SubscribedStd extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Padding(
                     padding: EdgeInsets.only(top: 15),
@@ -46,9 +47,10 @@ class SubscribedStd extends StatelessWidget {
                       text: "Search",
                     ),
                   ),
-                  GestureDetector(onTap: (){
-invoiceSettingsshowDialog(context);
-                  },
+                  GestureDetector(
+                    onTap: () {
+                      invoiceSettingsshowDialog(context);
+                    },
                     child: const Padding(
                       padding: EdgeInsets.only(top: 15),
                       child: ButtonContainerWidget(
@@ -56,7 +58,6 @@ invoiceSettingsshowDialog(context);
                       ),
                     ),
                   ),
-                  
                 ],
               )
             ],
@@ -75,6 +76,7 @@ invoiceSettingsshowDialog(context);
               listview: StreamBuilder(
                   stream: FirebaseFirestore.instance
                       .collection('SubscribedStudents')
+                      .orderBy('joindate', descending: true)
                       .snapshots(),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
@@ -84,7 +86,8 @@ invoiceSettingsshowDialog(context);
                                 snapshot.data!.docs[index].data());
                             return GestureDetector(
                               onTap: () {
-                                subscribedstudentdetaildialogbox(context, data.uid);
+                                subscribedstudentdetaildialogbox(
+                                    context, data.uid);
                               },
                               child: SizedBox(
                                   height: 80,
@@ -110,7 +113,8 @@ invoiceSettingsshowDialog(context);
                                       DataContainerWidget(
                                           index: index,
                                           width: 250,
-                                          headerTitle: dateConveter(DateTime.parse(data.joindate))),
+                                          headerTitle: dateConveter(
+                                              DateTime.parse(data.joindate))),
                                     ],
                                   )),
                             );
@@ -131,33 +135,51 @@ invoiceSettingsshowDialog(context);
   }
 }
 
-void invoiceSettingsshowDialog(BuildContext context){
-
-  final GetInvoiceController getinvoicenumbercontroller=Get.put(GetInvoiceController());
-  return customShowDilogBox(context: context, title: 'Invoice number', children: [
-    StreamBuilder(
-      stream: FirebaseFirestore.instance.collection('Invoice_number').snapshots(),
-      builder: (context,snapshot) {
-      if(snapshot.hasData){
-          return 
-        Row(mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            GooglePoppinsWidgets(text: snapshot.data!.docs[0].data()['number'].toString(), fontsize: 60,fontWeight: FontWeight.bold,),
-          ],
-        );
-
-      }else{
-       return const Center(child: Text('No data found'),);
-      }
-      }
-    ),
-    Padding(
-      padding: const EdgeInsets.only(top: 10),
-      child: TextFormFiledContainerWidget(hintText: 'Enter Invoice Number', title: 'Enter Invoice Number', width: 400,controller: getinvoicenumbercontroller.invoiceEnterController,),
-    )
-  ], doyouwantActionButton: true,actiontext: 'Set Number',actiononTapfuction: (){
-   getinvoicenumbercontroller.setInvoiceNumber().then((value) => Navigator.pop(context));
-    getinvoicenumbercontroller.invoiceEnterController.clear();
-  });
+void invoiceSettingsshowDialog(BuildContext context) {
+  final GetInvoiceController getinvoicenumbercontroller =
+      Get.put(GetInvoiceController());
+  customShowDilogBox(
+      context: context,
+      title: 'Invoice number',
+      children: [
+        StreamBuilder(
+            stream: FirebaseFirestore.instance
+                .collection('Invoice_number')
+                .snapshots(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GooglePoppinsWidgets(
+                      text: snapshot.data!.docs[0].data()['number'].toString(),
+                      fontsize: 60,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ],
+                );
+              } else {
+                return const Center(
+                  child: Text('No data found'),
+                );
+              }
+            }),
+        Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: TextFormFiledContainerWidget(
+            hintText: 'Enter Invoice Number',
+            title: 'Enter Invoice Number',
+            width: 400,
+            controller: getinvoicenumbercontroller.invoiceEnterController,
+          ),
+        )
+      ],
+      doyouwantActionButton: true,
+      actiontext: 'Set Number',
+      actiononTapfuction: () {
+        getinvoicenumbercontroller
+            .setInvoiceNumber()
+            .then((value) => Navigator.pop(context));
+        getinvoicenumbercontroller.invoiceEnterController.clear();
+      });
 }
-

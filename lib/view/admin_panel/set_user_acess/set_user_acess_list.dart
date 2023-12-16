@@ -22,6 +22,7 @@ class SetUserAcess extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    setUserAccessController.fetchcurrentInvoiceNumber();
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: GridTableContainer(
@@ -196,7 +197,11 @@ class SetUserAcess extends StatelessWidget {
               Obx(() => setUserAccessController.isLoading.value == true
                   ? GestureDetector(
                       onTap: () async {
-                        setUserAccessController.setUserAccess();
+                        await setUserAccessController
+                            .fetchcurrentInvoiceNumber()
+                            .then((value) async {
+                          setUserAccessController.setUserAccess();
+                        });
                       },
                       child: Container(
                         height: 40,

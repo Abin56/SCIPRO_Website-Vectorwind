@@ -132,12 +132,5 @@ List<IconData> sideMenuICons = [
   Icons.group,
   Icons.confirmation_num,
   Icons.notification_add,
-  // Icons.confirmation_number_outlined,
-  // Icons.people,
-  // Icons.attach_money_outlined,
-  // Icons.people,
-  // Icons.receipt_long,
-  // Icons.keyboard_alt_outlined,
-  // Icons.settings,
-  // Icons.gavel,
+
 ];

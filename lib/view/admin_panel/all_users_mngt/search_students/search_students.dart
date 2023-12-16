@@ -28,53 +28,56 @@ class AllUsersSearch extends SearchDelegate {
   Widget buildResults(BuildContext context) {
     return StreamBuilder(
         stream: FirebaseFirestore.instance
-            .collection('StudentProfileCollection').where(query)
+            .collection('StudentProfileCollection')
+            .where('name', isEqualTo: query)
             .snapshots(),
         builder: (context, snapshot) {
-          if(snapshot.hasData){
-             return ListView.separated(
-              itemBuilder: (BuildContext context, int index) {
-                final data = StudentProfileCreationModel.fromMap(
-                    snapshot.data!.docs[index].data());
-                return Padding(
-                  padding: const EdgeInsets.only(right: 10,left: 10,top: 10),
-                  child: Container(
-                  decoration: BoxDecoration(color: Colors.blue[50],
-                    border: Border.all(color: cGrey),borderRadius: BorderRadius.circular(4)),
-                    height: 50,
-                    child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 20),
-                            child: GooglePoppinsWidgets(
-                              fontsize: 15,
-                              text: data.name,
-                              
+          if (snapshot.hasData) {
+            return ListView.separated(
+                itemBuilder: (BuildContext context, int index) {
+                  final data = StudentProfileCreationModel.fromMap(
+                      snapshot.data!.docs[index].data());
+                  return Padding(
+                    padding:
+                        const EdgeInsets.only(right: 10, left: 10, top: 10),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.blue[50],
+                          border: Border.all(color: cGrey),
+                          borderRadius: BorderRadius.circular(4)),
+                      height: 50,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 20),
+                              child: GooglePoppinsWidgets(
+                                fontsize: 15,
+                                text: data.name,
+                              ),
                             ),
                           ),
-                        ),
-                        Expanded(
-                          child: GooglePoppinsWidgets(
-                            fontsize: 15,
-                            text: data.email,
-                            
+                          Expanded(
+                            child: GooglePoppinsWidgets(
+                              fontsize: 15,
+                              text: data.email,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              },
-              separatorBuilder: (BuildContext context, int index) {
-                return const Divider();
-              },
-              itemCount: 1);
-          }else{
-            return const Center(child: Text('No Data found'),);
+                  );
+                },
+                separatorBuilder: (BuildContext context, int index) {
+                  return const Divider();
+                },
+                itemCount: 1);
+          } else {
+            return const Center(
+              child: Text('No Data found'),
+            );
           }
-
-         
         });
   }
 
@@ -85,51 +88,54 @@ class AllUsersSearch extends SearchDelegate {
             .collection('StudentProfileCollection')
             .snapshots(),
         builder: (context, snapshot) {
-          if(snapshot.hasData){
- return ListView.separated(
-              itemBuilder: (BuildContext context, int index) {
-                final data = StudentProfileCreationModel.fromMap(
-                    snapshot.data!.docs[index].data());
-                return Padding(
-                  padding: const EdgeInsets.only(right: 10,left: 10,top: 10),
-                  child: Container(
-                  decoration: BoxDecoration(color: Colors.blue[50],
-                    border: Border.all(color: cGrey),borderRadius: BorderRadius.circular(4)),
-                    height: 50,
-                    child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 20),
-                            child: GooglePoppinsWidgets(
-                              fontsize: 15,
-                              text: data.name,
-                              
+          if (snapshot.hasData) {
+            return ListView.separated(
+                itemBuilder: (BuildContext context, int index) {
+                  final data = StudentProfileCreationModel.fromMap(
+                      snapshot.data!.docs[index].data());
+                  return Padding(
+                    padding:
+                        const EdgeInsets.only(right: 10, left: 10, top: 10),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.blue[50],
+                          border: Border.all(color: cGrey),
+                          borderRadius: BorderRadius.circular(4)),
+                      height: 50,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 20),
+                              child: GooglePoppinsWidgets(
+                                fontsize: 15,
+                                text: data.name,
+                              ),
                             ),
                           ),
-                        ),
-                        Expanded(
-                          child: GooglePoppinsWidgets(
-                            fontsize: 15,
-                            text: data.email,
-                            
+                          Expanded(
+                            child: GooglePoppinsWidgets(
+                              fontsize: 15,
+                              text: data.email,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              },
-              separatorBuilder: (BuildContext context, int index) {
-                return const SizedBox(
-                  height: 10,
-                );
-              },
-              itemCount: snapshot.data!.docs.length);
-          }else{
-          return  const Center(child: Text('no data found'),);
+                  );
+                },
+                separatorBuilder: (BuildContext context, int index) {
+                  return const SizedBox(
+                    height: 10,
+                  );
+                },
+                itemCount: snapshot.data!.docs.length);
+          } else {
+            return const Center(
+              child: Text('no data found'),
+            );
           }
-         
         });
   }
 }
