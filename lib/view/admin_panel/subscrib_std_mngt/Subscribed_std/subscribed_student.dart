@@ -2,6 +2,8 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:scipro_website/controller/get_invoice_controller/get_invoice_controller.dart';
 import 'package:scipro_website/controller/subscribed_students_controller/model/subscribed_students_model.dart';
 import 'package:scipro_website/view/constant/constant.validate.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
@@ -130,6 +132,8 @@ invoiceSettingsshowDialog(context);
 }
 
 void invoiceSettingsshowDialog(BuildContext context){
+
+  final GetInvoiceController getinvoicenumbercontroller=Get.put(GetInvoiceController());
   return customShowDilogBox(context: context, title: 'Invoice number', children: [
     StreamBuilder(
       stream: FirebaseFirestore.instance.collection('Invoice_number').snapshots(),
@@ -141,7 +145,7 @@ void invoiceSettingsshowDialog(BuildContext context){
             GooglePoppinsWidgets(text: snapshot.data!.docs[0].data()['number'].toString(), fontsize: 60,fontWeight: FontWeight.bold,),
           ],
         );
-        
+
       }else{
        return const Center(child: Text('No data found'),);
       }
@@ -149,8 +153,11 @@ void invoiceSettingsshowDialog(BuildContext context){
     ),
     Padding(
       padding: const EdgeInsets.only(top: 10),
-      child: TextFormFiledContainerWidget(hintText: 'Enter Invoice Number', title: 'Enter Invoice Number', width: 400),
+      child: TextFormFiledContainerWidget(hintText: 'Enter Invoice Number', title: 'Enter Invoice Number', width: 400,controller: getinvoicenumbercontroller.invoiceEnterController,),
     )
-  ], doyouwantActionButton: true,actiontext: 'Set Number');
+  ], doyouwantActionButton: true,actiontext: 'Set Number',actiononTapfuction: (){
+   getinvoicenumbercontroller.setInvoiceNumber().then((value) => Navigator.pop(context));
+    getinvoicenumbercontroller.invoiceEnterController.clear();
+  });
 }
 
