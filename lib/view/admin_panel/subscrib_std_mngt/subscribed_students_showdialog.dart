@@ -277,17 +277,60 @@ subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
                                         ),
                                         const Spacer(),
                                         GestureDetector(
-                                            onTap: () {
+                                            onTap: () async {
                                               getinvoicecontroller
-                                                  .purchasedCourses
-                                                  .value = data.coursename;
+                                                  .calculateCgst(data.coursefee)
+                                                  .toString();
                                               getinvoicecontroller
-                                                      .amount.value =
-                                                  data.coursefee.toString();
+                                                  .calculateGst(data.coursefee)
+                                                  .toString();
+                                              getinvoicecontroller
+                                                      .purchasedCourses.value =
+                                                  data.coursename; ////course name
+                                              getinvoicecontroller
+                                                      .studentName.value =
+                                                  data.studentname; //////student name
+
                                               getinvoicecontroller.date.value =
                                                   data.joindate;
+                                              getinvoicecontroller ///////join date
+                                                      .studentEmail
+                                                      .value =
+                                                  data.emailid; ////////email
+                                              getinvoicecontroller
+                                                      .invoiceNumber.value =
+                                                  '001'; /////invoice num
+                                              getinvoicecontroller
+                                                      .totalPrice.value =
+                                                  data.coursefee
+                                                      .toString(); //////total price
+                                              getinvoicecontroller
+                                                      .totalPrice.value =
+                                                  data.coursefee
+                                                      .toString(); //////actual price
 
-                                              generateInvoice();
+                                              // getinvoicecontroller
+                                              //         .gstPrice.value 
+                                              //         =
+                                              //     getinvoicecontroller
+                                              //         .calculateGst(
+                                              //             data.coursefee)
+                                              //         .toString(); ////////gst price
+
+                                              // getinvoicecontroller
+                                              //     .calculateCgst(
+                                              //         data.coursefee)
+                                              //     .toString(); //////cgst
+
+                                              // getinvoicecontroller
+                                              //     .calculateCgst(
+                                              //         data.coursefee)
+                                              // .toString(); //////sgst
+                                              Future.delayed(const Duration(
+                                                      seconds: 2))
+                                                  .then((value) async {
+                                                return generateInvoice();
+                                              });
                                             },
                                             child: const ButtonContainerWidget(
                                                 text: 'Get Invoice'))
