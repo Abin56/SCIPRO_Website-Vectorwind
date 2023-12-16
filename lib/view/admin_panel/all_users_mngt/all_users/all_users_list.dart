@@ -1,10 +1,10 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scipro_website/controller/all_users_controller/alluser_controller.dart';
 import 'package:scipro_website/view/admin_panel/all_users_mngt/convert_to_excel.dart';
+import 'package:scipro_website/view/admin_panel/all_users_mngt/search_students/search_students.dart';
+import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/constant/constant.validate.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
 import 'package:scipro_website/view/widgets/button_container_widget/button_container_widget.dart';
@@ -22,8 +22,6 @@ class AllUsersList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log("Date :: ${DateTime.now()}");
-
     List<Widget> topVedioManagementBar = [
       ///////////////////
       //////
@@ -39,32 +37,76 @@ class AllUsersList extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
             Obx(() {
+
               if (alluserController.excelisLoading.value == true) {
                 return const Center(
                   child: CircularProgressIndicator(),
                 );
               } else {
-                return Padding(
-                  padding: const EdgeInsets.only(
-                    top: 10,
-                  ),
-                  child: GestureDetector(
-                    onTap: () async {
-                      alluserController.excelisLoading.value = true;
-
-                      exportDataToCSV().then((value) =>
-                          alluserController.excelisLoading.value = false);
-                    },
-                    child: const ButtonContainerWidget(
-                      text: ' Export To Excel',
-                    ),
-                  ),
-                );
+                return
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 10,
+                    
+                    
+                        
+                      ),
+                      child: GestureDetector(
+                        onTap: () async {
+                          alluserController.excelisLoading.value=true;
+                    
+                          exportDataToCSV().then((value) =>alluserController.excelisLoading.value=false);
+                        },
+                        child: const ButtonContainerWidget(
+                          text: ' Export To Excel',
+                        ),
+                      ),
+                    );
+                    
+                 
               }
             })
           ],
         ),
       ),
+      
+                                         Container(
+                                                decoration: BoxDecoration(border: Border.all(color: cGrey),borderRadius: BorderRadius.circular(2)),
+                          child:  Container(
+      decoration: const BoxDecoration(
+        color:themeColorBlue,
+        borderRadius: BorderRadius.horizontal() ,
+      ),
+      width: ResponsiveWebSite.isMobile(context)?150: 200,
+      height: 30,
+      child: GestureDetector(
+        onTap: ()async{
+        await  searchStudents(context);
+        },
+        child: Row(
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(left: 10),
+              child: Icon(Icons.search,size: 14,color: cWhite,),
+            ),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 8),
+                child: GooglePoppinsWidgets(
+                  textAlign: TextAlign.center,
+                  color: cWhite,
+                  fontWeight: FontWeight.w500,
+                  text: 'search',
+                  fontsize: 12,
+                
+                ),
+              ),
+            ),
+          ],
+        ),
+    )
+                                              ),
+                                            ),
     ];
     return Column(
       children: [
@@ -80,6 +122,10 @@ class AllUsersList extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         topVedioManagementBar[0],
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10,),
+                          child: topVedioManagementBar[1],
+                        ),
                       ],
                     ),
                   ),
@@ -94,16 +140,26 @@ class AllUsersList extends StatelessWidget {
                   ),
                 ])
               : Column(children: [
-                  Container(
+                Container(
                     height: 130,
-                    width: double.infinity,
-                    color: const Color.fromARGB(255, 247, 238, 243),
-                    child: Row(
-                      children: [
-                        topVedioManagementBar[0],
-                      ],
+                     
+                      color: const Color.fromARGB(255, 247, 238, 243),
+                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [  Container(
+                    
+                      child: Row(
+                        children: [
+                          topVedioManagementBar[0],
+                        ],
+                      ),
                     ),
-                  ),
+                     Padding(
+                       padding: const EdgeInsets.only(top: 40),
+                       child: topVedioManagementBar[1],
+                     ),
+                    ],),
+                )
+                
                 ]),
         ),
         SingleChildScrollView(
@@ -151,8 +207,7 @@ class AllUsersList extends StatelessWidget {
                                   DataContainerWidget(
                                       index: index,
                                       width: 200,
-                                      headerTitle: dateConveter(
-                                          DateTime.parse(data.joindate))),
+                                      headerTitle:dateConveter(DateTime.parse(data.joindate))),
                                 ],
                               ));
                         },
@@ -171,4 +226,8 @@ class AllUsersList extends StatelessWidget {
       ],
     );
   }
+}
+Future<void>searchStudents(BuildContext context)async{
+  await showSearch(context: context, delegate: AllUsersSearch());
+  
 }

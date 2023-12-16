@@ -147,10 +147,10 @@ void drawGrid(PdfPage page, PdfGrid grid, PdfLayoutResult result) {
 
   // Add SGST and CGST below Grand Total.
    
- page.graphics.drawString('GST : ${getinvoiceController.rxgstPrice.value}',
-      PdfStandardFont(PdfFontFamily.helvetica, 9),
-      bounds: Rect.fromLTWH(quantityCellBounds!.left, result.bounds.bottom + 30,
-          quantityCellBounds!.width, quantityCellBounds!.height));
+//  page.graphics.drawString('GST : ${getinvoiceController.rxgstPrice.value}',
+//       PdfStandardFont(PdfFontFamily.helvetica, 9),
+//       bounds: Rect.fromLTWH(quantityCellBounds!.left, result.bounds.bottom + 30,
+//           quantityCellBounds!.width, quantityCellBounds!.height));
 
       
   page.graphics.drawString('SGST : ${getinvoiceController.rxsgst.value}',
