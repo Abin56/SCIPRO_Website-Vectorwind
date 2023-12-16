@@ -22,6 +22,7 @@ class SetUserAccessController extends GetxController {
   RxInt duration = 0.obs;
   RxString expirydate = ''.obs;
   RxString studentUID = ''.obs;
+  RxInt currentInvoiceNumber = 0.obs;
 
   List<CategoryModel> categoryModel = [];
   List<CourseModel> courseModel = [];
@@ -56,6 +57,7 @@ class SetUserAccessController extends GetxController {
   Future<void> setUserAccess() async {
     final uuid = const Uuid().v1();
     final setAccessDetails = UserAfterPaymentModel(
+        invoicenumber: currentInvoiceNumber.value,
         uid: studentUID.value,
         coursefee: coursefee.value,
         coursename: coursename.value,
@@ -69,27 +71,29 @@ class SetUserAccessController extends GetxController {
         joindate: DateTime.now().toString(),
         olduser: true,
         deactive: false);
-    await dataserver
-        .collection('SubscribedStudents')
-        .doc(studentUID.value)
-        .collection('PurchasedCourses')
-        .doc(uuid)
-        .set(setAccessDetails.toMap())
-        .then((value) async {
-      dataserver.collection('SubscribedStudents').doc(studentUID.value).set({
-        'uid': studentUID.value,
-        'email': emailid.value,
-        'studentname': studetName.value,
-        'phonenumber': phonenumber.value,
-        'joindate': DateTime.now().toString()
-      }).then((value) async {
-        await dataserver
-            .collection('SubscribedStudents')
-            .doc(studentUID.value)
-            .collection('PurchasedCourses')
-            .doc(uuid)
-            .set({'docid': uuid}, SetOptions(merge: true));
-        return showToast(msg: 'Purchased Completed');
+    await incrementInvoiceNumber().then((value) async {
+      await dataserver
+          .collection('SubscribedStudents')
+          .doc(studentUID.value)
+          .collection('PurchasedCourses')
+          .doc(uuid)
+          .set(setAccessDetails.toMap())
+          .then((value) async {
+        dataserver.collection('SubscribedStudents').doc(studentUID.value).set({
+          'uid': studentUID.value,
+          'email': emailid.value,
+          'studentname': studetName.value,
+          'phonenumber': phonenumber.value,
+          'joindate': DateTime.now().toString()
+        }).then((value) async {
+          await dataserver
+              .collection('SubscribedStudents')
+              .doc(studentUID.value)
+              .collection('PurchasedCourses')
+              .doc(uuid)
+              .set({'docid': uuid}, SetOptions(merge: true));
+          return showToast(msg: 'Purchased Completed');
+        });
       });
     });
   }
@@ -102,5 +106,15 @@ class SetUserAccessController extends GetxController {
     phonenumber.value = data.data()!['phoneno'];
     emailid.value = data.data()!['email'];
     log("Selected Student Uid ${studentUID.value}");
+  }
+
+  Future<void> incrementInvoiceNumber() async {
+    final data = await dataserver.collection("Invoice_number").get();
+    int intdata = await data.docs[0].data()['number'];
+    currentInvoiceNumber.value = intdata;
+    await dataserver
+        .collection("Invoice_number")
+        .doc('number')
+        .update({'number': currentInvoiceNumber.value + 1});
   }
 }

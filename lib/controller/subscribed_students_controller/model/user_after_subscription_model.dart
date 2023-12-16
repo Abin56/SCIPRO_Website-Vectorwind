@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 class UserAfterPaymentModel {
@@ -12,9 +13,9 @@ class UserAfterPaymentModel {
   int duration;
   String expirydate;
   String joindate;
+  int invoicenumber;
   bool olduser = true;
   bool deactive = false;
-  
 
   UserAfterPaymentModel({
     required this.uid,
@@ -28,6 +29,7 @@ class UserAfterPaymentModel {
     required this.duration,
     required this.expirydate,
     required this.joindate,
+    required this.invoicenumber,
     required this.olduser,
     required this.deactive,
   });
@@ -44,6 +46,7 @@ class UserAfterPaymentModel {
     int? duration,
     String? expirydate,
     String? joindate,
+    int? invoicenumber,
     bool? olduser,
     bool? deactive,
   }) {
@@ -59,6 +62,7 @@ class UserAfterPaymentModel {
       duration: duration ?? this.duration,
       expirydate: expirydate ?? this.expirydate,
       joindate: joindate ?? this.joindate,
+      invoicenumber: invoicenumber ?? this.invoicenumber,
       olduser: olduser ?? this.olduser,
       deactive: deactive ?? this.deactive,
     );
@@ -77,6 +81,7 @@ class UserAfterPaymentModel {
       'duration': duration,
       'expirydate': expirydate,
       'joindate': joindate,
+      'invoicenumber': invoicenumber,
       'olduser': olduser,
       'deactive': deactive,
     };
@@ -95,6 +100,7 @@ class UserAfterPaymentModel {
       duration: map['duration'] as int,
       expirydate: map['expirydate'] as String,
       joindate: map['joindate'] as String,
+      invoicenumber: map['invoicenumber'] as int,
       olduser: map['olduser'] as bool,
       deactive: map['deactive'] as bool,
     );
@@ -108,7 +114,7 @@ class UserAfterPaymentModel {
 
   @override
   String toString() {
-    return 'UserAfterPaymentModel(uid: $uid, coursefee: $coursefee, coursename: $coursename, coursecategoryid: $coursecategoryid, studentname: $studentname, phonenumber: $phonenumber, emailid: $emailid, courseid: $courseid, duration: $duration, expirydate: $expirydate, joindate: $joindate, olduser: $olduser, deactive: $deactive)';
+    return 'UserAfterPaymentModel(uid: $uid, coursefee: $coursefee, coursename: $coursename, coursecategoryid: $coursecategoryid, studentname: $studentname, phonenumber: $phonenumber, emailid: $emailid, courseid: $courseid, duration: $duration, expirydate: $expirydate, joindate: $joindate, invoicenumber: $invoicenumber, olduser: $olduser, deactive: $deactive)';
   }
 
   @override
@@ -127,6 +133,7 @@ class UserAfterPaymentModel {
       other.duration == duration &&
       other.expirydate == expirydate &&
       other.joindate == joindate &&
+      other.invoicenumber == invoicenumber &&
       other.olduser == olduser &&
       other.deactive == deactive;
   }
@@ -144,6 +151,7 @@ class UserAfterPaymentModel {
       duration.hashCode ^
       expirydate.hashCode ^
       joindate.hashCode ^
+      invoicenumber.hashCode ^
       olduser.hashCode ^
       deactive.hashCode;
   }
