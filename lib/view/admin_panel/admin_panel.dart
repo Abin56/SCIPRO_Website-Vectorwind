@@ -8,7 +8,7 @@ import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
 
-import '../notification_management/notification.dart';
+import 'notification_management/notification.dart';
 import 'all_users_mngt/all_users/all_users_list.dart';
 import 'set_user_acess/set_user_acess_list.dart';
 

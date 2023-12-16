@@ -1,14 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scipro_website/controller/set_user_access_controller/set_user_controller.dart';
+import 'package:scipro_website/data/video_management/category_model.dart';
 
 import 'package:scipro_website/view/widgets/custom_showDilog/custom_showdilog.dart';
 
 import '../../../controller/set_user_access_controller/model/set_user_access_model.dart';
-import '../../../data/video_management/course_model.dart';
 import '../../constant/constant.validate.dart';
-import '../../widgets/dropdown_widget/dropdownwidget.dart';
 import '../../widgets/grid_table_container/grid_table_container.dart';
 
 class SetUserAcess extends StatelessWidget {
@@ -95,31 +95,31 @@ final  SetUserAccessController setUserAccessController =
         context: context,
         title: 'Courses',
         children: [
-          StreamBuilder(
-              stream: FirebaseFirestore.instance
-                  .collection('recorded_course')
-                  .doc("28467080-0d1d-1de7-b452-6f0860a3ef02")
-                  .collection('course')
-                  .snapshots(),
-              builder: (context, snapshot) {
-                return SizedBox(
-                  height: 100,
-                  width: 100,
-                  child: ListView.separated(
-                      itemBuilder: (BuildContext context, int index) {
-                        final data = CourseModel.fromMap(
-                            snapshot.data!.docs[index].data());
-                        return DropdownWidget(hintText: data.courseName);
-                      },
-                      separatorBuilder: (BuildContext context, int index) {
-                        return const SizedBox(
-                          height: 10,
-                        );
-                      },
-                      itemCount: snapshot.data!.docs.length),
-                );
-              }),
-        ],
+          
+      // SizedBox(
+      //     height: 35,
+      //     width: 250,
+      //     child: Center(
+      //       child: DropdownSearch<CategoryModel>(
+      //         autoValidateMode: AutovalidateMode.always,
+      //         asyncItems: (value) {
+      //           setUserAccessController.categoryModel.clear();
+
+      //           return notificationManagementController.fetchRecCategory();
+      //         },
+      //         itemAsString: (value) => value.name,
+      //         onChanged: (value) async {
+      //           if (value != null) {
+      //             notificationManagementController.selectedCat.value = value.id;
+      //             log("message${value.id}");
+      //           }
+      //         },
+      //         dropdownDecoratorProps: DropDownDecoratorProps(
+      //             baseStyle: GoogleFonts.poppins(
+      //                 fontSize: 13, color: Colors.black.withOpacity(0.7))),
+      //       ),
+      //     )),
+               ],
         doyouwantActionButton: true);
   }
 }

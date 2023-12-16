@@ -6,11 +6,11 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:scipro_website/controller/notification_controller/notification_controller.dart';
 import 'package:scipro_website/data/video_management/category_model.dart';
-import 'package:scipro_website/view/notification_management/list_of_rec_courses.dart';
+import 'package:scipro_website/view/admin_panel/notification_management/list_of_rec_courses.dart';
 import 'package:scipro_website/view/widgets/button_container_widget/button_container_widget.dart';
 
-import '../fonts/google_poppins.dart';
-import '../widgets/responsive/responsive.dart';
+import '../../fonts/google_poppins.dart';
+import '../../widgets/responsive/responsive.dart';
 
 // ignore: must_be_immutable
 class NotificationManagement extends StatelessWidget {

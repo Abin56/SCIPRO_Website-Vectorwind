@@ -6,7 +6,7 @@ import 'package:scipro_website/data/video_management/course_model.dart';
 import 'package:scipro_website/view/constant/constant.validate.dart';
 import 'package:scipro_website/view/widgets/lottiewidget.dart';
 
-import '../widgets/grid_table_container/grid_table_container.dart';
+import '../../widgets/grid_table_container/grid_table_container.dart';
 
 class ListofRecCourses extends StatelessWidget {
   final NotificationManagementController ncontroller =
