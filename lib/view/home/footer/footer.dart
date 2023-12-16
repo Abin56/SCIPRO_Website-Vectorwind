@@ -18,15 +18,15 @@ class FooterContainerWidget extends StatelessWidget {
       child: ResponsiveWebSite.isMobile(context)
           ? Column(
               children: [
-                Container(
+                SizedBox(
                   
-                  height: 1500,
+                  height: 1380,
                   width: double.infinity,
                   child:  Column(
                     children: [
                       Container(child: const SciproContainerWidget(),),
-                      Container(),
-                       Container(),
+                      Container(child: const CompanyContainerWidget(),),
+                       Container(child: const ContactUsContainerWidget() ,),
                     ],
                   ),
                 )
