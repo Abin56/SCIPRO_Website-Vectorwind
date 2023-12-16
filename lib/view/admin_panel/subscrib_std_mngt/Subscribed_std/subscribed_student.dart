@@ -6,6 +6,8 @@ import 'package:scipro_website/controller/subscribed_students_controller/model/s
 import 'package:scipro_website/view/constant/constant.validate.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
 import 'package:scipro_website/view/widgets/button_container_widget/button_container_widget.dart';
+import 'package:scipro_website/view/widgets/custom_showDilog/custom_showdilog.dart';
+import 'package:scipro_website/view/widgets/textform_field_Widget/textformfieldWidget.dart';
 
 import '../../../widgets/grid_table_container/grid_table_container.dart';
 import '../subscribed_students_showdialog.dart';
@@ -34,11 +36,26 @@ class SubscribedStd extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 15),
-                child: ButtonContainerWidget(
-                  text: "Search",
-                ),
+               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(top: 15),
+                    child: ButtonContainerWidget(
+                      text: "Search",
+                    ),
+                  ),
+                  GestureDetector(onTap: (){
+invoiceSettingsshowDialog(context);
+                  },
+                    child: const Padding(
+                      padding: EdgeInsets.only(top: 15),
+                      child: ButtonContainerWidget(
+                        text: "Invoice Settings",
+                      ),
+                    ),
+                  ),
+                  
+                ],
               )
             ],
           ),
@@ -110,5 +127,29 @@ class SubscribedStd extends StatelessWidget {
       ],
     );
   }
+}
+
+void invoiceSettingsshowDialog(BuildContext context){
+  return customShowDilogBox(context: context, title: 'Invoice number', children: [
+    StreamBuilder(
+      stream: FirebaseFirestore.instance.collection('Invoice_number').snapshots(),
+      builder: (context,snapshot) {
+      if(snapshot.hasData){
+          return 
+        Row(mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            GooglePoppinsWidgets(text: snapshot.data!.docs[0].data()['number'].toString(), fontsize: 60,fontWeight: FontWeight.bold,),
+          ],
+        );
+      }else{
+       return const Center(child: Text('No data found'),);
+      }
+      }
+    ),
+    Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: TextFormFiledContainerWidget(hintText: 'Enter Invoice Number', title: 'Enter Invoice Number', width: 400),
+    )
+  ], doyouwantActionButton: true,actiontext: 'Set Number');
 }
 

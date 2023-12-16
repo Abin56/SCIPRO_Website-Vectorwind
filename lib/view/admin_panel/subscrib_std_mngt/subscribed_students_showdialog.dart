@@ -15,7 +15,8 @@ import '../../widgets/custom_showDilog/custom_showdilog.dart';
 import '../../widgets/responsive/responsive.dart';
 
 subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
-  final GetInvoiceController getinvoicecontroller=Get.put(GetInvoiceController());
+  final GetInvoiceController getinvoicecontroller =
+      Get.put(GetInvoiceController());
   return customShowDilogBox(
       context: context,
       title: 'Subscribed Students',
@@ -191,8 +192,8 @@ subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
                                             const Spacer(),
                                             Expanded(
                                               child: Padding(
-                                                  padding: const EdgeInsets.only(
-                                                left: 20),
+                                                padding: const EdgeInsets.only(
+                                                    left: 20),
                                                 child: Container(
                                                   height: 30,
                                                   width: 110,
@@ -218,12 +219,14 @@ subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
                                           ],
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(top: 10),
+                                          padding:
+                                              const EdgeInsets.only(top: 10),
                                           child: GestureDetector(
                                               onTap: () {
                                                 generateInvoice();
                                               },
-                                              child: const ButtonContainerWidget(
+                                              child:
+                                                  const ButtonContainerWidget(
                                                 text: 'Get Invoice',
                                               )),
                                         )
@@ -249,7 +252,7 @@ subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
                                         Expanded(
                                           child: Padding(
                                             padding:
-                                            const EdgeInsets.only(left: 20),
+                                                const EdgeInsets.only(left: 20),
                                             child: Container(
                                               height: 30,
                                               width: 110,
@@ -274,19 +277,60 @@ subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
                                         ),
                                         const Spacer(),
                                         GestureDetector(
-                                            onTap: () {
-                                              getinvoicecontroller.purchasedCourses.value=data.coursename;
-                                            //  getinvoicecontroller.amount.value= data.coursefee.toString();
-                                            //  getinvoicecontroller.date.value= data.joindate;
-                                            //    getinvoicecontroller.studentEmail.value= data.emailid;
-                                            //     getinvoicecontroller.actualPrice.value=data.actualprice.toString();
-                                            //  getinvoicecontroller.totalPrice.value= data.totalprice.toString();
-                                            //  getinvoicecontroller.gstPrice.value= data.gstprice.toString();
-                                            //    getinvoicecontroller.gstnumber.value= data.gstnumber.toString();
-                                            //    getinvoicecontroller.sgst.value= data.sgst.toString();
+                                            onTap: () async {
+                                              getinvoicecontroller
+                                                  .calculateCgst(data.coursefee)
+                                                  .toString();
+                                              getinvoicecontroller
+                                                  .calculateGst(data.coursefee)
+                                                  .toString();
+                                              getinvoicecontroller
+                                                      .purchasedCourses.value =
+                                                  data.coursename; ////course name
+                                              getinvoicecontroller
+                                                      .studentName.value =
+                                                  data.studentname; //////student name
 
-print(getinvoicecontroller.purchasedCourses.value);
-                                              // generateInvoice();
+                                              getinvoicecontroller.date.value =
+                                                  data.joindate;
+                                              getinvoicecontroller ///////join date
+                                                      .studentEmail
+                                                      .value =
+                                                  data.emailid; ////////email
+                                              getinvoicecontroller
+                                                      .invoiceNumber.value =
+                                                  '001'; /////invoice num
+                                              getinvoicecontroller
+                                                      .totalPrice.value =
+                                                  data.coursefee
+                                                      .toString(); //////total price
+                                              getinvoicecontroller
+                                                      .totalPrice.value =
+                                                  data.coursefee
+                                                      .toString(); //////actual price
+
+                                              // getinvoicecontroller
+                                              //         .gstPrice.value 
+                                              //         =
+                                              //     getinvoicecontroller
+                                              //         .calculateGst(
+                                              //             data.coursefee)
+                                              //         .toString(); ////////gst price
+
+                                              // getinvoicecontroller
+                                              //     .calculateCgst(
+                                              //         data.coursefee)
+                                              //     .toString(); //////cgst
+
+                                              // getinvoicecontroller
+                                              //     .calculateCgst(
+                                              //         data.coursefee)
+                                              // .toString(); //////sgst
+                                              Future.delayed(const Duration(
+                                                      seconds: 2))
+                                                  .then((value) async {
+                                                return generateInvoice();
+                                              });
                                             },
                                             child: const ButtonContainerWidget(
                                                 text: 'Get Invoice'))

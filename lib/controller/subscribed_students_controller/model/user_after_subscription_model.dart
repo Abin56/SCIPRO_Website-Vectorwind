@@ -14,6 +14,8 @@ class UserAfterPaymentModel {
   String joindate;
   bool olduser = true;
   bool deactive = false;
+  
+
   UserAfterPaymentModel({
     required this.uid,
     required this.coursefee,
