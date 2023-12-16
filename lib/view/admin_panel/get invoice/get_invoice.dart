@@ -110,7 +110,7 @@ class _CreatePdfState extends State<CreatePdfWidget> {
 
 Future<Uint8List> getImageData() async {
   // Load the image from the assets
-  final ByteData data = await rootBundle.load('assets/images/vector.png');
+  final ByteData data = await rootBundle.load('images/vector.png');
   return data.buffer.asUint8List();
 }
 
