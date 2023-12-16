@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/sign_in/sign_in.dart';
 
-import '../../../resources/assets_manager.dart';
 import '../../fonts/google_poppins.dart';
 import '../../widgets/responsive/responsive.dart';
 
@@ -27,7 +26,7 @@ class AppBarWidget extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 10, top: 10),
                         child: SizedBox(
                           child: Image.asset(
-                            'assets/images/scipro.png',
+                            'images/scipro.png',
                             height: 80,
                             width: 80,
                           ),
@@ -135,7 +134,7 @@ class AppBarWidget extends StatelessWidget {
                   child: SizedBox(
                     height: 50,
                     child: Image.asset(
-                      'assets/images/scipro.png',
+                      'images/scipro.png',
                       height: 100,
                       width: 100,
                     ),
@@ -204,7 +203,7 @@ List<Widget> AppBarList = [
   SizedBox(
     height: 50,
     child: Image.asset(
-      ImageAssets.scipro,
+      'images/scipro.png',
       height: 100,
       width: 100,
     ),

@@ -276,9 +276,16 @@ subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
                                         GestureDetector(
                                             onTap: () {
                                               getinvoicecontroller.purchasedCourses.value=data.coursename;
-                                             getinvoicecontroller.amount.value= data.coursefee.toString();
-                                             getinvoicecontroller.date.value= data.joindate;
+                                            //  getinvoicecontroller.amount.value= data.coursefee.toString();
+                                            //  getinvoicecontroller.date.value= data.joindate;
+                                            //    getinvoicecontroller.studentEmail.value= data.emailid;
+                                            //     getinvoicecontroller.actualPrice.value=data.actualprice.toString();
+                                            //  getinvoicecontroller.totalPrice.value= data.totalprice.toString();
+                                            //  getinvoicecontroller.gstPrice.value= data.gstprice.toString();
+                                            //    getinvoicecontroller.gstnumber.value= data.gstnumber.toString();
+                                            //    getinvoicecontroller.sgst.value= data.sgst.toString();
 
+print(getinvoicecontroller.purchasedCourses.value);
                                               // generateInvoice();
                                             },
                                             child: const ButtonContainerWidget(

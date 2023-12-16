@@ -32,7 +32,7 @@ class CopyRightContainerWidget extends StatelessWidget {
                             )),
                             Expanded(
                                 child: Image.asset(
-                              "assets/images/cpright1.png",
+                              "images/cpright1.png",
                               height: 25,
                               width: 25,
                             )),
@@ -136,7 +136,7 @@ List<Widget> copyrightContents = [
     color: cWhite,
   ),
   Image.asset(
-    "assets/images/cpright1.png",
+    "images/cpright1.png",
     height: 30,
     width: 30,
   ),
@@ -153,7 +153,7 @@ List<Widget> copyrightContents = [
     color: cWhite,
   ),
   Image.asset(
-    'assets/images/Lepton.png',
+    'images/Lepton.png',
     width: 50,
     height: 50,
   ),

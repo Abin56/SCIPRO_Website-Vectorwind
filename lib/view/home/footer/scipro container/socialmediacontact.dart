@@ -65,7 +65,7 @@ class SocialMediaContact extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 8),
                     child: CircleAvatharWidget(
-                      imagePath: "assets/images/frdd.png",
+                      imagePath: "images/frdd.png",
                     ),
                   ),
                 ),
@@ -75,7 +75,7 @@ class SocialMediaContact extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 8),
                     child: CircleAvatharWidget(
-                      imagePath: "assets/images/instag.png",
+                      imagePath: "images/instag.png",
                     ),
                   ),
                 ),
@@ -85,7 +85,7 @@ class SocialMediaContact extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 8),
                     child: CircleAvatharWidget(
-                      imagePath: "assets/images/twitt.png",
+                      imagePath: "images/twitt.png",
                     ),
                   ),
                 ),
@@ -95,7 +95,7 @@ class SocialMediaContact extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 8),
                     child: CircleAvatharWidget(
-                      imagePath: "assets/images/utube.png",
+                      imagePath: "images/utube.png",
                     ),
                   ),
                 ),

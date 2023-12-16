@@ -19,7 +19,7 @@ class IntroHome extends StatelessWidget {
                         fit: BoxFit.fitHeight,
                         
                         image: AssetImage(
-                          'assets/images/main1gopikafinal.jpg',
+                          'images/main1gopikafinal.jpg',
                         ))),
               child:  Column(children: [
             //  const AppBarWidget(),
@@ -62,7 +62,7 @@ class IntroHome extends StatelessWidget {
                         height:ResponsiveWebSite.isMobile(context)?30: 50,width:ResponsiveWebSite.isMobile(context)?80: 110,
                                        decoration: const BoxDecoration(
                                          image: DecorationImage(fit: BoxFit.contain,
-                        image: AssetImage('assets/images/google-play-logo.jpg',))),
+                        image: AssetImage('images/google-play-logo.jpg',))),
                                          alignment: Alignment.bottomRight,
                                          
                                          ),
@@ -81,7 +81,7 @@ class IntroHome extends StatelessWidget {
                     fit: BoxFit.fitHeight,
                     
                     image: AssetImage(
-                      'assets/images/main1gopikafinal.jpg',
+                      'images/main1gopikafinal.jpg',
                     ))),
            child: 
             Column(
@@ -123,9 +123,9 @@ class IntroHome extends StatelessWidget {
                         height: 50,width: 110,
                                        decoration: const BoxDecoration(
                                          image: DecorationImage(fit: BoxFit.contain,
-                        image: AssetImage('assets/images/google-play-logo.jpg',))),
+                        image: AssetImage('images/google-play-logo.jpg',))),
                                          alignment: Alignment.bottomRight,
-                                         //child: Image.asset('assets/images/google-play-logo.jpg',)
+                                         //child: Image.asset('images/google-play-logo.jpg',)
                                          ),
                   ],
                 ),
