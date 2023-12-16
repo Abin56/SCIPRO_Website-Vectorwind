@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:scipro_website/controller/notification_controller/notification_controller.dart';
+import 'package:scipro_website/controller/set_user_access_controller/set_user_controller.dart';
+
 import 'package:scipro_website/view/widgets/custom_showDilog/custom_showdilog.dart';
 
 import '../../../controller/set_user_access_controller/model/set_user_access_model.dart';
@@ -11,8 +12,8 @@ import '../../widgets/dropdown_widget/dropdownwidget.dart';
 import '../../widgets/grid_table_container/grid_table_container.dart';
 
 class SetUserAcess extends StatelessWidget {
-  final NotificationManagementController noticontroller =
-      Get.put(NotificationManagementController());
+final  SetUserAccessController setUserAccessController =
+      Get.put(SetUserAccessController());
   SetUserAcess({super.key});
 
   @override
@@ -90,7 +91,7 @@ class SetUserAcess extends StatelessWidget {
   void setuserAccessShowDialog(
     BuildContext context,
   ) {
-    return customShowDilogBox(
+    customShowDilogBox(
         context: context,
         title: 'Courses',
         children: [
@@ -101,11 +102,9 @@ class SetUserAcess extends StatelessWidget {
                   .collection('course')
                   .snapshots(),
               builder: (context, snapshot) {
-                
                 return SizedBox(
                   height: 100,
                   width: 100,
-                  
                   child: ListView.separated(
                       itemBuilder: (BuildContext context, int index) {
                         final data = CourseModel.fromMap(
