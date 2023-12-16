@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:scipro_website/controller/get_invoice_controller/get_invoice_controller.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 
+import '../../constant/constant.validate.dart';
+
 //Local imports
 
 Future<void> generateInvoice() async {
@@ -90,8 +92,8 @@ PdfLayoutResult drawHeader(PdfPage page, Size pageSize, PdfGrid grid) {
           lineAlignment: PdfVerticalAlignment.bottom));
   //Create data foramt and convert it to text.
 
-  final String invoiceNumber =
-      'Date: ${getinvoiceController.date.value}\r\n \r\nInvoice Number: 2058557939\r\n  \r\nGST number: 32AAFCV1427J1ZH\r\n  \r\nSAC Code: 9992';
+  final String invoiceNumber = 
+      'Date: ${dateConveter(DateTime.parse(getinvoiceController.date.value))}\r\n \r\nInvoice Number: 2058557939\r\n  \r\nGST number: 32AAFCV1427J1ZH\r\n  \r\nSAC Code: 9992';
   final Size contentSize = contentFont.measureString(invoiceNumber);
   // ignore: leading_newlines_in_multiline_strings
   String address =
