@@ -15,7 +15,8 @@ import '../../widgets/custom_showDilog/custom_showdilog.dart';
 import '../../widgets/responsive/responsive.dart';
 
 subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
-  final GetInvoiceController getinvoicecontroller=Get.put(GetInvoiceController());
+  final GetInvoiceController getinvoicecontroller =
+      Get.put(GetInvoiceController());
   return customShowDilogBox(
       context: context,
       title: 'Subscribed Students',
@@ -191,8 +192,8 @@ subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
                                             const Spacer(),
                                             Expanded(
                                               child: Padding(
-                                                  padding: const EdgeInsets.only(
-                                                left: 20),
+                                                padding: const EdgeInsets.only(
+                                                    left: 20),
                                                 child: Container(
                                                   height: 30,
                                                   width: 110,
@@ -218,12 +219,14 @@ subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
                                           ],
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(top: 10),
+                                          padding:
+                                              const EdgeInsets.only(top: 10),
                                           child: GestureDetector(
                                               onTap: () {
                                                 generateInvoice();
                                               },
-                                              child: const ButtonContainerWidget(
+                                              child:
+                                                  const ButtonContainerWidget(
                                                 text: 'Get Invoice',
                                               )),
                                         )
@@ -249,7 +252,7 @@ subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
                                         Expanded(
                                           child: Padding(
                                             padding:
-                                            const EdgeInsets.only(left: 20),
+                                                const EdgeInsets.only(left: 20),
                                             child: Container(
                                               height: 30,
                                               width: 110,
@@ -275,11 +278,16 @@ subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
                                         const Spacer(),
                                         GestureDetector(
                                             onTap: () {
-                                              getinvoicecontroller.purchasedCourses.value=data.coursename;
-                                             getinvoicecontroller.amount.value= data.coursefee.toString();
-                                             getinvoicecontroller.date.value= data.joindate;
+                                              getinvoicecontroller
+                                                  .purchasedCourses
+                                                  .value = data.coursename;
+                                              getinvoicecontroller
+                                                      .amount.value =
+                                                  data.coursefee.toString();
+                                              getinvoicecontroller.date.value =
+                                                  data.joindate;
 
-                                              // generateInvoice();
+                                              generateInvoice();
                                             },
                                             child: const ButtonContainerWidget(
                                                 text: 'Get Invoice'))

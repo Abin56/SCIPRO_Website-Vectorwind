@@ -8,6 +8,7 @@ import 'package:scipro_website/resources/assets_manager.dart';
 import 'package:scipro_website/resources/color_manager.dart';
 import 'package:scipro_website/view/admin_panel/admin_panel.dart';
 import 'package:scipro_website/view/fonts/google_monstre.dart';
+import 'package:scipro_website/view/sign_in/forget_password.dart';
 import 'package:scipro_website/view/widgets/bottom_container.dart';
 import 'package:scipro_website/view/widgets/common_button_widget.dart';
 import 'package:scipro_website/view/widgets/common_textfield.dart';
@@ -313,15 +314,16 @@ loginshowDilogueBox(BuildContext context) {
                                           builder: (context) {
                                             return const AdminPanelPage();
                                           },
-                                        ))).catchError((d){
-                                          return showToast(msg: 'Invalid');
-                                        });
+                                        )))
+                                    .catchError((d) {
+                                  return showToast(msg: 'Invalid');
+                                });
                                 //     .catchError((d) {
                                 //   return showToast(msg: 'Invalid');
                                 // });
                               } catch (e) {
                                 print("-------------------object");
-                               showToast(msg: e.toString());
+                                showToast(msg: e.toString());
                                 log(e.toString());
                               }
                             }
@@ -346,13 +348,15 @@ loginshowDilogueBox(BuildContext context) {
                         children: [
                           const Spacer(),
                           GestureDetector(
-                            onTap: ()async {
-// Navigator.push(context, MaterialPageRoute(builder: (context) {
-//                                                               return  ForgotPasswordScreen();
-//                               },
-//                               ));
-                                              },
-                            child: GooglePoppinsWidgets(text: "ForgetPassword ?", fontsize: 11)),
+                              onTap: () async {
+                                Navigator.push(context, MaterialPageRoute(
+                                  builder: (context) {
+                                    return const ForgotPasswordScreen();
+                                  },
+                                ));
+                              },
+                              child: GooglePoppinsWidgets(
+                                  text: "ForgetPassword ?", fontsize: 11)),
                         ],
                       )
                     ],
@@ -365,8 +369,4 @@ loginshowDilogueBox(BuildContext context) {
       );
     },
   );
-}
-
-class ForgotPasswordScreen {
-  const ForgotPasswordScreen();
 }

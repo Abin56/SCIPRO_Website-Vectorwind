@@ -69,36 +69,46 @@ class AppBarWidget extends StatelessWidget {
                             ),
                           ],
                         ),
-
                       ),
-                      Row(mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          const Icon(Icons.login,color: cWhite,size: 15,),
-                          GooglePoppinsWidgets(
-                            text: 'Login',
-                            fontsize: 12,
-                            color: cWhite,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ],
+                      GestureDetector(
+                        onTap: () => loginshowDilogueBox(context),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            const Icon(
+                              Icons.login,
+                              color: cWhite,
+                              size: 15,
+                            ),
+                            GooglePoppinsWidgets(
+                              text: 'Login',
+                              fontsize: 12,
+                              color: cWhite,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
                   SizedBox(
                     //color: Colors.amber,
-                  
+
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Padding(
-                          padding:
-                              const EdgeInsets.only(right: 10, ),
+                          padding: const EdgeInsets.only(
+                            right: 10,
+                          ),
                           child: Column(
                             children: [
                               SizedBox(
                                   height: 10,
                                   child: TextButton(
-                                    onPressed: () {loginshowDilogueBox(context);},
+                                    onPressed: () {
+                                      loginshowDilogueBox(context);
+                                    },
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
@@ -106,8 +116,8 @@ class AppBarWidget extends StatelessWidget {
                                         const Icon(Icons.login,
                                             color: cWhite, size: 15.0),
                                         Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 5),
+                                          padding:
+                                              const EdgeInsets.only(left: 5),
                                           child: GooglePoppinsWidgets(
                                             text: 'LOGIN',
                                             fontsize: 12,
@@ -174,7 +184,7 @@ class AppBarWidget extends StatelessWidget {
                           height: 50,
                           child: TextButton(
                             onPressed: () {
-                            loginshowDilogueBox(context);
+                              loginshowDilogueBox(context);
                             },
                             child: Row(
                               children: [
