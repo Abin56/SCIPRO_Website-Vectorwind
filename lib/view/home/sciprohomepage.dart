@@ -3,12 +3,11 @@ import 'package:scipro_website/view/home/footer/copyright/copyrightwidget.dart';
 import 'package:scipro_website/view/home/home%20appbar/appbar.dart';
 import 'package:scipro_website/view/widgets/responsive/responsive.dart';
 
-import '../../resources/assets_manager.dart';
 import '../colors/colors.dart';
 import '../fonts/google_poppins.dart';
 import 'footer/footer.dart';
 import 'home about us/about_us.dart';
-import 'home new intro/new_intro.dart';
+import 'home intro page/home_intro_page.dart';
 import 'industry oriented courses/industry_oriented_courses.dart';
 import 'scipro offers/scipro_offers.dart';
 import 'scipro top courses/top_courses.dart';
@@ -50,8 +49,7 @@ class SciproHomePage extends StatelessWidget {
                         child: IndustryOrientedCourses(),
                       ),
                       SizedBox(
-                        height: 1500,
-                        width: 700,
+                        
                         child: FooterContainerWidget(),
                       ),
                       Padding(
@@ -95,7 +93,7 @@ List<Widget> AppBarList = [
   SizedBox(
     height: 50,
     child: Image.asset(
-      ImageAssets.scipro,
+      'images/scipro.png',
       height: 100,
       width: 100,
     ),

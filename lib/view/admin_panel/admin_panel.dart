@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:scipro_website/view/admin_panel/coupen_mngt/coupen_part_grid/listing_coupen_users.dart';
 import 'package:scipro_website/view/admin_panel/drawer_logo.dart';
 import 'package:scipro_website/view/admin_panel/studyMaterials_management/studyMaterials_screen.dart';
-import 'package:scipro_website/view/admin_panel/study_materials/studymaterials_page.dart';
 import 'package:scipro_website/view/admin_panel/subscrib_std_mngt/Subscribed_std/subscribed_student.dart';
 import 'package:scipro_website/view/admin_panel/video_management/video_management.dart';
 import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
-
-import '../notification_management/notification.dart';
+import 'notification_management/notification.dart';
+import 'all_users_mngt/all_users/all_users_list.dart';
+import 'set_user_acess/set_user_acess_list.dart';
 
 class AdminPanelPage extends StatefulWidget {
   const AdminPanelPage({super.key});
@@ -55,24 +55,13 @@ List<Widget> pages = [
 
   ///.............. Recorded c Managementm
 
-   StudyMaterialsManagementSection(),
-  const StudyMaterialsPage(),
-  Container(
-    child: const Center(
-      child: Text("data"),
-    ),
-  ),
-  Container(
-    child: GestureDetector(
-      onTap: () async {},
-      child: const Center(
-        child: Text("Notification"),
-      ),
-    ),
-  ),
+  StudyMaterialsManagementSection(),
+  // const StudyMaterialsPage(),
+  SetUserAcess(),
+  AllUsersList(),
 
   AllUsersForCoupenList(),
-  // const AllUsersList(),
+
   NotificationManagement()
 ];
 
@@ -129,7 +118,6 @@ List<String> sideMenu = [
   'Recorded C Management',
   'Subscribed Students',
   'Study Materials',
-  'Get Invoice',
   'Set User Access',
   'All Users',
   'Coupon Management',
@@ -140,16 +128,9 @@ List<IconData> sideMenuICons = [
   Icons.volunteer_activism,
   Icons.picture_as_pdf,
   Icons.receipt,
-  Icons.key,
+
   Icons.group,
   Icons.confirmation_num,
   Icons.notification_add,
-  // Icons.confirmation_number_outlined,
-  // Icons.people,
-  // Icons.attach_money_outlined,
-  // Icons.people,
-  // Icons.receipt_long,
-  // Icons.keyboard_alt_outlined,
-  // Icons.settings,
-  // Icons.gavel,
+
 ];

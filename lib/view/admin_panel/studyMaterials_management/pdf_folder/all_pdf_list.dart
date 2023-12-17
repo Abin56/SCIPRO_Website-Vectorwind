@@ -1,21 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:scipro_website/view/admin_panel/studyMaterials_management/crud_function_pdf/pdf_editdelete.dart';
-import 'package:scipro_website/view/admin_panel/studyMaterials_management/crud_function_pdf/update_pdf.dart';
 import 'package:scipro_website/view/admin_panel/studyMaterials_management/pdf_folder/list_pdf.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
 import 'package:scipro_website/view/widgets/back_container/back_container.dart';
-import 'package:scipro_website/view/widgets/button_container_widget/button_container_widget.dart';
 import 'package:scipro_website/view/widgets/responsive/responsive.dart';
 
 showStudyMaterialsList(BuildContext context) {
-  List<Widget> showpdfsWidgets = [
-    GestureDetector(
-        onTap: () => editdeletPdfList(context),
-        child: const ButtonContainerWidget(text: "Settings")),
-    GestureDetector(
-        onTap: () => uploadPdfShowDilogue(context),
-        child: const ButtonContainerWidget(text: "Upload PDF"))
-  ];
   return showDialog(
     context: context,
     barrierDismissible: false, // user must tap button!

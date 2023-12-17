@@ -45,7 +45,7 @@ class ContactUsContainerWidget extends StatelessWidget {
                   width: 40,
                   height: 40,
                   child: Image.asset(
-                    'assets/images/vector.png',
+                    'images/vector.png',
                     fit: BoxFit.fill,
                   ),
                 ),

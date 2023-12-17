@@ -8,7 +8,7 @@ import 'copyright/copyrightwidget.dart';
 import 'scipro container/scipro_container_widget.dart';
 
 class FooterContainerWidget extends StatelessWidget {
-  const FooterContainerWidget({
+   const FooterContainerWidget({
     super.key,
   });
 
@@ -16,20 +16,22 @@ class FooterContainerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: ResponsiveWebSite.isMobile(context)
-          ? Expanded(
-            child: Column(
+          ? Column(
               children: [
-                SciproContainerWidget(),
-                CompanyContainerWidget(),
-                Padding(
-                  padding: EdgeInsets.only(right: 20),
-                  child: SizedBox(
-                      width: double.infinity,
-                      child: ContactUsContainerWidget()),
-                ),
+                SizedBox(
+                  
+                  height: 1380,
+                  width: double.infinity,
+                  child:  Column(
+                    children: [
+                      Container(child: const SciproContainerWidget(),),
+                      Container(child: const CompanyContainerWidget(),),
+                       Container(child: const ContactUsContainerWidget() ,),
+                    ],
+                  ),
+                )
               ],
-            ),
-          )
+            )
           : ResponsiveWebSite.isTablet(context)
               ? const Column(children: [
                   Expanded(

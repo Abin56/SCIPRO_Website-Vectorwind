@@ -3,7 +3,7 @@ import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
 import 'package:scipro_website/view/widgets/back_container/back_container.dart';
 
-customShowDilogBox(
+  customShowDilogBox(
     {required BuildContext context,
     required String title,
     required List<Widget> children,

@@ -6,14 +6,15 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:scipro_website/controller/notification_controller/notification_controller.dart';
 import 'package:scipro_website/data/video_management/category_model.dart';
-import 'package:scipro_website/view/notification_management/list_of_rec_courses.dart';
+import 'package:scipro_website/view/admin_panel/notification_management/list_of_rec_courses.dart';
 import 'package:scipro_website/view/widgets/button_container_widget/button_container_widget.dart';
 
-import '../fonts/google_poppins.dart';
-import '../widgets/responsive/responsive.dart';
+import '../../fonts/google_poppins.dart';
+import '../../widgets/responsive/responsive.dart';
 
 // ignore: must_be_immutable
 class NotificationManagement extends StatelessWidget {
+  final formKey = GlobalKey<FormState>();
   NotificationManagementController notificationManagementController =
       Get.put(NotificationManagementController());
   NotificationManagement({
@@ -22,6 +23,7 @@ class NotificationManagement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     List<Widget> topVedioManagementBar = [
       ///////////////////
       //////
@@ -37,13 +39,12 @@ class NotificationManagement extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
             Padding(
-              padding: const EdgeInsets.only(
-                top: 10,
-              ),
+              padding: const EdgeInsets.only(top: 10, right: 50),
               child: GestureDetector(
                 onTap: () async {
-                  notificationManagementController.sendNotificationAllStudents(
-                      "body", '');
+                  notificationManagementController.allUserDeviceToken.clear();
+                  await notificationManagementController
+                      .sendMessageForAllStudents(context);
                 },
                 child: const ButtonContainerWidget(
                   text: 'Sent All Students',
@@ -54,13 +55,6 @@ class NotificationManagement extends StatelessWidget {
         ),
       ),
 
-//////////////////////////////////////////////////////////////////Create Vedio Recorded Courses
-      //////////////////////////////////
-      ///
-      ///
-      ///
-
-      ///
       SizedBox(
           height: 35,
           width: 250,

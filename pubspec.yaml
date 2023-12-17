@@ -53,6 +53,8 @@ dependencies:
   url_launcher: ^6.2.1
   shared_preferences: ^2.2.2
   http: 
+  csv: ^5.1.1
+  lottie: ^2.7.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -63,14 +65,15 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.
 flutter:
+  assets:
+    - images/
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
-  assets:
-    - assets/images/
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
