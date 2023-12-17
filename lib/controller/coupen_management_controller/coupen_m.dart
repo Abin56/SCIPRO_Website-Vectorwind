@@ -1,10 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scipro_website/controller/coupen_management_controller/model/coupen_model.dart';
 import 'package:scipro_website/view/constant/const.dart';
 import 'package:scipro_website/view/core/core.dart';
 import 'package:scipro_website/view/widgets/custom_showDilog/custom_showdilog.dart';
-import 'package:uuid/uuid.dart';
 
 class CoupenManagementController extends GetxController {
   final TextEditingController coupenNameController = TextEditingController();
@@ -14,11 +15,13 @@ class CoupenManagementController extends GetxController {
   final TextEditingController emailController = TextEditingController();
   RxString studentUID = ''.obs;
   RxBool checkboxvalue = false.obs;
+  RxBool checkmailisLoading = false.obs;
 
   Future<void> createCoupen(String coupenCode) async {
+    checkmailisLoading.value = true;
     final uuid = checkboxvalue.value == true
         ? studentUID.value.trim()
-        : const Uuid().v1();
+        : 'SCIPRO$coupenCode';
     final sever = dataserver.collection('CoupenManagement');
     final coupenDetails = CoupenManagementModel(
         coupenCode: "SCIPRO$coupenCode",
@@ -26,16 +29,23 @@ class CoupenManagementController extends GetxController {
         id: uuid,
         coupenName: coupenNameController.text.trim(),
         discount: int.parse(discountController.text.trim()),
-        validity: int.parse(validtyController.text.trim()),
+        validity: DateTime.now()
+            .add(Duration(days: int.parse(validtyController.text.trim())))
+            .toString(),
         usage: int.parse(uageCountController.text.trim()),
         totalusage: 0,
         createdDate: DateTime.now().toString(),
         forstudent: checkboxvalue.value);
-    fetchStudentUid(emailController.text.trim()).then((value) async {
-      sever.doc(uuid).set(coupenDetails.toMap()).then((value) {
-        showToast(msg: "Coupen Created");
-      });
+    sever.doc(uuid).set(coupenDetails.toMap()).then((value) {
+      checkmailisLoading.value = false;
+      emailController.clear();
+      checkboxvalue.value = false;
+      Get.back();
+      showToast(msg: "Coupen Created");
     });
+    // fetchStudentUid(emailController.text.trim()).then((value) async {
+
+    // });
   }
 
   Future<void> deletecoupen(
@@ -60,6 +70,13 @@ class CoupenManagementController extends GetxController {
         .collection('StudentProfileCollection')
         .where('email', isEqualTo: email)
         .get();
-    studentUID.value = data.docs[0].data()['uid'];
+    if (data.docs.isNotEmpty) {
+      checkmailisLoading.value = false;
+      studentUID.value = data.docs[0].data()['uid'];
+      log("message ${studentUID.value}");
+    } else {
+      checkmailisLoading.value = false;
+      showToast(msg: "User not found check the enter email");
+    }
   }
 }
