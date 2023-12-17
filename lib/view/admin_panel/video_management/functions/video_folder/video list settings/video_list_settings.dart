@@ -205,33 +205,43 @@ ontaponCourseList(BuildContext context, FolderModel folderModel) {
                                 ),
                               ],
                             ),
-                      // GestureDetector(
-                      //   onTap: () {
-                      //     customShowDilogBox(
-                      //         context: context,
-                      //         title: "Alert",
-                      //         children: [const Text('Do you want this Course ?')],
-                      //         doyouwantActionButton: true,
-                      //         actiononTapfuction: () {});
-                      //   },
-                      //   child: Padding(
-                      //     padding: const EdgeInsets.only(top: 20),
-                      //     child: Container(
-                      //       height: 40,
-                      //       width: 150,
-                      //       color: themeColorBlue,
-                      //       child: const Center(
-                      //         child: Text(
-                      //           "Delete Course",
-                      //           style: TextStyle(
-                      //               color: cWhite,
-                      //               fontWeight: FontWeight.bold,
-                      //               fontSize: 12),
-                      //         ),
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
+                      GestureDetector(
+                        onTap: () {
+                          customShowDilogBox(
+                              context: context,
+                              title: "Alert",
+                              children: [
+                                const Text('Do you want this Course ?')
+                              ],
+                              doyouwantActionButton: true,
+                              actiononTapfuction: () async {
+                                await Get.find<VideoMangementController>()
+                                    .deleteFolderFromFirebase(
+                                        folderModel: folderModel);
+                                if (context.mounted) {
+                                  Navigator.of(context).pop();
+                                  Navigator.of(context).pop();
+                                }
+                              });
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 20),
+                          child: Container(
+                            height: 40,
+                            width: 150,
+                            color: themeColorBlue,
+                            child: const Center(
+                              child: Text(
+                                "Delete Course",
+                                style: TextStyle(
+                                    color: cWhite,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
