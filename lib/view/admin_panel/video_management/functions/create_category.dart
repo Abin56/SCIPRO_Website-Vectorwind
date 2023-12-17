@@ -26,7 +26,7 @@ createvideoCategory(BuildContext context) async {
       },
       children: [
         Obx(
-          () => Get.find<VideoMangementController>().isLoading.value
+          () => Get.find<VideoMangementController>().isLoadingCategory.value
               ? circularPIndicator
               : Form(
                   key: cformKey,
@@ -53,12 +53,11 @@ createvideoRecordedCourses(BuildContext context) async {
       actiononTapfuction: () async {
         if (formKeyCategory.currentState!.validate()) {
           await videoCont.createCourse();
-          await videoCont.fetchAllCourse();
         }
       },
       children: [
         Obx(
-          () => videoCont.isLoading.value
+          () => videoCont.isLoadingCourse.value
               ? circularPIndicator
               : ResponsiveWebSite.isMobile(context)
                   ? SingleChildScrollView(
