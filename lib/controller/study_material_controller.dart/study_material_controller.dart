@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
 import 'package:scipro_website/data/video_management/category_model.dart';
@@ -25,12 +27,17 @@ class StudyMaterialController extends GetxController {
   CourseModel? selectedCourse;
   FolderModel? selectedFolder;
 
-  Future<List<CategoryModel>> fetchAllCategory() async {
-    final data = await repository.fetchAllCategory();
-    fetchedCategory.value = data;
-    fetchedCategory.sort((a, b) => a.position.compareTo(b.position));
-    fetchedCategory.refresh();
-    return fetchedCategory;
+  Stream<List<CategoryModel>> fetchAllCategoriesStream() async* {
+    try {
+      final data = await repository.fetchAllCategory();
+      fetchedCategory.value = data;
+      fetchedCategory.sort((a, b) => a.position.compareTo(b.position));
+      fetchedCategory.refresh();
+      yield fetchedCategory;
+    } catch (e) {
+      log(e.toString());
+      yield [];
+    }
   }
 
   Future<List<CourseModel>> fetchAllCourse() async {

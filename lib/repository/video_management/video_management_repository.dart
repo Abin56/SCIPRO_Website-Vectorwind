@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -30,7 +31,7 @@ class VideoManagementRepository {
 
   //fetch all category
 
-  fetchAllCategory() async {
+ Future<List<CategoryModel>> fetchAllCategory() async {
     try {
       final QuerySnapshot<Map<String, dynamic>> data =
           await _firestore.collection('recorded_course').get();
@@ -40,6 +41,27 @@ class VideoManagementRepository {
       return [];
     }
   }
+
+
+Stream<List<CategoryModel>> fetchAllCategoriesStream() {
+  StreamController<List<CategoryModel>> controller = StreamController();
+
+  _firestore.collection('recorded_course').snapshots().listen(
+    (QuerySnapshot<Map<String, dynamic>> snapshot) {
+      List<CategoryModel> categories = snapshot.docs
+          .map((e) => CategoryModel.fromMap(e.data()))
+          .toList();
+      controller.add(categories);
+    },
+    onError: (error) {
+      log(error.toString());
+      controller.addError(error.toString());
+    },
+  );
+
+  return controller.stream;
+}
+
 
   Future<void> createCourse({required CourseModel course}) async {
     try {

@@ -51,25 +51,47 @@ class StudyMaterialsManagementSection extends StatelessWidget {
           )), //////////////////////////////////1
 
       SizedBox(
-          height: 35,
-          width: 250,
-          child: Center(
-            child: DropdownSearch<CategoryModel>(
-              autoValidateMode: AutovalidateMode.always,
-              asyncItems: (text) => studyMaterialController.fetchAllCategory(),
-              itemAsString: (item) => item.name,
-              selectedItem: studyMaterialController.selectedCategory.value,
-              onChanged: (value) async {
-                if (value != null) {
-                  studyMaterialController.selectedCategory.value = value;
-                  await studyMaterialController.fetchAllCourse();
-                }
-              },
-              dropdownDecoratorProps: DropDownDecoratorProps(
+        height: 35,
+        width: 250,
+        child: Center(
+          child: StreamBuilder<List<CategoryModel>>(
+            stream: studyMaterialController.fetchAllCategoriesStream(),
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                // Handle error
+                return Text('Error: ${snapshot.error}');
+              }
+
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                // Data is still loading
+                return const CircularProgressIndicator();
+              }
+
+              List<CategoryModel> categories = snapshot.data ?? [];
+
+              return DropdownSearch<CategoryModel>(
+                autoValidateMode: AutovalidateMode.always,
+                items: categories,
+                itemAsString: (item) => item.name,
+                selectedItem: studyMaterialController.selectedCategory.value,
+                onChanged: (value) async {
+                  if (value != null) {
+                    studyMaterialController.selectedCategory.value = value;
+                    await studyMaterialController.fetchAllCourse();
+                  }
+                },
+                dropdownDecoratorProps: DropDownDecoratorProps(
                   baseStyle: GoogleFonts.poppins(
-                      fontSize: 13, color: Colors.black.withOpacity(0.7))),
-            ),
-          )), //////////////////////////////////////////2
+                    fontSize: 13,
+                    color: Colors.black.withOpacity(0.7),
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      ),
+/////////////////////////////////////////2
       SizedBox(
         height: 550,
         child: Column(

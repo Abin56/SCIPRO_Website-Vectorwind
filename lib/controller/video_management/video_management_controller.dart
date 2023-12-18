@@ -85,8 +85,15 @@ class VideoMangementController {
     await _repository.deleteCategory(
       categoryModel: cagtegoryModel,
     );
-
     await fetchAllCategory();
+    if (cagtegoryModel == selectedCategory.value) {
+      fetchedCourse.clear();
+      fetchedCourse.refresh();
+      selectedCategory.value =
+          CategoryModel(id: '', name: 'SelectCategory', position: 0);
+      isLoadingCategory.value = false;
+      return;
+    }
 
     isLoadingCategory.value = false;
   }
