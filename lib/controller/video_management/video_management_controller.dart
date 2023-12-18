@@ -316,7 +316,5 @@ class VideoMangementController {
     faculteNameTextController.clear();
     courseFeeTextController.clear();
     durationTextController.clear();
-    selectedCategory.value =
-        CategoryModel(id: '', name: 'Select Category', position: 0);
   }
 }
