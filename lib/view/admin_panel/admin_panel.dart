@@ -7,7 +7,6 @@ import 'package:scipro_website/view/admin_panel/video_management/video_managemen
 import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
-
 import 'notification_management/notification.dart';
 import 'all_users_mngt/all_users/all_users_list.dart';
 import 'set_user_acess/set_user_acess_list.dart';
@@ -56,13 +55,13 @@ List<Widget> pages = [
 
   ///.............. Recorded c Managementm
 
-   StudyMaterialsManagementSection(),
- // const StudyMaterialsPage(),
- SetUserAcess(),
-   AllUsersList(),
+  StudyMaterialsManagementSection(),
+  // const StudyMaterialsPage(),
+  SetUserAcess(),
+  AllUsersList(),
 
   AllUsersForCoupenList(),
-   
+
   NotificationManagement()
 ];
 
@@ -119,7 +118,6 @@ List<String> sideMenu = [
   'Recorded C Management',
   'Subscribed Students',
   'Study Materials',
-  
   'Set User Access',
   'All Users',
   'Coupon Management',
@@ -134,12 +132,5 @@ List<IconData> sideMenuICons = [
   Icons.group,
   Icons.confirmation_num,
   Icons.notification_add,
-  // Icons.confirmation_number_outlined,
-  // Icons.people,
-  // Icons.attach_money_outlined,
-  // Icons.people,
-  // Icons.receipt_long,
-  // Icons.keyboard_alt_outlined,
-  // Icons.settings,
-  // Icons.gavel,
+
 ];

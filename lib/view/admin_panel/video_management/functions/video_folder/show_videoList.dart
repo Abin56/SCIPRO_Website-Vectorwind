@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:scipro_website/view/admin_panel/video_management/functions/uploadvideo.dart';
 import 'package:scipro_website/view/admin_panel/video_management/functions/video_folder/editanddelte_videos.dart';
 import 'package:scipro_website/view/admin_panel/video_management/video_courses_list/table_grids/view_video_grid.dart';
+import 'package:scipro_website/view/constant/const.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
 import 'package:scipro_website/view/widgets/back_container/back_container.dart';
 import 'package:scipro_website/view/widgets/button_container_widget/button_container_widget.dart';
@@ -67,23 +68,21 @@ showVideoList(BuildContext context) {
               )
             ],
           ),
-          content: Obx(() {
-            Get.find<VideoMangementController>().videoDataSource.value =
-                VideoDataSource(
-                    videoData: Get.find<VideoMangementController>().vidoesList);
-            return SingleChildScrollView(
-              child: ListBody(
-                children: [
-                  Container(
-                    height: 500,
-                    width: 600,
-                    color: Colors.white,
-                    child: const VideoListingGrid(),
-                  )
-                ],
-              ),
-            );
-          }));
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: [
+                Obx(() =>
+                    Get.find<VideoMangementController>().isVideoUploading.value
+                        ? circularPIndicator
+                        : Container(
+                            height: 500,
+                            width: 600,
+                            color: Colors.white,
+                            child: const VideoListingGrid(),
+                          ))
+              ],
+            ),
+          ));
     },
   );
 }

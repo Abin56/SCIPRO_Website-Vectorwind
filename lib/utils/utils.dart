@@ -6,15 +6,14 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:scipro_website/controller/video_management/video_management_controller.dart';
 
-Future<Uint8List?> imagePicker() async {
+Future<PlatformFile?> imagePicker() async {
   FilePickerResult? result = await FilePicker.platform.pickFiles(
     type: FileType.custom,
     allowedExtensions: ['jpg', 'png'],
   );
 
   if (result != null) {
-    Uint8List? fileBytes = result.files.first.bytes;
-    return fileBytes;
+    return result.files.first;
 
     // Upload file
   }
@@ -22,15 +21,14 @@ Future<Uint8List?> imagePicker() async {
   return null;
 }
 
-Future<Uint8List?> videoPicker() async {
+Future<PlatformFile?> videoPicker() async {
   FilePickerResult? result = await FilePicker.platform.pickFiles(
     type: FileType.custom,
     allowedExtensions: ['webm', 'mkv', 'mp4'],
   );
 
   if (result != null) {
-    Uint8List? fileBytes = result.files.first.bytes;
-    return fileBytes;
+    return result.files.first;
 
     // Upload file
   }
@@ -38,15 +36,15 @@ Future<Uint8List?> videoPicker() async {
   return null;
 }
 
-Future<Uint8List?> pdfPicker() async {
+Future<PlatformFile?> pdfPicker() async {
   FilePickerResult? result = await FilePicker.platform.pickFiles(
     type: FileType.custom,
     allowedExtensions: ['pdf'],
   );
 
   if (result != null) {
-    Uint8List? fileBytes = result.files.first.bytes;
-    return fileBytes;
+    // Uint8List? fileBytes = result.files.first.bytes;
+    return result.files.first;
 
     // Upload file
   }
@@ -68,8 +66,39 @@ Future<String> uploadUint8ListToFirestore(
       (TaskSnapshot snapshot) {
         Get.find<VideoMangementController>().progress.value =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      },
+      onDone: () {
+        streamSubscription?.cancel();
+      },
+      onError: (Object e) {
+        streamSubscription?.cancel();
+      },
+    );
 
-        print((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+    final task = await uploadTask;
+    String url = await task.ref.getDownloadURL();
+    return url;
+  } catch (e) {
+    return '';
+  }
+}
+
+Future<String> uploadPdfToFirebase(
+  Uint8List data,
+  String documentPath,
+  String name,
+) async {
+  try {
+    StreamSubscription<TaskSnapshot>? streamSubscription;
+    final storageReference =
+        FirebaseStorage.instance.ref().child('$documentPath/$name.pdf');
+    SettableMetadata metadata =
+        SettableMetadata(contentType: 'application/pdf');
+    final uploadTask = storageReference.putData(data, metadata);
+    streamSubscription = uploadTask.snapshotEvents.listen(
+      (TaskSnapshot snapshot) {
+        Get.find<VideoMangementController>().progress.value =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
       },
       onDone: () {
         streamSubscription?.cancel();

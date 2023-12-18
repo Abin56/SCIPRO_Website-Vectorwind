@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scipro_website/controller/all_users_controller/alluser_controller.dart';
 import 'package:scipro_website/view/admin_panel/all_users_mngt/convert_to_excel.dart';
+import 'package:scipro_website/view/admin_panel/search_management/All_users/search_students.dart';
 import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/constant/constant.validate.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
 import 'package:scipro_website/view/widgets/button_container_widget/button_container_widget.dart';
-import 'package:scipro_website/view/widgets/custom_showDilog/custom_showdilog.dart';
 import 'package:scipro_website/view/widgets/responsive/responsive.dart';
 
 import '../../../../controller/all_users_controller/model/all_users_model.dart';
@@ -22,6 +22,7 @@ class AllUsersList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    alluserController.fetchAllStudents();
     List<Widget> topVedioManagementBar = [
       ///////////////////
       //////
@@ -65,36 +66,46 @@ class AllUsersList extends StatelessWidget {
       ),
 
       Container(
-          decoration: const BoxDecoration(
-            color: themeColorBlue,
-            borderRadius: BorderRadius.horizontal(),
-          ),
-          width: ResponsiveWebSite.isMobile(context) ? 150 : 200,
-          height: 30,
-          child: Row(
-            children: [
-              const Padding(
-                padding: EdgeInsets.only(left: 10),
-                child: Icon(
-                  Icons.search,
-                  size: 14,
-                  color: cWhite,
-                ),
-              ),
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 8),
-                  child: GooglePoppinsWidgets(
-                    textAlign: TextAlign.center,
-                    color: cWhite,
-                    fontWeight: FontWeight.w500,
-                    text: 'search',
-                    fontsize: 12,
+        decoration: BoxDecoration(
+            border: Border.all(color: cGrey),
+            borderRadius: BorderRadius.circular(2)),
+        child: Container(
+            decoration: const BoxDecoration(
+              color: themeColorBlue,
+              borderRadius: BorderRadius.horizontal(),
+            ),
+            width: ResponsiveWebSite.isMobile(context) ? 150 : 200,
+            height: 30,
+            child: GestureDetector(
+              onTap: () async {
+                await searchStudents(context);
+              },
+              child: Row(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(left: 10),
+                    child: Icon(
+                      Icons.search,
+                      size: 14,
+                      color: cWhite,
+                    ),
                   ),
-                ),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8),
+                      child: GooglePoppinsWidgets(
+                        textAlign: TextAlign.center,
+                        color: cWhite,
+                        fontWeight: FontWeight.w500,
+                        text: 'search',
+                        fontsize: 12,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          )),
+            )),
+      ),
     ];
     return Column(
       children: [
@@ -136,12 +147,10 @@ class AllUsersList extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          child: Row(
-                            children: [
-                              topVedioManagementBar[0],
-                            ],
-                          ),
+                        Row(
+                          children: [
+                            topVedioManagementBar[0],
+                          ],
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 40),
@@ -166,6 +175,7 @@ class AllUsersList extends StatelessWidget {
             listview: StreamBuilder(
                 stream: FirebaseFirestore.instance
                     .collection('StudentProfileCollection')
+                    .orderBy('name', descending: false)
                     .snapshots(),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
@@ -173,39 +183,34 @@ class AllUsersList extends StatelessWidget {
                         itemBuilder: (BuildContext context, int index) {
                           final data = StudentProfileCreationModel.fromMap(
                               snapshot.data!.docs[index].data());
-                          return GestureDetector(
-                            onTap: () {
-                              allusersshowdialogue(context);
-                            },
-                            child: SizedBox(
-                                height: 80,
-                                child: Row(
-                                  children: [
-                                    DataContainerWidget(
+                          return SizedBox(
+                              height: 80,
+                              child: Row(
+                                children: [
+                                  DataContainerWidget(
+                                    index: index,
+                                    width: 100,
+                                    headerTitle: '${index + 1}',
+                                  ),
+                                  DataContainerWidget(
                                       index: index,
-                                      width: 100,
-                                      headerTitle: '${index + 1}',
-                                    ),
-                                    DataContainerWidget(
-                                        index: index,
-                                        width: 300,
-                                        headerTitle: data.name),
-                                    DataContainerWidget(
-                                        index: index,
-                                        width: 250,
-                                        headerTitle: data.phoneno),
-                                    DataContainerWidget(
-                                        index: index,
-                                        width: 300,
-                                        headerTitle: data.email),
-                                    DataContainerWidget(
-                                        index: index,
-                                        width: 200,
-                                        headerTitle: dateConveter(
-                                            DateTime.parse(data.joindate))),
-                                  ],
-                                )),
-                          );
+                                      width: 300,
+                                      headerTitle: data.name),
+                                  DataContainerWidget(
+                                      index: index,
+                                      width: 250,
+                                      headerTitle: data.phoneno),
+                                  DataContainerWidget(
+                                      index: index,
+                                      width: 300,
+                                      headerTitle: data.email),
+                                  DataContainerWidget(
+                                      index: index,
+                                      width: 200,
+                                      headerTitle: dateConveter(
+                                          DateTime.parse(data.joindate))),
+                                ],
+                              ));
                         },
                         separatorBuilder: (BuildContext context, int index) {
                           return const SizedBox();
@@ -224,87 +229,6 @@ class AllUsersList extends StatelessWidget {
   }
 }
 
-
-
-void allusersshowdialogue(BuildContext context) {
-  customShowDilogBox(
-      context: context,
-      title: 'All Users',
-      children: [
-        StreamBuilder(
-            stream: FirebaseFirestore.instance
-                .collection('StudentProfileCollection')
-                .snapshots(),
-            builder: (context, snapshot) {
-              return Container(
-                height: 400,
-                width: 350,
-                decoration:
-                    BoxDecoration(border: Border.all(color: themeColorBlue)),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Center(
-                        child: CircleAvatar(
-                      radius: 60,
-                    )),
-                    Center(
-                      child: TextRowWidget(
-                        firstText: 'Name',
-                        secondText: '',
-                      ),
-                    ),
-                    Center(child: TextRowWidget(firstText: 'Email', secondText: '',),),
-                    
-                      Center(child: TextRowWidget(firstText: 'Phone No', secondText: '',),),
-                       Center(child: TextRowWidget(firstText: 'Join Date', secondText: '',),),
-                           Center(child: TextRowWidget(firstText: 'Address', secondText: '',),),
-                       Center(child: TextRowWidget(firstText: 'District', secondText: '',),),
-                       Center(child: TextRowWidget(firstText: 'Pincode', secondText: '',),),
-                           Center(child: TextRowWidget(firstText: 'State', secondText: '',),),
-                     
-                  ],
-                ),
-              );
-            })
-      ],
-      doyouwantActionButton: false);
-}
-
-class TextRowWidget extends StatelessWidget {
-  String firstText;
-  String secondText;
-  TextRowWidget(
-      {super.key,
-      // required this.data,
-      required this.firstText,
-      required this.secondText});
-
-  // final UserAfterPaymentModel data;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-              child: GooglePoppinsWidgets(
-            text: firstText,
-            fontsize: ResponsiveWebSite.isMobile(context) ? 12 : 14,
-            fontWeight: ResponsiveWebSite.isMobile(context)
-                ? FontWeight.normal
-                : FontWeight.w600,
-          )),
-          Expanded(
-              child: GooglePoppinsWidgets(
-            text: secondText,
-            fontsize: ResponsiveWebSite.isMobile(context) ? 12 : 14,
-          )),
-        ],
-      ),
-    );
-  }
+Future<void> searchStudents(BuildContext context) async {
+  await showSearch(context: context, delegate: AllUsersSearch());
 }

@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
 import 'package:scipro_website/data/video_management/category_model.dart';
 import 'package:scipro_website/data/video_management/study_material_model.dart';
@@ -18,7 +18,7 @@ class StudyMaterialController extends GetxController {
   RxList<CourseModel> fetchedCourse = RxList();
   RxList<FolderModel> foldersList = RxList();
   RxList<StudyMaterial> studyMaterialList = RxList();
-  Rxn<Uint8List> studyMaterial = Rxn();
+  Rxn<PlatformFile> studyMaterial = Rxn();
   final Uuid uuid = const Uuid();
   Rx<CategoryModel> selectedCategory =
       Rx(CategoryModel(id: '', name: 'SelectCategory', position: 0));
@@ -75,26 +75,29 @@ class StudyMaterialController extends GetxController {
         selectedCategory.value.id.isNotEmpty &&
         studyMaterial.value != null) {
       isPdfUploading.value = true;
-      final String url = await uploadUint8ListToFirestore(
-          studyMaterial.value!, 'studyMaterial', uuid.v1());
+      final value = studyMaterial.value?.bytes;
 
-      final studyMaterialModel = StudyMaterial(
-        id: uuid.v1(),
-        pdfName: name,
-        pdfUrl: url,
-        position: position,
-        categoryId: selectedFolder?.categoryId ?? '',
-        courseId: selectedFolder?.courseId ?? '',
-        folderId: selectedFolder?.id ?? '',
-      );
-      await repository.uploadStudyMaterialToFirebase(
-        studyMaterial: studyMaterialModel,
-      );
+      if (value != null) {
+        final String url = await uploadPdfToFirebase(
+            studyMaterial.value!.bytes!, 'studyMaterial', uuid.v1());
+        final studyMaterialModel = StudyMaterial(
+          id: uuid.v1(),
+          pdfName: name,
+          pdfUrl: url,
+          position: position,
+          categoryId: selectedFolder?.categoryId ?? '',
+          courseId: selectedFolder?.courseId ?? '',
+          folderId: selectedFolder?.id ?? '',
+        );
+        await repository.uploadStudyMaterialToFirebase(
+          studyMaterial: studyMaterialModel,
+        );
 
-      await fetchAllStudyMaterials();
+        await fetchAllStudyMaterials();
 
-      studyMaterial.value = null;
-      isPdfUploading.value = false;
+        studyMaterial.value = null;
+        isPdfUploading.value = false;
+      }
     }
   }
 
@@ -125,25 +128,23 @@ class StudyMaterialController extends GetxController {
       await repository.updateStudyMaterial(
         studyMaterial: studyMaterial,
       );
+      await fetchAllStudyMaterials();
+      isStudyMaterialLoading.value = false;
     }
-    await fetchAllStudyMaterials();
-    isStudyMaterialLoading.value = false;
   }
 
   Future<void> deleteStudyMaterialFromFirebase({
     required StudyMaterial studyMaterial,
   }) async {
-    isStudyMaterialLoading.value = true;
-
     if (selectedCourse != null &&
         selectedFolder != null &&
         selectedCategory.value.id.isNotEmpty) {
+      isStudyMaterialLoading.value = true;
       await repository.deleteStudyMaterial(
         studyMaterial: studyMaterial,
       );
+      await fetchAllStudyMaterials();
+      isStudyMaterialLoading.value = false;
     }
-    await fetchAllStudyMaterials();
-
-    isStudyMaterialLoading.value = false;
   }
 }

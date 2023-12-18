@@ -304,6 +304,51 @@ class VideoManagementRepository {
     }
   }
 
+  Future<void> deleteFolder({required FolderModel folderModel}) async {
+    try {
+      await _firestore
+          .collection('recorded_course')
+          .doc(folderModel.categoryId)
+          .collection('course')
+          .doc(folderModel.courseId)
+          .collection('folders')
+          .doc(folderModel.id)
+          .delete();
+      showToast(msg: 'Successfully Deleted');
+    } on FirebaseException catch (e) {
+      showToast(msg: 'Something went wrong');
+      log(e.toString());
+    }
+  }
+
+  Future<void> deleteCourse({required CourseModel courseModel}) async {
+    try {
+      await _firestore
+          .collection('recorded_course')
+          .doc(courseModel.categoryId)
+          .collection('course')
+          .doc(courseModel.id)
+          .delete();
+      showToast(msg: 'Successfully Deleted');
+    } on FirebaseException catch (e) {
+      showToast(msg: 'Something went wrong');
+      log(e.toString());
+    }
+  }
+
+  Future<void> deleteCategory({required CategoryModel categoryModel}) async {
+    try {
+      await _firestore
+          .collection('recorded_course')
+          .doc(categoryModel.id)
+          .delete();
+      showToast(msg: 'Successfully Deleted');
+    } on FirebaseException catch (e) {
+      showToast(msg: 'Something went wrong');
+      log(e.toString());
+    }
+  }
+
   Future<void> deleteStudyMaterial(
       {required StudyMaterial studyMaterial}) async {
     try {

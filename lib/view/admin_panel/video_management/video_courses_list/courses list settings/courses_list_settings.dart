@@ -155,7 +155,7 @@ ontaponCourseList(BuildContext context, CourseModel courseModel) {
       context: context,
       title: "Edit Course",
       children: [
-        Get.find<VideoMangementController>().isLoading.value
+        Get.find<VideoMangementController>().isLoadingCourse.value
             ? circularPIndicator
             : SizedBox(
                 height: ResponsiveWebSite.isDesktop(context) ? 200 : 300,
@@ -210,7 +210,15 @@ ontaponCourseList(BuildContext context, CourseModel courseModel) {
                             title: "Alert",
                             children: [const Text('Do you want this Course ?')],
                             doyouwantActionButton: true,
-                            actiononTapfuction: () {});
+                            actiononTapfuction: () async {
+                              await Get.find<VideoMangementController>()
+                                  .deleteCourseFromFirebase(
+                                      courseModel: courseModel);
+                              if (context.mounted) {
+                                Navigator.of(context).pop();
+                                Navigator.of(context).pop();
+                              }
+                            });
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(top: 20),

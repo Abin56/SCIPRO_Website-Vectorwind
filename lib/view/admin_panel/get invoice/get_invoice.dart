@@ -11,7 +11,6 @@ import '../../constant/constant.validate.dart';
 //Local imports
 
 Future<void> generateInvoice() async {
- 
   //Create a PDF document.
   final PdfDocument document = PdfDocument();
   //Add page to the PDF
@@ -35,7 +34,8 @@ Future<void> generateInvoice() async {
   //Dispose the document.
   document.dispose();
   //Save and launch the file.
-  await saveAndLaunchFile(bytes, 'Invoice.pdf');
+  await saveAndLaunchFile(bytes,
+      'Invoice VSCI ${Get.find<GetInvoiceController>().invoiceNumber}.pdf');
 }
 
 Future<void> saveAndLaunchFile(List<int> bytes, String fileName) async {
@@ -55,14 +55,13 @@ PdfLayoutResult drawHeader(PdfPage page, Size pageSize, PdfGrid grid) {
       brush: PdfSolidBrush(PdfColor(91, 126, 215)),
       bounds: Rect.fromLTWH(0, 0, pageSize.width - 115, 90));
   //Draw string
-  page.graphics.drawString(
-      'VectorWind', PdfStandardFont(PdfFontFamily.helvetica, 30),
+  page.graphics.drawString('VECTORWIND-TECH SYSTEMS PVT LTD',
+      PdfStandardFont(PdfFontFamily.helvetica, 18),
       brush: PdfBrushes.white,
       bounds: Rect.fromLTWH(25, 0, pageSize.width - 115, 90),
       format: PdfStringFormat(lineAlignment: PdfVerticalAlignment.middle));
 
   Future<Uint8List> getImageData() async {
-    
     // Load the image from the assets
     final ByteData data = await rootBundle.load('images/vector.png');
     return data.buffer.asUint8List();
@@ -74,7 +73,8 @@ PdfLayoutResult drawHeader(PdfPage page, Size pageSize, PdfGrid grid) {
       bounds: Rect.fromLTWH(400, 0, pageSize.width - 400, 90),
       brush: PdfSolidBrush(PdfColor(65, 104, 205)));
 
-  page.graphics.drawString(getinvoiceController.totalPrice.value.toString(),////////////Granttotal
+  page.graphics.drawString(
+      getinvoiceController.totalPrice.value.toString(), ////////////Granttotal
       PdfStandardFont(PdfFontFamily.helvetica, 18),
       bounds: Rect.fromLTWH(400, 0, pageSize.width - 400, 100),
       brush: PdfBrushes.white,
@@ -92,8 +92,8 @@ PdfLayoutResult drawHeader(PdfPage page, Size pageSize, PdfGrid grid) {
           lineAlignment: PdfVerticalAlignment.bottom));
   //Create data foramt and convert it to text.
 
-  final String invoiceNumber = 
-      'Date: ${dateConveter(DateTime.parse(getinvoiceController.date.value))}\r\n \r\nInvoice Number: 2058557939\r\n  \r\nGST number: 32AAFCV1427J1ZH\r\n  \r\nSAC Code: 9992';///
+  final String invoiceNumber =
+      'Date: ${dateConveter(DateTime.parse(getinvoiceController.date.value))}\r\n \r\nInvoice Number: VSCI ${getinvoiceController.invoiceNumber.value} \r\n  \r\nGST number: 32AAFCV1427J1ZH\r\n  \r\nSAC Code: 9992';
   final Size contentSize = contentFont.measureString(invoiceNumber);
   // ignore: leading_newlines_in_multiline_strings
   String address =
@@ -132,12 +132,12 @@ void drawGrid(PdfPage page, PdfGrid grid, PdfLayoutResult result) {
       page: page, bounds: Rect.fromLTWH(0, result.bounds.bottom + 40, 0, 0))!;
 
   //Draw grand total.
-  page.graphics.drawString('Grand Total \n GST\n SGST \n CGST',
+  page.graphics.drawString('Actual Price \n GST\n SGST \n CGST',
       PdfStandardFont(PdfFontFamily.helvetica, 9, style: PdfFontStyle.bold),
       bounds: Rect.fromLTWH(quantityCellBounds!.left, result.bounds.bottom + 10,
           quantityCellBounds!.width, quantityCellBounds!.height));
   page.graphics.drawString(
-      getinvoiceController.actualPrice.value, //
+      '${getinvoiceController.actualPrice.value} /-', //
       PdfStandardFont(PdfFontFamily.helvetica, 9, style: PdfFontStyle.bold),
       bounds: Rect.fromLTWH(
           totalPriceCellBounds!.left,
@@ -148,26 +148,25 @@ void drawGrid(PdfPage page, PdfGrid grid, PdfLayoutResult result) {
   // Draw SGST and CGST
 
   // Add SGST and CGST below Grand Total.
-   
+
 //  page.graphics.drawString('GST : ${getinvoiceController.rxgstPrice.value}',
 //       PdfStandardFont(PdfFontFamily.helvetica, 9),
 //       bounds: Rect.fromLTWH(quantityCellBounds!.left, result.bounds.bottom + 30,
 //           quantityCellBounds!.width, quantityCellBounds!.height));
 
-      
-  page.graphics.drawString('SGST : ${getinvoiceController.rxsgst.value}',
+  page.graphics.drawString('SGST : ${getinvoiceController.rxgstPrice.value}/-',
       PdfStandardFont(PdfFontFamily.helvetica, 9),
       bounds: Rect.fromLTWH(quantityCellBounds!.left, result.bounds.bottom + 50,
           quantityCellBounds!.width, quantityCellBounds!.height));
 
-  page.graphics.drawString('CGST : ${getinvoiceController.rxcgst.value}',
+  page.graphics.drawString('CGST : ${getinvoiceController.rxgstPrice.value}/-',
       PdfStandardFont(PdfFontFamily.helvetica, 9),
       bounds: Rect.fromLTWH(quantityCellBounds!.left, result.bounds.bottom + 70,
           quantityCellBounds!.width, quantityCellBounds!.height));
-      //     page.graphics.drawString('Total Amount: : ${getinvoiceController.totalPrice.value}',
-      // PdfStandardFont(PdfFontFamily.helvetica, 9),
-      // bounds: Rect.fromLTWH(quantityCellBounds!.left, result.bounds.bottom + 90,
-      //     quantityCellBounds!.width, quantityCellBounds!.height));
+  //     page.graphics.drawString('Total Amount: : ${getinvoiceController.totalPrice.value}',
+  // PdfStandardFont(PdfFontFamily.helvetica, 9),
+  // bounds: Rect.fromLTWH(quantityCellBounds!.left, result.bounds.bottom + 90,
+  //     quantityCellBounds!.width, quantityCellBounds!.height));
   // Draw total amount.String totalAmountText = 'Total Amount: ${getTotalAmount(grid)}'; // Modify this line
 
   // String totalAmountText =
@@ -183,26 +182,25 @@ void drawGrid(PdfPage page, PdfGrid grid, PdfLayoutResult result) {
   //Draw grand total.
   page.graphics.drawString('Total Price',
       PdfStandardFont(PdfFontFamily.helvetica, 9, style: PdfFontStyle.bold),
-      bounds: Rect.fromLTWH(quantityCellBounds!.left, result.bounds.bottom + 100,
-          quantityCellBounds!.width, quantityCellBounds!.height));
+      bounds: Rect.fromLTWH(
+          quantityCellBounds!.left,
+          result.bounds.bottom + 100,
+          quantityCellBounds!.width,
+          quantityCellBounds!.height));
   page.graphics.drawString(
-      getinvoiceController.totalPrice.value, //
+      "${getinvoiceController.totalPrice.value}/-", //
       PdfStandardFont(PdfFontFamily.helvetica, 9, style: PdfFontStyle.bold),
       bounds: Rect.fromLTWH(
           totalPriceCellBounds!.left,
           result.bounds.bottom + 100,
           totalPriceCellBounds!.width,
           totalPriceCellBounds!.height));
-
-
-
 }
 //Draw the invoice footer data.
 
 //Create PDF grid and return
 PdfGrid getGrid() {
-
-   final GetInvoiceController getinvoiceController =
+  final GetInvoiceController getinvoiceController =
       Get.find<GetInvoiceController>();
 
   //Create a PDF grid
@@ -215,12 +213,13 @@ PdfGrid getGrid() {
   headerRow.style.backgroundBrush = PdfSolidBrush(PdfColor(68, 114, 196));
   headerRow.style.textBrush = PdfBrushes.white;
   headerRow.cells[0].value = 'Course name';
-   headerRow.cells[0].stringFormat.alignment = PdfTextAlignment.center;
- headerRow.cells[1].value = '     ';
+  headerRow.cells[0].stringFormat.alignment = PdfTextAlignment.center;
+  headerRow.cells[1].value = '     ';
   headerRow.cells[2].value = 'Quantity';
   headerRow.cells[3].value = 'Amount';
   //Add rows
-  addProducts('${getinvoiceController.purchasedCourses}', '     ',1, getinvoiceController.totalPrice.value, grid);
+  addProducts('${getinvoiceController.purchasedCourses}', '     ', 1,
+      getinvoiceController.totalPrice.value, grid);
 
   //Apply the table built-in style
   grid.applyBuiltInStyle(PdfGridBuiltInStyle.listTable4Accent5);
@@ -246,11 +245,11 @@ PdfGrid getGrid() {
 
 //Create and row for the grid.
 void addProducts(
-    String item,   String price,int quantity,String total, PdfGrid grid) {
+    String item, String price, int quantity, String total, PdfGrid grid) {
   final PdfGridRow row = grid.rows.add();
   row.cells[0].value = item;
 
- row.cells[1].value = price;
+  row.cells[1].value = price;
   row.cells[2].value = quantity.toString();
   row.cells[3].value = total.toString();
 }

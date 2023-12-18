@@ -215,9 +215,11 @@ ontapPDFList(BuildContext context, StudyMaterial studyMaterial) {
                                 await Get.find<StudyMaterialController>()
                                     .deleteStudyMaterialFromFirebase(
                                         studyMaterial: updatedStudyMaterial);
-                                Navigator.of(context).pop();
+                                if (context.mounted) {
+                                  Navigator.of(context).pop();
+                                  Navigator.of(context).pop();
+                                }
                               });
-                          Navigator.of(context).pop();
                         },
                         child: Padding(
                           padding: const EdgeInsets.only(top: 20),
