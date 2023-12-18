@@ -17,7 +17,7 @@ class SciproOffers extends StatelessWidget {
           child: Column(children: [
             Padding(
               padding: const EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 20),
-              child: OfferColumnWidget(mainText: 'High Quality Teaching', offerImage: 'images/knowledge-transfer.png', secondText: 'Our teachers are well experienced professionals in research as well aseducation in various domain.',),
+              child: OfferColumnWidget(mainText: 'High Quality Teaching', offerImage: 'images/knowledge-transfer.png', secondText: 'Our teachers are well experienced professionals in research as well as education in various domain.',),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 20),

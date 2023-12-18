@@ -354,7 +354,7 @@ subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
               }
             })
       ],
-      doyouwantActionButton: true);
+      doyouwantActionButton: false);
 }
 
 class TextRowWidget extends StatelessWidget {

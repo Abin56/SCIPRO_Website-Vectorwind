@@ -34,7 +34,7 @@ class SciproHomePage extends StatelessWidget {
         child: Column(
           children: [
             ResponsiveWebSite.isMobile(context)
-                ? const Column(
+                ?  Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       IntroHome(),
@@ -61,7 +61,7 @@ class SciproHomePage extends StatelessWidget {
                 : Column(
                     children: [
                       // const AppBarWidget(),
-                      const IntroHome(),
+                       IntroHome(),
                       const SciproOffers(),
                       const HomeAboutUs(),
                       const Padding(

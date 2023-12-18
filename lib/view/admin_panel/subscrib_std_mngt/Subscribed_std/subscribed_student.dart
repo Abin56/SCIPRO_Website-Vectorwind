@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scipro_website/controller/get_invoice_controller/get_invoice_controller.dart';
 import 'package:scipro_website/controller/subscribed_students_controller/model/subscribed_students_model.dart';
+import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/constant/constant.validate.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
 import 'package:scipro_website/view/widgets/button_container_widget/button_container_widget.dart';
 import 'package:scipro_website/view/widgets/custom_showDilog/custom_showdilog.dart';
+import 'package:scipro_website/view/widgets/responsive/responsive.dart';
 import 'package:scipro_website/view/widgets/textform_field_Widget/textformfieldWidget.dart';
 
 import '../../../widgets/grid_table_container/grid_table_container.dart';
@@ -40,11 +42,44 @@ class SubscribedStd extends StatelessWidget {
               ),
                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Padding(
+                   Padding(
                     padding: EdgeInsets.only(top: 15),
-                    child: ButtonContainerWidget(
-                      text: "Search",
+                    child:  GestureDetector(
+         onTap: ()async{
+      //  await  searchStudents(context);
+        },
+        child: Container(
+            decoration: const BoxDecoration(
+              color: themeColorBlue,
+              borderRadius: BorderRadius.horizontal(),
+            ),
+            width: ResponsiveWebSite.isMobile(context) ? 150 : 200,
+            height: 30,
+            child: Row(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(left: 10),
+                  child: Icon(
+                    Icons.search,
+                    size: 14,
+                    color: cWhite,
+                  ),
+                ),
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: GooglePoppinsWidgets(
+                      textAlign: TextAlign.center,
+                      color: cWhite,
+                      fontWeight: FontWeight.w500,
+                      text: 'search',
+                      fontsize: 12,
                     ),
+                  ),
+                ),
+              ],
+            )),
+      ),
                   ),
                   GestureDetector(onTap: (){
 invoiceSettingsshowDialog(context);
