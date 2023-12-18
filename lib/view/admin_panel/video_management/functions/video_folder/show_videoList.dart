@@ -68,27 +68,21 @@ showVideoList(BuildContext context) {
               )
             ],
           ),
-          content: Obx(() {
-            Get.find<VideoMangementController>().videoDataSource.value =
-                VideoDataSource(
-                    videoData: Get.find<VideoMangementController>().vidoesList);
-            return SingleChildScrollView(
-              child: ListBody(
-                children: [
-                  Obx(() => Get.find<VideoMangementController>()
-                          .isVideoUploading
-                          .value
-                      ? circularPIndicator
-                      : Container(
-                          height: 500,
-                          width: 600,
-                          color: Colors.white,
-                          child: const VideoListingGrid(),
-                        ))
-                ],
-              ),
-            );
-          }));
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: [
+                Obx(() =>
+                    Get.find<VideoMangementController>().isVideoUploading.value
+                        ? circularPIndicator
+                        : Container(
+                            height: 500,
+                            width: 600,
+                            color: Colors.white,
+                            child: const VideoListingGrid(),
+                          ))
+              ],
+            ),
+          ));
     },
   );
 }

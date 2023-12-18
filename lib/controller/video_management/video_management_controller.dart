@@ -10,7 +10,6 @@ import 'package:uuid/uuid.dart';
 
 import '../../data/video_management/video_model.dart';
 import '../../utils/utils.dart';
-import '../../view/admin_panel/video_management/video_courses_list/table_grids/view_video_grid.dart';
 
 class VideoMangementController {
   final VideoManagementRepository _repository = VideoManagementRepository();
@@ -42,8 +41,6 @@ class VideoMangementController {
   RxBool isLoadingCourse = RxBool(false);
   RxBool isLoadingFolder = RxBool(false);
   RxBool isVideoUploading = RxBool(false);
-
-  Rxn<VideoDataSource> videoDataSource = Rxn();
 
   //category
 
@@ -237,7 +234,6 @@ class VideoMangementController {
       vidoesList.value = data;
       vidoesList.sort((a, b) => a.position.compareTo(b.position));
       vidoesList.refresh();
-      videoDataSource.refresh();
       isVideoUploading.value = false;
       return vidoesList;
     }
@@ -276,7 +272,7 @@ class VideoMangementController {
       await _repository.uploadVideoToFirebase(
         videoModel: videoModel,
       );
-
+      await fetchVideos();
       image.value = null;
       video.value = null;
       isVideoUploading.value = false;
