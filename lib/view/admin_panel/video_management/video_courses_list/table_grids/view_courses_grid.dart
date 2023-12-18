@@ -43,8 +43,6 @@ class SampleWidget extends StatelessWidget {
                                   ListViewTableHeaderWidget(
                                       width: 700, headerTitle: 'COURSE NAME'),
                                   ListViewTableHeaderWidget(
-                                      width: 150, headerTitle: 'NO OF VIDEOS'),
-                                  ListViewTableHeaderWidget(
                                       width: 300, headerTitle: 'DATE'),
                                 ],
                               ),

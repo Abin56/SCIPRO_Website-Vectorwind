@@ -29,7 +29,7 @@ class NotificationManagementController extends GetxController {
 
   List<String> allUserDeviceToken = [];
   RxString selectedCat = ''.obs;
-   RxString selectedCourse = ''.obs;
+  RxString selectedCourse = ''.obs;
   List<CategoryModel> categoryModel = [];
 
   Future<List<CategoryModel>> fetchRecCategory() async {
@@ -347,7 +347,7 @@ class NotificationManagementController extends GetxController {
   Future<void> getAllUsersID() async {
     final data = await dataserver.collection('UserDeviceToken').get();
     for (var i = 0; i < data.docs.length; i++) {
-      allUsersID.add(data.docs[i].data()['uid']);
+      allUsersID.add(data.docs[i].data()['uid'] ?? "");
     }
     print("AllUsersID$allUsersID");
   }

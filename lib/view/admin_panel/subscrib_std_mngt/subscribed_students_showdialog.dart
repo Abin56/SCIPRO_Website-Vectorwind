@@ -223,10 +223,10 @@ subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
                                               const EdgeInsets.only(top: 10),
                                           child: GestureDetector(
                                               onTap: () {
-                                                getinvoicecontroller
-                                                    .calculateCgst(
-                                                        data.coursefee)
-                                                    .toString();
+                                                // getinvoicecontroller
+                                                //     .calculateCgst(
+                                                //         data.coursefee)
+                                                //     .toString();
                                                 getinvoicecontroller
                                                     .calculateGst(
                                                         data.coursefee)
@@ -316,9 +316,9 @@ subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
                                         const Spacer(),
                                         GestureDetector(
                                             onTap: () async {
-                                              getinvoicecontroller
-                                                  .calculateCgst(data.coursefee)
-                                                  .toString();
+                                              // getinvoicecontroller
+                                              //     .calculateCgst(data.coursefee)
+                                              //     .toString();
                                               getinvoicecontroller
                                                   .calculateGst(data.coursefee)
                                                   .toString();

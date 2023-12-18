@@ -34,8 +34,8 @@ Future<void> generateInvoice() async {
   //Dispose the document.
   document.dispose();
   //Save and launch the file.
-  await saveAndLaunchFile(
-      bytes, 'Invoice${Get.find<GetInvoiceController>().invoiceNumber}.pdf');
+  await saveAndLaunchFile(bytes,
+      'Invoice VSCI ${Get.find<GetInvoiceController>().invoiceNumber}.pdf');
 }
 
 Future<void> saveAndLaunchFile(List<int> bytes, String fileName) async {
@@ -55,8 +55,8 @@ PdfLayoutResult drawHeader(PdfPage page, Size pageSize, PdfGrid grid) {
       brush: PdfSolidBrush(PdfColor(91, 126, 215)),
       bounds: Rect.fromLTWH(0, 0, pageSize.width - 115, 90));
   //Draw string
-  page.graphics.drawString(
-      'VectorWind', PdfStandardFont(PdfFontFamily.helvetica, 30),
+  page.graphics.drawString('VECTORWIND-TECH SYSTEMS PVT LTD',
+      PdfStandardFont(PdfFontFamily.helvetica, 18),
       brush: PdfBrushes.white,
       bounds: Rect.fromLTWH(25, 0, pageSize.width - 115, 90),
       format: PdfStringFormat(lineAlignment: PdfVerticalAlignment.middle));
@@ -93,7 +93,7 @@ PdfLayoutResult drawHeader(PdfPage page, Size pageSize, PdfGrid grid) {
   //Create data foramt and convert it to text.
 
   final String invoiceNumber =
-      'Date: ${dateConveter(DateTime.parse(getinvoiceController.date.value))}\r\n \r\nInvoice Number: ${getinvoiceController.invoiceNumber.value} \r\n  \r\nGST number: 32AAFCV1427J1ZH\r\n  \r\nSAC Code: 9992';
+      'Date: ${dateConveter(DateTime.parse(getinvoiceController.date.value))}\r\n \r\nInvoice Number: VSCI ${getinvoiceController.invoiceNumber.value} \r\n  \r\nGST number: 32AAFCV1427J1ZH\r\n  \r\nSAC Code: 9992';
   final Size contentSize = contentFont.measureString(invoiceNumber);
   // ignore: leading_newlines_in_multiline_strings
   String address =
@@ -137,7 +137,7 @@ void drawGrid(PdfPage page, PdfGrid grid, PdfLayoutResult result) {
       bounds: Rect.fromLTWH(quantityCellBounds!.left, result.bounds.bottom + 10,
           quantityCellBounds!.width, quantityCellBounds!.height));
   page.graphics.drawString(
-      getinvoiceController.actualPrice.value, //
+      '${getinvoiceController.actualPrice.value} /-', //
       PdfStandardFont(PdfFontFamily.helvetica, 9, style: PdfFontStyle.bold),
       bounds: Rect.fromLTWH(
           totalPriceCellBounds!.left,
@@ -154,12 +154,12 @@ void drawGrid(PdfPage page, PdfGrid grid, PdfLayoutResult result) {
 //       bounds: Rect.fromLTWH(quantityCellBounds!.left, result.bounds.bottom + 30,
 //           quantityCellBounds!.width, quantityCellBounds!.height));
 
-  page.graphics.drawString('SGST : ${getinvoiceController.rxsgst.value}',
+  page.graphics.drawString('SGST : ${getinvoiceController.rxgstPrice.value}/-',
       PdfStandardFont(PdfFontFamily.helvetica, 9),
       bounds: Rect.fromLTWH(quantityCellBounds!.left, result.bounds.bottom + 50,
           quantityCellBounds!.width, quantityCellBounds!.height));
 
-  page.graphics.drawString('CGST : ${getinvoiceController.rxcgst.value}',
+  page.graphics.drawString('CGST : ${getinvoiceController.rxgstPrice.value}/-',
       PdfStandardFont(PdfFontFamily.helvetica, 9),
       bounds: Rect.fromLTWH(quantityCellBounds!.left, result.bounds.bottom + 70,
           quantityCellBounds!.width, quantityCellBounds!.height));
@@ -188,7 +188,7 @@ void drawGrid(PdfPage page, PdfGrid grid, PdfLayoutResult result) {
           quantityCellBounds!.width,
           quantityCellBounds!.height));
   page.graphics.drawString(
-      getinvoiceController.totalPrice.value, //
+      "${getinvoiceController.totalPrice.value}/-", //
       PdfStandardFont(PdfFontFamily.helvetica, 9, style: PdfFontStyle.bold),
       bounds: Rect.fromLTWH(
           totalPriceCellBounds!.left,

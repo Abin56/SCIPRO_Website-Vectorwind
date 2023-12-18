@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scipro_website/controller/all_users_controller/alluser_controller.dart';
 import 'package:scipro_website/view/admin_panel/all_users_mngt/convert_to_excel.dart';
-import 'package:scipro_website/view/admin_panel/all_users_mngt/search_students/search_students.dart';
+import 'package:scipro_website/view/admin_panel/search_management/All_users/search_students.dart';
 import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/constant/constant.validate.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
@@ -22,6 +22,7 @@ class AllUsersList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    alluserController.fetchAllStudents();
     List<Widget> topVedioManagementBar = [
       ///////////////////
       //////

@@ -2,23 +2,23 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:scipro_website/controller/all_users_controller/model/all_users_model.dart';
+import 'package:scipro_website/controller/subscribed_students_controller/model/subscribed_students_model.dart';
 import 'package:scipro_website/view/constant/const.dart';
 import 'package:scipro_website/view/core/core.dart';
 
-class AllusersController extends GetxController {
-  String className = "StudentProfileCollection";
+class SubscribedStudentsController extends GetxController {
+   String className = "StudentProfileCollection";
   RxBool excelisLoading = false.obs;
-  List<StudentProfileCreationModel> studentProfileList = [];
+  List<SubscribedStudentsModel> studentProfileList = [];
 
   Future<void> fetchAllStudents() async {
-    final severRef = dataserver.collection('StudentProfileCollection');
+    final severRef = dataserver.collection('SubscribedStudentsModel');
 
     // studentProfileList.clear();
     try {
       final QuerySnapshot<Map<String, dynamic>> data = await severRef.get();
       studentProfileList = data.docs
-          .map((e) => StudentProfileCreationModel.fromMap(e.data()))
+          .map((e) => SubscribedStudentsModel.fromMap(e.data()))
           .toList();
     } catch (e) {
       showToast(msg: "User Data Error");
@@ -31,4 +31,5 @@ class AllusersController extends GetxController {
     await fetchAllStudents();
     super.onInit();
   }
+  
 }
