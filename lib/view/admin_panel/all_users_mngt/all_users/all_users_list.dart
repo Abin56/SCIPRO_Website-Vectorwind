@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scipro_website/controller/all_users_controller/alluser_controller.dart';
 import 'package:scipro_website/view/admin_panel/all_users_mngt/convert_to_excel.dart';
-import 'package:scipro_website/view/admin_panel/all_users_mngt/search_students/search_students.dart';
 import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/constant/constant.validate.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
@@ -65,42 +64,37 @@ class AllUsersList extends StatelessWidget {
         ),
       ),
 
-      GestureDetector(
-        onTap: () async {
-          await searchStudents(context);
-        },
-        child: Container(
-            decoration: const BoxDecoration(
-              color: themeColorBlue,
-              borderRadius: BorderRadius.horizontal(),
-            ),
-            width: ResponsiveWebSite.isMobile(context) ? 150 : 200,
-            height: 30,
-            child: Row(
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(left: 10),
-                  child: Icon(
-                    Icons.search,
-                    size: 14,
+      Container(
+          decoration: const BoxDecoration(
+            color: themeColorBlue,
+            borderRadius: BorderRadius.horizontal(),
+          ),
+          width: ResponsiveWebSite.isMobile(context) ? 150 : 200,
+          height: 30,
+          child: Row(
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(left: 10),
+                child: Icon(
+                  Icons.search,
+                  size: 14,
+                  color: cWhite,
+                ),
+              ),
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 8),
+                  child: GooglePoppinsWidgets(
+                    textAlign: TextAlign.center,
                     color: cWhite,
+                    fontWeight: FontWeight.w500,
+                    text: 'search',
+                    fontsize: 12,
                   ),
                 ),
-                Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 8),
-                    child: GooglePoppinsWidgets(
-                      textAlign: TextAlign.center,
-                      color: cWhite,
-                      fontWeight: FontWeight.w500,
-                      text: 'search',
-                      fontsize: 12,
-                    ),
-                  ),
-                ),
-              ],
-            )),
-      ),
+              ),
+            ],
+          )),
     ];
     return Column(
       children: [
@@ -230,9 +224,7 @@ class AllUsersList extends StatelessWidget {
   }
 }
 
-Future<void> searchStudents(BuildContext context) async {
-  await showSearch(context: context, delegate: AllUsersSearch());
-}
+
 
 void allusersshowdialogue(BuildContext context) {
   customShowDilogBox(
