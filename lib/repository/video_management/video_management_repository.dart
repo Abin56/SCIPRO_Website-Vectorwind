@@ -31,7 +31,7 @@ class VideoManagementRepository {
 
   //fetch all category
 
- Future<List<CategoryModel>> fetchAllCategory() async {
+  Future<List<CategoryModel>> fetchAllCategory() async {
     try {
       final QuerySnapshot<Map<String, dynamic>> data =
           await _firestore.collection('recorded_course').get();
@@ -42,26 +42,24 @@ class VideoManagementRepository {
     }
   }
 
+  Stream<List<CategoryModel>> fetchAllCategoriesStream() {
+    StreamController<List<CategoryModel>> controller = StreamController();
 
-Stream<List<CategoryModel>> fetchAllCategoriesStream() {
-  StreamController<List<CategoryModel>> controller = StreamController();
+    _firestore.collection('recorded_course').snapshots().listen(
+      (QuerySnapshot<Map<String, dynamic>> snapshot) {
+        List<CategoryModel> categories =
+            snapshot.docs.map((e) => CategoryModel.fromMap(e.data())).toList();
+        categories.sort((a, b) => a.position.compareTo(b.position));
+        controller.add(categories);
+      },
+      onError: (error) {
+        log(error.toString());
+        //controller.addError(error.toString());
+      },
+    );
 
-  _firestore.collection('recorded_course').snapshots().listen(
-    (QuerySnapshot<Map<String, dynamic>> snapshot) {
-      List<CategoryModel> categories = snapshot.docs
-          .map((e) => CategoryModel.fromMap(e.data()))
-          .toList();
-      controller.add(categories);
-    },
-    onError: (error) {
-      log(error.toString());
-      controller.addError(error.toString());
-    },
-  );
-
-  return controller.stream;
-}
-
+    return controller.stream;
+  }
 
   Future<void> createCourse({required CourseModel course}) async {
     try {
@@ -94,6 +92,24 @@ Stream<List<CategoryModel>> fetchAllCategoriesStream() {
       log(e.toString());
       return [];
     }
+  }
+
+  Stream<List<CourseModel>> fetchAllCourseStream(
+      {required String categoryId, required String courseId}) {
+    StreamController<List<CourseModel>> controller = StreamController();
+
+    _firestore
+        .collection('recorded_course')
+        .doc(categoryId)
+        .collection('course')
+        .snapshots()
+        .listen((QuerySnapshot<Map<String, dynamic>> snapshot) {
+      List<CourseModel> folders =
+          snapshot.docs.map((e) => CourseModel.fromMap(e.data())).toList();
+      folders.sort((a, b) => a.position.compareTo(b.position));
+      controller.add(folders);
+    });
+    return controller.stream;
   }
 
   Future<void> createFolder({required FolderModel folderModel}) async {
@@ -131,6 +147,26 @@ Stream<List<CategoryModel>> fetchAllCategoriesStream() {
       log(e.toString());
       return [];
     }
+  }
+
+  Stream<List<FolderModel>> fetchAllFoldersStream(
+      {required String categoryId, required String courseId}) {
+    StreamController<List<FolderModel>> controller = StreamController();
+
+    _firestore
+        .collection('recorded_course')
+        .doc(categoryId)
+        .collection('course')
+        .doc(courseId)
+        .collection('folders')
+        .snapshots()
+        .listen((QuerySnapshot<Map<String, dynamic>> snapshot) {
+      List<FolderModel> folders =
+          snapshot.docs.map((e) => FolderModel.fromMap(e.data())).toList();
+      folders.sort((a, b) => a.position.compareTo(b.position));
+      controller.add(folders);
+    });
+    return controller.stream;
   }
 
   Future<List<VideoModel>> fetchAllVideos(

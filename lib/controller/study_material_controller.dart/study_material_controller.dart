@@ -16,7 +16,7 @@ class StudyMaterialController extends GetxController {
   RxBool isLoading = RxBool(false);
   RxBool isPdfUploading = RxBool(false);
   RxBool isStudyMaterialLoading = RxBool(false);
-  RxList<CategoryModel> fetchedCategory = RxList();
+  // RxList<CategoryModel> fetchedCategory = RxList();
   RxList<CourseModel> fetchedCourse = RxList();
   RxList<FolderModel> foldersList = RxList();
   RxList<StudyMaterial> studyMaterialList = RxList();
@@ -29,11 +29,7 @@ class StudyMaterialController extends GetxController {
 
   Stream<List<CategoryModel>> fetchAllCategoriesStream() async* {
     try {
-      final data = await repository.fetchAllCategory();
-      fetchedCategory.value = data;
-      fetchedCategory.sort((a, b) => a.position.compareTo(b.position));
-      fetchedCategory.refresh();
-      yield fetchedCategory;
+      yield* repository.fetchAllCategoriesStream();
     } catch (e) {
       log(e.toString());
       yield [];
@@ -57,6 +53,17 @@ class StudyMaterialController extends GetxController {
     return [];
   }
 
+  Stream<List<CourseModel>> fetchAllCourseStream() async* {
+    try {
+      yield* repository.fetchAllCourseStream(
+          categoryId: selectedCategory.value.id,
+          courseId: selectedCourse?.id ?? '');
+    } catch (e) {
+      log(e.toString());
+      yield [];
+    }
+  }
+
   Future<List<FolderModel>> fetchAllFolders() async {
     if (selectedCategory.value.id.isNotEmpty && selectedCourse != null) {
       final data = await repository.fetchAllFolders(
@@ -71,6 +78,17 @@ class StudyMaterialController extends GetxController {
     }
 
     return [];
+  }
+
+  Stream<List<FolderModel>> fetchAllFoldersStream() async* {
+    try {
+      yield* repository.fetchAllFoldersStream(
+          categoryId: selectedCategory.value.id,
+          courseId: selectedCourse?.id ?? '');
+    } catch (e) {
+      log(e.toString());
+      yield [];
+    }
   }
 
   Future<void> uploadStudyMaterialToFirebase({
