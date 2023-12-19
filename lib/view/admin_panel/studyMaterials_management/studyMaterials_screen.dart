@@ -101,6 +101,10 @@ class StudyMaterialsManagementSection extends StatelessWidget {
                             stream:
                                 studyMaterialController.fetchAllCourseStream(),
                             builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return circularPIndicator;
+                              }
                               return ListView.separated(
                                   itemBuilder: (context, index) {
                                     return GestureDetector(

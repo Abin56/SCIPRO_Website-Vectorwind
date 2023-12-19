@@ -36,6 +36,15 @@ class StudyMaterialController extends GetxController {
     return fetchedCategory;
   }
 
+  Stream<List<CategoryModel>> fetchAllCategoriesStream() async* {
+    try {
+      yield* repository.fetchAllCategoriesStream();
+    } catch (e) {
+      log(e.toString());
+      yield [];
+    }
+  }
+
   Future<List<CourseModel>> fetchAllCourse() async {
     isLoading.value = true;
     if (selectedCategory.value.id.isNotEmpty) {
