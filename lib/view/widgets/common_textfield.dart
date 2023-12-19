@@ -27,7 +27,7 @@ class CommonTextField extends StatelessWidget {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
-          borderSide: BorderSide(
+          borderSide: const BorderSide(
             color: Colors.yellow, // Change the border color when focused
           ),
         ),

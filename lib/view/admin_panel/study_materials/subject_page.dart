@@ -7,7 +7,7 @@ import 'package:scipro_website/view/fonts/google_monstre.dart';
 import 'package:scipro_website/view/widgets/common_button_widget.dart';
 
 class SubjectPageStudyMaterials extends StatelessWidget {
-  SubjectPageStudyMaterials({Key? key, required this.docID}) : super(key: key);
+  const SubjectPageStudyMaterials({Key? key, required this.docID}) : super(key: key);
 
   final String docID;
 
@@ -15,7 +15,7 @@ class SubjectPageStudyMaterials extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Select Subject'),
+        title: const Text('Select Subject'),
       ),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
@@ -25,7 +25,7 @@ class SubjectPageStudyMaterials extends StatelessWidget {
             .snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }
@@ -38,7 +38,7 @@ class SubjectPageStudyMaterials extends StatelessWidget {
 
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
             log('Number of documents: ${snapshot.data?.docs.length}');
-            return Center(
+            return const Center(
               child: Text('No data available.'),
             );
           }
@@ -56,7 +56,7 @@ class SubjectPageStudyMaterials extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
                 trailing: CommonButtonWidget(
-                    color: Color.fromARGB(255, 26, 47, 90),
+                    color: const Color.fromARGB(255, 26, 47, 90),
                     text: 'Select',
                     textColor: Colors.white,
                     onPressFunction: () {

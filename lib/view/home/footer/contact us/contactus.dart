@@ -53,7 +53,7 @@ class ContactUsContainerWidget extends StatelessWidget {
                    child: Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: PrimaryFontWidget(
-                        text: "VectorWind-tech system pvt ltd",
+                        text: "Vectorwind-tech system pvt ltd",
                         fontSize: ResponsiveWebSite.isTablet(context)?12:14,
                         fontweight: FontWeight.bold,
                         color: cBlack),

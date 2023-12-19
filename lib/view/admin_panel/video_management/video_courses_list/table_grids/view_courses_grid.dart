@@ -43,8 +43,6 @@ class SampleWidget extends StatelessWidget {
                                   ListViewTableHeaderWidget(
                                       width: 700, headerTitle: 'COURSE NAME'),
                                   ListViewTableHeaderWidget(
-                                      width: 150, headerTitle: 'NO OF VIDEOS'),
-                                  ListViewTableHeaderWidget(
                                       width: 300, headerTitle: 'DATE'),
                                 ],
                               ),
@@ -97,13 +95,13 @@ class SampleWidget extends StatelessWidget {
                                                     headerTitle:
                                                         data[index].courseName,
                                                   ),
-                                                  DataContainerWidget(
-                                                    index: index,
-                                                    width: 150,
-                                                    headerTitle: data[index]
-                                                        .courseFee
-                                                        .toString(),
-                                                  ),
+                                                  // DataContainerWidget(
+                                                  //   index: index,
+                                                  //   width: 150,
+                                                  //   headerTitle: data[index]
+                                                  //       .courseFee
+                                                  //       .toString(),
+                                                  // ),
                                                   DataContainerWidget(
                                                     index: index,
                                                     width: 300,

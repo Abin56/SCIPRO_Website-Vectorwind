@@ -34,14 +34,17 @@ class TopCourses extends StatelessWidget {
                 ),),
                
                 margin: const EdgeInsets.all(10),
-                child: GooglePoppinsWidgets(
-                                    text: topCoursesText[index],
-                                    fontsize: 13,
-                                    color: cWhite,
-                                    textAlign: TextAlign.right,
-                                    fontWeight: FontWeight.w500,
-                                    
-                                  ),
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 10,top: 10),
+                  child: GooglePoppinsWidgets(
+                                      text: topCoursesText[index],
+                                      fontsize: 13,
+                                      color: cWhite,
+                                      textAlign: TextAlign.end,
+                                      fontWeight: FontWeight.w500,
+                                      
+                                    ),
+                ),
               );
             },
                       )),
@@ -53,21 +56,21 @@ class TopCourses extends StatelessWidget {
 }
 
 List<String> topCourses = [
-  'images/main2ancy.jpg',
+  'images/mainsara1.jpg',
   'images/main6akhilmon.jpg',
   'images/main6gopika.jpg',
   'images/mainexam1.jpg',
-  'images/main8sara.jpg',
-  'images/mainembeded1.jpg',
+  'images/examwriting.jpg',
+  'images/main15archana.jpg',
   'images/main10vishnu.jpg',
-  'images/main11archanashan.jpg',
+  'images/exam.jpg',
   'images/main12nandhana.jpg',
 ];
 
 List<String> topCoursesText = [
   'CSIR UGC LIFESCIENCES',
   'ICAR NET',
-  'CUT PG LIFESCIENCE',
+  'CUET PG LIFESCIENCE',
   'GATE EXAMS',
   'ICMR-JRF EXAMS',
   'SCIPRO SKILLS',

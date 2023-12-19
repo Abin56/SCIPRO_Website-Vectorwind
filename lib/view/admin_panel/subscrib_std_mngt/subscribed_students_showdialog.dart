@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -223,10 +224,11 @@ subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
                                               const EdgeInsets.only(top: 10),
                                           child: GestureDetector(
                                               onTap: () {
-                                                getinvoicecontroller
-                                                    .calculateCgst(
-                                                        data.coursefee)
-                                                    .toString();
+                                               
+                                                // getinvoicecontroller
+                                                //     .calculateCgst(
+                                                //         data.coursefee)
+                                                //     .toString();
                                                 getinvoicecontroller
                                                     .calculateGst(
                                                         data.coursefee)
@@ -238,7 +240,7 @@ subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
                                                 getinvoicecontroller
                                                         .studentName.value =
                                                     data.studentname; //////student name
-
+                                            
                                                 getinvoicecontroller
                                                     .date.value = data.joindate;
                                                 getinvoicecontroller ///////join date
@@ -316,9 +318,9 @@ subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
                                         const Spacer(),
                                         GestureDetector(
                                             onTap: () async {
-                                              getinvoicecontroller
-                                                  .calculateCgst(data.coursefee)
-                                                  .toString();
+                                              // getinvoicecontroller
+                                              //     .calculateCgst(data.coursefee)
+                                              //     .toString();
                                               getinvoicecontroller
                                                   .calculateGst(data.coursefee)
                                                   .toString();
@@ -393,7 +395,7 @@ subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
               }
             })
       ],
-      doyouwantActionButton: true);
+      doyouwantActionButton: false);
 }
 
 class TextRowWidget extends StatelessWidget {

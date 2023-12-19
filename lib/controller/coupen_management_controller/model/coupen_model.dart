@@ -5,7 +5,7 @@ class CoupenManagementModel {
   String id;
   String coupenName;
   int discount;
-  int validity;
+  String validity;
   int usage;
   int totalusage;
   String createdDate;
@@ -29,7 +29,7 @@ class CoupenManagementModel {
     String? id,
     String? coupenName,
     int? discount,
-    int? validity,
+    String? validity,
     int? usage,
     int? totalusage,
     String? createdDate,
@@ -71,7 +71,7 @@ class CoupenManagementModel {
       id: map['id'] as String,
       coupenName: map['coupenName'] as String,
       discount: map['discount'] as int,
-      validity: map['validity'] as int,
+      validity: map['validity'] as String,
       usage: map['usage'] as int,
       totalusage: map['totalusage'] as int,
       createdDate: map['createdDate'] as String,

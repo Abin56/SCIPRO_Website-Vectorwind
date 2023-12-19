@@ -34,7 +34,7 @@ class ListofRecCourses extends StatelessWidget {
                       final data =
                           CourseModel.fromMap(snap.data!.docs[index].data());
                       return GestureDetector(
-                        onTap: () async {
+                        onTap: () async { 
                           ncontroller.fecthingisLoading.value = true;
                           ncontroller.fecthingisLoading.value == true
                               ? showDialog(

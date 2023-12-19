@@ -21,7 +21,7 @@ class VideoMangementController {
   TextEditingController durationTextController = TextEditingController();
 
   Rx<CategoryModel> selectedCategory =
-      Rx(CategoryModel(id: '', name: 'SelectCategory', position: 0));
+      Rx(CategoryModel(id: '', name: 'Select Category', position: 0));
   CourseModel?
       selectedCourse; // double click then store that data to selected course
   FolderModel? selectedFolder;
