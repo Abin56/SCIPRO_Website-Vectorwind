@@ -42,25 +42,6 @@ class VideoManagementRepository {
     }
   }
 
-  Stream<List<CategoryModel>> fetchAllCategoriesStream() {
-    StreamController<List<CategoryModel>> controller = StreamController();
-
-    _firestore.collection('recorded_course').snapshots().listen(
-      (QuerySnapshot<Map<String, dynamic>> snapshot) {
-        List<CategoryModel> categories =
-            snapshot.docs.map((e) => CategoryModel.fromMap(e.data())).toList();
-        categories.sort((a, b) => a.position.compareTo(b.position));
-        controller.add(categories);
-      },
-      onError: (error) {
-        log(error.toString());
-        //controller.addError(error.toString());
-      },
-    );
-
-    return controller.stream;
-  }
-
   Future<void> createCourse({required CourseModel course}) async {
     try {
       await _firestore

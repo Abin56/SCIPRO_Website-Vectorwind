@@ -19,6 +19,7 @@ class StudyMaterialController extends GetxController {
   // RxList<CategoryModel> fetchedCategory = RxList();
   RxList<CourseModel> fetchedCourse = RxList();
   RxList<FolderModel> foldersList = RxList();
+  RxList<CategoryModel> fetchedCategory = RxList();
   RxList<StudyMaterial> studyMaterialList = RxList();
   Rxn<PlatformFile> studyMaterial = Rxn();
   final Uuid uuid = const Uuid();
@@ -27,13 +28,12 @@ class StudyMaterialController extends GetxController {
   CourseModel? selectedCourse;
   FolderModel? selectedFolder;
 
-  Stream<List<CategoryModel>> fetchAllCategoriesStream() async* {
-    try {
-      yield* repository.fetchAllCategoriesStream();
-    } catch (e) {
-      log(e.toString());
-      yield [];
-    }
+  Future<List<CategoryModel>> fetchAllCategory() async {
+    final data = await repository.fetchAllCategory();
+    fetchedCategory.value = data;
+    fetchedCategory.sort((a, b) => a.position.compareTo(b.position));
+    fetchedCategory.refresh();
+    return fetchedCategory;
   }
 
   Future<List<CourseModel>> fetchAllCourse() async {

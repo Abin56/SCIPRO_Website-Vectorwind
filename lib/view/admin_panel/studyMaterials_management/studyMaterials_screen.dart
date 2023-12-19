@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:scipro_website/controller/notification_controller/notification_controller.dart';
 import 'package:scipro_website/controller/study_material_controller.dart/study_material_controller.dart';
 import 'package:scipro_website/data/video_management/category_model.dart';
+import 'package:scipro_website/data/video_management/course_model.dart';
 import 'package:scipro_website/view/admin_panel/studyMaterials_management/pdf_folder/all_pdf_list.dart';
 import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/constant/const.dart';
@@ -54,43 +55,26 @@ class StudyMaterialsManagementSection extends StatelessWidget {
         height: 35,
         width: 250,
         child: Center(
-          child: StreamBuilder<List<CategoryModel>>(
-            stream: studyMaterialController.fetchAllCategoriesStream(),
-            builder: (context, snapshot) {
-              if (snapshot.hasError) {
-                // Handle error
-                return Text('Error: ${snapshot.error}');
-              }
-
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                // Data is still loading
-                return const CircularProgressIndicator();
-              }
-
-              List<CategoryModel> categories = snapshot.data ?? [];
-
-              return DropdownSearch<CategoryModel>(
-                autoValidateMode: AutovalidateMode.always,
-                items: categories,
-                itemAsString: (item) => item.name,
-                selectedItem: studyMaterialController.selectedCategory.value,
-                onChanged: (value) async {
-                  if (value != null) {
-                    studyMaterialController.selectedCategory.value = value;
-                    await studyMaterialController.fetchAllCourse();
-                  }
-                },
-                dropdownDecoratorProps: DropDownDecoratorProps(
-                  baseStyle: GoogleFonts.poppins(
-                    fontSize: 13,
-                    color: Colors.black.withOpacity(0.7),
-                  ),
-                ),
-              );
-            },
+            child: DropdownSearch<CategoryModel>(
+          autoValidateMode: AutovalidateMode.always,
+          asyncItems: (value) => studyMaterialController.fetchAllCategory(),
+          itemAsString: (item) => item.name,
+          selectedItem: studyMaterialController.selectedCategory.value,
+          onChanged: (value) async {
+            if (value != null) {
+              studyMaterialController.selectedCategory.value = value;
+              await studyMaterialController.fetchAllCourse();
+            }
+          },
+          dropdownDecoratorProps: DropDownDecoratorProps(
+            baseStyle: GoogleFonts.poppins(
+              fontSize: 13,
+              color: Colors.black.withOpacity(0.7),
+            ),
           ),
-        ),
+        )),
       ),
+
 /////////////////////////////////////////2
       SizedBox(
         height: 550,
@@ -113,60 +97,64 @@ class StudyMaterialsManagementSection extends StatelessWidget {
                   child: Obx(
                     () => studyMaterialController.isLoading.value
                         ? circularPIndicator
-                        : ListView.separated(
-                            itemBuilder: (context, index) {
-                              return GestureDetector(
-                                onTap: () async {
-                                  studyMaterialController.selectedCourse =
-                                      studyMaterialController
-                                          .fetchedCourse[index];
-                                  await studyMaterialController
-                                      .fetchAllFolders()
-                                      .then((_) =>
-                                          showStudyMaterialsList(context));
-                                },
-                                child: Container(
-                                  height: 40,
-                                  width: 100,
-                                  color: index % 2 == 0
-                                      ? Colors.white
-                                      : const Color.fromARGB(
-                                          255, 219, 235, 247),
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        height: double.infinity,
-                                        color: cWhite,
-                                        width: 60,
-                                        child: Center(
-                                            child: Text(
-                                          '${studyMaterialController.fetchedCourse[index].position}',
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 14),
-                                        )),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 20),
-                                        child: Text(
-                                          studyMaterialController
-                                              .fetchedCourse[index].courseName,
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 15),
+                        : StreamBuilder<List<CourseModel>>(
+                            stream:
+                                studyMaterialController.fetchAllCourseStream(),
+                            builder: (context, snapshot) {
+                              return ListView.separated(
+                                  itemBuilder: (context, index) {
+                                    return GestureDetector(
+                                      onTap: () async {
+                                        studyMaterialController.selectedCourse =
+                                            snapshot.data?[index];
+                                        await studyMaterialController
+                                            .fetchAllFolders()
+                                            .then((_) => showStudyMaterialsList(
+                                                context));
+                                      },
+                                      child: Container(
+                                        height: 40,
+                                        width: 100,
+                                        color: index % 2 == 0
+                                            ? Colors.white
+                                            : const Color.fromARGB(
+                                                255, 219, 235, 247),
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              height: double.infinity,
+                                              color: cWhite,
+                                              width: 60,
+                                              child: Center(
+                                                  child: Text(
+                                                '${snapshot.data?[index].position ?? 0}',
+                                                style: const TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 14),
+                                              )),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 20),
+                                              child: Text(
+                                                snapshot.data?[index]
+                                                        .courseName ??
+                                                    '',
+                                                style: const TextStyle(
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: 15),
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            },
-                            separatorBuilder: (context, index) {
-                              return const Divider();
-                            },
-                            itemCount:
-                                studyMaterialController.fetchedCourse.length),
+                                    );
+                                  },
+                                  separatorBuilder: (context, index) {
+                                    return const Divider();
+                                  },
+                                  itemCount: snapshot.data?.length ?? 0);
+                            }),
                   ),
                 ),
               ),
