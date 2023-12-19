@@ -34,7 +34,7 @@ class AllUsersForCoupenList extends StatelessWidget {
                   headerList: const [
                     ListViewTableHeaderWidget(width: 100, headerTitle: 'NO'),
                     ListViewTableHeaderWidget(
-                        width: 500, headerTitle: 'COUPEN NAME NAME'),
+                        width: 500, headerTitle: 'COUPON NAME '),
                     ListViewTableHeaderWidget(
                         width: 150, headerTitle: 'NO OF USES'),
                     ListViewTableHeaderWidget(

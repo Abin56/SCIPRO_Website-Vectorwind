@@ -21,7 +21,7 @@ class SciproOffers extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 20),
-              child: OfferColumnWidget(mainText: '24/7 Support Available', offerImage: 'images/24-hours-support.png', secondText: 'SciPro team is dedicated to providing not only teaching but also deliver seamless support to overcome difficulties and ensures safe landing in dream runway',),
+              child: OfferColumnWidget(mainText: '24/7 Support Available', offerImage: 'images/24-hours-support.png', secondText: 'SCIPRO team is dedicated to providing not only teaching but also deliver seamless support to overcome difficulties and ensures safe landing in dream runway',),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 20),
@@ -34,11 +34,11 @@ class SciproOffers extends StatelessWidget {
           child: Row(children: [
             Expanded(child: Padding(
               padding: const EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 25),
-              child: Container(color: cWhite,child: OfferColumnWidget(mainText: 'High Quality Teaching', offerImage: 'images/knowledge-transfer.png', secondText: 'Our teachers are well experienced \nprofessionals in research as\nwell aseducation in various domain.',),),
+              child: Container(color: cWhite,child: OfferColumnWidget(mainText: 'High Quality Teaching', offerImage: 'images/knowledge-transfer.png', secondText: 'Our teachers are well experienced \nprofessionals in research as\nwell as education in various domain.',),),
             )),
             Expanded(child: Padding(
               padding: const EdgeInsets.only(left: 10,right: 10,top: 10),
-              child: Container(color: cWhite,child: OfferColumnWidget(mainText: '24/7 Support Available', offerImage: 'images/24-hours-support.png', secondText: 'SciPro team is dedicated to providing not only teaching but also deliver seamless support to overcome difficulties and ensures safe landing in dream runway',)),
+              child: Container(color: cWhite,child: OfferColumnWidget(mainText: '24/7 Support Available', offerImage: 'images/24-hours-support.png', secondText: 'SCIPRO team is dedicated to providing not only teaching but also deliver seamless support to overcome difficulties and ensures safe landing in dream runway',)),
             )),
             Expanded(child: Padding(
               padding: const EdgeInsets.only(left: 10,right: 10,top: 10),

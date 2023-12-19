@@ -22,13 +22,13 @@ class CommonButtonWidget extends StatelessWidget {
       onPressed: onPressFunction,
       color: color,
       textColor: textColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20.0),
+      ),
       child: GoogleMonstserratWidgets(
         text: text,
         fontsize: 15,
         fontWeight: FontWeight.w500,
-      ),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20.0),
       ),
     );
   }

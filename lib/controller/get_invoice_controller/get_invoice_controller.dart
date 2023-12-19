@@ -18,6 +18,7 @@ class GetInvoiceController extends GetxController {
   RxString gstnumber = ''.obs;
   RxString rxcgst = ''.obs;
   RxString rxsgst = ''.obs;
+  
 
   Future<void> calculateGst(int totalPrice) async {
     final data =
@@ -32,6 +33,7 @@ class GetInvoiceController extends GetxController {
     final gsthalf = gstprice / 2;
     rxgstPrice.value = gsthalf.toInt().toString();
     log('gst result  ${rxgstPrice.value}');
+     
   }
 
   // Future<double> calculateCgst(int totalPrice) async {

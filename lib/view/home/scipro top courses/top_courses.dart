@@ -56,14 +56,14 @@ class TopCourses extends StatelessWidget {
 }
 
 List<String> topCourses = [
-  'images/gopik_language.jpg',
+  'images/mainsara1.jpg',
   'images/main6akhilmon.jpg',
   'images/main6gopika.jpg',
   'images/mainexam1.jpg',
   'images/examwriting.jpg',
   'images/main15archana.jpg',
   'images/main10vishnu.jpg',
-  'images/main11archanashan.jpg',
+  'images/exam.jpg',
   'images/main12nandhana.jpg',
 ];
 

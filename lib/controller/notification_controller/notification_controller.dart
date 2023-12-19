@@ -29,7 +29,7 @@ class NotificationManagementController extends GetxController {
 
   List<String> allUserDeviceToken = [];
   RxString selectedCat = ''.obs;
-  RxString selectedCourse = ''.obs;
+  RxString selectedCourse = ''.obs ;
   List<CategoryModel> categoryModel = [];
 
   Future<List<CategoryModel>> fetchRecCategory() async {

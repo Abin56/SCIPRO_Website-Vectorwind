@@ -34,7 +34,7 @@ class _AdminPanelPageState extends State<AdminPanelPage> {
           ],
         ),
         drawer: ListView(children: [
-          WebApplicationLogoContainer(),
+          const WebApplicationLogoContainer(),
           SideBarMenuItemsWidget(
             selectedIndex: selectedIndex,
             onTap: (index) {

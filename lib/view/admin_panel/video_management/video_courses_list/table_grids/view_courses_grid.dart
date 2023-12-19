@@ -95,13 +95,13 @@ class SampleWidget extends StatelessWidget {
                                                     headerTitle:
                                                         data[index].courseName,
                                                   ),
-                                                  DataContainerWidget(
-                                                    index: index,
-                                                    width: 150,
-                                                    headerTitle: data[index]
-                                                        .courseFee
-                                                        .toString(),
-                                                  ),
+                                                  // DataContainerWidget(
+                                                  //   index: index,
+                                                  //   width: 150,
+                                                  //   headerTitle: data[index]
+                                                  //       .courseFee
+                                                  //       .toString(),
+                                                  // ),
                                                   DataContainerWidget(
                                                     index: index,
                                                     width: 300,

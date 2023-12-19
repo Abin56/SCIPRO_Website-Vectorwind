@@ -38,21 +38,21 @@ class SciproHomePage extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       IntroHome(),
-                      SciproOffers(),
-                      HomeAboutUs(),
-                      Padding(
+                      const SciproOffers(),
+                      const HomeAboutUs(),
+                      const Padding(
                         padding: EdgeInsets.only(top: 20),
                         child: SizedBox(height: 400, child: TopCourses()),
                       ),
-                      Padding(
+                      const Padding(
                         padding: EdgeInsets.only(top: 10),
                         child: IndustryOrientedCourses(),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         
                         child: FooterContainerWidget(),
                       ),
-                      Padding(
+                      const Padding(
                         padding: EdgeInsets.only(top: 0),
                         child: CopyRightContainerWidget(),
                       )

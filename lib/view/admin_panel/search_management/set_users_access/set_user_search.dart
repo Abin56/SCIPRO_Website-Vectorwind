@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:scipro_website/controller/all_users_controller/alluser_controller.dart';
-import 'package:scipro_website/controller/all_users_controller/model/all_users_model.dart';
 import 'package:scipro_website/controller/subscribed_students_controller/model/subscribed_students_model.dart';
 import 'package:scipro_website/controller/subscribed_students_controller/subscribed_controller.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';

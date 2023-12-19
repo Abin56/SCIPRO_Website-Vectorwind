@@ -21,7 +21,7 @@ class StudyMaterialController extends GetxController {
   Rxn<PlatformFile> studyMaterial = Rxn();
   final Uuid uuid = const Uuid();
   Rx<CategoryModel> selectedCategory =
-      Rx(CategoryModel(id: '', name: 'SelectCategory', position: 0));
+      Rx(CategoryModel(id: '', name: 'Select Category', position: 0));
   CourseModel? selectedCourse;
   FolderModel? selectedFolder;
 

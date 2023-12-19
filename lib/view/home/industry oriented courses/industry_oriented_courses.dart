@@ -80,12 +80,7 @@ class IndustryOrientedCourses extends StatelessWidget {
                               secondText: 'Study Materials',
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20),
-                            child: IndustryTextWidget(
-                              secondText: 'Duration and Fees',
-                            ),
-                          ),
+                        
                         ],
                       ),))
                     
@@ -142,9 +137,7 @@ class Rec_Courses_widget extends StatelessWidget {
             IndustryTextWidget(
               secondText: 'Study Materials',
             ),
-            IndustryTextWidget(
-              secondText: 'Duration Fees',
-            ),
+           
           ],
         ),
       ),
@@ -178,86 +171,6 @@ class IndustryTextWidget extends StatelessWidget {
   }
 }
 
-List<Widget> containerWidget = [
-  IndustryContainerWidget(
-    imagePath: 'images/main8sara.jpg',
-    mainText: 'Live Courses',
-  ),
-  ////////////////////////////////////////////1
-  ///
-  IndustryContainerWidget(
-    imagePath: 'images/main10vishnu.jpg',
-    mainText: 'Recorded Courses',
-  ),
-  IndustryContainerWidget(
-    imagePath: 'images/main11archanashan.jpg',
-    mainText: 'Hybrid Courses',
-  ),
-];
 
-class IndustryContainerWidget extends StatelessWidget {
-  String mainText;
-  // String secondText;
-  String imagePath;
 
-  IndustryContainerWidget({
-    super.key,
-    required this.imagePath,
-    // required this.secondText,
-    required this.mainText,
-  });
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-          // border: Border.all(color: themeColorBlue),  borderRadius: BorderRadius.circular(10),
-          // color: cGreen
-          ),
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: 30),
-        child: Column(
-          children: [
-            SizedBox(
-              height: ResponsiveWebSite.isMobile(context) ? 200 : 300,
-              width: 600,
-              child: Image.asset(
-                imagePath,
-                fit: BoxFit.fitHeight,
-              ),
-            ),
-            GooglePoppinsWidgets(
-              text: mainText,
-              fontsize: ResponsiveWebSite.isMobile(context) ? 18 : 20,
-              fontWeight: FontWeight.bold,
-            ),
-            IndustryTextWidget(
-              secondText: 'Live Lecture with white board and classroom',
-            ),
-            IndustryTextWidget(
-              secondText: '3 Months Duration',
-            ),
-            IndustryTextWidget(
-              secondText: 'Interactive Session',
-            ),
-            IndustryTextWidget(
-              secondText: 'Teachers Support',
-            ),
-            IndustryTextWidget(
-              secondText: 'Live Doubt Session',
-            ),
-            IndustryTextWidget(
-              secondText: 'Malayalam and English',
-            ),
-            IndustryTextWidget(
-              secondText: 'Study Materials',
-            ),
-            IndustryTextWidget(
-              secondText: 'Fee ₹3999 (Including GST)',
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}

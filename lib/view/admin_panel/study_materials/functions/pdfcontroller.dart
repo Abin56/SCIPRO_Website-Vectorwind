@@ -21,7 +21,7 @@ class PdfUploadController extends GetxController {
     doc1,
     doc2,
   ) async {
-    String uid = Uuid().v1();
+    String uid = const Uuid().v1();
 
     log('started');
     loadingStatus.value = true;

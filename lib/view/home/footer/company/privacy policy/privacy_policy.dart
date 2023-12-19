@@ -1,6 +1,5 @@
 // ignore_for_file: unused_local_variable, duplicate_ignore
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PrivacyPolicy extends StatelessWidget {

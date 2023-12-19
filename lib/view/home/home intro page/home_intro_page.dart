@@ -51,7 +51,7 @@ class IntroHome extends StatelessWidget {
                              alignment: Alignment.topRight,
                             child: GooglePoppinsWidgets(
                               text:
-                                  'Join SCIPRO For better future',
+                                  'Join SCIPRO for a better future',
                               fontsize: 12,
                               color: cWhite,
                             ),
@@ -122,7 +122,7 @@ class IntroHome extends StatelessWidget {
                              alignment: Alignment.topRight,
                             child: GooglePoppinsWidgets(
                               text:
-                                  'Join SCIPRO For better future',
+                                  'Join SCIPRO for a better future',
                               fontsize: 17,
                               color: cWhite,
                             ),

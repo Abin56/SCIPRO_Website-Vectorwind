@@ -41,7 +41,7 @@ class WebApplicationLogoContainer extends StatelessWidget {
                         ),
                         GooglePoppinsWidgets(
                           text: "P R O ",
-                          fontsize: 16,
+                          fontsize: 22,
                           color: Colors.red,
                           fontWeight: FontWeight.w600,
                         ),
