@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scipro_website/firebase_options.dart';
 import 'package:scipro_website/view/home/footer/company/privacy%20policy/privacy_policy.dart';
+import 'package:scipro_website/view/home/sciprohomepage.dart';
 
 import 'view/home/footer/company/terms and conditions/termsandconditions.dart';
-import 'view/home/sciprohomepage.dart';
 
 Future<void> main() async {
   html.document.title = 'SCI PRO';
@@ -33,8 +33,8 @@ class MyApp extends StatelessWidget {
         '/terms_condition': (context) => const TermsCondition(),
         '/privacy_policy': (context) => const PrivacyPolicy(),
       },
-    // home: const AdminPanelPage(),
-       home: SciproHomePage(),
+      // home: const AdminPanelPage(),
+      home: SciproHomePage(),
     );
   }
 }

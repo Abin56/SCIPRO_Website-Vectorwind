@@ -1,6 +1,5 @@
 // ignore_for_file: must_be_immutable
 
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -223,12 +222,10 @@ subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
                                           padding:
                                               const EdgeInsets.only(top: 10),
                                           child: GestureDetector(
-                                              onTap: () {
-                                               
-                                                // getinvoicecontroller
-                                                //     .calculateCgst(
-                                                //         data.coursefee)
-                                                //     .toString();
+                                              onTap: () async {
+                                                await getinvoicecontroller
+                                                    .calculateCgst(
+                                                        data.coursefee);
                                                 getinvoicecontroller
                                                     .calculateGst(
                                                         data.coursefee)
@@ -236,13 +233,16 @@ subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
                                                 getinvoicecontroller
                                                         .purchasedCourses
                                                         .value =
-                                                    data.coursename; ////course name
+                                                    data.coursename
+                                                        .toString(); ////course name
                                                 getinvoicecontroller
                                                         .studentName.value =
-                                                    data.studentname; //////student name
-                                            
+                                                    data.studentname
+                                                        .toString(); //////student name
+
                                                 getinvoicecontroller
-                                                    .date.value = data.joindate;
+                                                        .date.value =
+                                                    data.joindate.toString();
                                                 getinvoicecontroller ///////join date
                                                         .studentEmail
                                                         .value =
@@ -262,7 +262,7 @@ subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
                                                 Future.delayed(const Duration(
                                                         seconds: 2))
                                                     .then((value) async {
-                                                  return generateInvoice();
+                                                  await generateInvoice();
                                                 });
                                               },
                                               child:
@@ -318,21 +318,23 @@ subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
                                         const Spacer(),
                                         GestureDetector(
                                             onTap: () async {
-                                              // getinvoicecontroller
-                                              //     .calculateCgst(data.coursefee)
-                                              //     .toString();
+                                              await getinvoicecontroller
+                                                  .calculateCgst(
+                                                      data.coursefee);
                                               getinvoicecontroller
                                                   .calculateGst(data.coursefee)
                                                   .toString();
                                               getinvoicecontroller
                                                       .purchasedCourses.value =
-                                                  data.coursename; ////course name
+                                                  data.coursename
+                                                      .toString(); ////course name
                                               getinvoicecontroller
                                                       .studentName.value =
-                                                  data.studentname; //////student name
+                                                  data.studentname
+                                                      .toString(); //////student name
 
                                               getinvoicecontroller.date.value =
-                                                  data.joindate;
+                                                  data.joindate.toString();
                                               getinvoicecontroller ///////join date
                                                       .studentEmail
                                                       .value =
@@ -349,28 +351,10 @@ subscribedstudentdetaildialogbox(BuildContext context, String studentID) {
                                                       .totalPrice.value =
                                                   data.coursefee
                                                       .toString(); //////actual price
-
-                                              // getinvoicecontroller
-                                              //         .gstPrice.value
-                                              //         =
-                                              //     getinvoicecontroller
-                                              //         .calculateGst(
-                                              //             data.coursefee)
-                                              //         .toString(); ////////gst price
-
-                                              // getinvoicecontroller
-                                              //     .calculateCgst(
-                                              //         data.coursefee)
-                                              //     .toString(); //////cgst
-
-                                              // getinvoicecontroller
-                                              //     .calculateCgst(
-                                              //         data.coursefee)
-                                              // .toString(); //////sgst
                                               Future.delayed(const Duration(
                                                       seconds: 2))
                                                   .then((value) async {
-                                                return generateInvoice();
+                                                await generateInvoice();
                                               });
                                             },
                                             child: const ButtonContainerWidget(

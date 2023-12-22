@@ -18,38 +18,36 @@ class GetInvoiceController extends GetxController {
   RxString gstnumber = ''.obs;
   RxString rxcgst = ''.obs;
   RxString rxsgst = ''.obs;
-  
 
   Future<void> calculateGst(int totalPrice) async {
     final data =
         await dataserver.collection('Gst_settings').doc('percentage').get();
 
-    final gst = await data.data()!['percentage'];
+    final gst = data.data()!['percentage'];
 
-    final result = totalPrice / gst;
-    final gstprice = totalPrice - result.toInt();
-
-    actualPrice.value = result.toInt().toString();
-    final gsthalf = gstprice / 2;
-    rxgstPrice.value = gsthalf.toInt().toString();
-    log('gst result  ${rxgstPrice.value}');
-     
+    final result = totalPrice * gst / 100;
+    final gstprice = totalPrice - result;
+    log('gst result  $result');
+    actualPrice.value = gstprice.toStringAsFixed(2);
+    rxgstPrice.value = result.toString();
   }
 
-  // Future<double> calculateCgst(int totalPrice) async {
-  //   final data =
-  //       await dataserver.collection('Gst_settings').doc('percentage').get();
+  Future<double> calculateCgst(int totalPrice) async {
+     log('');
+    final data =
+        await dataserver.collection('Gst_settings').doc('percentage').get();
 
-  //   final gst = await data.data()!['percentage'];
+    final gst = data.data()!['percentage'];
 
-  //   final result = totalPrice * gst / 100;
-  //   log('gst result  $result');
-  //   final cgst = result / 2;
+    final result = totalPrice * gst / 100;
+    
+    final cgst = result / 2;
+    log('cgst result,,,,,,,,,,,,,,,  $cgst');
 
-  //   // rxcgst.value = cgst.toString();
-  //   // rxsgst.value = cgst.toString();
-  //   return cgst;
-  // }
+    rxcgst.value = cgst.toStringAsFixed(2);
+    rxsgst.value = cgst.toStringAsFixed(2);
+    return cgst;
+  }
 
   Future<void> setInvoiceNumber() async {
     final data = dataserver.collection("Invoice_number").doc('number');

@@ -98,10 +98,10 @@ PdfLayoutResult drawHeader(PdfPage page, Size pageSize, PdfGrid grid) {
   // ignore: leading_newlines_in_multiline_strings
   // String address =
   //     ''' To \r\n\r\n${getinvoiceController.studentName.value}\r\n\r\n${getinvoiceController.studentEmail.value}\r\n\r\n\r\nVectorWind Tech System Pvt.Ltd \r\n\r\nDoor.No.4/461,2nd floor,suites#151,\r\n\r\nValamkottil towers,\r\n\r\n judgemukku,Thrikkakkara P.O,\r\n\r\nKochi-682021,Kerala,India
-         
+
   //       ''';
 
- String address =
+  String address =
       '''VectorWind Tech System Pvt.Ltd \r\n\r\nDoor.No.4/461,2nd floor,suites#151,\r\n\r\nValamkottil towers,\r\n\r\n judgemukku,Thrikkakkara P.O,\r\n\r\nKochi-682021,Kerala,India\r\n\r\n \r\n\r\nTo \r\n\r\n${getinvoiceController.studentName.value}\r\n\r\n${getinvoiceController.studentEmail.value}\r\n\r\n\r\n
          
         ''';
@@ -137,7 +137,7 @@ void drawGrid(PdfPage page, PdfGrid grid, PdfLayoutResult result) {
       page: page, bounds: Rect.fromLTWH(0, result.bounds.bottom + 40, 0, 0))!;
 
   //Draw grand total.
-  page.graphics.drawString('Actual Price \n GST\n SGST \n CGST',
+  page.graphics.drawString('Actual Price\n',
       PdfStandardFont(PdfFontFamily.helvetica, 9, style: PdfFontStyle.bold),
       bounds: Rect.fromLTWH(quantityCellBounds!.left, result.bounds.bottom + 10,
           quantityCellBounds!.width, quantityCellBounds!.height));
@@ -159,12 +159,12 @@ void drawGrid(PdfPage page, PdfGrid grid, PdfLayoutResult result) {
 //       bounds: Rect.fromLTWH(quantityCellBounds!.left, result.bounds.bottom + 30,
 //           quantityCellBounds!.width, quantityCellBounds!.height));
 
-  page.graphics.drawString('SGST : ${getinvoiceController.rxgstPrice.value}/-',
+  page.graphics.drawString('SGST : ${getinvoiceController.rxcgst.value}/-',
       PdfStandardFont(PdfFontFamily.helvetica, 9),
       bounds: Rect.fromLTWH(quantityCellBounds!.left, result.bounds.bottom + 50,
           quantityCellBounds!.width, quantityCellBounds!.height));
 
-  page.graphics.drawString('CGST : ${getinvoiceController.rxgstPrice.value}/-',
+  page.graphics.drawString('CGST : ${getinvoiceController.rxcgst.value}/-',
       PdfStandardFont(PdfFontFamily.helvetica, 9),
       bounds: Rect.fromLTWH(quantityCellBounds!.left, result.bounds.bottom + 70,
           quantityCellBounds!.width, quantityCellBounds!.height));
