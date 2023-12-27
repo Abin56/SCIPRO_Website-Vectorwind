@@ -3,12 +3,9 @@ import 'dart:convert';
 
 class SubscribedStudentsModel {
   final String uid;
-
   final String studentname;
-
   final String email;
   final String phonenumber;
-
   final String joindate;
   SubscribedStudentsModel({
     required this.uid,
@@ -56,7 +53,9 @@ class SubscribedStudentsModel {
 
   String toJson() => json.encode(toMap());
 
-  factory SubscribedStudentsModel.fromJson(String source) => SubscribedStudentsModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory SubscribedStudentsModel.fromJson(String source) =>
+      SubscribedStudentsModel.fromMap(
+          json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -66,21 +65,20 @@ class SubscribedStudentsModel {
   @override
   bool operator ==(covariant SubscribedStudentsModel other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.uid == uid &&
-      other.studentname == studentname &&
-      other.email == email &&
-      other.phonenumber == phonenumber &&
-      other.joindate == joindate;
+
+    return other.uid == uid &&
+        other.studentname == studentname &&
+        other.email == email &&
+        other.phonenumber == phonenumber &&
+        other.joindate == joindate;
   }
 
   @override
   int get hashCode {
     return uid.hashCode ^
-      studentname.hashCode ^
-      email.hashCode ^
-      phonenumber.hashCode ^
-      joindate.hashCode;
+        studentname.hashCode ^
+        email.hashCode ^
+        phonenumber.hashCode ^
+        joindate.hashCode;
   }
 }

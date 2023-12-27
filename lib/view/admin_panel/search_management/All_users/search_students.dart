@@ -53,8 +53,20 @@ class AllUsersSearch extends SearchDelegate {
       body: SafeArea(
         child: ListView.separated(
           itemBuilder: (context, index) {
+            final data = suggestionList[index];
             return GestureDetector(
-              onTap: () async {},
+              onTap: () async {
+                Get.find<AllusersController>().seeStudentDetails(
+                    context,
+                    data.name,
+                    data.email,
+                    data.phoneno,
+                    data.address,
+                    data.district,
+                    data.state,
+                    data.pincode,
+                    data.imageUrl);
+              },
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Card(

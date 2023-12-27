@@ -7,12 +7,12 @@ import 'package:scipro_website/view/constant/const.dart';
 import 'package:scipro_website/view/core/core.dart';
 
 class SubscribedStudentsController extends GetxController {
-   String className = "StudentProfileCollection";
+  String className = "StudentProfileCollection";
   RxBool excelisLoading = false.obs;
   List<SubscribedStudentsModel> studentProfileList = [];
 
   Future<void> fetchAllStudents() async {
-    final severRef = dataserver.collection('SubscribedStudentsModel');
+    final severRef = dataserver.collection('SubscribedStudents');
 
     // studentProfileList.clear();
     try {
@@ -31,5 +31,4 @@ class SubscribedStudentsController extends GetxController {
     await fetchAllStudents();
     super.onInit();
   }
-  
 }

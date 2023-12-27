@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:scipro_website/controller/subscribed_students_controller/subscribed_controller.dart';
 import 'package:scipro_website/view/admin_panel/coupen_mngt/coupen_part_grid/listing_coupen_users.dart';
 import 'package:scipro_website/view/admin_panel/drawer_logo.dart';
 import 'package:scipro_website/view/admin_panel/studyMaterials_management/studyMaterials_screen.dart';
@@ -7,12 +9,15 @@ import 'package:scipro_website/view/admin_panel/video_management/video_managemen
 import 'package:scipro_website/view/colors/colors.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
-import 'notification_management/notification.dart';
+
 import 'all_users_mngt/all_users/all_users_list.dart';
+import 'notification_management/notification.dart';
 import 'set_user_acess/set_user_acess_list.dart';
 
 class AdminPanelPage extends StatefulWidget {
-  const AdminPanelPage({super.key});
+  SubscribedStudentsController subscribedStudentsController =
+      Get.put(SubscribedStudentsController());
+  AdminPanelPage({super.key});
 
   @override
   State<AdminPanelPage> createState() => _AdminPanelPageState();
@@ -128,9 +133,7 @@ List<IconData> sideMenuICons = [
   Icons.volunteer_activism,
   Icons.picture_as_pdf,
   Icons.receipt,
-
   Icons.group,
   Icons.confirmation_num,
   Icons.notification_add,
-
 ];

@@ -183,34 +183,48 @@ class AllUsersList extends StatelessWidget {
                         itemBuilder: (BuildContext context, int index) {
                           final data = StudentProfileCreationModel.fromMap(
                               snapshot.data!.docs[index].data());
-                          return SizedBox(
-                              height: 80,
-                              child: Row(
-                                children: [
-                                  DataContainerWidget(
-                                    index: index,
-                                    width: 100,
-                                    headerTitle: '${index + 1}',
-                                  ),
-                                  DataContainerWidget(
+                          return GestureDetector(
+                            onTap: () async {
+                              Get.find<AllusersController>().seeStudentDetails(
+                                  context,
+                                  data.name,
+                                  data.email,
+                                  data.phoneno,
+                                  data.address,
+                                  data.district,
+                                  data.state,
+                                  data.pincode,
+                                  data.imageUrl);
+                            },
+                            child: SizedBox(
+                                height: 80,
+                                child: Row(
+                                  children: [
+                                    DataContainerWidget(
                                       index: index,
-                                      width: 300,
-                                      headerTitle: data.name),
-                                  DataContainerWidget(
-                                      index: index,
-                                      width: 250,
-                                      headerTitle: data.phoneno),
-                                  DataContainerWidget(
-                                      index: index,
-                                      width: 300,
-                                      headerTitle: data.email),
-                                  DataContainerWidget(
-                                      index: index,
-                                      width: 200,
-                                      headerTitle: dateConveter(
-                                          DateTime.parse(data.joindate))),
-                                ],
-                              ));
+                                      width: 100,
+                                      headerTitle: '${index + 1}',
+                                    ),
+                                    DataContainerWidget(
+                                        index: index,
+                                        width: 300,
+                                        headerTitle: data.name),
+                                    DataContainerWidget(
+                                        index: index,
+                                        width: 250,
+                                        headerTitle: data.phoneno),
+                                    DataContainerWidget(
+                                        index: index,
+                                        width: 300,
+                                        headerTitle: data.email),
+                                    DataContainerWidget(
+                                        index: index,
+                                        width: 200,
+                                        headerTitle: dateConveter(
+                                            DateTime.parse(data.joindate))),
+                                  ],
+                                )),
+                          );
                         },
                         separatorBuilder: (BuildContext context, int index) {
                           return const SizedBox();

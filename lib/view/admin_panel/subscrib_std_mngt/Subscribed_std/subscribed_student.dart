@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scipro_website/controller/get_invoice_controller/get_invoice_controller.dart';
 import 'package:scipro_website/controller/subscribed_students_controller/model/subscribed_students_model.dart';
+import 'package:scipro_website/view/admin_panel/search_management/Subscribed_students/subscribed_students_search.dart';
 import 'package:scipro_website/view/constant/constant.validate.dart';
 import 'package:scipro_website/view/fonts/google_poppins.dart';
 import 'package:scipro_website/view/widgets/button_container_widget/button_container_widget.dart';
@@ -16,6 +17,9 @@ import '../subscribed_students_showdialog.dart';
 
 class SubscribedStd extends StatelessWidget {
   //final ScrollController _horizontalController = ScrollController();
+  Future<void> searchStudents(BuildContext context) async {
+    await showSearch(context: context, delegate: AllSubscribedStudentsSearch());
+  }
 
   const SubscribedStd({super.key});
 
@@ -41,10 +45,15 @@ class SubscribedStd extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(top: 15),
-                    child: ButtonContainerWidget(
-                      text: "Search",
+                  GestureDetector(
+                    onTap: () {
+                      searchStudents(context);
+                    },
+                    child: const Padding(
+                      padding: EdgeInsets.only(top: 15),
+                      child: ButtonContainerWidget(
+                        text: "Search",
+                      ),
                     ),
                   ),
                   GestureDetector(

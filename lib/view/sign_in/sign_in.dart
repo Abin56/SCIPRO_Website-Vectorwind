@@ -67,28 +67,33 @@ loginshowDilogueBox(BuildContext context) {
                         child: GestureDetector(
                           onTap: () {
                             if (formKey.currentState!.validate()) {
-                              try {
-                                FirebaseAuth.instance
-                                    .signInWithEmailAndPassword(
-                                        email: emailController.text.trim(),
-                                        password:
-                                            passwordController.text.trim())
-                                    .then((value) => Navigator.push(context,
-                                            MaterialPageRoute(
-                                          builder: (context) {
-                                            return const AdminPanelPage();
-                                          },
-                                        )))
-                                    .catchError((d) {
-                                  return showToast(msg: 'Invalid');
-                                });
-                                //     .catchError((d) {
-                                //   return showToast(msg: 'Invalid');
-                                // });
-                              } catch (e) {
-                                print("-------------------object");
-                                showToast(msg: e.toString());
-                                log(e.toString());
+                              if (emailController.text.trim() ==
+                                  'binojkumarvc@gmail.com') {
+                                try {
+                                  FirebaseAuth.instance
+                                      .signInWithEmailAndPassword(
+                                          email: emailController.text.trim(),
+                                          password:
+                                              passwordController.text.trim())
+                                      .then((value) => Navigator.push(context,
+                                              MaterialPageRoute(
+                                            builder: (context) {
+                                              return AdminPanelPage();
+                                            },
+                                          )))
+                                      .catchError((d) {
+                                    return showToast(msg: 'Invalid');
+                                  });
+                                  //     .catchError((d) {
+                                  //   return showToast(msg: 'Invalid');
+                                  // });
+                                } catch (e) {
+                                  print("-------------------object");
+                                  showToast(msg: e.toString());
+                                  log(e.toString());
+                                }
+                              } else {
+                                return showToast(msg: 'Invalid Email');
                               }
                             }
                           },
